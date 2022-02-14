@@ -1,0 +1,2 @@
+Add-Migration EntitiesMigration1 -Context EFDBContext
+

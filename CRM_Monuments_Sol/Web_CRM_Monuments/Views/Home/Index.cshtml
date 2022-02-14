@@ -1,0 +1,182 @@
+﻿@model List<DataLayer.Entities.Contract>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+
+<div class="content-box">
+    <p>
+        <a asp-action="CreateContract">Новый договор</a>
+    </p>
+    <div>
+        <input type="text" class="searchKey form-control" placeholder="Поиск...">
+    </div>
+
+    <span class="searchCount pull-right"></span>
+    <table class="table table-hover table-bordered results full">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    Заключен
+                </th>
+                <th>
+                    Фамилия на памятнике
+                </th>
+                <th>
+                    Установка/самовывоз
+                </th>
+                <th>
+                    Крайний срок
+                </th>
+                <th>
+                    Заказчик
+                </th>
+                <th>
+                    Телефон
+                </th>
+            </tr>
+            <tr class="warning no-result">
+                <td colspan="4"><i class="fa fa-warning"></i> Совпадения не найдены</td>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = Model.Count() - 1; i >= 0; i--)
+            {
+                <tr onclick="location.href='/Home/CreateContract?idContract=@Model[i].Id'"
+                    class="table-stroke">
+                    <td class="font-weight-bold">
+                        @{//номер договора
+                            string numContract = Model[i].NumYear + "/" + Model[i].Place + "/" + Model[i].Number;
+                            if (Model[i].InstallmentPayment) //рассрочка
+                                numContract += "р";
+                            <label>@numContract</label>
+                        }
+                    </td>
+                    <td>
+                        @Model[i].DateOfConclusion.ToShortDateString()
+                    </td>
+                    <td>
+
+                        @foreach (Deceased d in Model[i].Deceaseds)
+                        {
+                            @(d.LastName + " ")
+                        }
+                        @*@Html.DisplayFor(modelItem => Model[i].Deceaseds[0].LastName)*@
+                    </td>
+                    @*<td>
+                            @if (item.Deceaseds[0].PhotosOnMonument[0] is Portrait)
+                            {
+                                @Html.DisplayFor(modelItem => ((Portrait)item.Deceaseds[0].PhotosOnMonument[0]).Artist)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => ((Medallion)item.Deceaseds[0].PhotosOnMonument[0]).BackgroundMedallion)
+                            }
+                        </td>
+                        <td>
+                            @if (item.Accessories[0] is StoneAccessorie)
+                            {
+                                @Html.DisplayFor(modelItem => ((StoneAccessorie)item.Accessories[0]).Material.Name)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => ((OtherAccessorie)item.Accessories[0]).Size)
+                            }
+                        </td>*@
+                    <td>
+                        @{
+                            string pickupText;
+                            if (Model[i].Pickup) pickupText = "самовывоз";
+                            else pickupText = "установка";
+                        }
+                        @pickupText
+                    </td>
+                    <td>
+                        @Model[i].DeadLine.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[i].Customers[0].LastName)
+                        @Html.DisplayFor(modelItem => Model[i].Customers[0].FirstName)
+                        @Html.DisplayFor(modelItem => Model[i].Customers[0].MiddleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model[i].Customers[0].Number)
+                    </td>
+
+                    @*<td>
+                        </td>*@
+
+                    @*<td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>*@
+                </tr>
+            }
+
+            @*@foreach (var item in Model)
+                {
+
+                }*@
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function createExpr(arr) {
+        var index = 0;
+        var expr = [":containsiAND('" + arr[0] + "')"];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] === 'AND') {
+                expr[index] += ":containsiAND('" + arr[i + 1] + "')";
+                i++;
+            } else if (arr[i] === 'OR') {
+                index++;
+                expr[index] = ":containsiOR('" + arr[i + 1] + "')";
+                i++;
+            }
+        }
+        return expr;
+    }
+    $(document).ready(function () {
+
+        $(".searchKey").keyup(function () {
+            var searchTerm = $(".searchKey").val().replace(/["']/g, "");
+            var arr = searchTerm.split(/(AND|OR)/);
+            var exprs = createExpr(arr);
+            var searchSplit = searchTerm.replace(/AND/g, "'):containsiAND('").replace(/OR/g, "'):containsiOR('");
+
+            $.extend($.expr[':'], {
+                'containsiAND': function (element, i, match, array) {
+                    return (element.textContent || element.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+                }
+            });
+
+            $('.results tbody tr').attr('visible', 'false');
+            for (var expr in exprs) {
+                $(".results tbody tr" + exprs[expr]).each(function (e) {
+                    $(this).attr('visible', 'true');
+                });
+            }
+
+            var searchCount = $('.results tbody tr[visible="true"]').length;
+
+            $('.searchCount').text('найдено ' + searchCount);
+            if (searchCount == '0') {
+                $('.no-result').show();
+            } else {
+                $('.no-result').hide();
+            }
+            if ($('.searchKey').val().length == 0) {
+                $('.searchCount').hide();
+            } else {
+                $('.searchCount').show();
+            }
+        });
+    });
+</script>
+
