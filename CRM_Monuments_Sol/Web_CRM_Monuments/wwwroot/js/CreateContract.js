@@ -1,6 +1,5 @@
 ﻿var CustomersCount = 1;
-var DeceasedsCount = 0;
-var nte, tne, ee;
+var DeceasedsCount = $("#Deceaseds")[0].getElementsByClassName("deceased-container").length;
 
 var typesText = ["Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный"];
 var typesPortrait = ["Ручной", "Станочный"];
@@ -8,28 +7,42 @@ var materialsMedallion = ["Керамогранит", "Керамика (фар�
 var shapesMedallion = ["Овальная", "Прямоугольная", "Арка"];
 var colorsMedallion = ["Цветной", "Черно-белый"];
 
-//AddDeceased();
-//AddDeceased();
+// --- Проверка чекбоксов (начало) -------------------------------------------------
+// установка / самовывоз
 if ($("#Contract_Pickup").is(":checked")) {
     AddDisabledPickup(true)
 }
-//if ($("check-epitaph").is(":checked")) {
-//    AddDisabledEpitaph(false);
-//}
+// эпитафии
+var epitaphBoxes = document.getElementsByClassName("check-epitaph");
+for (eph = 0; eph < epitaphBoxes.length; eph++) {
+    if ($(epitaphBoxes[eph]).is(":checked")) {
+        //console.log(epitaphBoxes[eph]);
+        AddDisabledEpitaph(epitaphBoxes[eph], false);
+    }
+}
+// рамки медальонов
+var frameBoxes = document.getElementsByClassName("check-frame");
+for (fr = 0; fr < frameBoxes.length; fr++) {
+    if ($(frameBoxes[fr]).is(":checked")) {
+        AddDisabledFrame(frameBoxes[fr], false);
+    }
+}
+// --- Проверка чекбоксов (конец) -------------------------------------------------
 
 $(document).ready(function () {
-
     // --- Add/Remove -------------------------------------------------
     $("#AddCustomer").click(AddCustomer);
     $("#AddDeceased").click(AddDeceased);
-    //$(".add-portrait").click(AddPortrait);
-    //$(".add-medallion").click(AddMedallion);
+    $(".add-portrait").click(AddPortrait);
+    $(".add-medallion").click(AddMedallion);
 
     $(".remove-customer").click(RemoveCustomer);
     $(".remove-deceased").click(RemoveDeceased);
-    //$(".remove-portrait").click(RemovePortrait);
-    //$(".remove-medallion").click(RemoveMedallion);
-    
+    $(".remove-portrait").click(RemovePortrait);
+    $(".remove-medallion").click(RemoveMedallion);
+
+    $(".check-epitaph").click(CheckEpitaph);
+    $(".check-frame").click(CheckFrame);
     // ----------------------------------------------------------------
     // --- Код для чекбокса "Самовывоз" -------------------------------
     $("#Contract_Pickup").click(function () {
@@ -40,7 +53,6 @@ $(document).ready(function () {
             AddDisabledPickup(false);
         }
     });
-    
     // ----------------------------------------------------------------
 });
 // --- При загрузке изображения добавляет его название в строку ---
@@ -56,65 +68,32 @@ $(document).on("input", ".custom-file-input", function () {
     $(this).siblings(".custom-file-label").addClass("selected").html(str);
 });
 // ----------------------------------------------------------------
-// --- Код для чекбоксов внутри динамических блоков с эпитафией ---
-$(document).on("click", ".check-epitaph", function () {
-    var CheckEpitaphId = $(this).attr("id");
-    var CheckEpitaphNum = parseInt(CheckEpitaphId.match(/\d+/));
-    CalculateIdEpitaphBlocks(CheckEpitaphNum);
 
-    var NotesTextEpitaph = document.querySelector(nte);
-    var TypeNameEpitaph = document.querySelector(tne);
-    var EngraverEpitaph = document.querySelector(ee);
-
+function CheckFrame() {
     if ($(this).is(":checked")) {
-        //AddDisabledEpitaph(false);
-        $(NotesTextEpitaph).prop("disabled", false);
-        $(TypeNameEpitaph).prop("disabled", false);
-        $(EngraverEpitaph).prop("disabled", false);
+        AddDisabledFrame(this, false);
     }
     else {
-        //AddDisabledEpitaph(true);
-        $(NotesTextEpitaph).prop("disabled", true);
-        $(TypeNameEpitaph).prop("disabled", true);
-        $(EngraverEpitaph).prop("disabled", true);
+        AddDisabledFrame(this, true);
     }
-});
-function CalculateIdEpitaphBlocks(num) {
-    nte = ('.notes-text-epitaph-' + num).toString();
-    tne = ('.type-name-epitaph-' + num).toString();
-    ee = ('.engraver-epitaph-' + num).toString();
 }
-// ----------------------------------------------------------------
-// --- Код для чекбоксов внутри динамических блоков с медальоном ---
-$(document).on("click", ".check-frame", function () {
-    var keyF = ($(this).attr("id")).match(/D\d+M\d+/)[0];
-    var FrameBlock = document.getElementsByClassName(keyF)[0];
+function AddDisabledFrame(frameBox, trfl) {
+    var keyF = ($(frameBox).attr("id")).match(/D\d+M\d+/)[0];
 
-    var TypeFrame = FrameBlock.querySelector("#Medallions_" + keyF + "__TypeFrame");
-    var SizeFrame = FrameBlock.querySelector("#Medallions_" + keyF + "__SizeFrame");
-    var ShapeFrame = FrameBlock.querySelector("#Medallions_" + keyF + "__ShapeFrame");
-    var ColorFrame = FrameBlock.querySelector("#Medallions_" + keyF + "__ColorFrame");
-    var NoteFrame = FrameBlock.querySelector("#Medallions_" + keyF + "__NoteFrame");
-    var GluingIntoNiche = FrameBlock.querySelector("#Medallions_" + keyF + "__GluingIntoNiche");
+    var TypeFrame = $(frameBox).closest(".wrapper")[0].querySelector("[id$='__TypeFrame']");/* FrameBlock.querySelector("#Medallions_" + keyF + "__TypeFrame");*/
+    var SizeFrame = $(frameBox).closest(".wrapper")[0].querySelector("[id$='__SizeFrame']");//FrameBlock.querySelector("#Medallions_" + keyF + "__SizeFrame");
+    var ShapeFrame = $(frameBox).closest(".wrapper")[0].querySelector("[id$='__ShapeFrame']");//FrameBlock.querySelector("#Medallions_" + keyF + "__ShapeFrame");
+    var ColorFrame = $(frameBox).closest(".wrapper")[0].querySelector("[id$='" + keyF + "__ColorFrame']");//FrameBlock.querySelector("#Medallions_" + keyF + "__ColorFrame");
+    var NoteFrame = $(frameBox).closest(".wrapper")[0].querySelector("[id$='" + keyF + "__NoteFrame']");//FrameBlock.querySelector("#Medallions_" + keyF + "__NoteFrame");
+    var GluingIntoNiche = $(frameBox).closest(".wrapper")[0].querySelector("[id$='" + keyF + "__GluingIntoNiche']");//FrameBlock.querySelector("#Medallions_" + keyF + "__GluingIntoNiche");
 
-    if ($(this).is(":checked")) {
-        $(TypeFrame).prop("disabled", false);
-        $(SizeFrame).prop("disabled", false);
-        $(ShapeFrame).prop("disabled", false);
-        $(ColorFrame).prop("disabled", false);
-        $(NoteFrame).prop("disabled", false);
-        $(GluingIntoNiche).prop("disabled", true);
-    }
-    else {
-        $(TypeFrame).prop("disabled", true);
-        $(SizeFrame).prop("disabled", true);
-        $(ShapeFrame).prop("disabled", true);
-        $(ColorFrame).prop("disabled", true);
-        $(NoteFrame).prop("disabled", true);
-        $(GluingIntoNiche).prop("disabled", false);
-    }
-});
-// -----------------------------------------------------------------
+    $(TypeFrame).prop("disabled", trfl);
+    $(SizeFrame).prop("disabled", trfl);
+    $(ShapeFrame).prop("disabled", trfl);
+    $(ColorFrame).prop("disabled", trfl);
+    $(NoteFrame).prop("disabled", trfl);
+    $(GluingIntoNiche).prop("disabled", !trfl);
+}
 
 function AddDisabledPickup(trfl) {
     $("#Contract_BurialAddress").prop("disabled", trfl);
@@ -125,11 +104,31 @@ function AddDisabledPickup(trfl) {
     $("#Contract_DistanceFromMKAD").prop("disabled", trfl);
     $("#Contract_NumberOfTrips").prop("disabled", trfl);
 }
-//function AddDisabledEpitaph(trfl) {
-//    $(NotesTextEpitaph).prop("disabled", trfl);
-//    $(TypeNameEpitaph).prop("disabled", trfl);
-//    $(EngraverEpitaph).prop("disabled", trfl);
-//}
+
+function CheckEpitaph() {
+    if ($(this).is(":checked")) {
+        AddDisabledEpitaph(this, false);
+    }
+    else {
+        AddDisabledEpitaph(this, true);
+    }
+}
+function AddDisabledEpitaph(epitaphBox, trfl) {
+    var NotesTextEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__NotesTextEpitaph']");
+    var TypeNameEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__TypeNameEpitaph']");
+    var EngraverEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__EngraverEpitaph']");
+
+    //console.log($(epitaphBox).closest(".wrapper")[0]);
+
+    //console.log($(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__NotesTextEpitaph']"));
+    //console.log(TypeNameEpitaph);
+    //console.log(EngraverEpitaph);
+
+    $(NotesTextEpitaph).prop("disabled", trfl);
+    $(TypeNameEpitaph).prop("disabled", trfl);
+    $(EngraverEpitaph).prop("disabled", trfl);
+}
+
 
 function AddCustomer() {
     //добавляем поля
@@ -302,7 +301,7 @@ function AddDeceased() {
     //----- Эпитафия (начало) ------------------------
 
     var DivEpitaph = $("<div/>").appendTo(WrapperD);
-    $("<input/>").attr("type", "checkbox")
+    var CheckEpit = $("<input/>").attr("type", "checkbox")
         .attr("data-val", "true")
         .attr("data-val-required", "The Epitaph field is required.")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph")
@@ -310,6 +309,7 @@ function AddDeceased() {
         .attr("value", "true")
         .attr("class", "check-box check-epitaph")
         .appendTo(DivEpitaph);
+    CheckEpit.click(CheckEpitaph);
     $("<label/>").text(" Эпитафия: ").appendTo(DivEpitaph);
 
     $("<textarea/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__NotesTextEpitaph")
@@ -348,13 +348,13 @@ function AddDeceased() {
     //----- Портреты (начало) -----------------------
     $("<div/>").attr("class", "Portraits" + DeceasedsCount).attr("id", "Portraits" + DeceasedsCount).appendTo(DeceasedPhoto);
     //----- Портреты (конец) ------------------------
-    var AddPortraitButton = $("<input/>").attr("type", "button").attr("class", "add-btn my-btn add-portrait ap" + DeceasedsCount)
+    var AddPortraitButton = $("<input/>").attr("type", "button").attr("class", "add-btn my-btn add-portrait").attr("id", "ap" + DeceasedsCount)
         .attr("value", "Добавить портрет").appendTo(DeceasedPhoto);
     //----- Медальоны (начало) ----------------------
     $("<div/>").attr("class", "Medallions" + DeceasedsCount).attr("id", "Medallions" + DeceasedsCount).appendTo(DeceasedPhoto);
     //----- Медальоны (конец) -----------------------
     //var AddMedallionButton = 
-    var AddMedallionButton = $("<input/>").attr("type", "button").attr("class", "add-btn my-btn add-medallion am" + DeceasedsCount)
+    var AddMedallionButton = $("<input/>").attr("type", "button").attr("class", "add-btn my-btn add-medallion").attr("id", "am" + DeceasedsCount)
         .attr("value", "Добавить медальон").appendTo(DeceasedPhoto);
     /////// Фотографии (конец) //////////////////////
 
@@ -435,7 +435,7 @@ function RecalculateNamesAndIdsDeceaseds(number) {
 }
 
 function AddPortrait() {
-    var thisId = parseInt($(this).attr("class").match(/\d+/));
+    var thisId = parseInt($(this).attr("id").match(/\d+/));
     var PortraitBlocks = $(this).siblings();
 
 
@@ -531,7 +531,7 @@ function PortraitIdCreator(idDeceased, idPortrait) {
 }
 
 function AddMedallion() {
-    var thisId = parseInt($(this).attr("class").match(/\d+/));
+    var thisId = parseInt($(this).attr("id").match(/\d+/));
     var MedallionsBlock = $(this).siblings();
 
     var MedallionCount = MedallionsBlock[2].getElementsByClassName("medallion-container").length;
@@ -615,7 +615,7 @@ function AddMedallion() {
     var WrapperF = $("<div/>").attr("class", "wrapper w5 " + keyM).appendTo(MedallionBox);
 
     var DivFrame = $("<div/>").appendTo(WrapperF);
-    $("<input/>").attr("type", "checkbox")
+    var CheckFr =  $("<input/>").attr("type", "checkbox")
         .attr("data-val", "true")
         .attr("data-val-required", "The Frame field is required.")
         .attr("name", "Medallions[" + keyM + "].Frame")
@@ -623,6 +623,7 @@ function AddMedallion() {
         .attr("value", "true")
         .attr("class", " form-control check-frame check-box")
         .appendTo(DivFrame);
+    CheckFr.click(CheckFrame);
     $("<label/>").text(" Рамка").appendTo(DivFrame);
 
     $("<input/>").attr("class", "form-control")
@@ -672,7 +673,7 @@ function AddMedallion() {
 
     //--- Рамка (конец) -------------------------------------------------
 
-    var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
+    var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
         .attr("value", "x").appendTo(MedallionContainer);
     RemoveButton.click(RemoveMedallion);
     /*MedallionCount++;*/
@@ -724,4 +725,5 @@ function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medalli
 function MedallionIdCreator(idDeceased, idMedallion) {
     return "D" + idDeceased + "M" + idMedallion;
 }
+
 

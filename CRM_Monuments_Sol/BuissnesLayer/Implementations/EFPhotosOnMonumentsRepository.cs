@@ -30,7 +30,13 @@ namespace BuissnesLayer.Implementations
         
         public void SavePhotoOnMonument(PhotoOnMonument photoOnMonument)        //сохранить в БД
         {
-            throw new NotImplementedException();
+            if (photoOnMonument.Id == 0)
+                _context.PhotoOnMonuments.Add(photoOnMonument);
+            else
+                _context.Entry(photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
+            _context.SaveChanges();
+            //throw new NotImplementedException();
         }
         
         public void DeletePhotoOnMonument(PhotoOnMonument photoOnMonument)      //удалить из бд

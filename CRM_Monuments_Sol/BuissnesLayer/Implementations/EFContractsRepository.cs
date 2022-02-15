@@ -50,7 +50,20 @@ namespace BuissnesLayer.Implementations
             if (contract.Id == 0)
                 _context.Contracts.Add(contract);
             else
+            {
+                //Contract con = GetContractById(contract.Id);
+                
+                foreach (Customer c in contract.Customers)
+                {
+                    _customersRepository.SaveCustomer(c);
+                }
+                foreach (Deceased d in contract.Deceaseds)
+                {
+                    _deceasedsRepository.SaveDeceased(d);
+                }
                 _context.Entry(contract).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
+                
             _context.SaveChanges();
             //throw new NotImplementedException();
         }

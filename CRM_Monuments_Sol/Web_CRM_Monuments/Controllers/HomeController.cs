@@ -37,9 +37,11 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult CreateContract(int idContract)
         {
-            ViewBag.TypeText = new List<string>() { "Углубленный", "Литье", "Caggiati" };
-            //ViewBag.TypePortrait = new List<string>() { "Ручной", "Станочный" };
-            //ViewBag.MedallionMaterial = new List<string>() { "Материал 1", "Материал 2" };
+            ViewBag.TypeText = new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
+            ViewBag.TypePortrait = new List<string>() { "Ручной", "Станочный" };
+            ViewBag.MedallionMaterial = new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
+            ViewBag.ShapesMedallion = new List<string>() { "Овальная", "Прямоугольная", "Арка" };
+            ViewBag.ColorsMedallion = new List<string>() { "Цветной", "Черно-белый" };
 
             ContractViewModel contractViewModel = new ContractViewModel();
 
@@ -79,6 +81,7 @@ namespace Web_CRM_Monuments.Controllers
             return RedirectToAction("Index");
         }
 
+        //public void RemoveDeceased(Dece)
 
         //[HttpGet]
         //public ActionResult EditContract(int idContract)

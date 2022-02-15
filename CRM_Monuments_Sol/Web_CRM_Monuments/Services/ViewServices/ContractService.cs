@@ -39,6 +39,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
                 // Добавляем соответствующему усопшему портрет в коллекцию
                 c.Deceaseds[numDeceased].PhotosOnMonument.Add(medallion.Value);
             }
+
             return c;
         }
 
@@ -60,6 +61,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
                         cvm.Medallions.Add($"D{i}M{numMedallion}", (Medallion)ph);
                     }
                 }
+
             }
             return cvm;
         }
