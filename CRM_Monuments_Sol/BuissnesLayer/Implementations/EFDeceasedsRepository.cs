@@ -36,7 +36,9 @@ namespace BuissnesLayer.Implementations
 
         public Deceased GetDeceasedById(int deceasedId)    //получить один по айди
         {
-            throw new NotImplementedException();
+            Deceased deceased = _context.Deceaseds.Find(deceasedId);
+            return deceased;
+            //throw new NotImplementedException();
         }
 
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
@@ -58,7 +60,9 @@ namespace BuissnesLayer.Implementations
 
         public void DeleteDeceased(Deceased deceased)      //удалить из бд
         {
-            throw new NotImplementedException();
+            _context.Deceaseds.Remove(deceased);
+            _context.SaveChanges();
+            //throw new NotImplementedException();
         }
 
         public void DeleteAllDeceasedsByIdContract(int contractId)      //удалить из бд всех усопших по договору

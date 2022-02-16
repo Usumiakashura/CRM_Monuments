@@ -30,7 +30,7 @@ namespace DataLayer.Entities
         public string NotesTextEpitaph { get; set; }       //примечания к тексту (эпитафия)
         public string EngraverEpitaph { get; set; }      //резчик текста (эпитафия)
         //--------------------------
-
+        public bool DeletedCheck { get; set; }
 
         public Contract Contract { get; set; }          //для бд
 

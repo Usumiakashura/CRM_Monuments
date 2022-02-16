@@ -1,5 +1,8 @@
 ﻿var CustomersCount = 1;
 var DeceasedsCount = $("#Deceaseds")[0].getElementsByClassName("deceased-container").length;
+var deletedDeceasedCount = 0;
+var deletedPhotoCount = 0;
+var deletedCustomerCount = 0;
 
 var typesText = ["Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный"];
 var typesPortrait = ["Ручной", "Станочный"];
@@ -372,6 +375,22 @@ function AddDeceased() {
 function RemoveDeceased() {
     var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("DeceasedContainer".length));
     //удаляем этот div
+    var deletedDeceasedId = $($(this).siblings()[1]).attr("value");
+    var removePortraitButtons = $(this).siblings()[0].getElementsByClassName("remove-portrait");
+    var removeMedallionButtons = $(this).siblings()[0].getElementsByClassName("remove-medallion");
+    var rpbLength = removePortraitButtons.length;
+    var rmbLength = removeMedallionButtons.length;
+    for (i = 0; i < rpbLength; i++) {
+        removePortraitButtons[0].click();
+    }
+    for (i = 0; i < rmbLength; i++) {
+        removeMedallionButtons[0].click();
+    }
+
+    $("<input/>").attr("id", "DeletedDeceasedIds_" + deletedDeceasedCount + "_").attr("name", "DeletedDeceasedIds[" + deletedDeceasedCount + "]")
+        .attr("type", "hidden").attr("value", deletedDeceasedId).appendTo(".deleted");
+    deletedDeceasedCount++;
+    
     $(this).parent().remove();
     for (var i = RecalculateStartNum + 1; i < DeceasedsCount; i++) {
         //функция пересчета аттрибутов name и id
@@ -498,6 +517,10 @@ function RemovePortrait() {
     var PortraitSturtNum = parseInt(PortraitContainer.attr("id").match(/\d+/));
     
     var PortraitCount = PortraitContainer.parent()[0].getElementsByClassName("portrait-container").length;
+    var deletedPortraitId = $($(this).siblings()[1]).attr("value");
+    $("<input/>").attr("id", "DeletedPhotoIds_" + deletedPhotoCount + "_").attr("name", "DeletedPhotoIds[" + deletedPhotoCount + "]")
+        .attr("type", "hidden").attr("value", deletedPortraitId).appendTo(".deleted");
+    deletedPhotoCount++;
 
     $(this).parent().remove();
     for (var i = PortraitSturtNum + 1; i < PortraitCount; i++) {
@@ -518,7 +541,7 @@ function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portrait
     $("#PortraitContainer" + portraitStartNum).attr("id", "PortraitContainer" + (portraitStartNum - 1));
 
     var ImgPortrait = $("#Portraits_" + OurKey + "__PhotoImage");
-    console.log(ImgPortrait[0]);
+
     ImgPortrait[0].setAttribute("id", "Portraits_" + PrevKey + "__PhotoImage");
     ImgPortrait[0].setAttribute("name", "Portraits[" + PrevKey + "].PhotoImage");
     ImgPortrait[0].nextElementSibling.setAttribute("for", "Portraits_" + PrevKey + "__PhotoImage");
@@ -684,6 +707,10 @@ function RemoveMedallion() {
     var MedallionSturtNum = parseInt(MedallionContainer.attr("id").match(/\d+/));
 
     var MedallionCount = MedallionContainer.parent()[0].getElementsByClassName("medallion-container").length;
+    var deletedMedallionId = $($(this).siblings()[1]).attr("value");
+    $("<input/>").attr("id", "DeletedPhotoIds_" + deletedPhotoCount + "_").attr("name", "DeletedPhotoIds[" + deletedPhotoCount + "]")
+        .attr("type", "hidden").attr("value", deletedMedallionId).appendTo(".deleted");
+    deletedPhotoCount++;
 
     $(this).parent().remove();
     for (var i = MedallionSturtNum + 1; i < MedallionCount; i++) {

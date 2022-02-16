@@ -37,11 +37,11 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult CreateContract(int idContract)
         {
-            ViewBag.TypeText = new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
-            ViewBag.TypePortrait = new List<string>() { "Ручной", "Станочный" };
-            ViewBag.MedallionMaterial = new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
-            ViewBag.ShapesMedallion = new List<string>() { "Овальная", "Прямоугольная", "Арка" };
-            ViewBag.ColorsMedallion = new List<string>() { "Цветной", "Черно-белый" };
+            ViewBag.TypeText = /*_dataManager.SelectPointsRepository.GetAll(new TypeText());*/ new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
+            ViewBag.TypePortrait = /*_dataManager.SelectPointsRepository.GetAll(new TypePortrait());*/ new List<string>() { "Ручной", "Станочный" };
+            ViewBag.MedallionMaterial = /*_dataManager.SelectPointsRepository.GetAll(new MedallionMaterial());*/ new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
+            ViewBag.ShapesMedallion = /*_dataManager.SelectPointsRepository.GetAll(new ShapeMedallion());*/ new List<string>() { "Овальная", "Прямоугольная", "Арка" };
+            ViewBag.ColorsMedallion = /*_dataManager.SelectPointsRepository.GetAll(new ColorMedallion());*/ new List<string>() { "Цветной", "Черно-белый" };
 
             ContractViewModel contractViewModel = new ContractViewModel();
 

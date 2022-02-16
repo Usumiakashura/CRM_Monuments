@@ -44,6 +44,7 @@ namespace Web_CRM_Monuments
             services.AddTransient<IDeceasedsRepository, EFDeceasedsRepository>();
             services.AddTransient<IPhotosOnMonumentsRepository, EFPhotosOnMonumentsRepository>();
             services.AddTransient<IStoneMaterialsRepository, EFStoneMaterialsRepository>();
+            services.AddTransient<ISelectPointsRepository, EFSelectPointsRepository>();
 
             services.AddScoped<DataManager>();
 

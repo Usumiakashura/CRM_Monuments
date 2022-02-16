@@ -25,7 +25,9 @@ namespace BuissnesLayer.Implementations
         
         public PhotoOnMonument GetPhotoOnMonumentById(int photoOnMonumentId)    //получить один по айди
         {
-            throw new NotImplementedException();
+            PhotoOnMonument photoOnMonument = _context.PhotoOnMonuments.Find(photoOnMonumentId);
+            return photoOnMonument;
+            //throw new NotImplementedException();
         }
         
         public void SavePhotoOnMonument(PhotoOnMonument photoOnMonument)        //сохранить в БД
@@ -41,9 +43,11 @@ namespace BuissnesLayer.Implementations
         
         public void DeletePhotoOnMonument(PhotoOnMonument photoOnMonument)      //удалить из бд
         {
-            throw new NotImplementedException();
+            _context.PhotoOnMonuments.Remove(photoOnMonument);
+            _context.SaveChanges();
+            //throw new NotImplementedException();
         }
-        
+
         public void DeleteAllPhotoOnMonumentByIdDeceased(int deceasedId)      //удалить из бд все фото по усопшему
         {
             throw new NotImplementedException();

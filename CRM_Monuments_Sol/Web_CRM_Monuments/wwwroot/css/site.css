@@ -215,7 +215,10 @@ label {
     height: auto;
 }
 
-
+.deleted {
+    height: 1px;
+    width: 1px; 
+}
 
 .img-block {
     max-width: 400px;

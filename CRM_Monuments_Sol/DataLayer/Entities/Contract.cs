@@ -11,15 +11,11 @@ namespace DataLayer.Entities
     {   //договор
         public int Id { get; set; }                     //Id
         [Display(Name = "Дата заключения:")]
-        [Required]
         public DateTime DateOfConclusion { get; set; }  //Дата заключения
 
         //--- Номер договора (составной) ---
-        [Required]
         public string NumYear { get; set; }             //часть, отвечающая за год
-        [Required]
         public string Place { get; set; }               //часть, отвечающая за офис (аббревиатура)
-        [Required]
         public string Number { get; set; }              //часть с номером (цифры, но может быть и БН)
         [Display(Name = "Рассрочка")]
         public bool InstallmentPayment { get; set; }    //рассрочка (добавляется буква "р" в конец)
@@ -50,7 +46,6 @@ namespace DataLayer.Entities
         [Display(Name = "Крайний срок:")]
         public DateTime DeadLine { get; set; }          //Срок выполнения заказа
         public List<Deceased> Deceaseds { get; set; }   //Все усопшие
-        public List<PhotoOnMonument> OtherPhotoOnMonuments { get; set; }    //изображения, не относящиеся к усопшим (цветочки, птички и так далее)
         [Display(Name = "Оформление стелы (примечание):")]
         public string Decoration { get; set; }          //оформление стелы (как примечание)
         [Display(Name = "Примечания (установщики):")]

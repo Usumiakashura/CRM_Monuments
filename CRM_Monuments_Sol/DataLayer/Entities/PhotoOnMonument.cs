@@ -11,9 +11,8 @@ namespace DataLayer.Entities
         public int Id { get; set; }                     //Id
         public byte[] PhotoImage { get; set; }          //Фотография
         public string Note { get; set; }                //Примечания
-
+        public bool DeletedCheck { get; set; }
 
         public Deceased Deceased { get; set; }          //для БД
-        public Contract Contract { get; set; }          //для БД
     }
 }

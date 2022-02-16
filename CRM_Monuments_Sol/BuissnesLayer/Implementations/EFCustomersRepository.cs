@@ -84,12 +84,16 @@ namespace BuissnesLayer.Implementations
 
         public void DeleteCustomer(Customer customer)
         {
-            throw new NotImplementedException();
+            _context.Customers.Remove(customer);
+            _context.SaveChanges();
+            //throw new NotImplementedException();
         }
 
         public Customer GetCustomerById(int customerId)
         {
-            throw new NotImplementedException();
+            Customer customer = _context.Customers.Find(customerId);
+            return customer;
+            //throw new NotImplementedException();
         }
 
         public void SaveCustomer(Customer customer)

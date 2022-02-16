@@ -67,6 +67,7 @@ namespace DataLayer.Migrations
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContractId = table.Column<int>(type: "int", nullable: true)
+                    //DeletedCheck = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,6 +100,7 @@ namespace DataLayer.Migrations
                     NotesTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngraverEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ContractId = table.Column<int>(type: "int", nullable: true)
+                    //DeletedCheck = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -172,6 +174,7 @@ namespace DataLayer.Migrations
                     GluingIntoNiche = table.Column<bool>(type: "bit", nullable: true),
                     TypePortrait = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    //DeletedCheck = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -21,6 +21,12 @@ namespace DataLayer
         public DbSet<StoneAccessorie> StoneAccessories { get; set; }
         public DbSet<StoneMaterial> StoneMaterials { get; set; }
 
+        public DbSet<TypeText> TypeTexts { get; set; }
+        public DbSet<TypePortrait> TypePortraits { get; set; }
+        public DbSet<MedallionMaterial> MedallionMaterials { get; set; }
+        public DbSet<ShapeMedallion> ShapeMedallions { get; set; }
+        public DbSet<ColorMedallion> ColorMedallions { get; set; }
+
         public EFDBContext(DbContextOptions<EFDBContext> options)
             : base(options)
         {

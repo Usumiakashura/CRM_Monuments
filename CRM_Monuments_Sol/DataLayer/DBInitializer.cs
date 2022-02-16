@@ -14,6 +14,12 @@ namespace DataLayer
             List<Contract> _contracts;
             List<StoneMaterial> _stoneMaterials;
 
+            List<TypeText> _typeTexts;
+            List<TypePortrait> _typePortraits;
+            List<MedallionMaterial> _medallionMaterials;
+            List<ShapeMedallion> _shapeMedallions;
+            List<ColorMedallion> _colorMedallions;
+
             if (!context.StoneMaterials.Any())
             {
                 _stoneMaterials = new List<StoneMaterial>()
@@ -592,6 +598,126 @@ namespace DataLayer
                 context.SaveChanges();
             }
 
+            if (!context.TypeTexts.Any())
+            {
+                _typeTexts = new List<TypeText>()
+                {
+                    new TypeText()
+                    {
+                        Name = "Углубленный"
+                    },
+                    new TypeText()
+                    {
+                        Name = "Литье"
+                    },
+                    new TypeText()
+                    {
+                        Name = "Caggiatti"
+                    },
+                    new TypeText()
+                    {
+                        Name = "На табличке"
+                    },
+                    new TypeText()
+                    {
+                        Name = "На медальоне"
+                    },
+                    new TypeText()
+                    {
+                        Name = "Станочный"
+                    },
+                    new TypeText()
+                    {
+                        Name = "Фрейзерный"
+                    }
+                };
+                context.TypeTexts.AddRange(_typeTexts);
+                context.SaveChanges();
+            }
+            if (!context.TypePortraits.Any())
+            {
+                _typePortraits = new List<TypePortrait>()
+                {
+                    new TypePortrait()
+                    {
+                        Name = "Ручной"
+                    },
+                    new TypePortrait()
+                    {
+                        Name = "Станочный"
+                    }
+                };
+                context.TypePortraits.AddRange(_typePortraits);
+                context.SaveChanges();
+            }
+            if (!context.MedallionMaterials.Any())
+            {
+                _medallionMaterials = new List<MedallionMaterial>()
+                {
+                    new MedallionMaterial()
+                    {
+                        Name = "Углубленный"
+                    },
+                    new MedallionMaterial()
+                    {
+                        Name = "Литье"
+                    },
+                    new MedallionMaterial()
+                    {
+                        Name = "Caggiatti"
+                    },
+                    new MedallionMaterial()
+                    {
+                        Name = "На табличке"
+                    },
+                    new MedallionMaterial()
+                    {
+                        Name = "На медальоне"
+                    },
+                    new MedallionMaterial()
+                    {
+                        Name = "Станочный"
+                    }
+                };
+                context.MedallionMaterials.AddRange(_medallionMaterials);
+                context.SaveChanges();
+            }
+            if (!context.ShapeMedallions.Any())
+            {
+                _shapeMedallions = new List<ShapeMedallion>()
+                {
+                    new ShapeMedallion()
+                    {
+                        Name = "Овальная"
+                    },
+                    new ShapeMedallion()
+                    {
+                        Name = "Прямоугольная"
+                    },
+                    new ShapeMedallion()
+                    {
+                        Name = "Арка"
+                    }
+                };
+                context.ShapeMedallions.AddRange(_shapeMedallions);
+                context.SaveChanges();
+            }
+            if (!context.ColorMedallions.Any())
+            {
+                _colorMedallions = new List<ColorMedallion>()
+                {
+                    new ColorMedallion()
+                    {
+                        Name = "Цветной"
+                    },
+                    new ColorMedallion()
+                    {
+                        Name = "Черно-белый"
+                    }
+                };
+                context.ColorMedallions.AddRange(_colorMedallions);
+                context.SaveChanges();
+            }
 
         }
     }

@@ -156,9 +156,7 @@
                 {
                     @for (int i = 0; i < Model.Contract.Deceaseds.Count; i++)
                     {
-                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].Id)
                         <div class="deceased-container" id=@($"DeceasedContainer{i}")>
-
                             <div class="wrapper w5 p96 float-md-left border b-grey">
 
                                 <div>ФИО: </div>
@@ -218,15 +216,11 @@
                                         {
                                             @for (int p = 0; p < numPortraits; p++)
                                             {
+                                                string keyP = $"D{i}P{p}";
                                                 <div class="portrait-container mar-top5" id=@($"PortraitContainer{p}")>
                                                     <div class="border p96 float-md-left ">
                                                         <label class="font-weight-bold">Портрет</label>
                                                         <div class="wrapper w3 ">
-                                                            @{
-                                                                string keyP = $"D{i}P{p}";
-                                                            }
-                                                            @Html.HiddenFor(c => c.Portraits[keyP].Id)
-
                                                             <div class="custom-file">
                                                                 <input type="file" asp-for="Portraits[keyP].PhotoImage"
                                                                        class=" custom-file-input form-control full">
@@ -250,8 +244,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
-
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].Id)
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].DeletedCheck)
                                                     <input type="button" class="remove-portrait rp-btn float-md-left" value="x" />
 
                                                 </div>
@@ -266,15 +260,13 @@
                                         {
                                             @for (int m = 0; m < numMedallions; m++)
                                             {
+                                                string keyM = $"D{i}M{m}";
                                                 <div class="medallion-container mar-top5" id=@($"MedallionContainer{i}")>
 
                                                     <div class="border p96 float-md-left">
                                                         <label class="font-weight-bold">Медальон</label>
                                                         <div class="wrapper w3">
-                                                            @{
-                                                                string keyM = $"D{i}M{m}";
-                                                            }
-                                                            @Html.HiddenFor(c => c.Medallions[keyM].Id)
+
                                                             <div class="custom-file ">
                                                                 <input type="file" asp-for="Medallions[keyM].PhotoImage"
                                                                        class=" custom-file-input form-control full">
@@ -337,6 +329,8 @@
                                                         </div>
                                                         @*----------------- Рамка (конец) ---------------------------*@
                                                     </div>
+                                                    @Html.HiddenFor(c => c.Medallions[keyM].Id)
+                                                    @Html.HiddenFor(c => c.Medallions[keyM].DeletedCheck)
                                                     <input type="button" class="remove-medallion rp-btn float-md-left" value="x" />
                                                 </div>
                                             }
@@ -348,6 +342,8 @@
                                 @*// --------------- Фотография (конец) ---------------------*@
 
                             </div>
+                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].Id)
+                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].DeletedCheck)
                             <input type="button" class="remove-deceased r-btn float-md-left" value="х" />
                         </div>
                     }
@@ -388,6 +384,8 @@
             </div>
         </div>
         /////////////////////////////////////////////////////////////
+        <div class="deleted"></div>
+
         <div class="form-group">
             <input type="submit" value="Сохранить" class="btn btn-primary" />
         </div>

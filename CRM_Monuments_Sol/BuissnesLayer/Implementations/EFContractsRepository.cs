@@ -29,8 +29,7 @@ namespace BuissnesLayer.Implementations
         {
             List<Contract> contracts = new List<Contract>();
             foreach (Contract c in _context.Contracts
-                .Include(c => c.Customers)
-                .Include(c => c.OtherPhotoOnMonuments))
+                .Include(c => c.Customers))
             {
                 FillContractLists(c);
                 contracts.Add(c);
