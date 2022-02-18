@@ -220,9 +220,17 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Microsoft.jQuery.Unobtrusive.Ajax": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
             "System.Collections": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.6.0, )"
             }
           },
           "imports": [

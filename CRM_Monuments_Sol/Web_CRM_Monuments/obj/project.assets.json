@@ -11,6 +11,9 @@
           "lib/netstandard2.0/Humanizer.dll": {}
         }
       },
+      "jQuery/3.6.0": {
+        "type": "package"
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.6": {
         "type": "package",
         "compile": {
@@ -799,6 +802,12 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/3.0.0": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.4.4"
         }
       },
       "Microsoft.NETCore.Platforms/3.1.0": {
@@ -2190,6 +2199,29 @@
         "logo.png"
       ]
     },
+    "jQuery/3.6.0": {
+      "sha512": "sSzCTDWn15waSMjDrP21jjgG1j1pwISLaKiVCClwU4XGAmuZt+FScLkdyRvh9ppoIxAW/tJtJBYei+3CAwFQ7g==",
+      "type": "package",
+      "path": "jquery/3.6.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-3.6.0-vsdoc.js",
+        "Content/Scripts/jquery-3.6.0.js",
+        "Content/Scripts/jquery-3.6.0.min.js",
+        "Content/Scripts/jquery-3.6.0.min.map",
+        "Content/Scripts/jquery-3.6.0.slim.js",
+        "Content/Scripts/jquery-3.6.0.slim.min.js",
+        "Content/Scripts/jquery-3.6.0.slim.min.map",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-3.6.0.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.3.6.0.nupkg.sha512",
+        "jquery.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.6": {
       "sha512": "iJYBphYXA0BLEzVwJDFpYuWN9yrZkPZIrOoHKthLuAA3pbv2rBRrDgiTp244ZQ8LGLVUa11VOBDncmFexZuhCg==",
       "type": "package",
@@ -3364,6 +3396,19 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
         "microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
+      ]
+    },
+    "Microsoft.jQuery.Unobtrusive.Ajax/3.0.0": {
+      "sha512": "3jk3IysMmuz41Q3rU7JACsruyRhHfDTNeqUPrDTjbXATB6H/po3ZABk/wke4o9PiwnCrL5AjHDzztDNL8l1XUw==",
+      "type": "package",
+      "path": "microsoft.jquery.unobtrusive.ajax/3.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery.unobtrusive-ajax.js",
+        "Content/Scripts/jquery.unobtrusive-ajax.min.js",
+        "microsoft.jquery.unobtrusive.ajax.3.0.0.nupkg.sha512",
+        "microsoft.jquery.unobtrusive.ajax.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
@@ -7477,7 +7522,9 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.6",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
-      "System.Collections >= 4.3.0"
+      "Microsoft.jQuery.Unobtrusive.Ajax >= 3.0.0",
+      "System.Collections >= 4.3.0",
+      "jQuery >= 3.6.0"
     ]
   },
   "packageFolders": {
@@ -7560,9 +7607,17 @@
             "target": "Package",
             "version": "[5.0.2, )"
           },
+          "Microsoft.jQuery.Unobtrusive.Ajax": {
+            "target": "Package",
+            "version": "[3.0.0, )"
+          },
           "System.Collections": {
             "target": "Package",
             "version": "[4.3.0, )"
+          },
+          "jQuery": {
+            "target": "Package",
+            "version": "[3.6.0, )"
           }
         },
         "imports": [

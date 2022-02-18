@@ -9,6 +9,10 @@ namespace BuissnesLayer.Interfaces
 {
     public interface ISelectPointsRepository
     {
-        public IEnumerable<SelectPoint> GetAll(SelectPoint selectPoint);
+        public IEnumerable<string> GetAllTypesText();
+        public IEnumerable<string> GetAllTypesPortraits();
+        public IEnumerable<string> GetAllMedallionsMaterials();
+        public IEnumerable<string> GetAllShapesMedallions();
+        public IEnumerable<string> GetAllColorsMedallions();
     }
 }

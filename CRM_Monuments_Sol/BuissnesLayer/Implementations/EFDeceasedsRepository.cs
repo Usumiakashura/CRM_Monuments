@@ -43,17 +43,22 @@ namespace BuissnesLayer.Implementations
 
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
         {
-            if (deceased.Id == 0)
-                _context.Deceaseds.Add(deceased);
-            else
+            if (deceased.Id != 0)
             {
-                foreach (PhotoOnMonument p in deceased.PhotosOnMonument)
+                if (deceased.Id == -1)
                 {
-                    _photosOnMonumentsRepository.SavePhotoOnMonument(p);
+                    deceased.Id = 0;
+                    _context.Deceaseds.Add(deceased);
                 }
-                _context.Entry(deceased).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                else
+                {
+                    foreach (PhotoOnMonument p in deceased.PhotosOnMonument)
+                    {
+                        _photosOnMonumentsRepository.SavePhotoOnMonument(p);
+                    }
+                    _context.Entry(deceased).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                }
             }
-
             _context.SaveChanges();
             //throw new NotImplementedException();
         }

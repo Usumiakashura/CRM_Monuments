@@ -16,63 +16,10 @@ namespace Web_CRM_Monuments.Services.ViewServices
         {
             _dataManager = dataManager;
         }
-        
-        public Contract ModelViewToModelDB(ContractViewModel contractViewModel)
-        {
-            Contract c = contractViewModel.Contract;
-            List<Deceased> ds = new List<Deceased>();
 
-            foreach (var deceased in contractViewModel.Contract.Deceaseds)
-            {
-                if (deceased.DateBirthday != null ||
-                    deceased.DateRip != null ||
-                    deceased.EngraverEpitaph != null ||
-                    deceased.EngraverName != null ||
-                    deceased.FirstName != null ||
-                    deceased.LastName != null ||
-                    deceased.MiddleName != null ||
-                    deceased.NotesTextName != null)
-                {
-                    ds.Add(deceased);
-                }
-            }
-            c.Deceaseds = ds;
-            int numDeceased;
-            foreach (var portrait in contractViewModel.Portraits)
-            {
-                if (portrait.Value.PhotoImage != null || 
-                    portrait.Value.TypePortrait != null ||
-                    portrait.Value.Artist != null ||
-                    portrait.Value.Note != null)
-                {
-                    // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
-                    MatchCollection match = Regex.Matches(portrait.Key, @"D(\d+)");
-                    // Достаем номер этого контейнега
-                    Int32.TryParse(match[0].Groups[1].ToString(), out numDeceased);
-                    // Добавляем соответствующему усопшему портрет в коллекцию
-                    c.Deceaseds[numDeceased].PhotosOnMonument.Add(portrait.Value);
-                }
-                
-            }
-            foreach (var medallion in contractViewModel.Medallions)
-            {
-                if (medallion.Value.BackgroundMedallion != null ||
-                    medallion.Value.ColorFrame != null ||
-                    medallion.Value.ColorMedallion != null ||
-                    medallion.Value.MaterialMedallion != null ||
-                    medallion.Value.Note != null ||
-                    medallion.Value.PhotoImage != null ||
-                    medallion.Value.ShapeMedallion != null ||
-                    medallion.Value.SizeMedallion != null)
-                {
-                    // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
-                    MatchCollection match = Regex.Matches(medallion.Key, @"D(\d+)");
-                    // Достаем номер этого контейнега
-                    Int32.TryParse(match[0].Groups[1].ToString(), out numDeceased);
-                    // Добавляем соответствующему усопшему портрет в коллекцию
-                    c.Deceaseds[numDeceased].PhotosOnMonument.Add(medallion.Value);
-                }
-            }
+        public void SaveViewModelToDB(ContractViewModel contractViewModel)
+        {
+            Contract c = ModelViewToModelDB(contractViewModel);
 
             foreach (int numP in contractViewModel.DeletedPhotoIds)
             {
@@ -86,9 +33,64 @@ namespace Web_CRM_Monuments.Services.ViewServices
             {
                 _dataManager.Customers.DeleteCustomer(_dataManager.Customers.GetCustomerById(numC));
             }
+            _dataManager.Contracts.SaveContract(c);
+        }
 
+        public Contract ModelViewToModelDB(ContractViewModel contractViewModel)
+        {
+            Contract c = contractViewModel.Contract;
+            List<Customer> customers = new List<Customer>();
+            List<Deceased> deceaseds = new List<Deceased>();
+
+            foreach (var customer in contractViewModel.Contract.Customers)
+            {
+                if (customer.Id != 0)
+                {
+                    customers.Add(customer);
+                }
+            }
+            foreach (var deceased in contractViewModel.Contract.Deceaseds)
+            {
+                if (deceased.Id != 0)
+                {
+                    deceaseds.Add(deceased);
+                }
+            }
+            c.Customers = customers;
+            c.Deceaseds = deceaseds;
+
+            int numDeceased;
+            foreach (var portrait in contractViewModel.Portraits)
+            {
+                if (portrait.Value.Id != 0)
+                {
+                    // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
+                    MatchCollection match = Regex.Matches(portrait.Key, @"D(\d+)");
+                    // Достаем номер этого контейнега
+                    Int32.TryParse(match[0].Groups[1].ToString(), out numDeceased);
+                    // Добавляем соответствующему усопшему портрет в коллекцию
+                    c.Deceaseds[numDeceased].PhotosOnMonument.Add(portrait.Value);
+                }
+                
+            }
+            foreach (var medallion in contractViewModel.Medallions)
+            {
+                if (medallion.Value.Id != 0)
+                {
+                    // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
+                    MatchCollection match = Regex.Matches(medallion.Key, @"D(\d+)");
+                    // Достаем номер этого контейнега
+                    Int32.TryParse(match[0].Groups[1].ToString(), out numDeceased);
+                    // Добавляем соответствующему усопшему портрет в коллекцию
+                    c.Deceaseds[numDeceased].PhotosOnMonument.Add(medallion.Value);
+                }
+            }
+
+            
             return c;
         }
+
+        
 
         public ContractViewModel ModelDBToModelView(Contract contract)
         {

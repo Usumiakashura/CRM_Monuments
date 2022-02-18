@@ -15,6 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.WebEncoders;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Web_CRM_Monuments
 {
@@ -45,6 +48,12 @@ namespace Web_CRM_Monuments
             services.AddTransient<IPhotosOnMonumentsRepository, EFPhotosOnMonumentsRepository>();
             services.AddTransient<IStoneMaterialsRepository, EFStoneMaterialsRepository>();
             services.AddTransient<ISelectPointsRepository, EFSelectPointsRepository>();
+
+            //Чтобы кирилические символы не переводились в соответствующий Unicode Hex Character Code
+            services.Configure<WebEncoderOptions>(options =>
+            {
+                options.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.All);
+            });
 
             services.AddScoped<DataManager>();
 

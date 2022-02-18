@@ -20,6 +20,7 @@ namespace Web_CRM_Monuments.Controllers
         private readonly ILogger<HomeController> _logger;
         private DataManager _dataManager;
         private ServicesManager _servicesManager;
+        //public ContractViewModel contractViewModel;
 
         public HomeController(ILogger<HomeController> logger, DataManager dataManager)
         {
@@ -37,11 +38,11 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult CreateContract(int idContract)
         {
-            ViewBag.TypeText = /*_dataManager.SelectPointsRepository.GetAll(new TypeText());*/ new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
-            ViewBag.TypePortrait = /*_dataManager.SelectPointsRepository.GetAll(new TypePortrait());*/ new List<string>() { "Ручной", "Станочный" };
-            ViewBag.MedallionMaterial = /*_dataManager.SelectPointsRepository.GetAll(new MedallionMaterial());*/ new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
-            ViewBag.ShapesMedallion = /*_dataManager.SelectPointsRepository.GetAll(new ShapeMedallion());*/ new List<string>() { "Овальная", "Прямоугольная", "Арка" };
-            ViewBag.ColorsMedallion = /*_dataManager.SelectPointsRepository.GetAll(new ColorMedallion());*/ new List<string>() { "Цветной", "Черно-белый" };
+            ViewBag.TypeTexts = _dataManager.SelectPointsRepository.GetAllTypesText();// new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
+            ViewBag.TypePortraits = _dataManager.SelectPointsRepository.GetAllTypesPortraits();// new List<string>() { "Ручной", "Станочный" };
+            ViewBag.MedallionMaterials = _dataManager.SelectPointsRepository.GetAllMedallionsMaterials();// new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
+            ViewBag.ShapesMedallions = _dataManager.SelectPointsRepository.GetAllShapesMedallions();// new List<string>() { "Овальная", "Прямоугольная", "Арка" };
+            ViewBag.ColorsMedallions = _dataManager.SelectPointsRepository.GetAllColorsMedallions();// new List<string>() { "Цветной", "Черно-белый" };
 
             ContractViewModel contractViewModel = new ContractViewModel();
 
@@ -49,12 +50,14 @@ namespace Web_CRM_Monuments.Controllers
             {
                 contractViewModel.Contract = new Contract()
                 {
+                    Id = -1,
                     DateOfConclusion = DateTime.Today,
                     DeadLine = DateTime.Today.AddDays(90),
                     NumYear = (DateTime.Today.Year.ToString()).Substring(2),
                     Place = "ДО",
                     Number = _dataManager.Contracts.NewNumber()
                 };
+                contractViewModel.Contract.Customers.Add(new Customer());
             }
             else
             {
@@ -70,54 +73,24 @@ namespace Web_CRM_Monuments.Controllers
         [HttpPost]
         public ActionResult CreateContract(ContractViewModel contractViewModel)
         {
-            //if (ModelState.IsValid)
-            //    return Content($"{person.Name} - {person.Email}");
-            //else
-            //    return View(contractViewModel);
-
-            Contract c = _servicesManager.Contracts.ModelViewToModelDB(contractViewModel);
-            _dataManager.Contracts.SaveContract(c);
+            _servicesManager.Contracts.SaveViewModelToDB(contractViewModel);
 
             return RedirectToAction("Index");
         }
 
-        //public void RemoveDeceased(Dece)
+        [HttpGet]
+        public ActionResult DeleteContract(int idContract)
+        {
+            _dataManager.Contracts.DeleteContract(_dataManager.Contracts.GetContractById(idContract));
 
-        //[HttpGet]
-        //public ActionResult EditContract(int idContract)
+            return RedirectToAction("Index");
+        }
+
+        //public int EditCounter(int newCounter)
         //{
-
-        //    Contract c = _dataManager.Contracts.GetContractById(idContract);
-        //    ContractViewModel cvm = _servicesManager.Contracts.ModelDBToModelView(c);
-            
-        //    return RedirectToAction("CreateContract", cvm);
+        //    contractViewModel.Counter = newCounter;
+        //    return contractViewModel.Counter;
         //}
-
-        //[HttpPost]
-        //public ActionResult EditContract(Contract contract)
-        //{
-
-
-
-        //    return RedirectToAction("Index");
-        //}
-
-
-
-
-        //-----------------------------------------------------------------
-
-        //public IActionResult Privacy()
-        //{
-        //    return View();
-        //}
-
-        //[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        //public IActionResult Error()
-        //{
-        //    return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        //}
-
 
     }
 }

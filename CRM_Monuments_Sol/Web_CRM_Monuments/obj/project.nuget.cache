@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "EU0mnzzfEdFE4AHM0e7m1BADT3zaN9ryVaPqgoS3JDkM2tjtU6wdBal7CVufH480olKmBBToyK9UTkPHNbIbIQ==",
+  "dgSpecHash": "XSeTymmxxx9oafSqx+Co48CFMyMyApz2ck3mvtepDa9TrFSPwlrmApVg41uvobSWWZEIyPJdRq0QLGF1Sa7YlA==",
   "success": true,
   "projectFilePath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aliak\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
+    "C:\\Users\\aliak\\.nuget\\packages\\jquery\\3.6.0\\jquery.3.6.0.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.6\\microsoft.aspnetcore.cryptography.keyderivation.5.0.6.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\5.0.6\\microsoft.aspnetcore.diagnostics.entityframeworkcore.5.0.6.nupkg.sha512",
@@ -50,6 +51,7 @@
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.identitymodel.protocols\\5.6.0\\microsoft.identitymodel.protocols.5.6.0.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\5.6.0\\microsoft.identitymodel.protocols.openidconnect.5.6.0.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.6.0\\microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
+    "C:\\Users\\aliak\\.nuget\\packages\\microsoft.jquery.unobtrusive.ajax\\3.0.0\\microsoft.jquery.unobtrusive.ajax.3.0.0.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\5.0.2\\microsoft.visualstudio.web.codegeneration.5.0.2.nupkg.sha512",

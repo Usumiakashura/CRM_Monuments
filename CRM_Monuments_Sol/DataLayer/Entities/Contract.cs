@@ -60,6 +60,12 @@ namespace DataLayer.Entities
         [Display(Name = "Примечания:")]
         public string Note { get; set; }               //Примечания
 
+        public Contract()
+        {
+            Customers = new List<Customer>();
+            Deceaseds = new List<Deceased>();
+            Accessories = new List<Accessorie>();
+        }
         
     }
 }

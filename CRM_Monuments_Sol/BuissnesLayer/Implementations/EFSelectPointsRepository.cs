@@ -18,19 +18,42 @@ namespace BuissnesLayer.Implementations
             _context = context;
         }
 
-        public IEnumerable<SelectPoint> GetAll(SelectPoint selectPoints)
+        public IEnumerable<string> GetAllTypesText()
         {
-            if (selectPoints is TypeText)
-                return _context.TypeTexts;
-            else if (selectPoints is TypePortrait)
-                return _context.TypePortraits;
-            else if (selectPoints is MedallionMaterial)
-                return _context.MedallionMaterials;
-            else if (selectPoints is ShapeMedallion)
-                return _context.ShapeMedallions;
-            else if (selectPoints is ColorMedallion)
-                return _context.ColorMedallions;
-            return null;
+            List<string> pointsForSelect = new List<string>();
+            foreach (TypeText tt in _context.TypeTexts)
+                pointsForSelect.Add(tt.Name);
+            return pointsForSelect;
         }
+        public IEnumerable<string> GetAllTypesPortraits()
+        {
+            List<string> pointsForSelect = new List<string>();
+            foreach (TypePortrait tp in _context.TypePortraits)
+                pointsForSelect.Add(tp.Name);
+            return pointsForSelect;
+        }
+        public IEnumerable<string> GetAllMedallionsMaterials()
+        {
+            List<string> pointsForSelect = new List<string>();
+            foreach (MedallionMaterial mm in _context.MedallionMaterials)
+                pointsForSelect.Add(mm.Name);
+            return pointsForSelect;
+        }
+        public IEnumerable<string> GetAllShapesMedallions()
+        {
+            List<string> pointsForSelect = new List<string>();
+            foreach (ShapeMedallion sm in _context.ShapeMedallions)
+                pointsForSelect.Add(sm.Name);
+            return pointsForSelect;
+        }
+        public IEnumerable<string> GetAllColorsMedallions()
+        {
+            List<string> pointsForSelect = new List<string>();
+            foreach (ColorMedallion cm in _context.ColorMedallions)
+                pointsForSelect.Add(cm.Name);
+            return pointsForSelect;
+        }
+
+
     }
 }

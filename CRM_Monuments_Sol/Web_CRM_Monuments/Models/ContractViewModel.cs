@@ -18,6 +18,8 @@ namespace Web_CRM_Monuments.Models
         public List<int> DeletedPhotoIds { get; set; }
         public List<int> DeletedCustomerIds { get; set; }
 
+        public int Counter { get; set; } 
+
         public ContractViewModel()
         {
             Portraits = new Dictionary<string, Portrait>();

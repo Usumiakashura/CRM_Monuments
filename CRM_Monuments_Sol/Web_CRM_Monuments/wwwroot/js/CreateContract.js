@@ -57,6 +57,7 @@ $(document).ready(function () {
         }
     });
     // ----------------------------------------------------------------
+    
 });
 // --- При загрузке изображения добавляет его название в строку ---
 $(document).on("input", ".custom-file-input", function () {
@@ -135,7 +136,6 @@ function AddDisabledEpitaph(epitaphBox, trfl) {
 
 function AddCustomer() {
     //добавляем поля
-
     var CustomerContainer = $("<div/>").attr("class", "customer-container")
         .attr("id", "CustomerContainer" + CustomersCount).appendTo("#Customers");
 
@@ -143,7 +143,7 @@ function AddCustomer() {
 
     $("<div/>").attr("class", "box1").text("ФИО заказчика: ").appendTo(Wrapper);
     $("<div/>").text("Телефон: ").appendTo(Wrapper);
-    var DivForMess = $("<div/>").appendTo(Wrapper);
+    var DivForMess = $("<div/>").attr("class", "boxMessengers").appendTo(Wrapper);
     $("<img/>").attr("class", "icon").attr("src", "/Images/viber.png").attr("title", "viber").appendTo(DivForMess);
     $("<img/>").attr("class", "icon").attr("src", "/Images/telegram.png").attr("title", "telegram").appendTo(DivForMess);
     $("<img/>").attr("class", "icon").attr("src", "/Images/whatsapp.png").attr("title", "whatsapp").appendTo(DivForMess);
@@ -153,22 +153,22 @@ function AddCustomer() {
 
     var DivFIO = $("<div/>").attr("class", "box1").appendTo(Wrapper);
     $("<input/>").attr("type", "text").attr("name", "Contract.Customers[" + CustomersCount + "].LastName")
-        .attr("class", "form-control").attr("placeholder", "Фамилия")
+        .attr("class", "form-control full").attr("placeholder", "Фамилия")
         .attr("id", "Contract_Customers_" + CustomersCount + "__LastName").appendTo(DivFIO);
     //CustomerContainer.text("  Имя : ");
     $("<input/>").attr("type", "text").attr("name", "Contract.Customers[" + CustomersCount + "].FirstName")
-        .attr("class", "form-control").attr("placeholder", "Имя")
+        .attr("class", "form-control full").attr("placeholder", "Имя")
         .attr("id", "Contract_Customers_" + CustomersCount + "__FirstName").appendTo(DivFIO);
     $("<input/>").attr("type", "text").attr("name", "Contract.Customers[" + CustomersCount + "].MiddleName")
-        .attr("class", "form-control").attr("placeholder", "Отчество")
+        .attr("class", "form-control full").attr("placeholder", "Отчество")
         .attr("id", "Contract_Customers_" + CustomersCount + "__MiddleName").appendTo(DivFIO);
 
     var DivPhone = $("<div/>").appendTo(Wrapper);
     $("<input/>").attr("type", "text").attr("name", "Contract.Customers[" + CustomersCount + "].Number")
-        .attr("class", "form-control")
+        .attr("class", "form-control full")
         .attr("id", "Contract_Customers_" + CustomersCount + "__Number").appendTo(DivPhone);
 
-    var DivCheckMess = $("<div/>").appendTo(Wrapper);
+    var DivCheckMess = $("<div/>").attr("class", "boxMessengers").appendTo(Wrapper);
     $("<input/>").attr("type", "checkbox")
         .attr("data-val", "true")
         .attr("data-val-required", "The Viber field is required.")
@@ -195,14 +195,16 @@ function AddCustomer() {
         .appendTo(DivCheckMess);
 
     $("<input/>").attr("type", "text").attr("name", "Contract.Customers[" + CustomersCount + "].Email")
-        .attr("class", "form-control")
+        .attr("class", "form-control full")
         .attr("id", "Contract_Customers_" + CustomersCount + "__Email").appendTo(Wrapper);
 
     $("<input/>").attr("type", "text").attr("name", "Contract.Customers[" + CustomersCount + "].Note")
-        .attr("class", "form-control")
+        .attr("class", "form-control full")
         .attr("id", "Contract_Customers_" + CustomersCount + "__Note").appendTo(Wrapper);
 
-
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Customers[" + CustomersCount + "].Id")
+        .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
+        .attr("id", "Contract_Customers_" + CustomersCount + "__Id").appendTo(CustomerContainer);
     //OwnershipContainer.text("  Price : ");
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-customer r-btn float-md-left")
@@ -213,7 +215,13 @@ function AddCustomer() {
 }
 function RemoveCustomer() {
     var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("CustomerContainer".length));
-    //удаляем этот div
+
+    var deletedCustomerId = $($(this).siblings()[1]).attr("value");
+    $("<input/>").attr("id", "DeletedCustomerIds_" + deletedCustomerCount + "_").attr("name", "DeletedCustomerIds[" + deletedCustomerCount + "]")
+        .attr("type", "hidden").attr("value", deletedCustomerId).appendTo(".deleted");
+    deletedCustomerCount++;
+
+
     $(this).parent().remove();
     for (var i = RecalculateStartNum + 1; i < CustomersCount; i++) {
         //функция пересчета аттрибутов name и id
@@ -244,8 +252,8 @@ function RecalculateNamesAndIdsCustomers(number) {
         .attr("name", "Contract.Customers[" + prevNumber + "].WhatsApp");
     $("#Contract_Customers_" + number + "__Note").attr("id", "Contract_Customers_" + prevNumber + "__Note")
         .attr("name", "Contract.Customers[" + prevNumber + "].Note");
-    //$("#Ownerships\\[" + number + "\\]_Price").attr("id", "Ownerships[" + prevNumber + "]_Price")
-    //    .attr("name", "Ownerships[" + prevNumber + "].Price");
+    $("#Contract_Customers_" + number + "__Id").attr("id", "Contract_Customers_" + prevNumber + "__Id")
+        .attr("name", "Contract.Customers[" + prevNumber + "].Id");
 }
 
 function AddDeceased() {
@@ -360,7 +368,9 @@ function AddDeceased() {
     var AddMedallionButton = $("<input/>").attr("type", "button").attr("class", "add-btn my-btn add-medallion").attr("id", "am" + DeceasedsCount)
         .attr("value", "Добавить медальон").appendTo(DeceasedPhoto);
     /////// Фотографии (конец) //////////////////////
-
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Id")
+        .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Id").appendTo(DeceasedContainer);
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-deceased r-btn float-md-left")
         .attr("value", "x").appendTo(DeceasedContainer);
@@ -374,7 +384,7 @@ function AddDeceased() {
 }
 function RemoveDeceased() {
     var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("DeceasedContainer".length));
-    //удаляем этот div
+
     var deletedDeceasedId = $($(this).siblings()[1]).attr("value");
     var removePortraitButtons = $(this).siblings()[0].getElementsByClassName("remove-portrait");
     var removeMedallionButtons = $(this).siblings()[0].getElementsByClassName("remove-medallion");
@@ -430,7 +440,8 @@ function RecalculateNamesAndIdsDeceaseds(number) {
     $("#Contract_Deceaseds_" + number + "__EngraverEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__EngraverEpitaph")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].EngraverEpitaph")
         .attr("class", "form-control full engraver-epitaph-" + prevNumber);
-
+    $("#Contract_Deceaseds_" + number + "__Id").attr("id", "Contract_Deceaseds_" + prevNumber + "__Id")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Id");
 
     $("#Portraits" + number).attr("id", "Portraits" + prevNumber).attr("class", "Portraits" + prevNumber);
     $(".ap" + number).attr("class", "add-btn my-btn add-portrait ap" + prevNumber);
@@ -504,6 +515,10 @@ function AddPortrait() {
         .attr("placeholder", "Примечание...")
         .appendTo(NoteWrap);
 
+    $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].Id")
+        .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
+        .attr("id", "Portraits_" + keyP + "__Id").appendTo(PortraitContainer);
+
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
         .attr("value", "x").appendTo(PortraitContainer);
 
@@ -548,6 +563,7 @@ function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portrait
     $("#Portraits_" + OurKey + "__TypePortrait").attr("id", "Portraits_" + PrevKey + "__TypePortrait").attr("name", "Portraits[" + PrevKey + "].TypePortrait");
     $("#Portraits_" + OurKey + "__Artist").attr("id", "Portraits_" + PrevKey + "__Artist").attr("name", "Portraits[" + PrevKey + "].Artist");
     $("#Portraits_" + OurKey + "__Note").attr("id", "Portraits_" + PrevKey + "__Note").attr("name", "Portraits[" + PrevKey + "].Note");
+    $("#Portraits_" + OurKey + "__Id").attr("id", "Portraits_" + PrevKey + "__Id").attr("name", "Portraits[" + PrevKey + "].Id");
 }
 function PortraitIdCreator(idDeceased, idPortrait) {
     return "D" + idDeceased + "P" + idPortrait;
@@ -696,6 +712,10 @@ function AddMedallion() {
 
     //--- Рамка (конец) -------------------------------------------------
 
+    $("<input/>").attr("data-val", true).attr("name", "Medallions[" + keyM + "].Id")
+        .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
+        .attr("id", "Medallions_" + keyM + "__Id").appendTo(MedallionContainer);
+
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
         .attr("value", "x").appendTo(MedallionContainer);
     RemoveButton.click(RemoveMedallion);
@@ -747,7 +767,7 @@ function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medalli
     $("#Medallions_" + OurKey + "__ColorFrame").attr("id", "Medallions_" + PrevKey + "__ColorFrame").attr("name", "Medallions[" + PrevKey + "].ColorFrame");
     $("#Medallions_" + OurKey + "__GluingIntoNiche").attr("id", "Medallions_" + PrevKey + "__GluingIntoNiche").attr("name", "Medallions[" + PrevKey + "].GluingIntoNiche");
     $("#Medallions_" + OurKey + "__NoteFrame").attr("id", "Medallions_" + PrevKey + "__NoteFrame").attr("name", "Medallions[" + PrevKey + "].NoteFrame");
-
+    $("#Medallions_" + OurKey + "__Id").attr("id", "Medallions_" + PrevKey + "__Id").attr("name", "Medallions[" + PrevKey + "].Id");
 }
 function MedallionIdCreator(idDeceased, idMedallion) {
     return "D" + idDeceased + "M" + idMedallion;

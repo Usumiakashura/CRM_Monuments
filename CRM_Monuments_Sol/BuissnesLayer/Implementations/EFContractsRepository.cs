@@ -51,7 +51,7 @@ namespace BuissnesLayer.Implementations
             else
             {
                 //Contract con = GetContractById(contract.Id);
-                
+
                 foreach (Customer c in contract.Customers)
                 {
                     _customersRepository.SaveCustomer(c);
@@ -62,7 +62,7 @@ namespace BuissnesLayer.Implementations
                 }
                 _context.Entry(contract).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
-                
+
             _context.SaveChanges();
             //throw new NotImplementedException();
         }
