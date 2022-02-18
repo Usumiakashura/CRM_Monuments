@@ -9,7 +9,7 @@
 
 <div class="content-box">
     <p>
-        <a asp-action="CreateContract">Новый договор</a>
+        <a asp-action="CreateEditContract">Новый договор</a>
     </p>
     <div>
         <input type="text" class="searchKey form-control" placeholder="Поиск...">
@@ -46,13 +46,13 @@
         <tbody>
             @for (int i = Model.Count() - 1; i >= 0; i--)
             {
-                <tr onclick="location.href='/Home/CreateContract?idContract=@Model[i].Id'"
+                <tr onclick="location.href='/Home/CreateEditContract?idContract=@Model[i].Id'"
                     class="table-stroke">
                     <td class="font-weight-bold">
                         @{//номер договора
                             string numContract = Model[i].NumYear + "/" + Model[i].Place + "/" + Model[i].Number;
                             if (Model[i].InstallmentPayment) //рассрочка
-                                numContract += "р";
+                                numContract += "-р";
                             <label>@numContract</label>
                         }
                     </td>

@@ -50,8 +50,6 @@ namespace BuissnesLayer.Implementations
                 _context.Contracts.Add(contract);
             else
             {
-                //Contract con = GetContractById(contract.Id);
-
                 foreach (Customer c in contract.Customers)
                 {
                     _customersRepository.SaveCustomer(c);
@@ -69,10 +67,11 @@ namespace BuissnesLayer.Implementations
 
         public void DeleteContract(Contract contract)      //удалить из бд
         {
-            //_customersRepository.DeleteAllCustomersByIdContract(contract.Id);
-            //_context.Contracts.Remove(contract);
-            //_context.SaveChanges();
-            throw new NotImplementedException();
+            _customersRepository.DeleteAllCustomersByIdContract(contract.Id);
+            _deceasedsRepository.DeleteAllDeceasedsByIdContract(contract.Id);
+            //_accessorriesRepository.DeleteAllAccessoriesByIdContract(contract.Id);
+            _context.Contracts.Remove(contract);
+            _context.SaveChanges();
         }
 
         public string NewNumber()

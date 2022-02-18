@@ -36,7 +36,7 @@ namespace Web_CRM_Monuments.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateContract(int idContract)
+        public ActionResult CreateEditContract(int idContract)
         {
             ViewBag.TypeTexts = _dataManager.SelectPointsRepository.GetAllTypesText();// new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
             ViewBag.TypePortraits = _dataManager.SelectPointsRepository.GetAllTypesPortraits();// new List<string>() { "Ручной", "Станочный" };
@@ -71,7 +71,7 @@ namespace Web_CRM_Monuments.Controllers
         
 
         [HttpPost]
-        public ActionResult CreateContract(ContractViewModel contractViewModel)
+        public ActionResult CreateEditContract(ContractViewModel contractViewModel)
         {
             _servicesManager.Contracts.SaveViewModelToDB(contractViewModel);
 

@@ -27,7 +27,6 @@ namespace BuissnesLayer.Implementations
         {
             PhotoOnMonument photoOnMonument = _context.PhotoOnMonuments.Find(photoOnMonumentId);
             return photoOnMonument;
-            //throw new NotImplementedException();
         }
         
         public void SavePhotoOnMonument(PhotoOnMonument photoOnMonument)        //сохранить в БД
@@ -43,19 +42,21 @@ namespace BuissnesLayer.Implementations
                     _context.Entry(photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
         
         public void DeletePhotoOnMonument(PhotoOnMonument photoOnMonument)      //удалить из бд
         {
             _context.PhotoOnMonuments.Remove(photoOnMonument);
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         public void DeleteAllPhotoOnMonumentByIdDeceased(int deceasedId)      //удалить из бд все фото по усопшему
         {
-            throw new NotImplementedException();
+            foreach (PhotoOnMonument p in GetAllPhotoOnMonumentsByIdDeceased(deceasedId))
+            {
+                _context.PhotoOnMonuments.Remove(p);
+            }
+            //_context.SaveChanges();
         }
     }
 }

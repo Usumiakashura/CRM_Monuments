@@ -23,12 +23,6 @@ namespace BuissnesLayer.Implementations
 
         public IEnumerable<Deceased> GetAllDeceasedsByIdContract(int contractId)     //получить весь список, относящийся к определенному договору
         {
-            //List<Deceased> deceaseds = new List<Deceased>();
-            //foreach (Deceased d in _context.Deceaseds.Where(x => x.Contract.Id == contractId))
-            //{
-            //    FillDeceasedsPhotoOnMonument(d);   //достаем из бд все фото и их оформления
-            //    deceaseds.Add(d);
-            //}
             var deceaseds = _context.Deceaseds.Include(d => d.PhotosOnMonument)
                 .Include(d => d.Contract).Where(d => d.Contract.Id == contractId);
             return deceaseds;
@@ -38,7 +32,6 @@ namespace BuissnesLayer.Implementations
         {
             Deceased deceased = _context.Deceaseds.Find(deceasedId);
             return deceased;
-            //throw new NotImplementedException();
         }
 
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
@@ -60,28 +53,24 @@ namespace BuissnesLayer.Implementations
                 }
             }
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         public void DeleteDeceased(Deceased deceased)      //удалить из бд
         {
+            _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(deceased.Id);
             _context.Deceaseds.Remove(deceased);
             _context.SaveChanges();
-            //throw new NotImplementedException();
         }
 
         public void DeleteAllDeceasedsByIdContract(int contractId)      //удалить из бд всех усопших по договору
         {
-            throw new NotImplementedException();
+            foreach (Deceased d in GetAllDeceasedsByIdContract(contractId))
+            {
+                _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(d.Id);
+                _context.Deceaseds.Remove(d);
+            }
+            //_context.SaveChanges();
         }
 
-        //----------------------
-        private void FillDeceasedsPhotoOnMonument(Deceased deceased)
-        {
-            foreach (PhotoOnMonument p in _photosOnMonumentsRepository.GetAllPhotoOnMonumentsByIdDeceased(deceased.Id))
-            {
-                deceased.PhotosOnMonument.Add(p);
-            }
-        }
     }
 }

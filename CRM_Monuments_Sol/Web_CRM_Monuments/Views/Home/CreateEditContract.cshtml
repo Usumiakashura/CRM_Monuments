@@ -1,7 +1,7 @@
 ﻿@model ContractViewModel
 
 @{
-    ViewData["Title"] = "CreateContract";
+    ViewData["Title"] = "CreateEditContract";
 }
 
 <div class="wrapper w2" style="width: 1300px; margin: 0px 15px">
@@ -199,7 +199,7 @@
 
                 <input asp-for="Contract.Pickup" /> @Html.DisplayNameFor(model => model.Contract.Pickup)
 
-                <a href="https://www.google.com/maps/dir/%D0%9C%D0%B8%D0%BD%D1%81%D0%BA//@@53.8962712,27.4818161,11z/data=!4m8!4m7!1m5!1m1!1s0x46dbcfd35b1e6ad3:0xb61b853ddb570d9!2m2!1d27.558972!2d53.9006011!1m0"
+                <a id="calculateTrips" href="https://www.google.com/maps/dir/ул+Одинцова+20+Б"
                    class="left">Рассчитать маршрут...</a>
             </div>
         </div>
@@ -461,18 +461,30 @@
     <script>
         $(document).ready(function () {
             $("#RemoveContract").click(RemoveContract);
+            $("#calculateTrips").click(NewUrl);
         });
 
+        function NewUrl() {
+            var BurialAddress = $("#Contract_BurialAddress").val();
+            $("#calculateTrips").attr("href", "https://www.google.com/maps/dir/ул+Одинцова+20+Б/" + BurialAddress);
+        }
         function RemoveContract() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    return confirm("Вы уверены, что хотите безвозвратно удалить договор?");
-                }
+            //var xhr = new XMLHttpRequest();
+            //xhr.onreadystatechange = function () {
+            //    if (xhr.readyState == 4 && xhr.status == 200) {
+            //        document.getElementById("RemoveContract").innerHTML = xhr.responseText;
+            //        //return confirm("Вы уверены, что хотите безвозвратно удалить договор?");
+            //    }
+            //}
+
+            //xhr.open("GET", "/Home/DeleteContract?idContract= ", true);
+            //xhr.send();
+
+            var url = "/Home/DeleteContract?idContract=@(Model.Contract.Id)";
+            if (confirm("Вы уверены, что хотите безвозвратно удалить договор?")) {
+                window.location.href = url;
             }
 
-            xhr.open("GET", "/Home/DeleteContract?idContract=@(Model.Contract.Id)", true);
-            xhr.send();
         }
     </script>
 
@@ -483,14 +495,14 @@
         for (i = 1; i < @(Model.Contract.Customers.Count()); i++) {
             AddCustomer();
         }
-    @*var customersCount = $("#Customers").children().length;
+    var customersCount = $("#Customers").children().length;
         for (j = 0; j < customersCount; j++) {
             $("#newCounter").val(j);
             $("#editCounter").click();
             $("#Contract_Customers_" + @(Model.Counter) + "__LastName").attr("value", "@Model.Contract.Customers[Model.Counter].LastName");
 
             console.log(@(Model.Counter));
-        }*@
+        }
 
         $(document).ready(function () {
                 $("#editCounter").click(function (e) {
