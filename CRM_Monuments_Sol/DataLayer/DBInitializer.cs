@@ -656,27 +656,27 @@ namespace DataLayer
                 {
                     new MedallionMaterial()
                     {
-                        Name = "Углубленный"
+                        Name = "Керамогранит"
                     },
                     new MedallionMaterial()
                     {
-                        Name = "Литье"
+                        Name = "Керамика (фарфор)"
                     },
                     new MedallionMaterial()
                     {
-                        Name = "Caggiatti"
+                        Name = "Триплекс"
                     },
                     new MedallionMaterial()
                     {
-                        Name = "На табличке"
+                        Name = "Однослойное стекло"
                     },
                     new MedallionMaterial()
                     {
-                        Name = "На медальоне"
+                        Name = "Металлокерамика"
                     },
                     new MedallionMaterial()
                     {
-                        Name = "Станочный"
+                        Name = "Табличка из нерж.стали"
                     }
                 };
                 context.MedallionMaterials.AddRange(_medallionMaterials);

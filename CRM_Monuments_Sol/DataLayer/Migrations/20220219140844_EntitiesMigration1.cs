@@ -8,6 +8,19 @@ namespace DataLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ColorMedallions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ColorMedallions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contracts",
                 columns: table => new
                 {
@@ -38,6 +51,32 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MedallionMaterials",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedallionMaterials", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShapeMedallions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShapeMedallions", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "StoneMaterials",
                 columns: table => new
                 {
@@ -48,6 +87,32 @@ namespace DataLayer.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_StoneMaterials", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TypePortraits",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypePortraits", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TypeTexts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeTexts", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,8 +131,8 @@ namespace DataLayer.Migrations
                     WhatsApp = table.Column<bool>(type: "bit", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedCheck = table.Column<bool>(type: "bit", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: true)
-                    //DeletedCheck = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -99,8 +164,8 @@ namespace DataLayer.Migrations
                     TypeNameEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NotesTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngraverEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedCheck = table.Column<bool>(type: "bit", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: true)
-                    //DeletedCheck = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -155,10 +220,10 @@ namespace DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PhotoImage = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DeletedCheck = table.Column<bool>(type: "bit", nullable: false),
                     DeceasedId = table.Column<int>(type: "int", nullable: true),
-                    ContractId = table.Column<int>(type: "int", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaterialMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SizeMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -174,17 +239,10 @@ namespace DataLayer.Migrations
                     GluingIntoNiche = table.Column<bool>(type: "bit", nullable: true),
                     TypePortrait = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                    //DeletedCheck = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PhotoOnMonuments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PhotoOnMonuments_Contracts_ContractId",
-                        column: x => x.ContractId,
-                        principalTable: "Contracts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PhotoOnMonuments_Deceaseds_DeceasedId",
                         column: x => x.DeceasedId,
@@ -214,11 +272,6 @@ namespace DataLayer.Migrations
                 column: "ContractId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhotoOnMonuments_ContractId",
-                table: "PhotoOnMonuments",
-                column: "ContractId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PhotoOnMonuments_DeceasedId",
                 table: "PhotoOnMonuments",
                 column: "DeceasedId");
@@ -230,10 +283,25 @@ namespace DataLayer.Migrations
                 name: "Accessories");
 
             migrationBuilder.DropTable(
+                name: "ColorMedallions");
+
+            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
+                name: "MedallionMaterials");
+
+            migrationBuilder.DropTable(
                 name: "PhotoOnMonuments");
+
+            migrationBuilder.DropTable(
+                name: "ShapeMedallions");
+
+            migrationBuilder.DropTable(
+                name: "TypePortraits");
+
+            migrationBuilder.DropTable(
+                name: "TypeTexts");
 
             migrationBuilder.DropTable(
                 name: "StoneMaterials");

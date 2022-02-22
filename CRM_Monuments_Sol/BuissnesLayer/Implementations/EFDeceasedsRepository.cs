@@ -36,21 +36,18 @@ namespace BuissnesLayer.Implementations
 
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
         {
-            if (deceased.Id != 0)
+            if (deceased.Id == 0)
             {
-                if (deceased.Id == -1)
+                deceased.Id = 0;
+                _context.Deceaseds.Add(deceased);
+            }
+            else
+            {
+                foreach (PhotoOnMonument p in deceased.PhotosOnMonument)
                 {
-                    deceased.Id = 0;
-                    _context.Deceaseds.Add(deceased);
+                    _photosOnMonumentsRepository.SavePhotoOnMonument(p);
                 }
-                else
-                {
-                    foreach (PhotoOnMonument p in deceased.PhotosOnMonument)
-                    {
-                        _photosOnMonumentsRepository.SavePhotoOnMonument(p);
-                    }
-                    _context.Entry(deceased).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                }
+                _context.Entry(deceased).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
             _context.SaveChanges();
         }

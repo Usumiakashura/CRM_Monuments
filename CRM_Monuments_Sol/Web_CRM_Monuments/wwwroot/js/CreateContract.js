@@ -1,5 +1,6 @@
 ﻿var CustomersCount = 1;
 var DeceasedsCount = $("#Deceaseds")[0].getElementsByClassName("deceased-container").length;
+var PhotosCount = $("[id^='Photos'], .custom-file-input").length;
 var deletedDeceasedCount = 0;
 var deletedPhotoCount = 0;
 var deletedCustomerCount = 0;
@@ -212,6 +213,7 @@ function AddCustomer() {
     //на нажатие этого элемента добавляем обработчик - функцию удаления
     RemoveButton.click(RemoveCustomer);
     CustomersCount++;
+    
 }
 function RemoveCustomer() {
     var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("CustomerContainer".length));
@@ -391,10 +393,10 @@ function RemoveDeceased() {
     var rpbLength = removePortraitButtons.length;
     var rmbLength = removeMedallionButtons.length;
     for (i = 0; i < rpbLength; i++) {
-        removePortraitButtons[0].click();
+        removePortraitButtons[i].click();
     }
     for (i = 0; i < rmbLength; i++) {
-        removeMedallionButtons[0].click();
+        removeMedallionButtons[i].click();
     }
 
     $("<input/>").attr("id", "DeletedDeceasedIds_" + deletedDeceasedCount + "_").attr("name", "DeletedDeceasedIds[" + deletedDeceasedCount + "]")
@@ -482,14 +484,18 @@ function AddPortrait() {
     var WrapperP = $("<div/>").attr("class", "wrapper w3").appendTo(PortraitBox);
 
     var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperP);
+    $("<input/>").attr("type", "hidden")
+        .attr("value", keyP)
+        .attr("name", "Photos[" + PhotosCount + "].PhotoKey")
+        .attr("id", "Photos_" + PhotosCount + "__PhotoKey").appendTo(ImgBlock);
     $("<input/>").attr("type", "file")
         .attr("accept", "image/*,image/jpeg")
         .attr("multiple", "true")
-        .attr("name", "Portraits[" + keyP + "].PhotoImage")
-        .attr("id", "Portraits_" + keyP + "__PhotoImage")
+        .attr("name", "Photos[" + PhotosCount + "].Image")
+        .attr("id", "Photos_" + PhotosCount + "__Image")
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
-    $("<label/>").attr("class", "custom-file-label form-control")
-        .attr("for", "Portraits_" + keyP + "__PhotoImage").appendTo(ImgBlock);
+    $("<label/>").attr("class", "custom-file-label form-control").text("Выберите изображение...")
+        .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
 
     var SelectPortraitType = $("<select/>").attr("class", "form-control min-width-select-for-photo")
         .attr("name", "Portraits[" + keyP + "].TypePortrait")
@@ -524,7 +530,7 @@ function AddPortrait() {
 
     //навешиваем обработчики
     RemoveButton.click(RemovePortrait);
-    //PortraitCount++;
+    PhotosCount++
 }
 function RemovePortrait() {
     var PortraitContainer = $(this).parent();
@@ -541,6 +547,11 @@ function RemovePortrait() {
     for (var i = PortraitSturtNum + 1; i < PortraitCount; i++) {
         RecalculateNamesAndIdsPortraits(false, DeceasedNum, i);
     }
+    var imgStartNum = parseInt($($(this).parent()[0].getElementsByClassName("custom-file-input")[0]).attr("id").match(/\d+/));
+    for (var j = imgStartNum + 1; j < PhotosCount; j++) {
+        RecalculateNamesAndIdsPhotos(j);
+    }
+    PhotosCount--;
 }
 function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portraitStartNum) {
     var OurKey = PortraitIdCreator(deceasedNum, portraitStartNum);
@@ -554,12 +565,21 @@ function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portrait
     }
 
     $("#PortraitContainer" + portraitStartNum).attr("id", "PortraitContainer" + (portraitStartNum - 1));
+    $("#PortraitContainer" + (portraitStartNum - 1)).querySelector("[id$='__PhotoKey']").val(PrevKey);
 
-    var ImgPortrait = $("#Portraits_" + OurKey + "__PhotoImage");
+    //var imgStartNum = parseInt(PortraitContainer.getElementsByClassName("custom-file-input")[0].attr("id").match(/\d+/));
 
-    ImgPortrait[0].setAttribute("id", "Portraits_" + PrevKey + "__PhotoImage");
-    ImgPortrait[0].setAttribute("name", "Portraits[" + PrevKey + "].PhotoImage");
-    ImgPortrait[0].nextElementSibling.setAttribute("for", "Portraits_" + PrevKey + "__PhotoImage");
+    //console.log(imgStartNum);
+
+    //RecalculateNamesAndIdsPhotos(PrevKey, imgStartNum)
+    //$("#PortraitPhotos_" + portraitStartNum + "__PhotoKey").attr("id", "PortraitPhotos_" + (portraitStartNum - 1) + "__PhotoKey")
+    //    .attr("name", "PortraitPhotos[" + (portraitStartNum - 1) + "].PhotoKey").val(PrevKey);
+
+    //var ImgPortrait = $("#PortraitPhotos_" + portraitStartNum + "__Image");
+
+    //ImgPortrait[0].setAttribute("id", "PortraitPhotos_" + (portraitStartNum - 1) + "__Image");
+    //ImgPortrait[0].setAttribute("name", "PortraitPhotos[" + (portraitStartNum - 1) + "].Image");
+    //ImgPortrait[0].nextElementSibling.setAttribute("for", "PortraitPhotos_" + (portraitStartNum - 1) + "__Image");
     $("#Portraits_" + OurKey + "__TypePortrait").attr("id", "Portraits_" + PrevKey + "__TypePortrait").attr("name", "Portraits[" + PrevKey + "].TypePortrait");
     $("#Portraits_" + OurKey + "__Artist").attr("id", "Portraits_" + PrevKey + "__Artist").attr("name", "Portraits[" + PrevKey + "].Artist");
     $("#Portraits_" + OurKey + "__Note").attr("id", "Portraits_" + PrevKey + "__Note").attr("name", "Portraits[" + PrevKey + "].Note");
@@ -586,16 +606,33 @@ function AddMedallion() {
     $("<label/>").attr("class", "font-weight-bold").text("Медальон").appendTo(MedallionBox);
     var WrapperM = $("<div/>").attr("class", "wrapper w3").appendTo(MedallionBox);
 
-
     var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperM);
+    $("<input/>").attr("type", "hidden")
+        .attr("value", keyM)
+        .attr("name", "Photos[" + PhotosCount + "].PhotoKey")
+        .attr("id", "Photos_" + PhotosCount + "__PhotoKey").appendTo(ImgBlock);
     $("<input/>").attr("type", "file")
         .attr("accept", "image/*,image/jpeg")
         .attr("multiple", "true")
-        .attr("name", "Medallions[" + keyM + "].PhotoImage")
-        .attr("id", "Medallions_" + keyM + "__PhotoImage")
+        .attr("name", "Photos[" + PhotosCount + "].Image")
+        .attr("id", "Photos_" + PhotosCount + "__Image")
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
-    $("<label/>").attr("class", "custom-file-label form-control")
-        .attr("for", "Medallions_" + keyM + "__PhotoImage").appendTo(ImgBlock);
+    $("<label/>").attr("class", "custom-file-label form-control").text("Выберите изображение...")
+        .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
+
+    //var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperM);
+    //$("<input/>").attr("type", "hidden")
+    //    .attr("value", keyM)
+    //    .attr("name", "Photos[" + PhotoCount + "].PhotoKey")
+    //    .attr("id", "Photos_" + PhotoCount + "__PhotoKey").appendTo(ImgBlock);
+    //$("<input/>").attr("type", "file")
+    //    .attr("accept", "image/*,image/jpeg")
+    //    .attr("multiple", "true")
+    //    .attr("name", "Photos[" + PhotoCount + "].Image")
+    //    .attr("id", "Photos_" + PhotoCount + "__Image")
+    //    .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
+    //$("<label/>").attr("class", "custom-file-label form-control").text("Выберите изображение...")
+    //    .attr("for", "Photos_" + PhotoCount + "__Image").appendTo(ImgBlock);
 
 
     var SelectMaterial = $("<select/>").attr("class", "form-control min-width-select-for-photo")
@@ -719,7 +756,7 @@ function AddMedallion() {
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
         .attr("value", "x").appendTo(MedallionContainer);
     RemoveButton.click(RemoveMedallion);
-    /*MedallionCount++;*/
+    PhotosCount++;
 }
 function RemoveMedallion() {
     var MedallionContainer = $(this).parent();
@@ -736,6 +773,11 @@ function RemoveMedallion() {
     for (var i = MedallionSturtNum + 1; i < MedallionCount; i++) {
         RecalculateNamesAndIdsMedallions(false, DeceasedNum, i);
     }
+    var imgStartNum = parseInt($($(this).parent()[0].getElementsByClassName("custom-file-input")[0]).attr("id").match(/\d+/));
+    for (var j = imgStartNum + 1; j < PhotosCount; j++) {
+        RecalculateNamesAndIdsPhotos(j);
+    }
+    PhotosCount--;
 }
 function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medallionStartNum) {
     var OurKey = MedallionIdCreator(deceasedNum, medallionStartNum);
@@ -749,11 +791,16 @@ function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medalli
     }
 
     $("#MedallionContainer" + medallionStartNum).attr("id", "MedallionContainer" + (medallionStartNum - 1));
+    $("#MedallionContainer" + (medallionStartNum - 1)).querySelector("[id$='__PhotoKey']").val(PrevKey);
 
-    var ImgMedallion = $("#Medallions_" + OurKey + "__PhotoImage");
-    ImgMedallion[0].setAttribute("id", "Medallions_" + PrevKey + "__PhotoImage");
-    ImgMedallion[0].setAttribute("name", "Medallions[" + PrevKey + "].PhotoImage");
-    ImgMedallion[0].nextElementSibling.setAttribute("for", "Medallions_" + PrevKey + "__PhotoImage");
+    $("#MedallionPhotos_" + medallionStartNum + "__PhotoKey").attr("id", "MedallionPhotos_" + (medallionStartNum - 1) + "__PhotoKey")
+        .attr("name", "MedallionPhotos[" + (medallionStartNum - 1) + "].PhotoKey").val(PrevKey);
+
+    var ImgPortrait = $("#MedallionPhotos_" + medallionStartNum + "__Image");
+
+    ImgPortrait[0].setAttribute("id", "MedallionPhotos_" + (medallionStartNum - 1) + "__Image");
+    ImgPortrait[0].setAttribute("name", "MedallionPhotos[" + (medallionStartNum - 1) + "].Image");
+    ImgPortrait[0].nextElementSibling.setAttribute("for", "MedallionPhotos_" + (medallionStartNum - 1) + "__Image");
     $("#Medallions_" + OurKey + "__MaterialMedallion").attr("id", "Medallions_" + PrevKey + "__MaterialMedallion").attr("name", "Medallions[" + PrevKey + "].MaterialMedallion");
     $("#Medallions_" + OurKey + "__SizeMedallion").attr("id", "Medallions_" + PrevKey + "__SizeMedallion").attr("name", "Medallions[" + PrevKey + "].SizeMedallion");
     $("#Medallions_" + OurKey + "__ShapeMedallion").attr("id", "Medallions_" + PrevKey + "__ShapeMedallion").attr("name", "Medallions[" + PrevKey + "].ShapeMedallion");
@@ -773,4 +820,12 @@ function MedallionIdCreator(idDeceased, idMedallion) {
     return "D" + idDeceased + "M" + idMedallion;
 }
 
-
+function RecalculateNamesAndIdsPhotos(startCount) {
+    var prevCount = startCount - 1;
+    $("#Photos_" + startCount + "__PhotoKey").attr("id", "Photos_" + prevCount + "__PhotoKey")
+        .attr("name", "Photos[" + prevCount + "].PhotoKey");
+    var ImgPortrait = $("#Photos_" + startCount + "__Image");
+    ImgPortrait[0].setAttribute("id", "Photos_" + prevCount + "__Image");
+    ImgPortrait[0].setAttribute("name", "Photos[" + prevCount + "].Image");
+    ImgPortrait[0].nextElementSibling.setAttribute("for", "Photos_" + prevCount + "__Image");
+}

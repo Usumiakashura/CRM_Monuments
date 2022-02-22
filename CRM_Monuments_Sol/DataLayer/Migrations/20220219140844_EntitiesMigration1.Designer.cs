@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    [Migration("20220216134313_EntitiesMigration3")]
-    partial class EntitiesMigration3
+    [Migration("20220219140844_EntitiesMigration1")]
+    partial class EntitiesMigration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -278,8 +278,8 @@ namespace DataLayer.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PhotoImage")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

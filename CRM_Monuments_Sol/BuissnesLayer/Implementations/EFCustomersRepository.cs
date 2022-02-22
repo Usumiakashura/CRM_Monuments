@@ -47,18 +47,15 @@ namespace BuissnesLayer.Implementations
 
         public void SaveCustomer(Customer customer)
         {
-            if (customer.Id != 0)
+            if (customer.Id == 0)
             {
-                if (customer.Id == -1)
-                {
-                    customer.Id = 0;
-                    _context.Customers.Add(customer);
-                }
-                    
-                else
-                {
-                    _context.Entry(customer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                }
+                customer.Id = 0;
+                _context.Customers.Add(customer);
+            }
+
+            else
+            {
+                _context.Entry(customer).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
             _context.SaveChanges();
             //throw new NotImplementedException();

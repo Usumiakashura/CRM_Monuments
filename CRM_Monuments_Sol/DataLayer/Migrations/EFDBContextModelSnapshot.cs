@@ -276,8 +276,8 @@ namespace DataLayer.Migrations
                     b.Property<string>("Note")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PhotoImage")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("PhotoPath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

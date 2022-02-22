@@ -1,7 +1,9 @@
 ﻿using BuissnesLayer;
 using DataLayer.Entities;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -12,26 +14,37 @@ namespace Web_CRM_Monuments.Services.ViewServices
     public class ContractService
     {
         private DataManager _dataManager;
-        public ContractService(DataManager dataManager)
+        //private IHostingEnvironment _hostingEnvironment;
+        public ContractService(DataManager dataManager/*, IHostingEnvironment hostingEnvironment*/)
         {
             _dataManager = dataManager;
+            //_hostingEnvironment = hostingEnvironment;
+        }
+
+        public string NewContractNumber()
+        {
+            return _dataManager.Contracts.NewNumber();
         }
 
         public void SaveViewModelToDB(ContractViewModel contractViewModel)
         {
             Contract c = ModelViewToModelDB(contractViewModel);
 
+
             foreach (int numP in contractViewModel.DeletedPhotoIds)
             {
-                _dataManager.PhotosOnMonuments.DeletePhotoOnMonument(_dataManager.PhotosOnMonuments.GetPhotoOnMonumentById(numP));
+                if (numP > 0) 
+                    _dataManager.PhotosOnMonuments.DeletePhotoOnMonument(_dataManager.PhotosOnMonuments.GetPhotoOnMonumentById(numP));
             }
             foreach (int numD in contractViewModel.DeletedDeceasedIds)
             {
-                _dataManager.Deceaseds.DeleteDeceased(_dataManager.Deceaseds.GetDeceasedById(numD));
+                if (numD > 0) 
+                    _dataManager.Deceaseds.DeleteDeceased(_dataManager.Deceaseds.GetDeceasedById(numD));
             }
             foreach (int numC in contractViewModel.DeletedCustomerIds)
             {
-                _dataManager.Customers.DeleteCustomer(_dataManager.Customers.GetCustomerById(numC));
+                if (numC > 0) 
+                    _dataManager.Customers.DeleteCustomer(_dataManager.Customers.GetCustomerById(numC));
             }
             _dataManager.Contracts.SaveContract(c);
         }
@@ -39,6 +52,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
         public Contract ModelViewToModelDB(ContractViewModel contractViewModel)
         {
             Contract c = contractViewModel.Contract;
+            if (c.Id == -1) c.Id = 0;
             List<Customer> customers = new List<Customer>();
             List<Deceased> deceaseds = new List<Deceased>();
 
@@ -46,6 +60,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
             {
                 if (customer.Id != 0)
                 {
+                    if (customer.Id == -1) customer.Id = 0;
                     customers.Add(customer);
                 }
             }
@@ -53,17 +68,22 @@ namespace Web_CRM_Monuments.Services.ViewServices
             {
                 if (deceased.Id != 0)
                 {
+                    if (deceased.Id == -1) deceased.Id = 0;
                     deceaseds.Add(deceased);
                 }
             }
             c.Customers = customers;
             c.Deceaseds = deceaseds;
 
+            
+
+
             int numDeceased;
             foreach (var portrait in contractViewModel.Portraits)
             {
                 if (portrait.Value.Id != 0)
                 {
+                    if (portrait.Value.Id == -1) portrait.Value.Id = 0;
                     // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
                     MatchCollection match = Regex.Matches(portrait.Key, @"D(\d+)");
                     // Достаем номер этого контейнега
@@ -77,6 +97,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
             {
                 if (medallion.Value.Id != 0)
                 {
+                    if (medallion.Value.Id == -1) medallion.Value.Id = 0;
                     // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
                     MatchCollection match = Regex.Matches(medallion.Key, @"D(\d+)");
                     // Достаем номер этого контейнега
