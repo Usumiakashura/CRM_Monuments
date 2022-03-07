@@ -1,6 +1,7 @@
 ﻿using BuissnesLayer;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,7 +53,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
         public Contract ModelViewToModelDB(ContractViewModel contractViewModel)
         {
             Contract c = contractViewModel.Contract;
-            if (c.Id == -1) c.Id = 0;
+            //if (c.Id == -1) c.Id = 0;
             List<Customer> customers = new List<Customer>();
             List<Deceased> deceaseds = new List<Deceased>();
 
@@ -134,9 +135,12 @@ namespace Web_CRM_Monuments.Services.ViewServices
                         cvm.Medallions.Add($"D{i}M{numMedallion}", (Medallion)ph);
                         numMedallion++;
                     }
+
+                    //cvm.Photos.Add(new PhotoViewModel() { Image = new IFormFile() })
                 }
 
             }
+
             return cvm;
         }
     }

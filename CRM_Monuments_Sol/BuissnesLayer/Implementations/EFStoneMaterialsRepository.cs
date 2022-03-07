@@ -20,7 +20,8 @@ namespace BuissnesLayer.Implementations
 
         public IEnumerable<StoneMaterial> GetAllStoneMaterials()     //получить весь список
         {
-            return _context.StoneMaterials;
+            throw new NotImplementedException(); 
+            //return _context.StoneMaterials;
         }
 
         public IEnumerable<PhotoOnMonument> GetAllPhotoOnMonumentsByIdDeceased(int deceasedId)     //получить весь список, относящийся к определенному договору
@@ -31,9 +32,10 @@ namespace BuissnesLayer.Implementations
 
         public StoneMaterial GetStoneMaterialById(int accessorieId)    //получить один по айди
         {
-            return _context.StoneMaterials.Find(accessorieId);
+            throw new NotImplementedException();
+            //return _context.StoneMaterials.Find(accessorieId);
         }
-        
+
         public void SaveStoneMaterial(StoneMaterial stoneMaterial)        //сохранить в БД
         {
             throw new NotImplementedException();

@@ -20,7 +20,7 @@ namespace DataLayer.Entities
         public bool WhatsApp { get; set; }          //Наличие мессенджера
         public string Address { get; set; }         //Адрес заказчика
         public string Note { get; set; }            //Примечания
-        public bool DeletedCheck { get; set; }
+        //public bool DeletedCheck { get; set; }
 
         public Contract Contract { get; set; }      //для БД
     }

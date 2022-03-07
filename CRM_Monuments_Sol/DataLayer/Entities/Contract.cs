@@ -52,7 +52,7 @@ namespace DataLayer.Entities
         public string NoteInstaller { get; set; }       //Примечания для установщиков
         [Display(Name = "Примечания (производство):")]
         public string NoteProduction { get; set; }      //Примечания для производства
-        public List<Accessorie> Accessories { get; set; }   //комплектующие
+        //public List<Accessorie> Accessories { get; set; }   //комплектующие
 
 
 
@@ -64,7 +64,7 @@ namespace DataLayer.Entities
         {
             Customers = new List<Customer>();
             Deceaseds = new List<Deceased>();
-            Accessories = new List<Accessorie>();
+            //Accessories = new List<Accessorie>();
         }
         
     }

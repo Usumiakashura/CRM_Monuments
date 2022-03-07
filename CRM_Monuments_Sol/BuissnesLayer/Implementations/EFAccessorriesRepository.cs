@@ -21,22 +21,25 @@ namespace BuissnesLayer.Implementations
 
         public IEnumerable<Accessorie> GetAllAccessoriesByIdContract(int contractId)     //получить весь список, относящийся к определенному договору
         {
-            List<Accessorie> accessories = new List<Accessorie>();
-            foreach (Accessorie a in _context.Accessories.Where(x => x.Contract.Id == contractId))
-            {
-                if (a is StoneAccessorie)
-                {
-                    ((StoneAccessorie)a).Material = _context.StoneMaterials.Find(((StoneAccessorie)a).StoneId);
-                }
-                accessories.Add(a);
-            }
-            //var accessories = _context.Accessories
-            //    .Include(a => a.Contract)
-            //    .Include(a => ((StoneAccessorie)a).Material)
-            //    .Where(a => a is StoneAccessorie && a.Contract.Id == contractId);
-            return accessories;
+            //List<Accessorie> accessories = new List<Accessorie>();
+            //foreach (Accessorie a in _context.Accessories.Where(x => x.Contract.Id == contractId))
+            //{
+            //    if (a is StoneAccessorie)
+            //    {
+            //        ((StoneAccessorie)a).Material = _context.StoneMaterials.Find(((StoneAccessorie)a).StoneId);
+            //    }
+            //    accessories.Add(a);
+            //}
+            ////var accessories = _context.Accessories
+            ////    .Include(a => a.Contract)
+            ////    .Include(a => ((StoneAccessorie)a).Material)
+            ////    .Where(a => a is StoneAccessorie && a.Contract.Id == contractId);
+            //return accessories;
+
+            throw new NotImplementedException();
+            
         }
-        
+
         public Accessorie GetAccessorieById(int accessorieId)    //получить один по айди
         {
             throw new NotImplementedException();

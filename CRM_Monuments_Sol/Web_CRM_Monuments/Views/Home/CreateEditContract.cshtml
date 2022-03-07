@@ -281,15 +281,28 @@
                                                         <label class="font-weight-bold">Портрет</label>
                                                         <div class="wrapper w3 ">
 
+                                                            <div class="wrapper w2">
+                                                                <div class="custom-file full">
+                                                                    @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
+                                                                    @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
+                                                                    <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
+                                                                    <input type="file" asp-for="Photos[p].Image"
+                                                                           class="custom-file-input form-control full" accept="image/*,image/jpeg">
+                                                                    <label class="custom-file-label form-control" asp-for="Photos[p].Image">Новое изображение...</label>
 
-                                                            <div class="custom-file">
-                                                                <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
-                                                                <input type="file" asp-for="Photos[p].Image"
-                                                                       class="custom-file-input form-control full" accept="image/*,image/jpeg">
-                                                                <label class="custom-file-label form-control" asp-for="Photos[p].Image">Выберите изображение...</label>
-                                                                @{ Model.PhotoCounter++; }
-                                                                @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                                                    @{ Model.PhotoCounter++; }
+                                                                    @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                                                </div>
+                                                                @if (Model.Portraits[keyP].PhotoName != null)
+                                                                {
+                                                                    @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
+                                                                    <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
+                                                                       class="download-btn full">
+                                                                        <input type="button" value="Скачать" />
+                                                                    </a>
+                                                                }
                                                             </div>
+                                                            
 
 
                                                             <select asp-for="Portraits[keyP].TypePortrait" class="form-control min-width-select-for-photo">
@@ -329,13 +342,26 @@
                                                         <label class="font-weight-bold">Медальон</label>
                                                         <div class="wrapper w3">
 
-                                                            <div class="custom-file">
-                                                                <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyM />
-                                                                <input type="file" asp-for="Photos[Model.PhotoCounter].Image"
-                                                                       class=" custom-file-input form-control full" accept="image/*,image/jpeg">
-                                                                <label class="custom-file-label form-control" asp-for="Photos[Model.PhotoCounter].Image">Выберите изображение...</label>
-                                                                @{ Model.PhotoCounter++; }
-                                                                @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                                            
+                                                            <div class="wrapper w2">
+                                                                <div class="custom-file">
+                                                                    @Html.HiddenFor(c => c.Medallions[keyM].PhotoPath)
+                                                                    @Html.HiddenFor(c => c.Medallions[keyM].PhotoName)
+                                                                    <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyM />
+                                                                    <input type="file" asp-for="Photos[Model.PhotoCounter].Image"
+                                                                           class=" custom-file-input form-control full" accept="image/*,image/jpeg">
+                                                                    <label class="custom-file-label form-control" asp-for="Photos[Model.PhotoCounter].Image">Новое изображение...</label>
+                                                                    @{ Model.PhotoCounter++; }
+                                                                    @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                                                </div>
+                                                                @if (Model.Medallions[keyM].PhotoName != null)
+                                                                {
+                                                                    @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
+                                                                    <a href="@Model.Medallions[keyM].PhotoPath" download="@Model.Medallions[keyM].PhotoName"
+                                                                       class="download-btn full">
+                                                                        <input type="button" value="Скачать" />
+                                                                    </a>
+                                                                }
                                                             </div>
                                                             <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MaterialMedallion">
                                                                 <option value=@null>Материал...</option>
@@ -467,6 +493,11 @@
         $(document).ready(function () {
             $("#RemoveContract").click(RemoveContract);
             $("#calculateTrips").click(NewUrl);
+
+            $(".custom-file-input").on("change", function () {
+                var fileName = $(this).val().split("\\").pop();
+                $(this).next(".custom-file-label").html(fileName);
+            });
         });
 
         function NewUrl() {

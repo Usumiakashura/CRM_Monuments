@@ -30,7 +30,7 @@ namespace Web_CRM_Monuments.Models
         {
             Contract = new Contract()
             {
-                Id = -1,
+                //Id = -1,
                 DateOfConclusion = DateTime.Today,
                 DeadLine = DateTime.Today.AddDays(90),
                 NumYear = (DateTime.Today.Year.ToString()).Substring(2),

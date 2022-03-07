@@ -85,6 +85,15 @@ a {
     width: auto;
     height: 30px;
 }
+.download-btn {
+    margin: 0px;
+    padding: 0px;
+}
+a.disabled {
+    pointer-events: none; /* делаем элемент неактивным для взаимодействия */
+    cursor: default; /*  курсор в виде стрелки */
+    color: #888; /* цвет текста серый */
+}
 
 .wrapper {
     width: 100%;
@@ -100,8 +109,8 @@ a {
 */    grid-template-columns: repeat(5, auto);
 }
 .w6 {
-    width: 1200px;
-    grid-template-columns: repeat(6, auto);
+/*    width: 1200px;
+*/    grid-template-columns: repeat(6, 1fr);
 }
 .w3 {
     grid-template-columns: repeat(3, 1fr);
@@ -210,13 +219,16 @@ label {
     z-index: 3;
     display: block;
     height: auto;
-    padding: 0.1rem 1.75rem;
+    padding: 0.1rem 0.75rem;
     line-height: 1.5;
     color: #495057;
     content: "Выбрать фото";
     background-color: #e9ecef;
     border-left: inherit;
     border-radius: 0 0.25rem 0.25rem 0;
+}
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+    content: "Выбрать";
 }
 
 .custom-file{

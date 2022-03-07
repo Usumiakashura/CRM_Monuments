@@ -93,7 +93,7 @@ namespace BuissnesLayer.Implementations
         {
             foreach (Customer c in _customersRepository.GetAllCustomersByIdContract(contract.Id)) { }
             foreach (Deceased d in _deceasedsRepository.GetAllDeceasedsByIdContract(contract.Id)) { }
-            foreach (Accessorie a in _accessorriesRepository.GetAllAccessoriesByIdContract(contract.Id)) { }
+            //foreach (Accessorie a in _accessorriesRepository.GetAllAccessoriesByIdContract(contract.Id)) { }
         }
 
 

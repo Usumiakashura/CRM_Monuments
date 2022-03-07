@@ -19,38 +19,6 @@ namespace DataLayer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataLayer.Entities.Accessorie", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ContractId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ContractId");
-
-                    b.ToTable("Accessories");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Accessorie");
-                });
-
             modelBuilder.Entity("DataLayer.Entities.ColorMedallion", b =>
                 {
                     b.Property<int>("Id")
@@ -145,9 +113,6 @@ namespace DataLayer.Migrations
                     b.Property<int?>("ContractId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("DeletedCheck")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -192,14 +157,23 @@ namespace DataLayer.Migrations
                     b.Property<int?>("ContractId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateBeginTextEpitaph")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateBeginTextName")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("DateBirthday")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCompleatTextEpitaph")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCompleatTextName")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateRip")
                         .HasColumnType("datetime2");
-
-                    b.Property<bool>("DeletedCheck")
-                        .HasColumnType("bit");
 
                     b.Property<string>("EngraverEpitaph")
                         .HasColumnType("nvarchar(max)");
@@ -263,17 +237,23 @@ namespace DataLayer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("DateBegin")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCompleat")
+                        .HasColumnType("datetime2");
+
                     b.Property<int?>("DeceasedId")
                         .HasColumnType("int");
-
-                    b.Property<bool>("DeletedCheck")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Discriminator")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhotoName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhotoPath")
@@ -303,19 +283,22 @@ namespace DataLayer.Migrations
                     b.ToTable("ShapeMedallions");
                 });
 
-            modelBuilder.Entity("DataLayer.Entities.StoneMaterial", b =>
+            modelBuilder.Entity("DataLayer.Entities.Time", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("DurationDay")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("StoneMaterials");
+                    b.ToTable("Times");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.TypePortrait", b =>
@@ -346,43 +329,6 @@ namespace DataLayer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TypeTexts");
-                });
-
-            modelBuilder.Entity("DataLayer.Entities.OtherAccessorie", b =>
-                {
-                    b.HasBaseType("DataLayer.Entities.Accessorie");
-
-                    b.Property<string>("Material")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasDiscriminator().HasValue("OtherAccessorie");
-                });
-
-            modelBuilder.Entity("DataLayer.Entities.StoneAccessorie", b =>
-                {
-                    b.HasBaseType("DataLayer.Entities.Accessorie");
-
-                    b.Property<int>("Height")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StoneId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Thickness")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Width")
-                        .HasColumnType("int");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasDiscriminator().HasValue("StoneAccessorie");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Medallion", b =>
@@ -441,15 +387,6 @@ namespace DataLayer.Migrations
                     b.HasDiscriminator().HasValue("Portrait");
                 });
 
-            modelBuilder.Entity("DataLayer.Entities.Accessorie", b =>
-                {
-                    b.HasOne("DataLayer.Entities.Contract", "Contract")
-                        .WithMany("Accessories")
-                        .HasForeignKey("ContractId");
-
-                    b.Navigation("Contract");
-                });
-
             modelBuilder.Entity("DataLayer.Entities.Customer", b =>
                 {
                     b.HasOne("DataLayer.Entities.Contract", "Contract")
@@ -477,19 +414,8 @@ namespace DataLayer.Migrations
                     b.Navigation("Deceased");
                 });
 
-            modelBuilder.Entity("DataLayer.Entities.StoneAccessorie", b =>
-                {
-                    b.HasOne("DataLayer.Entities.StoneMaterial", "Material")
-                        .WithMany("StoneAccessories")
-                        .HasForeignKey("MaterialId");
-
-                    b.Navigation("Material");
-                });
-
             modelBuilder.Entity("DataLayer.Entities.Contract", b =>
                 {
-                    b.Navigation("Accessories");
-
                     b.Navigation("Customers");
 
                     b.Navigation("Deceaseds");
@@ -498,11 +424,6 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Entities.Deceased", b =>
                 {
                     b.Navigation("PhotosOnMonument");
-                });
-
-            modelBuilder.Entity("DataLayer.Entities.StoneMaterial", b =>
-                {
-                    b.Navigation("StoneAccessories");
                 });
 #pragma warning restore 612, 618
         }

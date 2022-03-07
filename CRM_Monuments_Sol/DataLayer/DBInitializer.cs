@@ -12,7 +12,7 @@ namespace DataLayer
         public static void InitData(EFDBContext context)
         {
             List<Contract> _contracts;
-            List<StoneMaterial> _stoneMaterials;
+            //List<StoneMaterial> _stoneMaterials;
 
             List<TypeText> _typeTexts;
             List<TypePortrait> _typePortraits;
@@ -20,102 +20,102 @@ namespace DataLayer
             List<ShapeMedallion> _shapeMedallions;
             List<ColorMedallion> _colorMedallions;
 
-            if (!context.StoneMaterials.Any())
-            {
-                _stoneMaterials = new List<StoneMaterial>()
-                {
-                    new StoneMaterial()
-                    {
-                        Name = "ГабброДиабаз"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Елизовский"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Мансуровский"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Покостовский"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Гранатовый Амфиболит"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Капустянский"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Масловский"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Нью Империал Ред"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Санди Грей"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Санди Роуз"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Новоданиловский"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Онега"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Балморал Красный"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Балтик Грин"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Куру Грей"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Лезник"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Шанси Блэк"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Аврора"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Амадеус"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Сюськюянсаари"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Блю Перл Голубой"
-                    },
-                    new StoneMaterial()
-                    {
-                        Name = "Лабродорит"
-                    }
-                };
-                context.StoneMaterials.AddRange(_stoneMaterials);
-                context.SaveChanges();
-            }
+            //if (!context.StoneMaterials.Any())
+            //{
+            //    _stoneMaterials = new List<StoneMaterial>()
+            //    {
+            //        new StoneMaterial()
+            //        {
+            //            Name = "ГабброДиабаз"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Елизовский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Мансуровский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Покостовский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Гранатовый Амфиболит"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Капустянский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Масловский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Нью Империал Ред"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Санди Грей"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Санди Роуз"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Новоданиловский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Онега"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Балморал Красный"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Балтик Грин"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Куру Грей"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Лезник"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Шанси Блэк"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Аврора"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Амадеус"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Сюськюянсаари"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Блю Перл Голубой"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Лабродорит"
+            //        }
+            //    };
+            //    context.StoneMaterials.AddRange(_stoneMaterials);
+            //    context.SaveChanges();
+            //}
 
             if (!context.Contracts.Any())
             {
@@ -184,72 +184,72 @@ namespace DataLayer
                         Decoration = "оформления нет",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
-                        Accessories = new List<Accessorie>()
-                        {
-                            new StoneAccessorie()
-                            {
-                                Name = "стела",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 150,
-                                Width = 100,
-                                Thickness = 5,
-                                Note = "Форма А17"
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "подставка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 50,
-                                Width = 20,
-                                Thickness = 15
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 2,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 100,
-                                Thickness = 5
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 50,
-                                Thickness = 5
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "фигурная накладка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 50,
-                                Width = 30,
-                                Thickness = 2,
-                                Note = "Прямоугольная"
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "надгробка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 100,
-                                Width = 50,
-                                Thickness = 5,
-                                Note = "Прямоугольник"
-                            }
-                        },
+                        //Accessories = new List<Accessorie>()
+                        //{
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "стела",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 150,
+                        //        Width = 100,
+                        //        Thickness = 5,
+                        //        Note = "Форма А17"
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "подставка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 50,
+                        //        Width = 20,
+                        //        Thickness = 15
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 2,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 100,
+                        //        Thickness = 5
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 50,
+                        //        Thickness = 5
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "фигурная накладка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 50,
+                        //        Width = 30,
+                        //        Thickness = 2,
+                        //        Note = "Прямоугольная"
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "надгробка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 100,
+                        //        Width = 50,
+                        //        Thickness = 5,
+                        //        Note = "Прямоугольник"
+                        //    }
+                        //},
                         Note = "какие-то примечания ко всему заказу"
                     },//1
                     new Contract()
@@ -311,50 +311,50 @@ namespace DataLayer
                         Decoration = "какие-нибудь пометки по оформлению",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
-                        Accessories = new List<Accessorie>()
-                        {
-                            new StoneAccessorie()
-                            {
-                                Name = "стела",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 150,
-                                Width = 100,
-                                Thickness = 5,
-                                Note = "Форма А17"
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "подставка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 50,
-                                Width = 20,
-                                Thickness = 15
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 2,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 100,
-                                Thickness = 5
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 50,
-                                Thickness = 5
-                            }
-                        },
+                        //Accessories = new List<Accessorie>()
+                        //{
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "стела",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 150,
+                        //        Width = 100,
+                        //        Thickness = 5,
+                        //        Note = "Форма А17"
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "подставка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 50,
+                        //        Width = 20,
+                        //        Thickness = 15
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 2,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 100,
+                        //        Thickness = 5
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 50,
+                        //        Thickness = 5
+                        //    }
+                        //},
                         Note = "какие-то примечания ко всему заказу"
                     },//2
                     new Contract()
@@ -420,72 +420,72 @@ namespace DataLayer
                         Decoration = "оформления нет",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
-                        Accessories = new List<Accessorie>()
-                        {
-                            new StoneAccessorie()
-                            {
-                                Name = "стела",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 150,
-                                Width = 100,
-                                Thickness = 5,
-                                Note = "Форма А17"
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "подставка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 50,
-                                Width = 20,
-                                Thickness = 15
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 2,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 100,
-                                Thickness = 5
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 50,
-                                Thickness = 5
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "фигурная накладка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 50,
-                                Width = 30,
-                                Thickness = 2,
-                                Note = "Прямоугольная"
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "надгробка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 100,
-                                Width = 50,
-                                Thickness = 5,
-                                Note = "Прямоугольник"
-                            }
-                        },
+                        //Accessories = new List<Accessorie>()
+                        //{
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "стела",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 150,
+                        //        Width = 100,
+                        //        Thickness = 5,
+                        //        Note = "Форма А17"
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "подставка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 50,
+                        //        Width = 20,
+                        //        Thickness = 15
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 2,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 100,
+                        //        Thickness = 5
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 50,
+                        //        Thickness = 5
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "фигурная накладка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 50,
+                        //        Width = 30,
+                        //        Thickness = 2,
+                        //        Note = "Прямоугольная"
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "надгробка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 100,
+                        //        Width = 50,
+                        //        Thickness = 5,
+                        //        Note = "Прямоугольник"
+                        //    }
+                        //},
                         Note = "какие-то примечания ко всему заказу"
                     },//3
                     new Contract()
@@ -547,50 +547,50 @@ namespace DataLayer
                         Decoration = "какие-нибудь пометки по оформлению",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
-                        Accessories = new List<Accessorie>()
-                        {
-                            new StoneAccessorie()
-                            {
-                                Name = "стела",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 150,
-                                Width = 100,
-                                Thickness = 5,
-                                Note = "Форма А17"
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "подставка",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 50,
-                                Width = 20,
-                                Thickness = 15
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 2,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 100,
-                                Thickness = 5
-                            },
-                            new StoneAccessorie()
-                            {
-                                Name = "цветник",
-                                Number = 1,
-                                Material = context.StoneMaterials.Find(7),
-                                StoneId = context.StoneMaterials.Find(7).Id,
-                                Height = 8,
-                                Width = 50,
-                                Thickness = 5
-                            }
-                        },
+                        //Accessories = new List<Accessorie>()
+                        //{
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "стела",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 150,
+                        //        Width = 100,
+                        //        Thickness = 5,
+                        //        Note = "Форма А17"
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "подставка",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 50,
+                        //        Width = 20,
+                        //        Thickness = 15
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 2,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 100,
+                        //        Thickness = 5
+                        //    },
+                        //    new StoneAccessorie()
+                        //    {
+                        //        Name = "цветник",
+                        //        Number = 1,
+                        //        Material = context.StoneMaterials.Find(7),
+                        //        StoneId = context.StoneMaterials.Find(7).Id,
+                        //        Height = 8,
+                        //        Width = 50,
+                        //        Thickness = 5
+                        //    }
+                        //},
                         Note = "какие-то примечания ко всему заказу"
                     }//4
                 };

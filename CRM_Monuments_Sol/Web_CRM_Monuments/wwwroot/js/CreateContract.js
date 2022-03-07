@@ -58,20 +58,23 @@ $(document).ready(function () {
         }
     });
     // ----------------------------------------------------------------
-    
+    //$(".custom-file-input").on("change", function () {
+    //    var fileName = $(this).val().split("\\").pop();
+    //    $(this).next(".custom-file-label").html(fileName);
+    //});
 });
 // --- При загрузке изображения добавляет его название в строку ---
-$(document).on("input", ".custom-file-input", function () {
-    var names = $(this).prop('files');
-    var str = "";
-    for (var i = 0; i < names.length; i++) {
-        str += names[i].name;
-        if (i !== (names.length - 1)) {
-            str += ", ";
-        }
-    }
-    $(this).siblings(".custom-file-label").addClass("selected").html(str);
-});
+//$(document).on("input", ".custom-file-input", function () {
+//    var names = $(this).prop('files');
+//    var str = "";
+//    for (var i = 0; i < names.length; i++) {
+//        str += names[i].name;
+//        if (i !== (names.length - 1)) {
+//            str += ", ";
+//        }
+//    }
+//    $(this).siblings(".custom-file-label").addClass("selected").html(str);
+//});
 // ----------------------------------------------------------------
 
 function CheckFrame() {
@@ -108,6 +111,13 @@ function AddDisabledPickup(trfl) {
     $("#Contract_Grave").prop("disabled", trfl);
     $("#Contract_DistanceFromMKAD").prop("disabled", trfl);
     $("#Contract_NumberOfTrips").prop("disabled", trfl);
+    if (trfl) {
+        $("#calculateTrips").attr("class", "disabled");
+    }
+    else {
+        $("#calculateTrips").attr("class", "");
+    }
+    
 }
 
 function CheckEpitaph() {
@@ -216,20 +226,22 @@ function AddCustomer() {
     
 }
 function RemoveCustomer() {
-    var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("CustomerContainer".length));
+    if (confirm("Вы действительно хотите удалить информацию о заказчике?")) {
+        var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("CustomerContainer".length));
 
-    var deletedCustomerId = $($(this).siblings()[1]).attr("value");
-    $("<input/>").attr("id", "DeletedCustomerIds_" + deletedCustomerCount + "_").attr("name", "DeletedCustomerIds[" + deletedCustomerCount + "]")
-        .attr("type", "hidden").attr("value", deletedCustomerId).appendTo(".deleted");
-    deletedCustomerCount++;
+        var deletedCustomerId = $($(this).siblings()[1]).attr("value");
+        $("<input/>").attr("id", "DeletedCustomerIds_" + deletedCustomerCount + "_").attr("name", "DeletedCustomerIds[" + deletedCustomerCount + "]")
+            .attr("type", "hidden").attr("value", deletedCustomerId).appendTo(".deleted");
+        deletedCustomerCount++;
 
 
-    $(this).parent().remove();
-    for (var i = RecalculateStartNum + 1; i < CustomersCount; i++) {
-        //функция пересчета аттрибутов name и id
-        RecalculateNamesAndIdsCustomers(i);
+        $(this).parent().remove();
+        for (var i = RecalculateStartNum + 1; i < CustomersCount; i++) {
+            //функция пересчета аттрибутов name и id
+            RecalculateNamesAndIdsCustomers(i);
+        }
+        CustomersCount--;
     }
-    CustomersCount--;
 }
 function RecalculateNamesAndIdsCustomers(number) {
     var prevNumber = number - 1;
@@ -385,30 +397,34 @@ function AddDeceased() {
 
 }
 function RemoveDeceased() {
-    var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("DeceasedContainer".length));
+    if (confirm("Вы действительно хотите удалить информацию об усопшем?")) {
+        var RecalculateStartNum = parseInt($(this).parent().attr("id").substring("DeceasedContainer".length));
 
-    var deletedDeceasedId = $($(this).siblings()[1]).attr("value");
-    var removePortraitButtons = $(this).siblings()[0].getElementsByClassName("remove-portrait");
-    var removeMedallionButtons = $(this).siblings()[0].getElementsByClassName("remove-medallion");
-    var rpbLength = removePortraitButtons.length;
-    var rmbLength = removeMedallionButtons.length;
-    for (i = 0; i < rpbLength; i++) {
-        removePortraitButtons[i].click();
-    }
-    for (i = 0; i < rmbLength; i++) {
-        removeMedallionButtons[i].click();
+        var deletedDeceasedId = $($(this).siblings()[1]).attr("value");
+        var removePortraitButtons = $(this).siblings()[0].getElementsByClassName("remove-portrait");
+        var removeMedallionButtons = $(this).siblings()[0].getElementsByClassName("remove-medallion");
+        var rpbLength = removePortraitButtons.length;
+        var rmbLength = removeMedallionButtons.length;
+        for (i = 0; i < rpbLength; i++) {
+            removePortraitButtons[i].click();
+        }
+        for (i = 0; i < rmbLength; i++) {
+            removeMedallionButtons[i].click();
+        }
+
+        $("<input/>").attr("id", "DeletedDeceasedIds_" + deletedDeceasedCount + "_").attr("name", "DeletedDeceasedIds[" + deletedDeceasedCount + "]")
+            .attr("type", "hidden").attr("value", deletedDeceasedId).appendTo(".deleted");
+        deletedDeceasedCount++;
+
+        $(this).parent().remove();
+        for (var i = RecalculateStartNum + 1; i < DeceasedsCount; i++) {
+            //функция пересчета аттрибутов name и id
+            RecalculateNamesAndIdsDeceaseds(i);
+        }
+        DeceasedsCount--;
     }
 
-    $("<input/>").attr("id", "DeletedDeceasedIds_" + deletedDeceasedCount + "_").attr("name", "DeletedDeceasedIds[" + deletedDeceasedCount + "]")
-        .attr("type", "hidden").attr("value", deletedDeceasedId).appendTo(".deleted");
-    deletedDeceasedCount++;
     
-    $(this).parent().remove();
-    for (var i = RecalculateStartNum + 1; i < DeceasedsCount; i++) {
-        //функция пересчета аттрибутов name и id
-        RecalculateNamesAndIdsDeceaseds(i);
-    }
-    DeceasedsCount--;
 }
 function RecalculateNamesAndIdsDeceaseds(number) {
     var prevNumber = number - 1;
@@ -494,7 +510,7 @@ function AddPortrait() {
         .attr("name", "Photos[" + PhotosCount + "].Image")
         .attr("id", "Photos_" + PhotosCount + "__Image")
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
-    $("<label/>").attr("class", "custom-file-label form-control").text("Выберите изображение...")
+    $("<label/>").attr("class", "custom-file-label form-control").text("Новое изображение...")
         .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
 
     var SelectPortraitType = $("<select/>").attr("class", "form-control min-width-select-for-photo")
@@ -533,25 +549,29 @@ function AddPortrait() {
     PhotosCount++
 }
 function RemovePortrait() {
-    var PortraitContainer = $(this).parent();
-    var DeceasedNum = parseInt(PortraitContainer.parent().attr("id").match(/\d+/));
-    var PortraitSturtNum = parseInt(PortraitContainer.attr("id").match(/\d+/));
-    
-    var PortraitCount = PortraitContainer.parent()[0].getElementsByClassName("portrait-container").length;
-    var deletedPortraitId = $($(this).siblings()[1]).attr("value");
-    $("<input/>").attr("id", "DeletedPhotoIds_" + deletedPhotoCount + "_").attr("name", "DeletedPhotoIds[" + deletedPhotoCount + "]")
-        .attr("type", "hidden").attr("value", deletedPortraitId).appendTo(".deleted");
-    deletedPhotoCount++;
+    if (confirm("Вы действительно хотите удалить портрет?")) {
+        var PortraitContainer = $(this).parent();
+        var DeceasedNum = parseInt(PortraitContainer.parent().attr("id").match(/\d+/));
+        var PortraitSturtNum = parseInt(PortraitContainer.attr("id").match(/\d+/));
 
-    $(this).parent().remove();
-    for (var i = PortraitSturtNum + 1; i < PortraitCount; i++) {
-        RecalculateNamesAndIdsPortraits(false, DeceasedNum, i);
+        var PortraitCount = PortraitContainer.parent()[0].getElementsByClassName("portrait-container").length;
+        var deletedPortraitId = $($(this).siblings()[1]).attr("value");
+        $("<input/>").attr("id", "DeletedPhotoIds_" + deletedPhotoCount + "_").attr("name", "DeletedPhotoIds[" + deletedPhotoCount + "]")
+            .attr("type", "hidden").attr("value", deletedPortraitId).appendTo(".deleted");
+        deletedPhotoCount++;
+
+        $(this).parent().remove();
+        for (var i = PortraitSturtNum + 1; i < PortraitCount; i++) {
+            RecalculateNamesAndIdsPortraits(false, DeceasedNum, i);
+        }
+        var imgStartNum = parseInt($($(this).parent()[0].getElementsByClassName("custom-file-input")[0]).attr("id").match(/\d+/));
+        for (var j = imgStartNum + 1; j < PhotosCount; j++) {
+            RecalculateNamesAndIdsPhotos(j);
+        }
+        PhotosCount--;
     }
-    var imgStartNum = parseInt($($(this).parent()[0].getElementsByClassName("custom-file-input")[0]).attr("id").match(/\d+/));
-    for (var j = imgStartNum + 1; j < PhotosCount; j++) {
-        RecalculateNamesAndIdsPhotos(j);
-    }
-    PhotosCount--;
+
+    
 }
 function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portraitStartNum) {
     var OurKey = PortraitIdCreator(deceasedNum, portraitStartNum);
@@ -617,7 +637,7 @@ function AddMedallion() {
         .attr("name", "Photos[" + PhotosCount + "].Image")
         .attr("id", "Photos_" + PhotosCount + "__Image")
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
-    $("<label/>").attr("class", "custom-file-label form-control").text("Выберите изображение...")
+    $("<label/>").attr("class", "custom-file-label form-control").text("Новое изображение...")
         .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
 
     //var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperM);
@@ -759,25 +779,27 @@ function AddMedallion() {
     PhotosCount++;
 }
 function RemoveMedallion() {
-    var MedallionContainer = $(this).parent();
-    var DeceasedNum = parseInt(MedallionContainer.parent().attr("id").match(/\d+/));
-    var MedallionSturtNum = parseInt(MedallionContainer.attr("id").match(/\d+/));
+    if (confirm("Вы действительно хотите удалить медальон?")) {
+        var MedallionContainer = $(this).parent();
+        var DeceasedNum = parseInt(MedallionContainer.parent().attr("id").match(/\d+/));
+        var MedallionSturtNum = parseInt(MedallionContainer.attr("id").match(/\d+/));
 
-    var MedallionCount = MedallionContainer.parent()[0].getElementsByClassName("medallion-container").length;
-    var deletedMedallionId = $($(this).siblings()[1]).attr("value");
-    $("<input/>").attr("id", "DeletedPhotoIds_" + deletedPhotoCount + "_").attr("name", "DeletedPhotoIds[" + deletedPhotoCount + "]")
-        .attr("type", "hidden").attr("value", deletedMedallionId).appendTo(".deleted");
-    deletedPhotoCount++;
+        var MedallionCount = MedallionContainer.parent()[0].getElementsByClassName("medallion-container").length;
+        var deletedMedallionId = $($(this).siblings()[1]).attr("value");
+        $("<input/>").attr("id", "DeletedPhotoIds_" + deletedPhotoCount + "_").attr("name", "DeletedPhotoIds[" + deletedPhotoCount + "]")
+            .attr("type", "hidden").attr("value", deletedMedallionId).appendTo(".deleted");
+        deletedPhotoCount++;
 
-    $(this).parent().remove();
-    for (var i = MedallionSturtNum + 1; i < MedallionCount; i++) {
-        RecalculateNamesAndIdsMedallions(false, DeceasedNum, i);
+        $(this).parent().remove();
+        for (var i = MedallionSturtNum + 1; i < MedallionCount; i++) {
+            RecalculateNamesAndIdsMedallions(false, DeceasedNum, i);
+        }
+        var imgStartNum = parseInt($($(this).parent()[0].getElementsByClassName("custom-file-input")[0]).attr("id").match(/\d+/));
+        for (var j = imgStartNum + 1; j < PhotosCount; j++) {
+            RecalculateNamesAndIdsPhotos(j);
+        }
+        PhotosCount--;
     }
-    var imgStartNum = parseInt($($(this).parent()[0].getElementsByClassName("custom-file-input")[0]).attr("id").match(/\d+/));
-    for (var j = imgStartNum + 1; j < PhotosCount; j++) {
-        RecalculateNamesAndIdsPhotos(j);
-    }
-    PhotosCount--;
 }
 function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medallionStartNum) {
     var OurKey = MedallionIdCreator(deceasedNum, medallionStartNum);
