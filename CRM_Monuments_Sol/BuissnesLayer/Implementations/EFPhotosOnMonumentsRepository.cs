@@ -22,13 +22,27 @@ namespace BuissnesLayer.Implementations
         {
             return _context.PhotoOnMonuments.Where(x => x.Deceased.Id == deceasedId);
         }
-        
         public PhotoOnMonument GetPhotoOnMonumentById(int photoOnMonumentId)    //получить один по айди
         {
             PhotoOnMonument photoOnMonument = _context.PhotoOnMonuments.Find(photoOnMonumentId);
             return photoOnMonument;
         }
-        
+        public IEnumerable<Portrait> GetAllPortraits()     //получить все портреты
+        {
+            var p = _context.PhotoOnMonuments.Where(x => x is Portrait);
+            foreach (PhotoOnMonument ph in p)
+            {
+                yield return (Portrait)ph;
+            }
+        }
+        public IEnumerable<Medallion> GetAllMedallions()     //получить все медальоны
+        {
+            var m = _context.PhotoOnMonuments.Where(x => x is Medallion);
+            foreach (PhotoOnMonument ph in m)
+            {
+                yield return (Medallion)ph;
+            }
+        }
         public void SavePhotoOnMonument(PhotoOnMonument photoOnMonument)        //сохранить в БД
         {
             if (photoOnMonument.Id == 0)
@@ -40,13 +54,11 @@ namespace BuissnesLayer.Implementations
                 _context.Entry(photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
-        
         public void DeletePhotoOnMonument(PhotoOnMonument photoOnMonument)      //удалить из бд
         {
             _context.PhotoOnMonuments.Remove(photoOnMonument);
             _context.SaveChanges();
         }
-
         public void DeleteAllPhotoOnMonumentByIdDeceased(int deceasedId)      //удалить из бд все фото по усопшему
         {
             foreach (PhotoOnMonument p in GetAllPhotoOnMonumentsByIdDeceased(deceasedId))

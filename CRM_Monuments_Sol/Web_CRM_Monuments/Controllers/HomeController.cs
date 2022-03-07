@@ -41,12 +41,12 @@ namespace Web_CRM_Monuments.Controllers
             var c = _dataManager.Contracts.GetAllContracts();
             return PartialView("_AllContractsPartial", c);
         }
-        [HttpGet]
-        public ActionResult AllPortraits()
-        {
-
-            return PartialView("_AllPortraitsPartial");
-        }
+        //[HttpGet]
+        //public ActionResult AllPortraits()
+        //{
+        //    var p = _servicesManager.Portraits.GetAllPortraits();
+        //    return PartialView("_AllPortraitsPartial", p);
+        //}
         [HttpGet]
         public ActionResult AllMedallions()
         {

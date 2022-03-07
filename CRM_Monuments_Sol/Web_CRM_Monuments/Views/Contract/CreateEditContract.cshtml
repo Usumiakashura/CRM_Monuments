@@ -14,7 +14,6 @@
 
         <div class="form-group float-md-right">
             <input type="button" id="RemoveContract" value="Удалить" class="btn btn-primary float-md-right" style="width: 200px; margin-left: 15px" />
-            <input type="button" value="Редактировать" class="btn btn-primary float-md-right" style="width: 200px; margin-left: 15px" />
         </div>
     }
     else
@@ -285,6 +284,8 @@
                                                                 <div class="custom-file full">
                                                                     @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
                                                                     @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
+                                                                    @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
+                                                                    @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
                                                                     <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
                                                                     <input type="file" asp-for="Photos[p].Image"
                                                                            class="custom-file-input form-control full" accept="image/*,image/jpeg">

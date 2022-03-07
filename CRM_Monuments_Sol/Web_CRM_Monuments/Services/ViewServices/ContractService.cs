@@ -49,7 +49,6 @@ namespace Web_CRM_Monuments.Services.ViewServices
             }
             _dataManager.Contracts.SaveContract(c);
         }
-
         public Contract ModelViewToModelDB(ContractViewModel contractViewModel)
         {
             Contract c = contractViewModel.Contract;
@@ -111,9 +110,6 @@ namespace Web_CRM_Monuments.Services.ViewServices
             
             return c;
         }
-
-        
-
         public ContractViewModel ModelDBToModelView(Contract contract)
         {
             ContractViewModel cvm = new ContractViewModel();

@@ -11,14 +11,17 @@ namespace Web_CRM_Monuments.Services
     {
         private DataManager _dataManager;
         private ContractService _contractService;
+        private PortraitService _portraitService;
 
         public ServicesManager(DataManager dataManager)
         {
             _dataManager = dataManager;
             _contractService = new ContractService(_dataManager);
+            _portraitService = new PortraitService(_dataManager);
         }
 
         public ContractService Contracts { get { return _contractService; } }
+        public PortraitService Portraits { get { return _portraitService; } }
 
     }
 }

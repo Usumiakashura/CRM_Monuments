@@ -117,6 +117,24 @@ a.disabled {
 }
 
 
+.status-green {
+    background: forestgreen;
+    color: white;
+}
+.status-orange {
+    background: orange;
+    color: white;
+}
+.status-red {
+    background: indianred;
+    color: white;
+}
+.status-blue {
+    background: lightskyblue;
+    color: white;
+}
+
+
 
 textarea {
     width: 100%; /* Ширина */

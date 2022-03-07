@@ -99,7 +99,7 @@ namespace Web_CRM_Monuments.Controllers
 
             _servicesManager.Contracts.SaveViewModelToDB(contractViewModel);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

@@ -1,0 +1,106 @@
+﻿@model PortraitViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="content-box">
+    <h1>Details</h1>
+
+    <table class="table table-hover table-bordered">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td>
+                    Номер договора:
+                </td>
+                <td>
+                    @Model.ContractNumber
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата заключения договора:
+                </td>
+                <td>
+                    @Model.DateConclusionContract.ToShortDateString()
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Фамилия усопшего:
+                </td>
+                <td>
+                    @Model.LastNameDeceased
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Тип портрета:
+                </td>
+                <td>
+                    @Model.Portrait.TypePortrait
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Художник:
+                </td>
+                <td>
+                    @Model.Portrait.Artist
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Имя заказчика:
+                </td>
+                <td>
+                    @Model.NameCustomer
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Телефон заказчика:
+                </td>
+                <td>
+                    @Model.PhoneCustomer
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Фотография:
+                </td>
+                <td>
+                    @if (Model.Portrait.PhotoName != null)
+                    {
+                        <a href="@Model.Portrait.PhotoPath" download="@Model.Portrait.PhotoName"
+                           class="download-btn full">
+                            <input type="button" class="full" value="Скачать" />
+                        </a>
+                    }
+                    else
+                    {
+                        <label>Ожидается фото от заказчика...</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Примечание:
+                </td>
+                <td>
+                    @Model.Portrait.Note
+                </td>
+            </tr>
+        </tbody>
+    </table>
+     
+    @*<a asp-controller="Portrait" asp-action="CompleateOn" class="float-md-left">
+        <input type="submit" value="Портрет выполнен" />
+    </a>*@
+    
+
+</div>
+
+
+    
