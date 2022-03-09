@@ -27,24 +27,24 @@ namespace BuissnesLayer.Implementations
             PhotoOnMonument photoOnMonument = _context.PhotoOnMonuments.Find(photoOnMonumentId);
             return photoOnMonument;
         }
-        public IEnumerable<Portrait> GetAllPortraits()     //получить все портреты
-        {
-            var p = _context.PhotoOnMonuments.Where(x => x is Portrait);
-            foreach (PhotoOnMonument ph in p)
-            {
-                yield return (Portrait)ph;
-            }
-        }
-        public IEnumerable<Medallion> GetAllMedallions()     //получить все медальоны
-        {
-            var m = _context.PhotoOnMonuments.Where(x => x is Medallion);
-            List<Medallion> medallions = new List<Medallion>();
-            foreach (PhotoOnMonument ph in m)
-            {
-                medallions.Add((Medallion)ph);
-            }
-            return medallions;
-        }
+        //public IEnumerable<Portrait> GetAllPortraits()     //получить все портреты
+        //{
+        //    var p = _context.PhotoOnMonuments.Where(x => x is Portrait);
+        //    foreach (PhotoOnMonument ph in p)
+        //    {
+        //        yield return (Portrait)ph;
+        //    }
+        //}
+        //public IEnumerable<Medallion> GetAllMedallions()     //получить все медальоны
+        //{
+        //    var m = _context.PhotoOnMonuments.Where(x => x is Medallion);
+        //    List<Medallion> medallions = new List<Medallion>();
+        //    foreach (PhotoOnMonument ph in m)
+        //    {
+        //        medallions.Add((Medallion)ph);
+        //    }
+        //    return medallions;
+        //}
         public void CompleateOn(int idPhotoOnMonument, DateTime dateCompleate)  //отметка о выполнении
         {
             GetPhotoOnMonumentById(idPhotoOnMonument).DateCompleat = dateCompleate;

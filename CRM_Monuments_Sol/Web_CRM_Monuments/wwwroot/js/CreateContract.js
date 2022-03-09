@@ -45,6 +45,8 @@ $(document).ready(function () {
     $(".remove-portrait").click(RemovePortrait);
     $(".remove-medallion").click(RemoveMedallion);
 
+    $(".to-compleate").click(SendToCompleate);
+
     $(".check-epitaph").click(CheckEpitaph);
     $(".check-frame").click(CheckFrame);
     // ----------------------------------------------------------------
@@ -144,6 +146,14 @@ function AddDisabledEpitaph(epitaphBox, trfl) {
     $(EngraverEpitaph).prop("disabled", trfl);
 }
 
+function SendToCompleate() {
+    if (confirm("Вы действительно хотите отправить на выполнение?")) {
+        var date = new Date();
+        $($(this).parent()[0].querySelector("[id$='DateBegin']")).val(date.toDateString());
+        $(this).remove();
+        alert('Для завершения отправки на выполнение нажмите кнопку "Сохранить" в конце страницы');
+    }
+}
 
 function AddCustomer() {
     //добавляем поля
@@ -540,12 +550,28 @@ function AddPortrait() {
     $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].Id")
         .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
         .attr("id", "Portraits_" + keyP + "__Id").appendTo(PortraitContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].PhotoPath")
+        .attr("type", "hidden").attr("data-val-required", "The PhotoPath field is required.")
+        .attr("id", "Portraits_" + keyP + "__PhotoPath").appendTo(PortraitContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].PhotoName")
+        .attr("type", "hidden").attr("data-val-required", "The PhotoName field is required.")
+        .attr("id", "Portraits_" + keyP + "__PhotoName").appendTo(PortraitContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].DateCompleat")
+        .attr("type", "hidden").attr("data-val-required", "The DateCompleat field is required.")
+        .attr("id", "Portraits_" + keyP + "__DateCompleat").appendTo(PortraitContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].DateBegin")
+        .attr("type", "hidden").attr("data-val-required", "The DateBegin field is required.")
+        .attr("id", "Portraits_" + keyP + "__DateBegin").appendTo(PortraitContainer);
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
         .attr("value", "x").appendTo(PortraitContainer);
+    var SendButton = $("<a/>").attr("class", "to-compleate rp-btn float-md-left")
+        .attr("title", "Отправить на выполнение").appendTo(PortraitContainer);
+    $("<img/>").attr("src", "/Images/send.png").attr("class", "rp-btn").appendTo(SendButton);
 
     //навешиваем обработчики
     RemoveButton.click(RemovePortrait);
+    SendButton.click(SendToCompleate);
     PhotosCount++
 }
 function RemovePortrait() {
@@ -587,23 +613,14 @@ function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portrait
     $("#PortraitContainer" + portraitStartNum).attr("id", "PortraitContainer" + (portraitStartNum - 1));
     $("#PortraitContainer" + (portraitStartNum - 1)).querySelector("[id$='__PhotoKey']").val(PrevKey);
 
-    //var imgStartNum = parseInt(PortraitContainer.getElementsByClassName("custom-file-input")[0].attr("id").match(/\d+/));
-
-    //console.log(imgStartNum);
-
-    //RecalculateNamesAndIdsPhotos(PrevKey, imgStartNum)
-    //$("#PortraitPhotos_" + portraitStartNum + "__PhotoKey").attr("id", "PortraitPhotos_" + (portraitStartNum - 1) + "__PhotoKey")
-    //    .attr("name", "PortraitPhotos[" + (portraitStartNum - 1) + "].PhotoKey").val(PrevKey);
-
-    //var ImgPortrait = $("#PortraitPhotos_" + portraitStartNum + "__Image");
-
-    //ImgPortrait[0].setAttribute("id", "PortraitPhotos_" + (portraitStartNum - 1) + "__Image");
-    //ImgPortrait[0].setAttribute("name", "PortraitPhotos[" + (portraitStartNum - 1) + "].Image");
-    //ImgPortrait[0].nextElementSibling.setAttribute("for", "PortraitPhotos_" + (portraitStartNum - 1) + "__Image");
     $("#Portraits_" + OurKey + "__TypePortrait").attr("id", "Portraits_" + PrevKey + "__TypePortrait").attr("name", "Portraits[" + PrevKey + "].TypePortrait");
     $("#Portraits_" + OurKey + "__Artist").attr("id", "Portraits_" + PrevKey + "__Artist").attr("name", "Portraits[" + PrevKey + "].Artist");
     $("#Portraits_" + OurKey + "__Note").attr("id", "Portraits_" + PrevKey + "__Note").attr("name", "Portraits[" + PrevKey + "].Note");
     $("#Portraits_" + OurKey + "__Id").attr("id", "Portraits_" + PrevKey + "__Id").attr("name", "Portraits[" + PrevKey + "].Id");
+    $("#Portraits_" + OurKey + "__PhotoPath").attr("id", "Portraits_" + PrevKey + "__PhotoPath").attr("name", "Portraits[" + PrevKey + "].PhotoPath");
+    $("#Portraits_" + OurKey + "__PhotoName").attr("id", "Portraits_" + PrevKey + "__PhotoName").attr("name", "Portraits[" + PrevKey + "].PhotoName");
+    $("#Portraits_" + OurKey + "__DateCompleat").attr("id", "Portraits_" + PrevKey + "__DateCompleat").attr("name", "Portraits[" + PrevKey + "].DateCompleat");
+    $("#Portraits_" + OurKey + "__DateBegin").attr("id", "Portraits_" + PrevKey + "__DateBegin").attr("name", "Portraits[" + PrevKey + "].DateBegin");
 }
 function PortraitIdCreator(idDeceased, idPortrait) {
     return "D" + idDeceased + "P" + idPortrait;
@@ -639,21 +656,6 @@ function AddMedallion() {
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
     $("<label/>").attr("class", "custom-file-label form-control").text("Новое изображение...")
         .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
-
-    //var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperM);
-    //$("<input/>").attr("type", "hidden")
-    //    .attr("value", keyM)
-    //    .attr("name", "Photos[" + PhotoCount + "].PhotoKey")
-    //    .attr("id", "Photos_" + PhotoCount + "__PhotoKey").appendTo(ImgBlock);
-    //$("<input/>").attr("type", "file")
-    //    .attr("accept", "image/*,image/jpeg")
-    //    .attr("multiple", "true")
-    //    .attr("name", "Photos[" + PhotoCount + "].Image")
-    //    .attr("id", "Photos_" + PhotoCount + "__Image")
-    //    .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
-    //$("<label/>").attr("class", "custom-file-label form-control").text("Выберите изображение...")
-    //    .attr("for", "Photos_" + PhotoCount + "__Image").appendTo(ImgBlock);
-
 
     var SelectMaterial = $("<select/>").attr("class", "form-control min-width-select-for-photo")
         .attr("name", "Medallions[" + keyM + "].MaterialMedallion")
@@ -772,10 +774,28 @@ function AddMedallion() {
     $("<input/>").attr("data-val", true).attr("name", "Medallions[" + keyM + "].Id")
         .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
         .attr("id", "Medallions_" + keyM + "__Id").appendTo(MedallionContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Medallions[" + keyM + "].PhotoPath")
+        .attr("type", "hidden").attr("data-val-required", "The PhotoPath field is required.")
+        .attr("id", "Medallions_" + keyM + "__PhotoPath").appendTo(MedallionContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Medallions[" + keyM + "].PhotoName")
+        .attr("type", "hidden").attr("data-val-required", "The PhotoName field is required.")
+        .attr("id", "Medallions_" + keyM + "__PhotoName").appendTo(MedallionContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Medallions[" + keyM + "].DateCompleat")
+        .attr("type", "hidden").attr("data-val-required", "The DateCompleat field is required.")
+        .attr("id", "Medallions_" + keyM + "__DateCompleat").appendTo(MedallionContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Medallions[" + keyM + "].DateBegin")
+        .attr("type", "hidden").attr("data-val-required", "The DateBegin field is required.")
+        .attr("id", "Medallions_" + keyM + "__DateBegin").appendTo(MedallionContainer);
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
         .attr("value", "x").appendTo(MedallionContainer);
+    var SendButton = $("<a/>").attr("class", "to-compleate rp-btn float-md-left")
+        .attr("title", "Отправить на выполнение").appendTo(MedallionContainer);
+    $("<img/>").attr("src", "/Images/send.png").attr("class", "rp-btn").appendTo(SendButton);
+
+
     RemoveButton.click(RemoveMedallion);
+    SendButton.click(SendToCompleate);
     PhotosCount++;
 }
 function RemoveMedallion() {
@@ -837,6 +857,10 @@ function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medalli
     $("#Medallions_" + OurKey + "__GluingIntoNiche").attr("id", "Medallions_" + PrevKey + "__GluingIntoNiche").attr("name", "Medallions[" + PrevKey + "].GluingIntoNiche");
     $("#Medallions_" + OurKey + "__NoteFrame").attr("id", "Medallions_" + PrevKey + "__NoteFrame").attr("name", "Medallions[" + PrevKey + "].NoteFrame");
     $("#Medallions_" + OurKey + "__Id").attr("id", "Medallions_" + PrevKey + "__Id").attr("name", "Medallions[" + PrevKey + "].Id");
+    $("#Medallions_" + OurKey + "__PhotoPath").attr("id", "Medallions_" + PrevKey + "__PhotoPath").attr("name", "Medallions[" + PrevKey + "].PhotoPath");
+    $("#Medallions_" + OurKey + "__PhotoName").attr("id", "Medallions_" + PrevKey + "__PhotoName").attr("name", "Medallions[" + PrevKey + "].PhotoName");
+    $("#Medallions_" + OurKey + "__DateCompleat").attr("id", "Medallions_" + PrevKey + "__DateCompleat").attr("name", "Medallions[" + PrevKey + "].DateCompleat");
+    $("#Medallions_" + OurKey + "__DateBegin").attr("id", "Medallions_" + PrevKey + "__DateBegin").attr("name", "Medallions[" + PrevKey + "].DateBegin");
 }
 function MedallionIdCreator(idDeceased, idMedallion) {
     return "D" + idDeceased + "M" + idMedallion;

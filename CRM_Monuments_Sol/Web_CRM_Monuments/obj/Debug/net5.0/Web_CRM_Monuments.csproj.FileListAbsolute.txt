@@ -163,7 +163,6 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_C
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\CreateEditContract.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Contract\CreateEditContract.cshtml.g.cs
-E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\_AllMedallionsPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\_AllTextsPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Portrait\_AllPortraitsPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Portrait\Details.cshtml.g.cs
@@ -176,3 +175,5 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_C
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Shared\_UserPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Contract\_AllContractsPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\Settings.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Medallion\_AllMedallionsPartial.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Medallion\Details.cshtml.g.cs

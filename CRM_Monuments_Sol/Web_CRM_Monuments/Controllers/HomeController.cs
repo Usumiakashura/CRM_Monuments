@@ -82,12 +82,12 @@ namespace Web_CRM_Monuments.Controllers
         //    var p = _servicesManager.Portraits.GetAllPortraits();
         //    return PartialView("_AllPortraitsPartial", p);
         //}
-        [HttpGet]
-        public ActionResult AllMedallions()
-        {
-            var m = _dataManager.PhotosOnMonuments.GetAllMedallions();
-            return PartialView("_AllMedallionsPartial", m);
-        }
+        //[HttpGet]
+        //public ActionResult AllMedallions()
+        //{
+        //    var m = _dataManager.PhotosOnMonuments.GetAllMedallions();
+        //    return PartialView("_AllMedallionsPartial", m);
+        //}
         [HttpGet]
         public ActionResult AllTexts()
         {

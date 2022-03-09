@@ -1,0 +1,206 @@
+﻿@model MedallionViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="content-box">
+    <h1>Сведения</h1>
+
+    <table class="table table-hover table-bordered">
+        <thead></thead>
+        <tbody>
+            <tr>
+                <td>
+                    Номер договора:
+                </td>
+                <td>
+                    @Model.ContractNumber
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Дата заключения договора:
+                </td>
+                <td>
+                    @Model.DateConclusionContract.ToShortDateString()
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Фамилия усопшего:
+                </td>
+                <td>
+                    @Model.LastNameDeceased
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Имя заказчика:
+                </td>
+                <td>
+                    @Model.NameCustomer
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Телефон заказчика:
+                </td>
+                <td>
+                    @Model.PhoneCustomer
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Материал:
+                </td>
+                <td>
+                    @Model.Medallion.MaterialMedallion
+                </td>
+
+                @if (Model.Medallion.Frame)
+                {
+                    <td>
+                        Тип рамки:
+                    </td>
+                    <td>
+                        @Model.Medallion.TypeFrame
+                    </td>
+                }
+
+            </tr>
+            <tr>
+                <td>
+                    Размер:
+                </td>
+                <td>
+                    @Model.Medallion.SizeMedallion
+                </td>
+
+                @if (Model.Medallion.Frame)
+                {
+                    <td>
+                        Размер рамки:
+                    </td>
+                    <td>
+                        @Model.Medallion.SizeFrame
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    Форма:
+                </td>
+                <td>
+                    @Model.Medallion.ShapeMedallion
+                </td>
+
+                @if (Model.Medallion.Frame)
+                {
+                    <td>
+                        Форма рамки:
+                    </td>
+                    <td>
+                        @Model.Medallion.ShapeFrame
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    Цветность:
+                </td>
+                <td>
+                    @Model.Medallion.ColorMedallion
+                </td>
+
+                @if (Model.Medallion.Frame)
+                {
+                    <td>
+                        Цвет рамки:
+                    </td>
+                    <td>
+                        @Model.Medallion.ColorFrame
+                    </td>
+                }
+            </tr>
+            <tr>
+                <td>
+                    Фон:
+                </td>
+                <td>
+                    @Model.Medallion.BackgroundMedallion
+                </td>
+
+                @if (Model.Medallion.Frame)
+                {
+                    <td>
+                        Вклейка в нишу:
+                    </td>
+                    <td>
+                        @Model.Medallion.GluingIntoNiche
+                    </td>
+                }
+            </tr>
+
+
+
+            <tr>
+                <td>
+                    Фотография:
+                </td>
+                <td>
+                    @if (Model.Medallion.PhotoName != null)
+                    {
+                        <a href="@Model.Medallion.PhotoPath" download="@Model.Medallion.PhotoName"
+                           class="download-btn full">
+                            <input type="button" class="full" value="Скачать" />
+                        </a>
+                    }
+                    else
+                    {
+                        <label>Ожидается фото от заказчика...</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Примечание к медальону:
+                </td>
+                <td>
+                    @Model.Medallion.Note
+                </td>
+
+                @if (Model.Medallion.Frame)
+                {
+                    <td>
+                        Примечание к рамке:
+                    </td>
+                    <td>
+                        @Model.Medallion.NoteFrame
+                        @Model.Medallion.Id
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+
+    @if (Model.Medallion.DateCompleat < new DateTime(2000, 01, 01))
+    {
+        <form class="form-inline" asp-controller="Medallion" asp-action="CompleateOn"
+              asp-route-idMedallion="@Model.Medallion.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
+              method="post">
+            <button type="submit" class="btn btn-primary">Выполнено</button>
+        </form>
+    }
+    else
+    {
+        <h5>Медальон выполнен @Model.Medallion.DateCompleat.ToShortDateString()</h5>
+    }
+
+
+
+
+
+</div>
+
+

@@ -80,6 +80,14 @@ a {
     width: 42px;
     height: 45px;
 }
+    .rp-btn :hover {
+        cursor: pointer;
+    }
+
+.send-btn {
+    background-image: src("/images/send.png");
+    background-repeat: no-repeat;
+}
 
 .add-btn {
     width: auto;
