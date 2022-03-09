@@ -43,6 +43,11 @@ namespace BuissnesLayer.Implementations
                 yield return (Medallion)ph;
             }
         }
+        public void CompleateOn(int idPhotoOnMonument, DateTime dateCompleate)  //отметка о выполнении
+        {
+            GetPhotoOnMonumentById(idPhotoOnMonument).DateCompleat = dateCompleate;
+            _context.SaveChanges();
+        }
         public void SavePhotoOnMonument(PhotoOnMonument photoOnMonument)        //сохранить в БД
         {
             if (photoOnMonument.Id == 0)

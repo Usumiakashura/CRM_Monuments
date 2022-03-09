@@ -25,11 +25,12 @@ namespace Web_CRM_Monuments.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        //public IActionResult Index()
-        //{
-        //    var c = _dataManager.Contracts.GetAllContracts();
-        //    return View(c);
-        //}
+        [HttpGet]
+        public ActionResult AllContracts()
+        {
+            var c = _dataManager.Contracts.GetAllContracts();
+            return PartialView("_AllContractsPartial", c);
+        }
 
         [HttpGet]
         public ActionResult CreateEditContract(int idContract)

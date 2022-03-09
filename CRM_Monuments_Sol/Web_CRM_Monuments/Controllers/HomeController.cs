@@ -35,12 +35,12 @@ namespace Web_CRM_Monuments.Controllers
             return View(c);
         }
 
-        [HttpGet]
-        public ActionResult AllContracts()
-        {
-            var c = _dataManager.Contracts.GetAllContracts();
-            return PartialView("_AllContractsPartial", c);
-        }
+        //[HttpGet]
+        //public ActionResult AllContracts()
+        //{
+        //    var c = _dataManager.Contracts.GetAllContracts();
+        //    return PartialView("_AllContractsPartial", c);
+        //}
         //[HttpGet]
         //public ActionResult AllPortraits()
         //{

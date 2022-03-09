@@ -39,7 +39,7 @@
     
 
     <div id="ContentBlock" class="mar-top5">
-        <partial name="_AllContractsPartial" model="@Model" />
+        @*<partial name="_AllContractsPartial"/>*@
     </div>
 </div>
 
@@ -47,9 +47,11 @@
 @section scripts{
     <script src="~/js/Search.js"></script>
     <script>
+        $("#AllContracts").click();
+
         $(document).ready(function () {
             $("#AllContracts").click(function () {
-                GetPartialView("/Home/AllContracts");
+                GetPartialView("/Contract/AllContracts");
             });
             $("#AllPortraits").click(function () {
                 GetPartialView("/Portrait/AllPortraits");
@@ -62,6 +64,7 @@
             });
             
         });
+        
 
         function GetPartialView(url) {
             var xhr = new XMLHttpRequest();

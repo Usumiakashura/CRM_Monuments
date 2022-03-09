@@ -1,2 +1,5 @@
 Add-Migration EntitiesMigration1 -Context EFDBContext
+Update-database -Context EFDBContext
 
+Add-migration UsersMigration1 -Context ApplicationDbContext
+Update-database -Context ApplicationDbContext

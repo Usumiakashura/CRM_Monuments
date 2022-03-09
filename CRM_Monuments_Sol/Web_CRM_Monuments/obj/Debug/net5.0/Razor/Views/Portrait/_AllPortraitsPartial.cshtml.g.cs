@@ -33,8 +33,15 @@ using DataLayer.Entities;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
+using DataLayer.ApplicationEntities;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7ac5bd0f715f2e14cd5ff8587592128455018843", @"/Views/Portrait/_AllPortraitsPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"974cff3183f3d8544dbe5a178eb2b24a2330ab63", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"86fb8774711589bf2631d90ca88fc5ca157998bc", @"/Views/_ViewImports.cshtml")]
     public class Views_Portrait__AllPortraitsPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<PortraitViewModel>>
     {
         #pragma warning disable 1998

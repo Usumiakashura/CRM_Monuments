@@ -1,4 +1,6 @@
-﻿using DataLayer.Entities;
+﻿using DataLayer.ApplicationEntities;
+using DataLayer.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,103 +21,6 @@ namespace DataLayer
             List<MedallionMaterial> _medallionMaterials;
             List<ShapeMedallion> _shapeMedallions;
             List<ColorMedallion> _colorMedallions;
-
-            //if (!context.StoneMaterials.Any())
-            //{
-            //    _stoneMaterials = new List<StoneMaterial>()
-            //    {
-            //        new StoneMaterial()
-            //        {
-            //            Name = "ГабброДиабаз"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Елизовский"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Мансуровский"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Покостовский"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Гранатовый Амфиболит"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Капустянский"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Масловский"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Нью Империал Ред"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Санди Грей"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Санди Роуз"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Новоданиловский"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Онега"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Балморал Красный"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Балтик Грин"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Куру Грей"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Лезник"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Шанси Блэк"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Аврора"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Амадеус"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Сюськюянсаари"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Блю Перл Голубой"
-            //        },
-            //        new StoneMaterial()
-            //        {
-            //            Name = "Лабродорит"
-            //        }
-            //    };
-            //    context.StoneMaterials.AddRange(_stoneMaterials);
-            //    context.SaveChanges();
-            //}
 
             if (!context.Contracts.Any())
             {
@@ -719,6 +624,188 @@ namespace DataLayer
                 context.SaveChanges();
             }
 
+
+            //if (!context.StoneMaterials.Any())
+            //{
+            //    _stoneMaterials = new List<StoneMaterial>()
+            //    {
+            //        new StoneMaterial()
+            //        {
+            //            Name = "ГабброДиабаз"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Елизовский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Мансуровский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Покостовский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Гранатовый Амфиболит"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Капустянский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Масловский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Нью Империал Ред"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Санди Грей"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Санди Роуз"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Новоданиловский"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Онега"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Балморал Красный"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Балтик Грин"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Куру Грей"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Лезник"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Шанси Блэк"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Аврора"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Амадеус"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Сюськюянсаари"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Блю Перл Голубой"
+            //        },
+            //        new StoneMaterial()
+            //        {
+            //            Name = "Лабродорит"
+            //        }
+            //    };
+            //    context.StoneMaterials.AddRange(_stoneMaterials);
+            //    context.SaveChanges();
+            //}
+
         }
+
+        public static async Task Seed(ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager)
+        {
+            // создать БД, если она еще не создана
+            context.Database.EnsureCreated();
+            // проверка наличия ролей
+            if (!context.Roles.Any())
+            {
+                var roleUserManager = new IdentityRole
+                {
+                    Name = "manager",
+                    NormalizedName = "manager"
+                };
+                // создать роль manager
+                await roleManager.CreateAsync(roleUserManager);
+                var roleArtist = new IdentityRole
+                {
+                    Name = "artist",
+                    NormalizedName = "artist"
+                };
+                // создать роль artist
+                await roleManager.CreateAsync(roleArtist);
+                var roleEngraver = new IdentityRole
+                {
+                    Name = "engraver",
+                    NormalizedName = "engraver"
+                };
+                // создать роль engraver
+                await roleManager.CreateAsync(roleEngraver);
+            }
+            
+            // проверка наличия пользователей
+            if (!context.Users.Any())
+            {
+                // создать пользователя manager@mail.ru
+                var manager = new ApplicationUser
+                {
+                    Email = "margarita@mail.ru",
+                    UserName = "margarita@mail.ru",
+                    Name = "Маргарита"
+                };
+                await userManager.CreateAsync(manager, "123456");
+                // создать пользователя vlad@mail.ru
+                var artist1 = new ApplicationUser
+                {
+                    Email = "vlad@mail.ru",
+                    UserName = "vlad@mail.ru",
+                    Name = "Владимир"
+                };
+                await userManager.CreateAsync(artist1, "123456");
+                // создать пользователя tanya@mail.ru
+                var artist2 = new ApplicationUser
+                {
+                    Email = "tanya@mail.ru",
+                    UserName = "tanya@mail.ru",
+                    Name = "Татьяна"
+                };
+                await userManager.CreateAsync(artist2, "123456");
+                // создать пользователя maksim@mail.ru
+                var engraver = new ApplicationUser
+                {
+                    Email = "maksim@mail.ru",
+                    UserName = "maksim@mail.ru",
+                    Name = "Максим"
+                };
+                await userManager.CreateAsync(engraver, "123456");
+                // назначить роли
+                manager = await userManager.FindByEmailAsync("margarita@mail.ru");
+                await userManager.AddToRoleAsync(manager, "manager");
+                artist1 = await userManager.FindByEmailAsync("vlad@mail.ru");
+                await userManager.AddToRoleAsync(artist1, "artist");
+                artist2 = await userManager.FindByEmailAsync("tanya@mail.ru");
+                await userManager.AddToRoleAsync(artist2, "artist");
+                engraver = await userManager.FindByEmailAsync("maksim@mail.ru");
+                await userManager.AddToRoleAsync(engraver, "engraver");
+            }
+            
+        }
+            
+
+
+
     }
 }

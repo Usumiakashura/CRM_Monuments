@@ -34,24 +34,29 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult Details(int idPortrait)
         {
+            
+            return View(DBPortraitToView(idPortrait));
+        }
+
+        [HttpPost]
+        public ActionResult CompleateOn(int idPortrait, string date)
+        {
+            DateTime d = DateTime.Parse(date);
+            _dataManager.PhotosOnMonuments.CompleateOn(idPortrait, d);
+            PortraitViewModel portrait = DBPortraitToView(idPortrait);
+            return RedirectToAction("Details", idPortrait);
+            //return RedirectToAction("Index", "Home");
+        }
+        //-------------------------------------------
+        private PortraitViewModel DBPortraitToView(int idPortrait)
+        {
             PortraitViewModel portrait = new PortraitViewModel();
             if (idPortrait > 0)
             {
                 portrait = _servicesManager.Portraits.GetPortraitById(idPortrait);
             }
-            return View(portrait);
+            return portrait;
         }
-
-        //[HttpPost]
-        //public ActionResult CompleateOn(int idPortrait)
-        //{
-        //    PortraitViewModel portrait = new PortraitViewModel();
-        //    if (idPortrait > 0)
-        //    {
-        //        portrait = _servicesManager.Portraits.GetPortraitById(idPortrait);
-        //    }
-        //    return RedirectToAction("Details", portrait);
-        //}
 
     }
 }

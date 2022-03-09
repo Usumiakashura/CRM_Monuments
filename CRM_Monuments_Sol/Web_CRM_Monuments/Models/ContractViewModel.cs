@@ -23,7 +23,7 @@ namespace Web_CRM_Monuments.Models
         public List<int> DeletedPhotoIds { get; set; }
         public List<int> DeletedCustomerIds { get; set; }
 
-        public int PhotoCounter { get; set; } 
+        //public int PhotoCounter { get; set; } 
 
 
         public ContractViewModel()

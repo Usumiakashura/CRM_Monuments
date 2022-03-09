@@ -94,11 +94,23 @@
             </tr>
         </tbody>
     </table>
-     
-    @*<a asp-controller="Portrait" asp-action="CompleateOn" class="float-md-left">
-        <input type="submit" value="Портрет выполнен" />
-    </a>*@
-    
+
+    @if (Model.Portrait.DateCompleat < new DateTime(2000, 01, 01))
+    {
+        <form class="form-inline" asp-controller="Portrait" asp-action="CompleateOn"
+              asp-route-idPortrait="@Model.Portrait.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
+              method="post">
+            <button type="submit" class="btn btn-primary">Выполнено</button>
+        </form>
+    }
+    else
+    {
+        <h5>Портрет выполнен @Model.Portrait.DateCompleat.ToShortDateString()</h5>
+    }
+
+
+
+
 
 </div>
 
