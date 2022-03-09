@@ -1,6 +1,8 @@
 ﻿using BuissnesLayer;
 using DataLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,12 +30,45 @@ namespace Web_CRM_Monuments.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
+        [Authorize(Roles = "manager,artist,engraver")]
         public IActionResult Index()
         {
             var c = _dataManager.Contracts.GetAllContracts();
 
+            if (User.IsInRole("manager"))
+            {
+                ViewBag.ModelP = _dataManager.Contracts.GetAllContracts();
+                ViewBag.Partial = "../Contract/_AllContractsPartial.cshtml";
+                ViewBag.Slider = new HtmlString("" +
+                    "<div><input type = \"button\" value =\"Договора\" class=\"full\" id=\"AllContracts\" style=\"height: 50px; margin-right: 10px;\" /></div>" +
+                    "<div><input type = \"button\" value=\"Портреты\" class=\"full\" id=\"AllPortraits\" style=\"height: 50px; margin-right: 10px;\" /></div>" +
+                    "<div><input type = \"button\" value=\"Медальоны\" class=\"full\" id=\"AllMedallions\" style=\"height: 50px; margin-right: 10px;\" /></div>" +
+                    "<div><input type = \"button\" value=\"Текста\" class=\"full\" id=\"AllTexts\" style=\"height: 50px; margin-right: 10px;\" /></div>");
+            }
+            else if (User.IsInRole("artist"))
+            {
+                ViewBag.ModelP = _servicesManager.Portraits.GetAllPortraits();
+                ViewBag.Partial = "../Portrait/_AllPortraitsPartial.cshtml";
+                ViewBag.Slider = new HtmlString("" +
+                    "<div><input type = \"button\" value = \"Портреты\" class=\"full\" id=\"AllPortraits\" style=\"height: 50px; margin-right: 10px;\" /></div>");
+            }
+            //else if (User.IsInRole("engraver"))
+            //{
+            //    ViewBag.ModelP = _servicesManager.Medallions.GetAllMedallions();
+            //    ViewBag.Partial = "../Medallion/_AllMedallionsPartial.cshtml";
+            //    ViewBag.Slider = new HtmlString("" +
+            //        "<div><input type = \"button\" value=\"Медальоны\" class=\"full\" id=\"AllMedallions\" style=\"height: 50px; margin-right: 10px;\" /></div>");
+            //}
+
             return View(c);
         }
+
+        [Authorize(Roles = "manager")]
+        public IActionResult Settings()
+        {
+            return View();
+        }
+
 
         //[HttpGet]
         //public ActionResult AllContracts()
@@ -50,8 +85,8 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult AllMedallions()
         {
-            //var c = _dataManager.Contracts.GetAllContracts();
-            return PartialView("_AllMedallionsPartial");
+            var m = _dataManager.PhotosOnMonuments.GetAllMedallions();
+            return PartialView("_AllMedallionsPartial", m);
         }
         [HttpGet]
         public ActionResult AllTexts()
@@ -61,86 +96,7 @@ namespace Web_CRM_Monuments.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult CreateEditContract(int idContract)
-        //{
-        //    ViewBag.TypeTexts = _dataManager.SelectPointsRepository.GetAllTypesText();// new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
-        //    ViewBag.TypePortraits = _dataManager.SelectPointsRepository.GetAllTypesPortraits();// new List<string>() { "Ручной", "Станочный" };
-        //    ViewBag.MedallionMaterials = _dataManager.SelectPointsRepository.GetAllMedallionsMaterials();// new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
-        //    ViewBag.ShapesMedallions = _dataManager.SelectPointsRepository.GetAllShapesMedallions();// new List<string>() { "Овальная", "Прямоугольная", "Арка" };
-        //    ViewBag.ColorsMedallions = _dataManager.SelectPointsRepository.GetAllColorsMedallions();// new List<string>() { "Цветной", "Черно-белый" };
-
-        //    ContractViewModel contractViewModel;
-
-        //    if (idContract == 0)
-        //    {
-        //        contractViewModel = new ContractViewModel();
-        //        contractViewModel.Contract.Number = _dataManager.Contracts.NewNumber();
-        //    }
-        //    else
-        //    {
-        //        Contract c = _dataManager.Contracts.GetContractById(idContract);
-        //        contractViewModel = _servicesManager.Contracts.ModelDBToModelView(c);
-        //    }
-
-        //    return View(contractViewModel);
-        //}
-
-        //[HttpPost]
-        //public async Task<ActionResult> CreateEditContract(ContractViewModel contractViewModel)
-        //{
-        //    string contractNumber = $"{contractViewModel.Contract.NumYear}-{contractViewModel.Contract.Place}-{contractViewModel.Contract.Number}";
-        //    string uniqueFileName = null;
-
-        //    if (contractViewModel.Photos != null)
-        //    {
-        //        for (int i = 0; i < contractViewModel.Photos.Count; i++)
-        //        {
-        //            if (contractViewModel.Photos[i].Image != null)
-        //            {
-        //                string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, @"images\photos-on-monuments\" + contractNumber);
-        //                DirectoryInfo dirInfo = new DirectoryInfo(uploadsFolder);
-        //                if (!dirInfo.Exists)
-        //                    dirInfo.Create();
-
-        //                uniqueFileName = Guid.NewGuid().ToString() + $"_{contractNumber}_{contractViewModel.Photos[i].Image.FileName}";
-        //                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-
-        //                using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //                {
-        //                    await contractViewModel.Photos[i].Image.CopyToAsync(fileStream);
-        //                }
-        //                if (contractViewModel.Photos[i].PhotoKey.Contains('P'))
-        //                {
-        //                    contractViewModel.Portraits[contractViewModel.Photos[i].PhotoKey]
-        //                        .PhotoPath = @"/Images/photos-on-monuments/" + contractNumber + "/" + uniqueFileName;
-        //                    contractViewModel.Portraits[contractViewModel.Photos[i].PhotoKey].PhotoName = uniqueFileName;
-        //                }
-        //                else if (contractViewModel.Photos[i].PhotoKey.Contains('M'))
-        //                {
-        //                    contractViewModel.Medallions[contractViewModel.Photos[i].PhotoKey]
-        //                        .PhotoPath = @"/Images/photos-on-monuments/" + contractNumber + "/" + uniqueFileName;
-        //                    contractViewModel.Medallions[contractViewModel.Photos[i].PhotoKey].PhotoName = uniqueFileName;
-        //                }
-        //            }
-
-        //        }
-        //    }
-
-        //    _servicesManager.Contracts.SaveViewModelToDB(contractViewModel);
-
-        //    return RedirectToAction("Index");
-        //}
-
-        //[HttpGet]
-        //public ActionResult DeleteContract(int idContract)
-        //{
-        //    _dataManager.Contracts.DeleteContract(_dataManager.Contracts.GetContractById(idContract));
-
-        //    return RedirectToAction("Index");
-        //}
-
-
+        
 
     }
 }

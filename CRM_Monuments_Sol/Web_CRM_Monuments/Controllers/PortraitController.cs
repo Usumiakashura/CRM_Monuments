@@ -34,7 +34,6 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult Details(int idPortrait)
         {
-            
             return View(DBPortraitToView(idPortrait));
         }
 
@@ -43,9 +42,7 @@ namespace Web_CRM_Monuments.Controllers
         {
             DateTime d = DateTime.Parse(date);
             _dataManager.PhotosOnMonuments.CompleateOn(idPortrait, d);
-            PortraitViewModel portrait = DBPortraitToView(idPortrait);
-            return RedirectToAction("Details", idPortrait);
-            //return RedirectToAction("Index", "Home");
+            return View("Details", DBPortraitToView(idPortrait));
         }
         //-------------------------------------------
         private PortraitViewModel DBPortraitToView(int idPortrait)

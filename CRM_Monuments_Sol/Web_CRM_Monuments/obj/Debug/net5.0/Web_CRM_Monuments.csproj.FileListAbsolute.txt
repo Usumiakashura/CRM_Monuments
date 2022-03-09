@@ -175,3 +175,4 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_C
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Shared\_UserPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Contract\_AllContractsPartial.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\Settings.cshtml.g.cs

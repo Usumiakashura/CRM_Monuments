@@ -38,10 +38,12 @@ namespace BuissnesLayer.Implementations
         public IEnumerable<Medallion> GetAllMedallions()     //получить все медальоны
         {
             var m = _context.PhotoOnMonuments.Where(x => x is Medallion);
+            List<Medallion> medallions = new List<Medallion>();
             foreach (PhotoOnMonument ph in m)
             {
-                yield return (Medallion)ph;
+                medallions.Add((Medallion)ph);
             }
+            return medallions;
         }
         public void CompleateOn(int idPhotoOnMonument, DateTime dateCompleate)  //отметка о выполнении
         {

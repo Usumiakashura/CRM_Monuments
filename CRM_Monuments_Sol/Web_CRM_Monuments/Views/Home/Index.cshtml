@@ -7,7 +7,8 @@
 
 <div class="content-box">
     <div class="wrapper w6">
-        <div>
+        @Html.ViewBag.Slider
+        @*<div>
             <input type="button" value="Договора" class="full"
                    id="AllContracts" style="height: 50px; margin-right: 10px;" />
         </div>
@@ -22,13 +23,13 @@
         <div>
             <input type="button" value="Текста" class="full"
                    id="AllTexts" style="height: 50px; margin-right: 10px;" />
-        </div>
+        </div>*@
         @*<div>
-                <input type="button" value="Кнопка" class="full" style="height: 50px; margin-right: 10px;" />
-            </div>
-            <div>
-                <input type="button" value="Кнопка" class="full" style="height: 50px; margin-right: 10px;" />
-            </div>*@
+            <input type="button" value="Кнопка" class="full" style="height: 50px; margin-right: 10px;" />
+        </div>
+        <div>
+            <input type="button" value="Кнопка" class="full" style="height: 50px; margin-right: 10px;" />
+        </div>*@
     </div>
 
     
@@ -39,7 +40,7 @@
     
 
     <div id="ContentBlock" class="mar-top5">
-        @*<partial name="_AllContractsPartial"/>*@
+        <partial name="@Html.ViewBag.Partial" model="@Html.ViewBag.ModelP"/>
     </div>
 </div>
 

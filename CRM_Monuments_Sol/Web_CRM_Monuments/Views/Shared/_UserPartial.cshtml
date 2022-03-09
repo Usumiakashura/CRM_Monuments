@@ -5,12 +5,7 @@
 {
     @*@await Component.InvokeAsync("Cart")*@
     @User.Identity.Name
-    <a class="nav-item nav-link"
-       asp-area="Identity"
-       asp-page="/Account/Logout"
-       asp-route-returnurl="@ViewContext.HttpContext.Request.Path">
-        Выйти
-    </a>
+    
     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
         <button type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
     </form>
