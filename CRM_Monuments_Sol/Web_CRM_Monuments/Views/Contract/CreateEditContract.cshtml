@@ -455,7 +455,8 @@
                             }
                             @if (Model.Contract.Deceaseds[i].DateBeginTextEpitaph < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].DateCompleatTextEpitaph < new DateTime(2000, 01, 01))
                             {
-                                <a class="to-compleate-epitaph rp-btn float-md-left" title="Отправить текст эпитафии на выполнение"><img src="/images/send.png" class="send-btn" /></a>
+                                <a class="to-compleate-epitaph rp-btn float-md-left" style="margin: 0px 0px 0px 5px"
+                                   title="Отправить текст эпитафии на выполнение"><img src="/images/send.png" class="send-btn" /></a>
                             }
                         </div>
                     }

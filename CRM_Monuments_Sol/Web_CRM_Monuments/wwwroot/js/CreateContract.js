@@ -46,16 +46,16 @@ $(document).ready(function () {
     $(".remove-medallion").click(RemoveMedallion);
 
     $(".to-compleate-portrait").click(function () {
-        SendToCompleate("портрет", "DateBegin");
+        SendToCompleate("портрет", "DateBegin", this);
     });
     $(".to-compleate-medallion").click(function () {
-        SendToCompleate("медальон", "DateBegin");
+        SendToCompleate("медальон", "DateBegin", this);
     });
     $(".to-compleate-name").click(function () {
-        SendToCompleate("текст ФИО усопшего", "DateBeginTextName");
+        SendToCompleate("текст ФИО усопшего", "DateBeginTextName", this);
     });
     $(".to-compleate-epitaph").click(function () {
-        SendToCompleate("текст эпитафии", "DateBeginTextEpitaph");
+        SendToCompleate("текст эпитафии", "DateBeginTextEpitaph", this);
     });
     $(".check-epitaph").click(CheckEpitaph);
     $(".check-frame").click(CheckFrame);
@@ -157,28 +157,28 @@ function AddDisabledEpitaph(epitaphBox, trfl) {
 }
 
 function SendToCompleatePortrait() {
-    SendToCompleate("портрет", "DateBegin");
+    SendToCompleate("портрет", "DateBegin", this);
 }
 function SendToCompleateMedallion() {
-    SendToCompleate("медальон", "DateBegin");
+    SendToCompleate("медальон", "DateBegin", this);
 }
 function SendToCompleateTextName() {
-    SendToCompleate("текст ФИО усопшего", "DateBeginTextName");
+    SendToCompleate("текст ФИО усопшего", "DateBeginTextName", this);
 }
 function SendToCompleateTextEpitaph() {
     if ($($(this).parent()[0].querySelector("[id$='__Epitaph']")).is(":checked")) {
-        SendToCompleate("текст эпитафии", "DateBeginTextEpitaph");
+        SendToCompleate("текст эпитафии", "DateBeginTextEpitaph", this);
     }
     else {
         alert('Нет доступной эпитафии для отправки на выполнение');
     }
     
 }
-function SendToCompleate(nameSend, id) {
+function SendToCompleate(nameSend, id, btn) {
     if (confirm("Вы действительно хотите отправить " + nameSend + " на выполнение?")) {
         var date = new Date();
-        $($(this).parent()[0].querySelector("[id$='" + id + "']")).val(date.toDateString());
-        $(this).remove();
+        $($(btn).parent()[0].querySelector("[id$='" + id + "']")).val(date.toDateString());
+        $(btn).remove();
         alert('Для завершения отправки на выполнение нажмите кнопку "Сохранить" в конце страницы');
     }
 }

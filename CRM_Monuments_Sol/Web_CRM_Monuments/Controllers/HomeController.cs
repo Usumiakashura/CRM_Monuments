@@ -52,13 +52,13 @@ namespace Web_CRM_Monuments.Controllers
                 ViewBag.Slider = new HtmlString("" +
                     "<div><input type = \"button\" value = \"Портреты\" class=\"full\" id=\"AllPortraits\" style=\"height: 50px; margin-right: 10px;\" /></div>");
             }
-            //else if (User.IsInRole("engraver"))
-            //{
-            //    ViewBag.ModelP = _servicesManager.Medallions.GetAllMedallions();
-            //    ViewBag.Partial = "../Medallion/_AllMedallionsPartial.cshtml";
-            //    ViewBag.Slider = new HtmlString("" +
-            //        "<div><input type = \"button\" value=\"Медальоны\" class=\"full\" id=\"AllMedallions\" style=\"height: 50px; margin-right: 10px;\" /></div>");
-            //}
+            else if (User.IsInRole("engraver"))
+            {
+                ViewBag.ModelP = _servicesManager.Texts.GetAllTexts();
+                ViewBag.Partial = "../Text/_AllTextsPartial.cshtml";
+                ViewBag.Slider = new HtmlString("" +
+                    "<div><input type = \"button\" value=\"Текста\" class=\"full\" id=\"AllTexts\" style=\"height: 50px; margin-right: 10px;\" /></div>");
+            }
 
             return View(c);
         }
@@ -88,12 +88,12 @@ namespace Web_CRM_Monuments.Controllers
         //    var m = _dataManager.PhotosOnMonuments.GetAllMedallions();
         //    return PartialView("_AllMedallionsPartial", m);
         //}
-        [HttpGet]
-        public ActionResult AllTexts()
-        {
+        //[HttpGet]
+        //public ActionResult AllTexts()
+        //{
 
-            return PartialView("_AllTextsPartial");
-        }
+        //    return PartialView("_AllTextsPartial");
+        //}
 
 
         

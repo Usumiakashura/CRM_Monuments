@@ -34,6 +34,17 @@ namespace BuissnesLayer.Implementations
             return deceased;
         }
 
+        public void CompleateOnTextName(int idDeceaced, DateTime dateCompleate)    //отметить выполнение текста ФИО
+        {
+            GetDeceasedById(idDeceaced).DateCompleatTextName = dateCompleate;
+            _context.SaveChanges();
+        }
+        public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate) //отметить выполнение текста эпитафии
+        {
+            GetDeceasedById(idDeceaced).DateCompleatTextEpitaph = dateCompleate;
+            _context.SaveChanges();
+        }
+
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
         {
             if (deceased.Id == 0)
