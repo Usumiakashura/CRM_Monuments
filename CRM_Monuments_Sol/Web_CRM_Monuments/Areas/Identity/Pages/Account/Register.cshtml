@@ -17,6 +17,19 @@
                     <tr>
                         <td>
                             <div class="form-group">
+                                <label asp-for="Input.Name"></label>
+                            </div>
+                        </td>
+                        <td style="padding-left: 10px">
+                            <div class="form-group">
+                                <input asp-for="Input.Name" class="form-control" />
+                                <span asp-validation-for="Input.Name" class="text-danger"></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
                                 <label asp-for="Input.Email"></label>
                             </div>
                         </td>

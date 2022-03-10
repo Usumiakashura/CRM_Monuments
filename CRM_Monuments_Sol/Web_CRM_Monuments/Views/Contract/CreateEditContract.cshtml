@@ -234,10 +234,7 @@
 
                                 <select class=" form-control full" asp-for="Contract.Deceaseds[i].TypeNameText">
                                     <option value=@null>Тип текста ФИО...</option>
-                                    @foreach (string item in ViewBag.TypeTexts)
-                                    {
-                                        <option value="@item">@item</option>
-                                    }
+                                    @Html.ViewBag.TypesTextsHTML
                                 </select>
                                 <input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
                                        class="form-control full" placeholder="Гравер (ФИО)..." />
@@ -254,10 +251,7 @@
                                 <div></div>
                                 <select class="full form-control type-name-epitaph" asp-for="Contract.Deceaseds[i].TypeNameEpitaph" disabled="disabled">
                                     <option value=@null>Тип текста эпитафии...</option>
-                                    @foreach (string item in ViewBag.TypeTexts)
-                                    {
-                                        <option value=@item>@item</option>
-                                    }
+                                    @Html.ViewBag.TypesTextsHTML
                                 </select>
                                 <input type="text" asp-for="Contract.Deceaseds[i].EngraverEpitaph"
                                        class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />
@@ -282,7 +276,7 @@
 
                                                             <div class="wrapper w2">
                                                                 <div class="custom-file full">
-                                                                    
+
                                                                     <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
                                                                     <input type="file" asp-for="Photos[p].Image"
                                                                            class="custom-file-input form-control full" accept="image/*,image/jpeg">
@@ -305,13 +299,15 @@
 
                                                             <select asp-for="Portraits[keyP].TypePortrait" class="form-control min-width-select-for-photo">
                                                                 <option value=@null>Тип портрета...</option>
-                                                                @foreach (string item in ViewBag.TypePortraits)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
+                                                                @Html.ViewBag.TypesPortraitHTML
                                                             </select>
 
-                                                            <input class="form-control" asp-for="Portraits[keyP].Artist" placeholder="Художник..." />
+                                                            <select asp-for="Portraits[keyP].Artist" class="form-control min-width-select-for-photo">
+                                                                <option value=@null>Художник...</option>
+                                                                @Html.ViewBag.ArtistsHTML
+                                                            </select>
+
+                                                            @*<input class="form-control" asp-for="Portraits[keyP].Artist" placeholder="Художник..." />*@
 
                                                             <div class="portrait-note">
                                                                 <textarea asp-for="Portraits[keyP].Note" class="full form-control" placeholder="Примечание"></textarea>
@@ -370,27 +366,18 @@
                                                             </div>
                                                             <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MaterialMedallion">
                                                                 <option value=@null>Материал...</option>
-                                                                @foreach (string item in ViewBag.MedallionMaterials)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
+                                                                @Html.ViewBag.MedallionMaterialsHTML
                                                             </select>
                                                             <input class="form-control" asp-for="Medallions[keyM].SizeMedallion" placeholder="Размер медальона..." />
 
                                                             @*<input class="form-control" asp-for="Medallions[keyM].ShapeMedallion" placeholder="Форма..." />*@
                                                             <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ShapeMedallion">
                                                                 <option value=@null>Форма...</option>
-                                                                @foreach (string item in ViewBag.ShapesMedallions)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
+                                                                @Html.ViewBag.ShapesMedallionsHTML
                                                             </select>
                                                             <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ColorMedallion">
                                                                 <option value=@null>Цвет...</option>
-                                                                @foreach (string item in ViewBag.ColorsMedallions)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
+                                                                @Html.ViewBag.ColorsMedallionsHTML
                                                             </select>
                                                             <input class="form-control" asp-for="Medallions[keyM].BackgroundMedallion" placeholder="Фон..." />
 
@@ -525,6 +512,29 @@
                 $(this).next(".custom-file-label").html(fileName);
             });
         });
+
+        $(document).on("click", ".add-portrait", function () {
+            var SelectListArtists = $($(this).siblings()[0]).find("[id$='_Artist']").last();
+            $('@ViewBag.ArtistsHTML').appendTo(SelectListArtists);
+            var SelectListTypesPortrait = $($(this).siblings()[0]).find("[id$='_TypePortrait']").last();
+            $('@ViewBag.TypesPortraitHTML').appendTo(SelectListTypesPortrait);
+        });
+        $(document).on("click", ".add-medallion", function () {
+            var SelectListMaterials = $($(this).siblings()[2]).find("[id$='_MaterialMedallion']").last();
+            $('@ViewBag.MedallionMaterialsHTML').appendTo(SelectListMaterials);
+            var SelectListShapes = $($(this).siblings()[2]).find("[id$='_ShapeMedallion']").last();
+            $('@ViewBag.ShapesMedallionsHTML').appendTo(SelectListShapes);
+            var SelectListColors = $($(this).siblings()[2]).find("[id$='_ColorMedallion']").last();
+            $('@ViewBag.ColorsMedallionsHTML').appendTo(SelectListColors);
+        });
+        $(document).on("click", "#AddDeceased", function () {
+            var SelectListTypeTextNames = $($(this).siblings()[1]).find("[id$='_TypeNameText']").last();
+            $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextNames);
+            var SelectListTypeTextEpitaphs = $($(this).siblings()[1]).find("[id$='_TypeNameEpitaph']").last();
+            $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextEpitaphs);
+        });
+
+        
 
         function NewUrl() {
             var BurialAddress = $("#Contract_BurialAddress").val();
