@@ -24,6 +24,7 @@ namespace Web_CRM_Monuments.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         //private readonly IEmailSender _emailSender;
+        
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -54,13 +55,16 @@ namespace Web_CRM_Monuments.Areas.Identity.Pages.Account
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Пароль")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
+            [Display(Name = "Повторить пароль")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            public string Role { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -77,6 +81,11 @@ namespace Web_CRM_Monuments.Areas.Identity.Pages.Account
             {
                 var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                
+                user = await _userManager.FindByEmailAsync(Input.Email);
+                await _userManager.AddToRoleAsync(user, Input.Role);
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

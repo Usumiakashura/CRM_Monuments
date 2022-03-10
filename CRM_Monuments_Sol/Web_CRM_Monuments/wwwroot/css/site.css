@@ -84,10 +84,18 @@ a {
         cursor: pointer;
     }
 
-.send-btn {
-    background-image: src("/images/send.png");
-    background-repeat: no-repeat;
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px
 }
+.send-btn {
+    margin: 10px 0px 0px 5px;
+    width: 38px;
+}
+    .send-btn :hover {
+        cursor: pointer;
+    }
 
 .add-btn {
     width: auto;

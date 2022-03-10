@@ -45,8 +45,18 @@ $(document).ready(function () {
     $(".remove-portrait").click(RemovePortrait);
     $(".remove-medallion").click(RemoveMedallion);
 
-    $(".to-compleate").click(SendToCompleate);
-
+    $(".to-compleate-portrait").click(function () {
+        SendToCompleate("портрет", "DateBegin");
+    });
+    $(".to-compleate-medallion").click(function () {
+        SendToCompleate("медальон", "DateBegin");
+    });
+    $(".to-compleate-name").click(function () {
+        SendToCompleate("текст ФИО усопшего", "DateBeginTextName");
+    });
+    $(".to-compleate-epitaph").click(function () {
+        SendToCompleate("текст эпитафии", "DateBeginTextEpitaph");
+    });
     $(".check-epitaph").click(CheckEpitaph);
     $(".check-frame").click(CheckFrame);
     // ----------------------------------------------------------------
@@ -146,10 +156,28 @@ function AddDisabledEpitaph(epitaphBox, trfl) {
     $(EngraverEpitaph).prop("disabled", trfl);
 }
 
-function SendToCompleate() {
-    if (confirm("Вы действительно хотите отправить на выполнение?")) {
+function SendToCompleatePortrait() {
+    SendToCompleate("портрет", "DateBegin");
+}
+function SendToCompleateMedallion() {
+    SendToCompleate("медальон", "DateBegin");
+}
+function SendToCompleateTextName() {
+    SendToCompleate("текст ФИО усопшего", "DateBeginTextName");
+}
+function SendToCompleateTextEpitaph() {
+    if ($($(this).parent()[0].querySelector("[id$='__Epitaph']")).is(":checked")) {
+        SendToCompleate("текст эпитафии", "DateBeginTextEpitaph");
+    }
+    else {
+        alert('Нет доступной эпитафии для отправки на выполнение');
+    }
+    
+}
+function SendToCompleate(nameSend, id) {
+    if (confirm("Вы действительно хотите отправить " + nameSend + " на выполнение?")) {
         var date = new Date();
-        $($(this).parent()[0].querySelector("[id$='DateBegin']")).val(date.toDateString());
+        $($(this).parent()[0].querySelector("[id$='" + id + "']")).val(date.toDateString());
         $(this).remove();
         alert('Для завершения отправки на выполнение нажмите кнопку "Сохранить" в конце страницы');
     }
@@ -395,14 +423,34 @@ function AddDeceased() {
     $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Id")
         .attr("type", "hidden").attr("data-val-required", "The Id field is required.").val(-1)
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Id").appendTo(DeceasedContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateBeginTextName")
+        .attr("type", "hidden").attr("data-val-required", "The DateBeginTextName field is required.")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateBeginTextName").appendTo(DeceasedContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateCompleatTextName")
+        .attr("type", "hidden").attr("data-val-required", "The DateCompleatTextName field is required.")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateCompleatTextName").appendTo(DeceasedContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateBeginTextEpitaph")
+        .attr("type", "hidden").attr("data-val-required", "The DateBeginTextEpitaph field is required.")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateBeginTextEpitaph").appendTo(DeceasedContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateCompleatTextEpitaph")
+        .attr("type", "hidden").attr("data-val-required", "The DateCompleatTextEpitaph field is required.")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateCompleatTextEpitaph").appendTo(DeceasedContainer);
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-deceased r-btn float-md-left")
         .attr("value", "x").appendTo(DeceasedContainer);
+    var SendButtonName = $("<a/>").attr("class", "to-compleate-name rp-btn float-md-left")
+        .attr("title", "Отправить текст ФИО на выполнение").appendTo(DeceasedContainer);
+    $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButtonName);
+    var SendButtonEpitaph = $("<a/>").attr("class", "to-compleate-epitaph rp-btn float-md-left")/*.prop("disabled", true)*/
+        .attr("title", "Отправить текст эпитафии на выполнение").appendTo(DeceasedContainer);
+    $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButtonEpitaph);
 
     //навешиваем обработчики
     RemoveButton.click(RemoveDeceased);
     AddPortraitButton.click(AddPortrait);
     AddMedallionButton.click(AddMedallion);
+    SendButtonName.click(SendToCompleateTextName);
+    SendButtonEpitaph.click(SendToCompleateTextEpitaph);
     DeceasedsCount++;
 
 }
@@ -470,6 +518,15 @@ function RecalculateNamesAndIdsDeceaseds(number) {
         .attr("class", "form-control full engraver-epitaph-" + prevNumber);
     $("#Contract_Deceaseds_" + number + "__Id").attr("id", "Contract_Deceaseds_" + prevNumber + "__Id")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].Id");
+
+    $("#Contract_Deceaseds_" + number + "__DateBeginTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateBeginTextName")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateBeginTextName");
+    $("#Contract_Deceaseds_" + number + "__DateCompleatTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateCompleatTextName")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateCompleatTextName");
+    $("#Contract_Deceaseds_" + number + "__DateBeginTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateBeginTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateBeginTextEpitaph");
+    $("#Contract_Deceaseds_" + number + "__DateCompleatTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateCompleatTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateCompleatTextEpitaph");
 
     $("#Portraits" + number).attr("id", "Portraits" + prevNumber).attr("class", "Portraits" + prevNumber);
     $(".ap" + number).attr("class", "add-btn my-btn add-portrait ap" + prevNumber);
@@ -565,13 +622,13 @@ function AddPortrait() {
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
         .attr("value", "x").appendTo(PortraitContainer);
-    var SendButton = $("<a/>").attr("class", "to-compleate rp-btn float-md-left")
-        .attr("title", "Отправить на выполнение").appendTo(PortraitContainer);
-    $("<img/>").attr("src", "/Images/send.png").attr("class", "rp-btn").appendTo(SendButton);
+    var SendButton = $("<a/>").attr("class", "to-compleate-portrait rp-btn float-md-left")
+        .attr("title", "Отправить портрет на выполнение").appendTo(PortraitContainer);
+    $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButton);
 
     //навешиваем обработчики
     RemoveButton.click(RemovePortrait);
-    SendButton.click(SendToCompleate);
+    SendButton.click(SendToCompleatePortrait);
     PhotosCount++
 }
 function RemovePortrait() {
@@ -789,13 +846,13 @@ function AddMedallion() {
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
         .attr("value", "x").appendTo(MedallionContainer);
-    var SendButton = $("<a/>").attr("class", "to-compleate rp-btn float-md-left")
-        .attr("title", "Отправить на выполнение").appendTo(MedallionContainer);
-    $("<img/>").attr("src", "/Images/send.png").attr("class", "rp-btn").appendTo(SendButton);
+    var SendButton = $("<a/>").attr("class", "to-compleate-medallion rp-btn float-md-left")
+        .attr("title", "Отправить медальон на выполнение").appendTo(MedallionContainer);
+    $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButton);
 
 
     RemoveButton.click(RemoveMedallion);
-    SendButton.click(SendToCompleate);
+    SendButton.click(SendToCompleateMedallion);
     PhotosCount++;
 }
 function RemoveMedallion() {
