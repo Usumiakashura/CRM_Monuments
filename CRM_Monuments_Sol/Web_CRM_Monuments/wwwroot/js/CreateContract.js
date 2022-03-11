@@ -335,10 +335,16 @@ function AddDeceased() {
         .appendTo(WrapperD);
     $("<option/>").attr("value", "0").text("Тип текста ФИО...").appendTo(SelectDeceasedsTypeText);
 
-    $("<input/>").attr("type", "text").attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverName")
+    var SelectEngraverName = $("<select/>").attr("class", "form-control full")
+        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverName")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverName")
-        .attr("class", "form-control full").attr("placeholder", "Гравер (ФИО)...")
         .appendTo(WrapperD);
+    $("<option/>").attr("value", "0").text("Гравер (ФИО, даты)...").appendTo(SelectEngraverName);
+
+    //$("<input/>").attr("type", "text").attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverName")
+    //    .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverName")
+    //    .attr("class", "form-control full").attr("placeholder", "Гравер (ФИО)...")
+    //    .appendTo(WrapperD);
     $("<input/>").attr("type", "text").attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].NotesTextName")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__NotesTextName")
         .attr("class", "form-control typetext-note full").attr("placeholder", "Примечание (ФИО)...")
@@ -374,13 +380,20 @@ function AddDeceased() {
         .appendTo(WrapperD);
     $("<option/>").attr("value", "0").text("Тип текста эпитафии...").appendTo(SelectEpitaphTypeText);
 
-    $("<input/>").attr("type", "text")
-        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
+    var SelectEngraverEpitaph = $("<select/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
         .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverEpitaph")
         .attr("class", "form-control full engraver-epitaph-" + DeceasedsCount)
-        .attr("placeholder", "Гравер (эпитафия)...")
         .prop("disabled", true)
         .appendTo(WrapperD);
+    $("<option/>").attr("value", "0").text("Гравер (эпитафия)...").appendTo(SelectEngraverEpitaph);
+
+    //$("<input/>").attr("type", "text")
+    //    .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
+    //    .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverEpitaph")
+    //    .attr("class", "form-control full engraver-epitaph-" + DeceasedsCount)
+    //    .attr("placeholder", "Гравер (эпитафия)...")
+    //    .prop("disabled", true)
+    //    .appendTo(WrapperD);
     //----- Эпитафия (конец) ------------------------
 
 

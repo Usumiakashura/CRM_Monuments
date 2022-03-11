@@ -67,6 +67,11 @@ namespace Web_CRM_Monuments.Controllers
                 artistHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
             ViewBag.ArtistsHTML = new HtmlString(artistHTML);
 
+            string engraverHTML = "";
+            foreach (ApplicationUser au in await _dataManager.ApplicationUsersRepository.GetAllEngravers())
+                engraverHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
+            ViewBag.EngraversHTML = new HtmlString(engraverHTML);
+
             ContractViewModel contractViewModel;
 
             if (idContract == 0)

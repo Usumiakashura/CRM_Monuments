@@ -10,6 +10,6 @@ namespace BuissnesLayer.Interfaces
     public interface IApplicationUsersRepository
     {
         public Task<IEnumerable<ApplicationUser>> GetAllArtists();    //получить всех художников
-        public IEnumerable<ApplicationUser> GetAllEngravers();    //получить всех граверов
+        public Task<IEnumerable<ApplicationUser>> GetAllEngravers();    //получить всех граверов
     }
 }

@@ -236,8 +236,12 @@
                                     <option value=@null>Тип текста ФИО...</option>
                                     @Html.ViewBag.TypesTextsHTML
                                 </select>
-                                <input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
-                                       class="form-control full" placeholder="Гравер (ФИО)..." />
+                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverName">
+                                    <option value=@null>Гравер (ФИО, даты)...</option>
+                                    @Html.ViewBag.EngraversHTML
+                                </select>
+                                @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
+                                       class="form-control full" placeholder="Гравер (ФИО)..." />*@
                                 <input type="text" asp-for="Contract.Deceaseds[i].NotesTextName"
                                        class="form-control typetext-note full" placeholder="Примечание (ФИО)..." />
 
@@ -319,12 +323,12 @@
                                                     @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
                                                     @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
                                                     @Html.HiddenFor(c => c.Portraits[keyP].Id)
-                                                    <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет"/>
+                                                    <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет" />
                                                     @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01) && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
                                                     {
                                                         <a class="to-compleate rp-btn float-md-left" title="Отправить портрет на выполнение"><img src="/images/send.png" class="send-btn" /></a>
-                                                    } 
-                                                    
+                                                    }
+
                                                 </div>
                                             }
                                         }
@@ -347,7 +351,7 @@
 
                                                             <div class="wrapper w2">
                                                                 <div class="custom-file">
-                                                                    
+
                                                                     <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyM />
                                                                     <input type="file" asp-for="Photos[Model.PhotoCounter].Image"
                                                                            class=" custom-file-input form-control full" accept="image/*,image/jpeg">
@@ -532,9 +536,13 @@
             $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextNames);
             var SelectListTypeTextEpitaphs = $($(this).siblings()[1]).find("[id$='_TypeNameEpitaph']").last();
             $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextEpitaphs);
+            var SelectListEngraverTextNames = $($(this).siblings()[1]).find("[id$='__EngraverName']").last();
+            $('@ViewBag.EngraversHTML').appendTo(SelectListEngraverTextNames);
+            var SelectListEngraverTextEpitaphs = $($(this).siblings()[1]).find("[id$='__EngraverEpitaph']").last();
+            $('@ViewBag.EngraversHTML').appendTo(SelectListEngraverTextEpitaphs);
         });
 
-        
+
 
         function NewUrl() {
             var BurialAddress = $("#Contract_BurialAddress").val();

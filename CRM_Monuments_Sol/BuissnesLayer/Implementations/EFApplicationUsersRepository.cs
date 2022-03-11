@@ -29,32 +29,27 @@ namespace BuissnesLayer.Implementations
 
         public async Task<IEnumerable<ApplicationUser>> GetAllArtists()
         {
-            var role = await _roleManager.FindByNameAsync("artist");
+            return await GetAll("artist");
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> GetAllEngravers()
+        {
+            return await GetAll("engraver");
+        }
+
+        //--------------------------------------------------------------
+        private async Task<IEnumerable<ApplicationUser>> GetAll(string roleName)
+        {
+            var role = await _roleManager.FindByNameAsync(roleName);
             var users = new List<ApplicationUser>();
             foreach (ApplicationUser user in _userManager.Users.ToList())
             {
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                 {
                     users.Add(user);
-                    //yield return user;
                 }
             }
-
-            //string roleName = "artist";
-            //var role = await _roleManager.Roles.SingleAsync(r => r.Name == roleName);
-
-            //var users = await _userManager.IsInRoleAsync();
-
-            //var users = from u in _context.Users
-            //            where u.Roles.Any(r => r.Role.Name == roleName)
-            //            select u;
-
             return users;
-        }
-
-        public IEnumerable<ApplicationUser> GetAllEngravers()
-        {
-            throw new NotImplementedException();
         }
     }
 }
