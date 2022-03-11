@@ -236,12 +236,8 @@
                                     <option value=@null>Тип текста ФИО...</option>
                                     @Html.ViewBag.TypesTextsHTML
                                 </select>
-                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverName">
-                                    <option value=@null>Гравер (ФИО, даты)...</option>
-                                    @Html.ViewBag.EngraversHTML
-                                </select>
-                                @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
-        class="form-control full" placeholder="Гравер (ФИО)..." />*@
+                                <input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
+                                       class="form-control full" placeholder="Гравер (ФИО)..." />
                                 <input type="text" asp-for="Contract.Deceaseds[i].NotesTextName"
                                        class="form-control typetext-note full" placeholder="Примечание (ФИО)..." />
 
