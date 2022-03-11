@@ -234,13 +234,14 @@
 
                                 <select class=" form-control full" asp-for="Contract.Deceaseds[i].TypeNameText">
                                     <option value=@null>Тип текста ФИО...</option>
-                                    @foreach (string item in ViewBag.TypeTexts)
-                                    {
-                                        <option value="@item">@item</option>
-                                    }
+                                    @Html.ViewBag.TypesTextsHTML
                                 </select>
-                                <input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
-                                       class="form-control full" placeholder="Гравер (ФИО)..." />
+                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverName">
+                                    <option value=@null>Гравер (ФИО, даты)...</option>
+                                    @Html.ViewBag.EngraversHTML
+                                </select>
+                                @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
+        class="form-control full" placeholder="Гравер (ФИО)..." />*@
                                 <input type="text" asp-for="Contract.Deceaseds[i].NotesTextName"
                                        class="form-control typetext-note full" placeholder="Примечание (ФИО)..." />
 
@@ -254,13 +255,14 @@
                                 <div></div>
                                 <select class="full form-control type-name-epitaph" asp-for="Contract.Deceaseds[i].TypeNameEpitaph" disabled="disabled">
                                     <option value=@null>Тип текста эпитафии...</option>
-                                    @foreach (string item in ViewBag.TypeTexts)
-                                    {
-                                        <option value=@item>@item</option>
-                                    }
+                                    @Html.ViewBag.TypesTextsHTML
                                 </select>
-                                <input type="text" asp-for="Contract.Deceaseds[i].EngraverEpitaph"
-                                       class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />
+                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverEpitaph">
+                                    <option value=@null>Гравер (эпитафия)...</option>
+                                    @Html.ViewBag.EngraversHTML
+                                </select>
+                                @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverEpitaph"
+                                       class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />*@
 
                                 @*--------------- Эпитафия (конец) -----------------*@
                                 <div></div>
@@ -272,66 +274,63 @@
                                         @{int numPortraits = Model.Contract.Deceaseds[i].PhotosOnMonument.Where(ph => ph is Portrait).Count();}
                                         @if (numPortraits > 0)
                                         {
-                                            @for (int p = 0; p < numPortraits; p++)
-                                            {
-                                                string keyP = $"D{i}P{p}";
-                                                <div class="portrait-container mar-top5" id=@($"PortraitContainer{p}")>
-                                                    <div class="border p96 float-md-left ">
-                                                        <label class="font-weight-bold">Портрет</label>
-                                                        <div class="wrapper w3 ">
+                            @for (int p = 0; p < numPortraits; p++)
+                            {
+                                string keyP = $"D{i}P{p}";
+                            <div class="portrait-container mar-top5" id=@($"PortraitContainer{p}")>
+                                <div class="border p96 float-md-left ">
+                                    <label class="font-weight-bold">Портрет</label>
+                                    <div class="wrapper w3 ">
 
-                                                            <div class="wrapper w2">
-                                                                <div class="custom-file full">
-                                                                    
-                                                                    <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
-                                                                    <input type="file" asp-for="Photos[p].Image"
-                                                                           class="custom-file-input form-control full" accept="image/*,image/jpeg">
-                                                                    <label class="custom-file-label form-control" asp-for="Photos[p].Image">Новое изображение...</label>
+                                        <div class="wrapper w2">
+                                            <div class="custom-file full">
 
-                                                                    @{ Model.PhotoCounter++; }
-                                                                    @*позже добавить отображение загруженного файла/ов (multiple)*@
-                                                                </div>
-                                                                @if (Model.Portraits[keyP].PhotoName != null)
-                                                                {
-                                                                    @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
-                                                                    <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
-                                                                       class="download-btn full">
-                                                                        <input type="button" value="Скачать" />
-                                                                    </a>
-                                                                }
-                                                            </div>
+                                                <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
+                                                <input type="file" asp-for="Photos[p].Image"
+                                                       class="custom-file-input form-control full" accept="image/*,image/jpeg">
+                                                <label class="custom-file-label form-control" asp-for="Photos[p].Image">Новое изображение...</label>
+
+                                                @{ Model.PhotoCounter++; }
+                                                @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                            </div>
+                                            @if (Model.Portraits[keyP].PhotoName != null)
+                                            {@*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
+                                                                            <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
+                                                                               class="download-btn full">
+                                                                                <input type="button" value="Скачать" />
+                                                                            </a>}
+                                        </div>
 
 
 
-                                                            <select asp-for="Portraits[keyP].TypePortrait" class="form-control min-width-select-for-photo">
-                                                                <option value=@null>Тип портрета...</option>
-                                                                @foreach (string item in ViewBag.TypePortraits)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
-                                                            </select>
+                                        <select asp-for="Portraits[keyP].TypePortrait" class="form-control min-width-select-for-photo">
+                                            <option value=@null>Тип портрета...</option>
+                                            @Html.ViewBag.TypesPortraitHTML
+                                        </select>
 
-                                                            <input class="form-control" asp-for="Portraits[keyP].Artist" placeholder="Художник..." />
+                                        <select asp-for="Portraits[keyP].Artist" class="form-control min-width-select-for-photo">
+                                            <option value=@null>Художник...</option>
+                                            @Html.ViewBag.ArtistsHTML
+                                        </select>
 
-                                                            <div class="portrait-note">
-                                                                <textarea asp-for="Portraits[keyP].Note" class="full form-control" placeholder="Примечание"></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
-                                                    @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
-                                                    @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
-                                                    @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
-                                                    @Html.HiddenFor(c => c.Portraits[keyP].Id)
-                                                    <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет"/>
-                                                    @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01) && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
-                                                    {
-                                                        <a class="to-compleate rp-btn float-md-left" title="Отправить портрет на выполнение"><img src="/images/send.png" class="send-btn" /></a>
-                                                    } 
-                                                    
-                                                </div>
-                                            }
-                                        }
+                                        @*<input class="form-control" asp-for="Portraits[keyP].Artist" placeholder="Художник..." />*@
+
+                                        <div class="portrait-note">
+                                            <textarea asp-for="Portraits[keyP].Note" class="full form-control" placeholder="Примечание"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
+                                @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
+                                @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
+                                @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
+                                @Html.HiddenFor(c => c.Portraits[keyP].Id)
+                                <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет" />
+                                @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01) && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
+                                {
+                            <a class="to-compleate rp-btn float-md-left" title="Отправить портрет на выполнение"><img src="/images/send.png" class="send-btn" /></a>}
+
+                            </div>}}
                                     </div>
                                     <input type="button" class="add-btn my-btn add-portrait" id=@($"ap{i}") value="Добавить портрет" />
 
@@ -339,103 +338,89 @@
                                         @{int numMedallions = Model.Contract.Deceaseds[i].PhotosOnMonument.Where(ph => ph is Medallion).Count();}
                                         @if (numMedallions > 0)
                                         {
-                                            @for (int m = 0; m < numMedallions; m++)
-                                            {
-                                                string keyM = $"D{i}M{m}";
-                                                <div class="medallion-container mar-top5" id=@($"MedallionContainer{i}")>
+                            @for (int m = 0; m < numMedallions; m++)
+                            {
+                                string keyM = $"D{i}M{m}";
+                            <div class="medallion-container mar-top5" id=@($"MedallionContainer{i}")>
 
-                                                    <div class="border p96 float-md-left">
-                                                        <label class="font-weight-bold">Медальон</label>
-                                                        <div class="wrapper w3">
+                                <div class="border p96 float-md-left">
+                                    <label class="font-weight-bold">Медальон</label>
+                                    <div class="wrapper w3">
 
 
-                                                            <div class="wrapper w2">
-                                                                <div class="custom-file">
-                                                                    
-                                                                    <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyM />
-                                                                    <input type="file" asp-for="Photos[Model.PhotoCounter].Image"
-                                                                           class=" custom-file-input form-control full" accept="image/*,image/jpeg">
-                                                                    <label class="custom-file-label form-control" asp-for="Photos[Model.PhotoCounter].Image">Новое изображение...</label>
-                                                                    @{ Model.PhotoCounter++; }
-                                                                    @*позже добавить отображение загруженного файла/ов (multiple)*@
-                                                                </div>
-                                                                @if (Model.Medallions[keyM].PhotoName != null)
-                                                                {
-                                                                    @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
-                                                                    <a href="@Model.Medallions[keyM].PhotoPath" download="@Model.Medallions[keyM].PhotoName"
-                                                                       class="download-btn full">
-                                                                        <input type="button" value="Скачать" />
-                                                                    </a>
-                                                                }
-                                                            </div>
-                                                            <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MaterialMedallion">
-                                                                <option value=@null>Материал...</option>
-                                                                @foreach (string item in ViewBag.MedallionMaterials)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
-                                                            </select>
-                                                            <input class="form-control" asp-for="Medallions[keyM].SizeMedallion" placeholder="Размер медальона..." />
+                                        <div class="wrapper w2">
+                                            <div class="custom-file">
 
-                                                            @*<input class="form-control" asp-for="Medallions[keyM].ShapeMedallion" placeholder="Форма..." />*@
-                                                            <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ShapeMedallion">
-                                                                <option value=@null>Форма...</option>
-                                                                @foreach (string item in ViewBag.ShapesMedallions)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
-                                                            </select>
-                                                            <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ColorMedallion">
-                                                                <option value=@null>Цвет...</option>
-                                                                @foreach (string item in ViewBag.ColorsMedallions)
-                                                                {
-                                                                    <option value=@item>@item</option>
-                                                                }
-                                                            </select>
-                                                            <input class="form-control" asp-for="Medallions[keyM].BackgroundMedallion" placeholder="Фон..." />
+                                                <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyM />
+                                                <input type="file" asp-for="Photos[Model.PhotoCounter].Image"
+                                                       class=" custom-file-input form-control full" accept="image/*,image/jpeg">
+                                                <label class="custom-file-label form-control" asp-for="Photos[Model.PhotoCounter].Image">Новое изображение...</label>
+                                                @{ Model.PhotoCounter++; }
+                                                @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                            </div>
+                                            @if (Model.Medallions[keyM].PhotoName != null)
+                                            {@*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
+                                                                            <a href="@Model.Medallions[keyM].PhotoPath" download="@Model.Medallions[keyM].PhotoName"
+                                                                               class="download-btn full">
+                                                                                <input type="button" value="Скачать" />
+                                                                            </a>}
+                                        </div>
+                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MaterialMedallion">
+                                            <option value=@null>Материал...</option>
+                                            @Html.ViewBag.MedallionMaterialsHTML
+                                        </select>
+                                        <input class="form-control" asp-for="Medallions[keyM].SizeMedallion" placeholder="Размер медальона..." />
 
-                                                            <div class="full-wrap3">
-                                                                <textarea asp-for="Medallions[keyM].Note" class="full form-control" placeholder="Примечание..."></textarea>
-                                                            </div>
-                                                        </div>
+                                        @*<input class="form-control" asp-for="Medallions[keyM].ShapeMedallion" placeholder="Форма..." />*@
+                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ShapeMedallion">
+                                            <option value=@null>Форма...</option>
+                                            @Html.ViewBag.ShapesMedallionsHTML
+                                        </select>
+                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ColorMedallion">
+                                            <option value=@null>Цвет...</option>
+                                            @Html.ViewBag.ColorsMedallionsHTML
+                                        </select>
+                                        <input class="form-control" asp-for="Medallions[keyM].BackgroundMedallion" placeholder="Фон..." />
 
-                                                        <div class="wrapper w5">
+                                        <div class="full-wrap3">
+                                            <textarea asp-for="Medallions[keyM].Note" class="full form-control" placeholder="Примечание..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="wrapper w5">
 
 
 
-                                                            @*----------------- Рамка (начало) --------------------------*@
+                                        @*----------------- Рамка (начало) --------------------------*@
 
-                                                            <div><input asp-for="Medallions[keyM].Frame" class="form-control check-frame check-box" />  Рамка</div>
-                                                            <input class="form-control" asp-for="Medallions[keyM].TypeFrame" placeholder="Тип..." disabled />
-                                                            <input class="form-control" asp-for="Medallions[keyM].SizeFrame" placeholder="Размер..." disabled />
+                                        <div><input asp-for="Medallions[keyM].Frame" class="form-control check-frame check-box" />  Рамка</div>
+                                        <input class="form-control" asp-for="Medallions[keyM].TypeFrame" placeholder="Тип..." disabled />
+                                        <input class="form-control" asp-for="Medallions[keyM].SizeFrame" placeholder="Размер..." disabled />
 
-                                                            <input class="form-control" asp-for="Medallions[keyM].ShapeFrame" placeholder="Форма..." disabled />
-                                                            <input class="form-control" asp-for="Medallions[keyM].ColorFrame" placeholder="Цвет..." disabled />
+                                        <input class="form-control" asp-for="Medallions[keyM].ShapeFrame" placeholder="Форма..." disabled />
+                                        <input class="form-control" asp-for="Medallions[keyM].ColorFrame" placeholder="Цвет..." disabled />
 
-                                                            <div><input asp-for="Medallions[keyM].GluingIntoNiche" class="form-control check-box" />  Вклейка в нишу</div>
+                                        <div><input asp-for="Medallions[keyM].GluingIntoNiche" class="form-control check-box" />  Вклейка в нишу</div>
 
-                                                            <div class="text-note">
-                                                                <textarea asp-for="Medallions[keyM].NoteFrame" class=" form-control full" placeholder="Примечание..." disabled></textarea>
-                                                            </div>
+                                        <div class="text-note">
+                                            <textarea asp-for="Medallions[keyM].NoteFrame" class=" form-control full" placeholder="Примечание..." disabled></textarea>
+                                        </div>
 
 
 
-                                                        </div>
-                                                        @*----------------- Рамка (конец) ---------------------------*@
-                                                    </div>
-                                                    @Html.HiddenFor(c => c.Medallions[keyM].Id)
-                                                    @Html.HiddenFor(c => c.Medallions[keyM].PhotoPath)
-                                                    @Html.HiddenFor(c => c.Medallions[keyM].PhotoName)
-                                                    @Html.HiddenFor(c => c.Medallions[keyM].DateCompleat)
-                                                    @Html.HiddenFor(c => c.Medallions[keyM].DateBegin)
-                                                    <input type="button" class="remove-medallion rp-btn float-md-left" value="x" />
-                                                    @if (Model.Medallions[keyM].DateBegin < new DateTime(2000, 01, 01) && Model.Medallions[keyM].DateCompleat < new DateTime(2000, 01, 01))
-                                                    {
-                                                        <a class="to-compleate-medallion rp-btn float-md-left" title="Отправить медальон на выполнение"><img src="/images/send.png" class="send-btn" /></a>
-                                                    }
-                                                </div>
-                                            }
-                                        }
+                                    </div>
+                                    @*----------------- Рамка (конец) ---------------------------*@
+                                </div>
+                                @Html.HiddenFor(c => c.Medallions[keyM].Id)
+                                @Html.HiddenFor(c => c.Medallions[keyM].PhotoPath)
+                                @Html.HiddenFor(c => c.Medallions[keyM].PhotoName)
+                                @Html.HiddenFor(c => c.Medallions[keyM].DateCompleat)
+                                @Html.HiddenFor(c => c.Medallions[keyM].DateBegin)
+                                <input type="button" class="remove-medallion rp-btn float-md-left" value="x" />
+                                @if (Model.Medallions[keyM].DateBegin < new DateTime(2000, 01, 01) && Model.Medallions[keyM].DateCompleat < new DateTime(2000, 01, 01))
+                                {
+                            <a class="to-compleate-medallion rp-btn float-md-left" title="Отправить медальон на выполнение"><img src="/images/send.png" class="send-btn" /></a>}
+                            </div>}}
 
                                     </div>
                                     <input type="button" class="add-btn my-btn add-medallion" id=@($"am{i}") value="Добавить медальон" />
@@ -525,6 +510,33 @@
                 $(this).next(".custom-file-label").html(fileName);
             });
         });
+
+        $(document).on("click", ".add-portrait", function () {
+            var SelectListArtists = $($(this).siblings()[0]).find("[id$='_Artist']").last();
+            $('@ViewBag.ArtistsHTML').appendTo(SelectListArtists);
+            var SelectListTypesPortrait = $($(this).siblings()[0]).find("[id$='_TypePortrait']").last();
+            $('@ViewBag.TypesPortraitHTML').appendTo(SelectListTypesPortrait);
+        });
+        $(document).on("click", ".add-medallion", function () {
+            var SelectListMaterials = $($(this).siblings()[2]).find("[id$='_MaterialMedallion']").last();
+            $('@ViewBag.MedallionMaterialsHTML').appendTo(SelectListMaterials);
+            var SelectListShapes = $($(this).siblings()[2]).find("[id$='_ShapeMedallion']").last();
+            $('@ViewBag.ShapesMedallionsHTML').appendTo(SelectListShapes);
+            var SelectListColors = $($(this).siblings()[2]).find("[id$='_ColorMedallion']").last();
+            $('@ViewBag.ColorsMedallionsHTML').appendTo(SelectListColors);
+        });
+        $(document).on("click", "#AddDeceased", function () {
+            var SelectListTypeTextNames = $($(this).siblings()[1]).find("[id$='_TypeNameText']").last();
+            $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextNames);
+            var SelectListTypeTextEpitaphs = $($(this).siblings()[1]).find("[id$='_TypeNameEpitaph']").last();
+            $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextEpitaphs);
+            var SelectListEngraverTextNames = $($(this).siblings()[1]).find("[id$='__EngraverName']").last();
+            $('@ViewBag.EngraversHTML').appendTo(SelectListEngraverTextNames);
+            var SelectListEngraverTextEpitaphs = $($(this).siblings()[1]).find("[id$='__EngraverEpitaph']").last();
+            $('@ViewBag.EngraversHTML').appendTo(SelectListEngraverTextEpitaphs);
+        });
+
+
 
         function NewUrl() {
             var BurialAddress = $("#Contract_BurialAddress").val();

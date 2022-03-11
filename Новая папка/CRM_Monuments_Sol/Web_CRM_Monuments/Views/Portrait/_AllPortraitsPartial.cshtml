@@ -1,0 +1,115 @@
+﻿@model List<PortraitViewModel>
+
+<h4>Портреты</h4>
+
+<table class="table table-hover table-bordered results full">
+    <thead>
+        <tr>
+            <th>№ дог-ра</th>
+            <th>
+                Дата заключ-я
+            </th>
+            <th>
+                Усопший
+            </th>
+            <th>
+                Тип портрета
+            </th>
+            <th>
+                Заказчик
+            </th>
+            <th>
+                Телефон
+            </th>
+            <th>
+                Исполнитель
+            </th>
+            <th>
+                Статус
+            </th>
+
+        </tr>
+        <tr class="warning no-result">
+            <td colspan="4"><i class="fa fa-warning"></i> Совпадения не найдены</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = Model.Count() - 1; i >= 0; i--)
+        {
+        <tr onclick="location.href='/Portrait/Details?idPortrait=@Model[i].Portrait.Id'"
+            class="table-stroke">
+            <td class="font-weight-bold">
+                @Model[i].ContractNumber
+            </td>
+            <td>
+                @Model[i].DateConclusionContract.ToShortDateString()
+            </td>
+            <td>
+                @Model[i].LastNameDeceased
+            </td>
+            <td>
+                @Model[i].Portrait.TypePortraitObj.Name
+            </td>
+            <td>
+                @Model[i].NameCustomer
+            </td>
+            <td>
+                @Model[i].PhoneCustomer
+            </td>
+            <td>
+                @Model[i].Portrait.Artist
+            </td>
+            @if (Model[i].Portrait.DateCompleat > new DateTime(2000, 01, 01))
+            {
+                <td>
+                    <label>Завершен @Model[i].Portrait.DateCompleat.ToShortDateString()</label>
+                </td>
+            }
+            else if (Model[i].Portrait.DateBegin > new DateTime(2000, 01, 01))
+            {
+                TimeSpan time = Model[i].Portrait.DateBegin.AddDays(15) - DateTime.Today;
+                @if (Model[i].Portrait.DateBegin.AddDays(12) > DateTime.Today)
+                {
+                    <td class="status-green">
+                        <label>В процессе (ост. @(time.Days + 1) дн.)</label>
+                    </td>
+                }
+                else if (Model[i].Portrait.DateBegin.AddDays(15) >= DateTime.Today)
+                {
+                    <td class="status-orange">
+                        <label>В процессе (ост. @(time.Days + 1) дн.)</label>
+                    </td>
+                }
+                else
+                {
+                    <td class="status-red">
+                        <label>Просрочка @time.Days дн.</label>
+                    </td>
+                }
+
+            }
+            else
+            {
+                <td class="status-blue">
+                    <label>В ожидании</label>
+                </td>
+            }
+
+            @*<td>
+        </td>*@
+
+            @*<td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+        }
+
+        @*@foreach (var item in Model)
+            {
+
+            }*@
+    </tbody>
+</table>
+

@@ -1,0 +1,145 @@
+﻿@model List<TextViewModel>
+
+<h4>Текста</h4>
+
+<table class="table table-hover table-bordered results full">
+    <thead>
+        <tr>
+            <th>№ дог-ра</th>
+            <th>
+                Дата заключ-я
+            </th>
+            <th>
+                Усопший
+            </th>
+            <th>
+                Тип текста
+            </th>
+            <th>
+                Заказчик
+            </th>
+            <th>
+                Телефон
+            </th>
+            <th>
+                Исполнитель
+            </th>
+            <th>
+                Статус
+            </th>
+
+        </tr>
+        <tr class="warning no-result">
+            <td colspan="4"><i class="fa fa-warning"></i> Совпадения не найдены</td>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i = Model.Count() - 1; i >= 0; i--)
+        {
+        <tr onclick="location.href='/Text/Details?idDeceaced=@Model[i].Deceased.Id&epitaph=@Model[i].TextEpitaph'"
+            class="table-stroke">
+            <td class="font-weight-bold">
+                @Model[i].ContractNumber
+            </td>
+            <td>
+                @Model[i].DateConclusionContract.ToShortDateString()
+            </td>
+            <td>
+                @Model[i].LastNameDeceased
+            </td>
+            <td>
+                @if (Model[i].TextEpitaph)
+                {
+                    <label>@Model[i].Deceased.TypeNameEpitaph</label>
+                }
+                else
+                {
+                    <label>@Model[i].Deceased.TypeNameText</label>
+                }
+            </td>
+            <td>
+                @Model[i].NameCustomer
+            </td>
+            <td>
+                @Model[i].PhoneCustomer
+            </td>
+            <td>
+                @if (Model[i].TextEpitaph)
+                {
+                    <label>@Model[i].Deceased.EngraverEpitaph</label>
+                }
+                else
+                {
+                    <label>@Model[i].Deceased.EngraverName</label>
+                }
+            </td>
+            @{
+                DateTime dateCompl, dateBegin;
+                @if (Model[i].TextEpitaph)
+                {
+                    dateCompl = Model[i].Deceased.DateCompleatTextEpitaph;
+                    dateBegin = Model[i].Deceased.DateBeginTextEpitaph;
+                }
+
+                else
+                {
+                    dateCompl = Model[i].Deceased.DateCompleatTextName;
+                    dateBegin = Model[i].Deceased.DateBeginTextName;
+                }
+                    
+            }
+
+
+            @if (dateCompl > new DateTime(2000, 01, 01))
+            {
+                <td>
+                    <label>Завершен @dateCompl.ToShortDateString()</label>
+                </td>
+            }
+            else if (dateBegin > new DateTime(2000, 01, 01))
+            {
+                TimeSpan time = dateBegin.AddDays(15) - DateTime.Today;
+                @if (dateBegin.AddDays(12) > DateTime.Today)
+                {
+                    <td class="status-green">
+                        <label>В процессе (ост. @(time.Days + 1) дн.)</label>
+                    </td>
+                }
+                else if (dateBegin.AddDays(15) >= DateTime.Today)
+                {
+                    <td class="status-orange">
+                        <label>В процессе (ост. @(time.Days + 1) дн.)</label>
+                    </td>
+                }
+                else
+                {
+                    <td class="status-red">
+                        <label>Просрочка @time.Days дн.</label>
+                    </td>
+                }
+
+            }
+            else
+            {
+                <td class="status-blue">
+                    <label>В ожидании</label>
+                </td>
+            }
+
+            @*<td>
+        </td>*@
+
+            @*<td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>*@
+        </tr>
+        }
+
+        @*@foreach (var item in Model)
+            {
+
+            }*@
+    </tbody>
+</table>

@@ -5,12 +5,6 @@ var deletedDeceasedCount = 0;
 var deletedPhotoCount = 0;
 var deletedCustomerCount = 0;
 
-var typesText = ["Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный"];
-var typesPortrait = ["Ручной", "Станочный"];
-var materialsMedallion = ["Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали"];
-var shapesMedallion = ["Овальная", "Прямоугольная", "Арка"];
-var colorsMedallion = ["Цветной", "Черно-белый"];
-
 // --- Проверка чекбоксов (начало) -------------------------------------------------
 // установка / самовывоз
 if ($("#Contract_Pickup").is(":checked")) {
@@ -144,12 +138,6 @@ function AddDisabledEpitaph(epitaphBox, trfl) {
     var NotesTextEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__NotesTextEpitaph']");
     var TypeNameEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__TypeNameEpitaph']");
     var EngraverEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__EngraverEpitaph']");
-
-    //console.log($(epitaphBox).closest(".wrapper")[0]);
-
-    //console.log($(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__NotesTextEpitaph']"));
-    //console.log(TypeNameEpitaph);
-    //console.log(EngraverEpitaph);
 
     $(NotesTextEpitaph).prop("disabled", trfl);
     $(TypeNameEpitaph).prop("disabled", trfl);
@@ -346,16 +334,17 @@ function AddDeceased() {
         .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].TypeNameText")
         .appendTo(WrapperD);
     $("<option/>").attr("value", "0").text("Тип текста ФИО...").appendTo(SelectDeceasedsTypeText);
-    for (i = 0; i < typesText.length; i++) {
-        $("<option/>").attr("value", typesText[i])
-            .text(typesText[i])
-            .appendTo(SelectDeceasedsTypeText);
-    }
 
-    $("<input/>").attr("type", "text").attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverName")
+    var SelectEngraverName = $("<select/>").attr("class", "form-control full")
+        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverName")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverName")
-        .attr("class", "form-control full").attr("placeholder", "Гравер (ФИО)...")
         .appendTo(WrapperD);
+    $("<option/>").attr("value", "0").text("Гравер (ФИО, даты)...").appendTo(SelectEngraverName);
+
+    //$("<input/>").attr("type", "text").attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverName")
+    //    .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverName")
+    //    .attr("class", "form-control full").attr("placeholder", "Гравер (ФИО)...")
+    //    .appendTo(WrapperD);
     $("<input/>").attr("type", "text").attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].NotesTextName")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__NotesTextName")
         .attr("class", "form-control typetext-note full").attr("placeholder", "Примечание (ФИО)...")
@@ -390,19 +379,21 @@ function AddDeceased() {
         .prop("disabled", true)
         .appendTo(WrapperD);
     $("<option/>").attr("value", "0").text("Тип текста эпитафии...").appendTo(SelectEpitaphTypeText);
-    for (i = 0; i < typesText.length; i++) {
-        $("<option/>").attr("value", typesText[i])
-            .text(typesText[i])
-            .appendTo(SelectEpitaphTypeText);
-    }
 
-    $("<input/>").attr("type", "text")
-        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
+    var SelectEngraverEpitaph = $("<select/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
         .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverEpitaph")
         .attr("class", "form-control full engraver-epitaph-" + DeceasedsCount)
-        .attr("placeholder", "Гравер (эпитафия)...")
         .prop("disabled", true)
         .appendTo(WrapperD);
+    $("<option/>").attr("value", "0").text("Гравер (эпитафия)...").appendTo(SelectEngraverEpitaph);
+
+    //$("<input/>").attr("type", "text")
+    //    .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
+    //    .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverEpitaph")
+    //    .attr("class", "form-control full engraver-epitaph-" + DeceasedsCount)
+    //    .attr("placeholder", "Гравер (эпитафия)...")
+    //    .prop("disabled", true)
+    //    .appendTo(WrapperD);
     //----- Эпитафия (конец) ------------------------
 
 
@@ -569,33 +560,29 @@ function AddPortrait() {
     var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperP);
     $("<input/>").attr("type", "hidden")
         .attr("value", keyP)
-        .attr("name", "Photos[" + PhotosCount + "].PhotoKey")
-        .attr("id", "Photos_" + PhotosCount + "__PhotoKey").appendTo(ImgBlock);
+        .attr("name", "Photos[" + (PhotosCount - 1) + "].PhotoKey")
+        .attr("id", "Photos_" + (PhotosCount - 1) + "__PhotoKey").appendTo(ImgBlock);
     $("<input/>").attr("type", "file")
         .attr("accept", "image/*,image/jpeg")
         .attr("multiple", "true")
-        .attr("name", "Photos[" + PhotosCount + "].Image")
-        .attr("id", "Photos_" + PhotosCount + "__Image")
+        .attr("name", "Photos[" + (PhotosCount - 1) + "].Image")
+        .attr("id", "Photos_" + (PhotosCount - 1) + "__Image")
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
     $("<label/>").attr("class", "custom-file-label form-control").text("Новое изображение...")
-        .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
+        .attr("for", "Photos_" + (PhotosCount - 1) + "__Image").appendTo(ImgBlock);
 
     var SelectPortraitType = $("<select/>").attr("class", "form-control min-width-select-for-photo")
         .attr("name", "Portraits[" + keyP + "].TypePortrait")
         .attr("id", "Portraits_" + keyP + "__TypePortrait")
         .appendTo(WrapperP);
     $("<option/>").attr("value", "0").text("Тип портрета...").appendTo(SelectPortraitType);
-    for (i = 0; i < typesPortrait.length; i++) {
-        $("<option/>").attr("value", typesPortrait[i])
-            .text(typesPortrait[i])
-            .appendTo(SelectPortraitType);
-    }
 
-    $("<input/>").attr("class", "form-control")
+
+    var SelectArtist = $("<select/>").attr("class", "form-control min-width-select-for-photo")
         .attr("name", "Portraits[" + keyP + "].Artist")
         .attr("id", "Portraits_" + keyP + "__Artist")
-        .attr("placeholder", "Художник...")
         .appendTo(WrapperP);
+    $("<option/>").attr("value", "0").text("Художник...").appendTo(SelectArtist);
 
     var NoteWrap = $("<div/>").attr("class", "full-wrap3 ").appendTo(WrapperP);
     $("<textarea/>").attr("class", "form-control full")
@@ -668,7 +655,7 @@ function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portrait
     }
 
     $("#PortraitContainer" + portraitStartNum).attr("id", "PortraitContainer" + (portraitStartNum - 1));
-    $("#PortraitContainer" + (portraitStartNum - 1)).querySelector("[id$='__PhotoKey']").val(PrevKey);
+    $("#PortraitContainer" + (portraitStartNum - 1)).find("[id$='__PhotoKey']").first().val(PrevKey);
 
     $("#Portraits_" + OurKey + "__TypePortrait").attr("id", "Portraits_" + PrevKey + "__TypePortrait").attr("name", "Portraits[" + PrevKey + "].TypePortrait");
     $("#Portraits_" + OurKey + "__Artist").attr("id", "Portraits_" + PrevKey + "__Artist").attr("name", "Portraits[" + PrevKey + "].Artist");
@@ -703,27 +690,22 @@ function AddMedallion() {
     var ImgBlock = $("<div/>").attr("class", "custom-file img-block").appendTo(WrapperM);
     $("<input/>").attr("type", "hidden")
         .attr("value", keyM)
-        .attr("name", "Photos[" + PhotosCount + "].PhotoKey")
-        .attr("id", "Photos_" + PhotosCount + "__PhotoKey").appendTo(ImgBlock);
+        .attr("name", "Photos[" + (PhotosCount - 1) + "].PhotoKey")
+        .attr("id", "Photos_" + (PhotosCount - 1) + "__PhotoKey").appendTo(ImgBlock);
     $("<input/>").attr("type", "file")
         .attr("accept", "image/*,image/jpeg")
         .attr("multiple", "true")
-        .attr("name", "Photos[" + PhotosCount + "].Image")
-        .attr("id", "Photos_" + PhotosCount + "__Image")
+        .attr("name", "Photos[" + (PhotosCount - 1) + "].Image")
+        .attr("id", "Photos_" + (PhotosCount - 1) + "__Image")
         .attr("class", "custom-file-input form-control full").appendTo(ImgBlock);
     $("<label/>").attr("class", "custom-file-label form-control").text("Новое изображение...")
-        .attr("for", "Photos_" + PhotosCount + "__Image").appendTo(ImgBlock);
+        .attr("for", "Photos_" + (PhotosCount - 1) + "__Image").appendTo(ImgBlock);
 
     var SelectMaterial = $("<select/>").attr("class", "form-control min-width-select-for-photo")
         .attr("name", "Medallions[" + keyM + "].MaterialMedallion")
         .attr("id", "Medallions_" + keyM + "__MaterialMedallion")
         .appendTo(WrapperM);
     $("<option/>").attr("value", "0").text("Материал...").appendTo(SelectMaterial);
-    for (i = 0; i < materialsMedallion.length; i++) {
-        $("<option/>").attr("value", materialsMedallion[i])
-            .text(materialsMedallion[i])
-            .appendTo(SelectMaterial);
-    }
 
     $("<input/>").attr("class", "form-control")
         .attr("name", "Medallions[" + keyM + "].SizeMedallion")
@@ -736,22 +718,12 @@ function AddMedallion() {
         .attr("id", "Medallions_" + keyM + "__ShapeMedallion")
         .appendTo(WrapperM);
     $("<option/>").attr("value", "0").text("Форма...").appendTo(SelectShape);
-    for (i = 0; i < shapesMedallion.length; i++) {
-        $("<option/>").attr("value", shapesMedallion[i])
-            .text(shapesMedallion[i])
-            .appendTo(SelectShape);
-    }
 
     var SelectColor = $("<select/>").attr("class", "form-control min-width-select-for-photo")
         .attr("name", "Medallions[" + keyM + "].ColorMedallion")
         .attr("id", "Medallions_" + keyM + "__ColorMedallion")
         .appendTo(WrapperM);
     $("<option/>").attr("value", 0).text("Цвет...").appendTo(SelectColor);
-    for (i = 0; i < colorsMedallion.length; i++) {
-        $("<option/>").attr("value", colorsMedallion[i])
-            .text(colorsMedallion[i])
-            .appendTo(SelectColor);
-    }
 
     $("<input/>").attr("class", "form-control")
         .attr("name", "Medallions[" + keyM + "].BackgroundMedallion")
@@ -890,16 +862,17 @@ function RecalculateNamesAndIdsMedallions(deceasedIsChange, deceasedNum, medalli
     }
 
     $("#MedallionContainer" + medallionStartNum).attr("id", "MedallionContainer" + (medallionStartNum - 1));
-    $("#MedallionContainer" + (medallionStartNum - 1)).querySelector("[id$='__PhotoKey']").val(PrevKey);
+    $("#MedallionContainer" + (medallionStartNum - 1)).find("[id$='__PhotoKey']").first().val(PrevKey);
+    //var NumPhotos = $(document).find("[id$='__PhotoKey']").length - 1;
 
-    $("#MedallionPhotos_" + medallionStartNum + "__PhotoKey").attr("id", "MedallionPhotos_" + (medallionStartNum - 1) + "__PhotoKey")
-        .attr("name", "MedallionPhotos[" + (medallionStartNum - 1) + "].PhotoKey").val(PrevKey);
+    //$("#Photos_" + medallionStartNum + "__PhotoKey").attr("id", "Photos_" + (medallionStartNum - 1) + "__PhotoKey")
+    //    .attr("name", "Photos[" + (medallionStartNum - 1) + "].PhotoKey").val(PrevKey);
 
-    var ImgPortrait = $("#MedallionPhotos_" + medallionStartNum + "__Image");
+    //var ImgMedallion = $("#MedallionPhotos_" + medallionStartNum + "__Image");
 
-    ImgPortrait[0].setAttribute("id", "MedallionPhotos_" + (medallionStartNum - 1) + "__Image");
-    ImgPortrait[0].setAttribute("name", "MedallionPhotos[" + (medallionStartNum - 1) + "].Image");
-    ImgPortrait[0].nextElementSibling.setAttribute("for", "MedallionPhotos_" + (medallionStartNum - 1) + "__Image");
+    //$("#Photos_" + medallionStartNum + "__Image").attr("id", "Photos_" + (medallionStartNum - 1) + "__Image");
+    //$("#Photos_" + medallionStartNum + "__Image").attr("name", "Photos[" + (medallionStartNum - 1) + "].Image");
+    //$("#Photos_" + medallionStartNum + "__Image").nextElementSibling.attr("for", "Photos_" + (medallionStartNum - 1) + "__Image");
     $("#Medallions_" + OurKey + "__MaterialMedallion").attr("id", "Medallions_" + PrevKey + "__MaterialMedallion").attr("name", "Medallions[" + PrevKey + "].MaterialMedallion");
     $("#Medallions_" + OurKey + "__SizeMedallion").attr("id", "Medallions_" + PrevKey + "__SizeMedallion").attr("name", "Medallions[" + PrevKey + "].SizeMedallion");
     $("#Medallions_" + OurKey + "__ShapeMedallion").attr("id", "Medallions_" + PrevKey + "__ShapeMedallion").attr("name", "Medallions[" + PrevKey + "].ShapeMedallion");
@@ -927,8 +900,7 @@ function RecalculateNamesAndIdsPhotos(startCount) {
     var prevCount = startCount - 1;
     $("#Photos_" + startCount + "__PhotoKey").attr("id", "Photos_" + prevCount + "__PhotoKey")
         .attr("name", "Photos[" + prevCount + "].PhotoKey");
-    var ImgPortrait = $("#Photos_" + startCount + "__Image");
-    ImgPortrait[0].setAttribute("id", "Photos_" + prevCount + "__Image");
-    ImgPortrait[0].setAttribute("name", "Photos[" + prevCount + "].Image");
-    ImgPortrait[0].nextElementSibling.setAttribute("for", "Photos_" + prevCount + "__Image");
+    $("#Photos_" + startCount + "__Image").attr("id", "Photos_" + prevCount + "__Image")
+        .attr("name", "Photos[" + prevCount + "].Image");
+    $("#Photos_" + prevCount + "__Image").siblings()[1].attr("for", "Photos_" + prevCount + "__Image");
 }

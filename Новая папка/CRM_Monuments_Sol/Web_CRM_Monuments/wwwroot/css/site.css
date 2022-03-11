@@ -1,0 +1,363 @@
+﻿.content-box {
+    min-width: 1300px;
+    margin: 0px 15px;
+}
+
+.table td {
+    padding: 0.25rem;
+    /*font-size: 12px;*/
+    vertical-align: central;
+    border-top: 1px solid #dee2e6;
+}
+.table th {
+    padding: 0.25rem;
+}
+
+.table{
+    width: max-content;
+}
+
+.results tr[visible='false'],
+.no-result {
+    display: none;
+}
+
+.results tr[visible='true'] {
+    display: table-row;
+}
+
+.searchCount {
+    padding: 8px;
+    color: #ccc;
+}
+
+.table-stroke :hover {
+    cursor: pointer;
+}
+
+
+a {
+    margin-left: 10px;
+}
+
+.b-grey {
+    background-color: #ebebeb;
+}
+
+.form-check-label {
+    position: center;
+    margin: 0.3rem;
+}
+
+.icon{
+    width: 14px;
+    margin: 0px 2px;
+    padding: 0px;
+}
+
+.def {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.my-btn {
+    margin: 5px 0px 0px 0px;
+}
+
+.mar-top5 {
+    margin: 5px 0px 0px 0px;
+    height: auto;
+}
+
+.r-btn {
+    margin: 5px 0px 0px 5px;
+    width: 45px;
+    height: 49px;
+}
+
+.rp-btn {
+    margin: 10px 0px 0px 5px;
+    width: 42px;
+    height: 45px;
+}
+    .rp-btn :hover {
+        cursor: pointer;
+    }
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px
+}
+.send-btn {
+    margin: 0px 0px 0px 5px;
+    width: 38px;
+}
+    .send-btn :hover {
+        cursor: pointer;
+    }
+
+.add-btn {
+    width: auto;
+    height: 30px;
+}
+.download-btn {
+    margin: 0px;
+    padding: 0px;
+}
+a.disabled {
+    pointer-events: none; /* делаем элемент неактивным для взаимодействия */
+    cursor: default; /*  курсор в виде стрелки */
+    color: #888; /* цвет текста серый */
+}
+
+.wrapper {
+    width: 100%;
+    display: grid;
+}
+.w2 {
+
+    grid-template-columns: repeat(2, auto);
+}
+
+.w5 {
+/*    width: 1250px;
+*/    grid-template-columns: repeat(5, auto);
+}
+.w6 {
+/*    width: 1200px;
+*/    grid-template-columns: repeat(6, 1fr);
+}
+.w3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+
+.status-green {
+    background: forestgreen;
+    color: white;
+}
+.status-orange {
+    background: orange;
+    color: white;
+}
+.status-red {
+    background: indianred;
+    color: white;
+}
+.status-blue {
+    background: lightskyblue;
+    color: white;
+}
+
+
+
+textarea {
+    width: 100%; /* Ширина */
+    height: 200px; /* Высота */
+    box-sizing: border-box; /* Алгоритм расчёта ширины */
+}
+.text-note {
+    grid-column: 2 / 6;
+}
+.portrait-note {
+    grid-column: 1 / 4;
+}
+.typetext-note {
+    grid-column: 3 / 6;
+}
+
+.full-wrap {
+    grid-column: 1 / 6;
+}
+.full-wrap3 {
+    grid-column: 1 / 4;
+}
+
+.border {
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    margin: 10px 0px;
+    padding: 5px;
+}
+
+.min-width-select-for-photo {
+    min-width: 240px;
+    max-width: 400px;
+}
+
+
+
+
+.form-control {
+    /*display: block;*/
+    display: inline-block;
+    width: auto;
+    height: calc(1em + 0.75rem + 2px);
+    padding: 0px 5px /*0.375rem 0.75rem*/;
+    /*    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+*/
+}
+
+.box1 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: auto;
+}
+
+.boxMessengers {
+    min-width: 56px;
+    padding-left: 2px;
+}
+
+.check-box {
+    margin: 0px 3px 0px 2px;
+    height: auto;
+}
+
+.p96 {
+    width: 96%;
+}
+
+.p90 {
+    width: 90%;
+}
+
+.px100 {
+    width: 100px;
+}
+
+.full {
+    width: 100%;
+    
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+.custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: auto;
+    padding: 0.1rem 0.75rem;
+    line-height: 1.5;
+    color: #495057;
+    content: "Выбрать фото";
+    background-color: #e9ecef;
+    border-left: inherit;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+.custom-file-input:lang(en) ~ .custom-file-label::after {
+    content: "Выбрать";
+}
+
+.custom-file{
+    height: auto;
+}
+
+.deleted {
+    height: 1px;
+    width: 1px; 
+}
+
+.img-block {
+    max-width: 400px;
+}
+
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px; /* Vertically center the text there */
+}
+
+
+
+
+
+
+div {
+    /*border: solid;
+    border-color: black;
+    border-width: 1px;*/
+    /*margin: 0px;
+    padding: 0px;*/
+}

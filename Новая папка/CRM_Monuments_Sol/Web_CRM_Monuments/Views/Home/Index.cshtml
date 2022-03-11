@@ -1,0 +1,87 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="content-box">
+    <div class="wrapper w6">
+        @Html.ViewBag.Slider
+        @*<div>
+            <input type="button" value="Договора" class="full"
+                   id="AllContracts" style="height: 50px; margin-right: 10px;" />
+        </div>
+        <div>
+            <input type="button" value="Портреты" class="full"
+                   id="AllPortraits" style="height: 50px; margin-right: 10px;" />
+        </div>
+        <div>
+            <input type="button" value="Медальоны" class="full"
+                   id="AllMedallions" style="height: 50px; margin-right: 10px;" />
+        </div>
+        <div>
+            <input type="button" value="Текста" class="full"
+                   id="AllTexts" style="height: 50px; margin-right: 10px;" />
+        </div>*@
+        @*<div>
+            <input type="button" value="Кнопка" class="full" style="height: 50px; margin-right: 10px;" />
+        </div>
+        <div>
+            <input type="button" value="Кнопка" class="full" style="height: 50px; margin-right: 10px;" />
+        </div>*@
+    </div>
+
+    
+    <div class="wrapper w2 mar-top5" >
+        <input type="text" class="searchKey form-control" placeholder="Поиск...">
+        <span class="searchCount pull-right"></span>
+    </div>
+    
+
+    <div id="ContentBlock" class="mar-top5">
+        <partial name="@Html.ViewBag.Partial" model="@Html.ViewBag.ModelP"/>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/js/Search.js"></script>
+    <script>
+        $("#AllContracts").click();
+
+        $(document).ready(function () {
+            $("#AllContracts").click(function () {
+                GetPartialView("/Contract/AllContracts");
+            });
+            $("#AllPortraits").click(function () {
+                GetPartialView("/Portrait/AllPortraits");
+            });
+            $("#AllMedallions").click(function () {
+                GetPartialView("/Medallion/AllMeedallions");
+            });
+            $("#AllTexts").click(function () {
+                GetPartialView("/Text/AllTexts");
+            });
+            
+        });
+        
+
+        function GetPartialView(url) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", url, true);
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("ContentBlock").innerHTML = xhr.responseText;
+                }
+            }
+        }
+
+
+    </script>
+}
+
+
+
+

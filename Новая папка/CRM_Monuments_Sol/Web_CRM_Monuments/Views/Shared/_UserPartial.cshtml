@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> signInManager
+
+@if (signInManager.IsSignedIn(User))
+{
+    @*@await Component.InvokeAsync("Cart")*@
+    @User.Identity.Name
+    
+    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+        <button type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav ml-auto">
+        <li>
+            <a class="nav-item nav-link"
+               asp-area="Identity"
+               asp-page="/Account/Login">
+                Войти
+            </a>
+        </li>
+        <li>
+            <a class="nav-item nav-link"
+               asp-area="Identity"
+               asp-page="/Account/Register">
+                Зарегистрироваться
+            </a>
+        </li>
+    </ul>
+}
+
+

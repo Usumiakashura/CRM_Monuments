@@ -1,0 +1,15 @@
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\BuissnesLayer.deps.json
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\BuissnesLayer.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\ref\BuissnesLayer.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\BuissnesLayer.pdb
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.AssemblyReference.cache
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.AssemblyInfoInputs.cache
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.AssemblyInfo.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.CoreCompileInputs.cache
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\ref\BuissnesLayer.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.pdb
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\DataLayer.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\DataLayer.pdb
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.CopyComplete

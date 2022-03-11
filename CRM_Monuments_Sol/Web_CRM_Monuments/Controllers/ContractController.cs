@@ -1,6 +1,8 @@
 ﻿using BuissnesLayer;
+using DataLayer.ApplicationEntities;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,13 +35,42 @@ namespace Web_CRM_Monuments.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateEditContract(int idContract)
+        public async Task<ActionResult> CreateEditContract(int idContract)
         {
-            ViewBag.TypeTexts = _dataManager.SelectPointsRepository.GetAllTypesText();// new List<string>() { "Углубленный", "Литье", "Caggiatti", "На табличке", "На медальоне", "Станочный", "Фрейзерный" };
-            ViewBag.TypePortraits = _dataManager.SelectPointsRepository.GetAllTypesPortraits();// new List<string>() { "Ручной", "Станочный" };
-            ViewBag.MedallionMaterials = _dataManager.SelectPointsRepository.GetAllMedallionsMaterials();// new List<string>() { "Керамогранит", "Керамика (фарфор)", "Триплекс", "Однослойное стекло", "Металлокерамика", "Табличка из нерж.стали" };
-            ViewBag.ShapesMedallions = _dataManager.SelectPointsRepository.GetAllShapesMedallions();// new List<string>() { "Овальная", "Прямоугольная", "Арка" };
-            ViewBag.ColorsMedallions = _dataManager.SelectPointsRepository.GetAllColorsMedallions();// new List<string>() { "Цветной", "Черно-белый" };
+            string typesTextHTML = "";
+            foreach (var tt in _dataManager.SelectPointsRepository.GetAllTypesText())
+                typesTextHTML += $"<option value=\"{tt}\">{tt}</option>";
+            ViewBag.TypesTextsHTML = new HtmlString(typesTextHTML);
+            
+            string typesPortraitHTML = "";
+            foreach (var tp in _dataManager.SelectPointsRepository.GetAllTypesPortraits())
+                typesPortraitHTML += $"<option value=\"{tp}\">{tp}</option>";
+            ViewBag.TypesPortraitHTML = new HtmlString(typesPortraitHTML);
+
+            string medallionMaterialHTML = "";
+            foreach (var mm in _dataManager.SelectPointsRepository.GetAllMedallionsMaterials())
+                medallionMaterialHTML += $"<option value=\"{mm}\">{mm}</option>";
+            ViewBag.MedallionMaterialsHTML = new HtmlString(medallionMaterialHTML);
+
+            string shapeMedallionHTML = "";
+            foreach (var sm in _dataManager.SelectPointsRepository.GetAllShapesMedallions())
+                shapeMedallionHTML += $"<option value=\"{sm}\">{sm}</option>";
+            ViewBag.ShapesMedallionsHTML = new HtmlString(shapeMedallionHTML);
+
+            string colorMedallionHTML = "";
+            foreach (var cm in _dataManager.SelectPointsRepository.GetAllColorsMedallions())
+                colorMedallionHTML += $"<option value=\"{cm}\">{cm}</option>";
+            ViewBag.ColorsMedallionsHTML = new HtmlString(colorMedallionHTML);
+
+            string artistHTML = "";
+            foreach (ApplicationUser au in await _dataManager.ApplicationUsersRepository.GetAllArtists())
+                artistHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
+            ViewBag.ArtistsHTML = new HtmlString(artistHTML);
+
+            string engraverHTML = "";
+            foreach (ApplicationUser au in await _dataManager.ApplicationUsersRepository.GetAllEngravers())
+                engraverHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
+            ViewBag.EngraversHTML = new HtmlString(engraverHTML);
 
             ContractViewModel contractViewModel;
 
