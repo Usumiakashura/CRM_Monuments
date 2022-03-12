@@ -17,6 +17,8 @@ namespace BuissnesLayer
         private IApplicationUsersRepository _applicationUsersRepository;
         private ITypesPortraitRepository _typesPortraitRepository;
 
+        private IEpitaphRepository _epitaphRepository;
+
         public DataManager(
             IContractsRepository contractsRepository,
             ICustomersRepository customersRepository,
@@ -24,7 +26,9 @@ namespace BuissnesLayer
             IPhotosOnMonumentsRepository photosOnMonumentsRepository,
             ISelectPointsRepository selectPointsRepository,
             IApplicationUsersRepository applicationUsersRepository,
-            ITypesPortraitRepository typesPortraitRepository)
+            ITypesPortraitRepository typesPortraitRepository,
+
+            IEpitaphRepository epitaphRepository)
         {
             _contractsRepository = contractsRepository;
             _customersRepository = customersRepository;
@@ -33,6 +37,8 @@ namespace BuissnesLayer
             _selectPointsRepository = selectPointsRepository;
             _applicationUsersRepository = applicationUsersRepository;
             _typesPortraitRepository = typesPortraitRepository;
+
+            _epitaphRepository = epitaphRepository;
         }
 
         public IContractsRepository Contracts { get { return _contractsRepository; } }
@@ -42,5 +48,7 @@ namespace BuissnesLayer
         public ISelectPointsRepository SelectPointsRepository { get { return _selectPointsRepository; } }
         public IApplicationUsersRepository ApplicationUsersRepository { get { return _applicationUsersRepository; } }
         public ITypesPortraitRepository TypesPortrait { get { return _typesPortraitRepository; } }
+
+        public IEpitaphRepository Epitaphs { get { return _epitaphRepository; } }
     }
 }

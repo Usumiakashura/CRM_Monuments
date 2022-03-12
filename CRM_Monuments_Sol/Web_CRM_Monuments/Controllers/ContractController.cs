@@ -51,9 +51,9 @@ namespace Web_CRM_Monuments.Controllers
                 contractViewModel = _servicesManager.Contracts.ModelDBToModelView(c);
             }
 
-
+            ViewBag.TypesText = _dataManager.SelectPointsRepository.GetAllTypesText();
             string typesTextHTML = "";
-            foreach (var tt in _dataManager.SelectPointsRepository.GetAllTypesText())
+            foreach (var tt in ViewBag.TypeText)
                 typesTextHTML += $"<option value=\"{tt}\">{tt}</option>";
             ViewBag.TypesTextsHTML = new HtmlString(typesTextHTML);
 
@@ -85,8 +85,9 @@ namespace Web_CRM_Monuments.Controllers
                 artistHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
             ViewBag.ArtistsHTML = new HtmlString(artistHTML);
 
+            ViewBag.Engravers = await _dataManager.ApplicationUsersRepository.GetAllEngravers();
             string engraverHTML = "";
-            foreach (ApplicationUser au in await _dataManager.ApplicationUsersRepository.GetAllEngravers())
+            foreach (ApplicationUser au in ViewBag.Engravers)
                 engraverHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
             ViewBag.EngraversHTML = new HtmlString(engraverHTML);
 

@@ -26,17 +26,14 @@ namespace DataLayer.Entities
         //public TypeText TypeTextName { get; set; }
         public string NotesTextName { get; set; }       //примечания к тексту (имя)
         public string EngraverName { get; set; }      //резчик текста (имя)
-        public bool Epitaph { get; set; }               //наличие эпитафии
-        public string TypeNameEpitaph { get; set; }      //тип текста на памятнике (эпитафия)
-        //public TypeText TypeTextEpitaph { get; set; }
-        public string NotesTextEpitaph { get; set; }       //примечания к тексту (эпитафия)
-        public string EngraverEpitaph { get; set; }      //резчик текста (эпитафия)
+        
+        public Epitaph Epitaph { get; set; }
         //--------------------------
         //public bool DeletedCheck { get; set; }
         public DateTime DateBeginTextName { get; set; }         //Дата Начала выполнения текста ФИО
         public DateTime DateCompleatTextName { get; set; }      //Дата завершения выполнения текста ФИО
-        public DateTime DateBeginTextEpitaph { get; set; }         //Дата Начала выполнения текста эпитафии
-        public DateTime DateCompleatTextEpitaph { get; set; }      //Дата завершения выполнения текста эпитафии
+        //public DateTime DateBeginTextEpitaph { get; set; }         //Дата Начала выполнения текста эпитафии
+        //public DateTime DateCompleatTextEpitaph { get; set; }      //Дата завершения выполнения текста эпитафии
 
         public Contract Contract { get; set; }          //для бд
 

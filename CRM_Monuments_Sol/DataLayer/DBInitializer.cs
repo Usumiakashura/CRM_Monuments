@@ -83,7 +83,10 @@ namespace DataLayer
                                 },
                                 TypeNameText = "гравировка",
                                 EngraverName = "Василий",
-                                Epitaph = false
+                                Epitaph = new Epitaph()
+                                { 
+                                    EpitaphBool = false
+                                }
                             }
                         },
                         Decoration = "оформления нет",
@@ -207,10 +210,14 @@ namespace DataLayer
                                 },
                                 TypeNameText = "гравировка",
                                 EngraverName = "Василий",
-                                Epitaph = true,
-                                TypeNameEpitaph = "гравировка",
-                                NotesTextEpitaph = "какие-то примечания к эпитафии",
-                                EngraverEpitaph = "Василий"
+                                Epitaph = new Epitaph()
+                                {
+                                    EpitaphBool = true,
+                                    TypeTextEpitaph = "гравировка",
+                                    NotesTextEpitaph = "какие-то примечания к эпитафии",
+                                    EngraverEpitaph = "Василий"
+                                }
+                                
                             }
                         },
                         Decoration = "какие-нибудь пометки по оформлению",
@@ -319,7 +326,10 @@ namespace DataLayer
                                 },
                                 TypeNameText = "гравировка",
                                 EngraverName = "Василий",
-                                Epitaph = false
+                                Epitaph = new Epitaph()
+                                {
+                                    EpitaphBool = false
+                                }
                             }
                         },
                         Decoration = "оформления нет",
@@ -443,10 +453,13 @@ namespace DataLayer
                                 },
                                 TypeNameText = "гравировка",
                                 EngraverName = "Василий",
-                                Epitaph = true,
-                                TypeNameEpitaph = "гравировка",
-                                NotesTextEpitaph = "какие-то примечания к эпитафии",
-                                EngraverEpitaph = "Василий"
+                                Epitaph = new Epitaph()
+                                {
+                                    EpitaphBool = true,
+                                    TypeTextEpitaph = "гравировка",
+                                    NotesTextEpitaph = "какие-то примечания к эпитафии",
+                                    EngraverEpitaph = "Василий"
+                                }
                             }
                         },
                         Decoration = "какие-нибудь пометки по оформлению",

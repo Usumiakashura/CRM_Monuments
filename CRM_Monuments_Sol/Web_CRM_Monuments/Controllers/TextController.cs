@@ -33,7 +33,7 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult Details(int idDeceaced, bool epitaph)
         {
-            return View(DBTexttToView(idDeceaced, epitaph));
+            return View(_servicesManager.Texts.DBTexttToView(idDeceaced, epitaph));
         }
 
         [HttpPost]
@@ -45,21 +45,9 @@ namespace Web_CRM_Monuments.Controllers
             else
                 _dataManager.Deceaseds.CompleateOnTextName(idDeceaced, d);
             
-            return View("Details", DBTexttToView(idDeceaced, epitaph));
+            return View("Details", _servicesManager.Texts.DBTexttToView(idDeceaced, epitaph));
         }
-        //-------------------------------------------
-        private TextViewModel DBTexttToView(int idDeceaced, bool epitaph)
-        {
-            TextViewModel text = new TextViewModel();
-            if (idDeceaced > 0)
-            {
-                if (epitaph)
-                    text = _servicesManager.Texts.GetTextEpitaphByIdDeceased(idDeceaced);
-                else
-                    text = _servicesManager.Texts.GetTextNameByIdDeceased(idDeceaced);
-            }
-            return text;
-        }
+        
 
     }
 }

@@ -14,6 +14,7 @@ namespace DataLayer
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Deceased> Deceaseds { get; set; }
+        public DbSet<Epitaph> Epitaphs { get; set; }
         public DbSet<Medallion> Medallions { get; set; }
         //public DbSet<OtherAccessorie> OtherAccessories { get; set; }
         public DbSet<PhotoOnMonument> PhotoOnMonuments { get; set; }

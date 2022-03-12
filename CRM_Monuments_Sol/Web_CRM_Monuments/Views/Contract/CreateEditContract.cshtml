@@ -243,19 +243,26 @@
 
                                 @*--------------- Эпитафия (начало) -----------------*@
 
-                                <div><input asp-for="Contract.Deceaseds[i].Epitaph" class="check-box check-epitaph" />  Эпитафия:</div>
-                                <textarea asp-for="Contract.Deceaseds[i].NotesTextEpitaph"
+                                <div><input asp-for="Contract.Deceaseds[i].Epitaph.EpitaphBool" class="check-box check-epitaph" />  Эпитафия:</div>
+                                
+                                <textarea asp-for="Contract.Deceaseds[i].Epitaph.NotesTextEpitaph"
                                           class="form-control text-note full notes-text-epitaph" )
                                           placeholder="Текст эпитафии..." disabled="disabled"></textarea>
 
                                 <div></div>
-                                <select class="full form-control type-name-epitaph" asp-for="Contract.Deceaseds[i].TypeNameEpitaph" disabled="disabled">
+                                <select class="full form-control type-name-epitaph" asp-for="Contract.Deceaseds[i].Epitaph.TypeTextEpitaph" disabled="disabled">
                                     <option value=@null>Тип текста эпитафии...</option>
-                                    @Html.ViewBag.TypesTextsHTML
+                                    @foreach (TypeText tt in ViewBag.TypesText)
+                                    {
+                                        <option value="@tt.Name">@tt.Name</option>
+                                    }
                                 </select>
-                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverEpitaph">
+                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].Epitaph.EngraverEpitaph">
                                     <option value=@null>Гравер (эпитафия)...</option>
-                                    @Html.ViewBag.EngraversHTML
+                                    @foreach (ApplicationUser e in ViewBag.Engravers)
+                                    {
+                                        <option value="@e.Name">@e.Name</option>
+                                    }
                                 </select>
                                 @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverEpitaph"
                                        class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />*@
@@ -452,14 +459,14 @@
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].Id)
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateBeginTextName)
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateCompleatTextName)
-                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateBeginTextEpitaph)
-                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateCompleatTextEpitaph)
+                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph)
+                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph)
                             <input type="button" class="remove-deceased r-btn float-md-left" value="х" />
                             @if (Model.Contract.Deceaseds[i].DateBeginTextName < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].DateCompleatTextName < new DateTime(2000, 01, 01))
                             {
                                 <a class="to-compleate-name rp-btn float-md-left" title="Отправить текст ФИО на выполнение"><img src="/images/send.png" class="send-btn" /></a>
                             }
-                            @if (Model.Contract.Deceaseds[i].DateBeginTextEpitaph < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].DateCompleatTextEpitaph < new DateTime(2000, 01, 01))
+                            @if (Model.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph < new DateTime(2000, 01, 01))
                             {
                                 <a class="to-compleate-epitaph rp-btn float-md-left" style="margin: 0px 0px 0px 5px"
                                    title="Отправить текст эпитафии на выполнение"><img src="/images/send.png" class="send-btn" /></a>
@@ -549,11 +556,11 @@
         $(document).on("click", "#AddDeceased", function () {
             var SelectListTypeTextNames = $($(this).siblings()[1]).find("[id$='_TypeNameText']").last();
             $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextNames);
-            var SelectListTypeTextEpitaphs = $($(this).siblings()[1]).find("[id$='_TypeNameEpitaph']").last();
+            var SelectListTypeTextEpitaphs = $($(this).siblings()[1]).find("[id$='_Epitaph_TypeTextEpitaph']").last();
             $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextEpitaphs);
             var SelectListEngraverTextNames = $($(this).siblings()[1]).find("[id$='__EngraverName']").last();
             $('@ViewBag.EngraversHTML').appendTo(SelectListEngraverTextNames);
-            var SelectListEngraverTextEpitaphs = $($(this).siblings()[1]).find("[id$='__EngraverEpitaph']").last();
+            var SelectListEngraverTextEpitaphs = $($(this).siblings()[1]).find("[id$='__Epitaph_EngraverEpitaph']").last();
             $('@ViewBag.EngraversHTML').appendTo(SelectListEngraverTextEpitaphs);
         });
 

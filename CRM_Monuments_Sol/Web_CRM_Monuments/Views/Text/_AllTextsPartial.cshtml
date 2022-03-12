@@ -50,7 +50,7 @@
             <td>
                 @if (Model[i].TextEpitaph)
                 {
-                    <label>@Model[i].Deceased.TypeNameEpitaph</label>
+                    <label>@Model[i].Deceased.Epitaph.TypeTextEpitaph</label>
                 }
                 else
                 {
@@ -66,7 +66,7 @@
             <td>
                 @if (Model[i].TextEpitaph)
                 {
-                    <label>@Model[i].Deceased.EngraverEpitaph</label>
+                    <label>@Model[i].Deceased.Epitaph.EngraverEpitaph</label>
                 }
                 else
                 {
@@ -77,8 +77,8 @@
                 DateTime dateCompl, dateBegin;
                 @if (Model[i].TextEpitaph)
                 {
-                    dateCompl = Model[i].Deceased.DateCompleatTextEpitaph;
-                    dateBegin = Model[i].Deceased.DateBeginTextEpitaph;
+                    dateCompl = Model[i].Deceased.Epitaph.DateCompleatTextEpitaph;
+                    dateBegin = Model[i].Deceased.Epitaph.DateBeginTextEpitaph;
                 }
 
                 else

@@ -75,6 +75,8 @@ namespace Web_CRM_Monuments
             services.AddTransient<IApplicationUsersRepository, EFApplicationUsersRepository>();
             services.AddTransient<ITypesPortraitRepository, EFTypesPortraitRepository>();
 
+            services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
+
             //Чтобы кирилические символы не переводились в соответствующий Unicode Hex Character Code
             services.Configure<WebEncoderOptions>(options =>
             {

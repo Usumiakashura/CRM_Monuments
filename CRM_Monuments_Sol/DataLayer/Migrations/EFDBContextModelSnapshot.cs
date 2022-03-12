@@ -157,16 +157,10 @@ namespace DataLayer.Migrations
                     b.Property<int?>("ContractId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateBeginTextEpitaph")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DateBeginTextName")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateBirthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateCompleatTextEpitaph")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateCompleatTextName")
@@ -175,14 +169,8 @@ namespace DataLayer.Migrations
                     b.Property<DateTime?>("DateRip")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("EngraverEpitaph")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("EngraverName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Epitaph")
-                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -193,26 +181,58 @@ namespace DataLayer.Migrations
                     b.Property<string>("MiddleName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NotesTextEpitaph")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NotesTextName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Photo")
                         .HasColumnType("bit");
 
-                    b.Property<string>("TypeNameEpitaph")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("TypeNameText")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TypeTextId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ContractId");
 
+                    b.HasIndex("TypeTextId");
+
                     b.ToTable("Deceaseds");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Epitaph", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateBeginTextEpitaph")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCompleatTextEpitaph")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EngraverEpitaph")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EpitaphBool")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NotesTextEpitaph")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeTextEpitaph")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TypeTextObjId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeTextObjId");
+
+                    b.ToTable("Epitaphs");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.MedallionMaterial", b =>
@@ -422,7 +442,28 @@ namespace DataLayer.Migrations
                         .WithMany("Deceaseds")
                         .HasForeignKey("ContractId");
 
+                    b.HasOne("DataLayer.Entities.TypeText", null)
+                        .WithMany("Deceaseds")
+                        .HasForeignKey("TypeTextId");
+
                     b.Navigation("Contract");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.Epitaph", b =>
+                {
+                    b.HasOne("DataLayer.Entities.Deceased", "Deceased")
+                        .WithOne("Epitaph")
+                        .HasForeignKey("DataLayer.Entities.Epitaph", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataLayer.Entities.TypeText", "TypeTextObj")
+                        .WithMany("Epitaphs")
+                        .HasForeignKey("TypeTextObjId");
+
+                    b.Navigation("Deceased");
+
+                    b.Navigation("TypeTextObj");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.PhotoOnMonument", b =>
@@ -478,6 +519,8 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.Deceased", b =>
                 {
+                    b.Navigation("Epitaph");
+
                     b.Navigation("PhotosOnMonument");
                 });
 
@@ -494,6 +537,13 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Entities.TypePortrait", b =>
                 {
                     b.Navigation("Portraits");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.TypeText", b =>
+                {
+                    b.Navigation("Deceaseds");
+
+                    b.Navigation("Epitaphs");
                 });
 #pragma warning restore 612, 618
         }

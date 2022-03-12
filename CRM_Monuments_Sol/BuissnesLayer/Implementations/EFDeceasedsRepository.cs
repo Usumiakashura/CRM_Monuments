@@ -14,16 +14,18 @@ namespace BuissnesLayer.Implementations
     {
         private EFDBContext _context;
         private IPhotosOnMonumentsRepository _photosOnMonumentsRepository;
+        private IEpitaphRepository _epitaphRepository;
 
         public EFDeceasedsRepository(EFDBContext context)
         {
             _context = context;
             _photosOnMonumentsRepository = new EFPhotosOnMonumentsRepository(_context);
+            _epitaphRepository = new EFEpitaphRepository(_context);
         }
 
         public IEnumerable<Deceased> GetAllDeceasedsByIdContract(int contractId)     //получить весь список, относящийся к определенному договору
         {
-            var deceaseds = _context.Deceaseds.Include(d => d.PhotosOnMonument)
+            var deceaseds = _context.Deceaseds.Include(d => d.PhotosOnMonument).Include(e => e.Epitaph)
                 .Include(d => d.Contract).Where(d => d.Contract.Id == contractId);
             return deceaseds;
         }
@@ -31,6 +33,7 @@ namespace BuissnesLayer.Implementations
         public Deceased GetDeceasedById(int deceasedId)    //получить один по айди
         {
             Deceased deceased = _context.Deceaseds.Find(deceasedId);
+            deceased.Epitaph = _epitaphRepository.GetEpitaphByIdDeceased(deceasedId);
             return deceased;
         }
 
@@ -41,7 +44,7 @@ namespace BuissnesLayer.Implementations
         }
         public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate) //отметить выполнение текста эпитафии
         {
-            GetDeceasedById(idDeceaced).DateCompleatTextEpitaph = dateCompleate;
+            GetDeceasedById(idDeceaced).Epitaph.DateCompleatTextEpitaph = dateCompleate;
             _context.SaveChanges();
         }
 
@@ -66,6 +69,7 @@ namespace BuissnesLayer.Implementations
         public void DeleteDeceased(Deceased deceased)      //удалить из бд
         {
             _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(deceased.Id);
+            _context.Epitaphs.Remove(deceased.Epitaph);
             _context.Deceaseds.Remove(deceased);
             _context.SaveChanges();
         }
@@ -75,6 +79,7 @@ namespace BuissnesLayer.Implementations
             foreach (Deceased d in GetAllDeceasedsByIdContract(contractId))
             {
                 _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(d.Id);
+
                 _context.Deceaseds.Remove(d);
             }
             //_context.SaveChanges();

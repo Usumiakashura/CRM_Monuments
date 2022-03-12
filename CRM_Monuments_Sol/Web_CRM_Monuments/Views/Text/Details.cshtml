@@ -63,7 +63,7 @@
                         Текст эпитафии:
                     </td>
                     <td>
-                        @Model.Deceased.NotesTextEpitaph
+                        @Model.Deceased.Epitaph.NotesTextEpitaph
                     </td>
                 </tr>
                 <tr>
@@ -71,7 +71,7 @@
                         Тип текста:
                     </td>
                     <td>
-                        @Model.Deceased.TypeNameEpitaph
+                        @Model.Deceased.Epitaph.TypeTextEpitaph
                     </td>
                 </tr>
                 <tr>
@@ -79,7 +79,7 @@
                         Гравер:
                     </td>
                     <td>
-                        @Model.Deceased.EngraverEpitaph
+                        @Model.Deceased.Epitaph.EngraverEpitaph
                     </td>
                 </tr>
             }
@@ -143,8 +143,8 @@
     }
     @if (Model.TextEpitaph)
     {
-        dateBegin = Model.Deceased.DateBeginTextEpitaph;
-        dateCompleate = Model.Deceased.DateCompleatTextEpitaph;
+        dateBegin = Model.Deceased.Epitaph.DateBeginTextEpitaph;
+        dateCompleate = Model.Deceased.Epitaph.DateCompleatTextEpitaph;
     }
     else
     {

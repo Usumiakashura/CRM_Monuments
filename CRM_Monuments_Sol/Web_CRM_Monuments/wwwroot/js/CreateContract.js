@@ -356,16 +356,16 @@ function AddDeceased() {
     var CheckEpit = $("<input/>").attr("type", "checkbox")
         .attr("data-val", "true")
         .attr("data-val-required", "The Epitaph field is required.")
-        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph")
-        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_EpitaphBool")
+        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.EpitaphBool")
         .attr("value", "true")
         .attr("class", "check-box check-epitaph")
         .appendTo(DivEpitaph);
     CheckEpit.click(CheckEpitaph);
     $("<label/>").text(" Эпитафия: ").appendTo(DivEpitaph);
 
-    $("<textarea/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__NotesTextEpitaph")
-        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].NotesTextEpitaph")
+    $("<textarea/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_NotesTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.NotesTextEpitaph")
         .attr("class", "form-control text-note full notes-text-epitaph-" + DeceasedsCount)
         .attr("placeholder", "Текст эпитафии...")
         .prop("disabled", true)
@@ -374,14 +374,14 @@ function AddDeceased() {
     $("<div/>").appendTo(WrapperD);
 
     var SelectEpitaphTypeText = $("<select/>").attr("class", "form-control full type-name-epitaph-" + DeceasedsCount)
-        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__TypeNameEpitaph")
-        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].TypeNameEpitaph")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_TypeTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.TypeTextEpitaph")
         .prop("disabled", true)
         .appendTo(WrapperD);
     $("<option/>").attr("value", "0").text("Тип текста эпитафии...").appendTo(SelectEpitaphTypeText);
 
-    var SelectEngraverEpitaph = $("<select/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__EngraverEpitaph")
-        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].EngraverEpitaph")
+    var SelectEngraverEpitaph = $("<select/>").attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_EngraverEpitaph")
+        .attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.EngraverEpitaph")
         .attr("class", "form-control full engraver-epitaph-" + DeceasedsCount)
         .prop("disabled", true)
         .appendTo(WrapperD);
@@ -394,6 +394,8 @@ function AddDeceased() {
     //    .attr("placeholder", "Гравер (эпитафия)...")
     //    .prop("disabled", true)
     //    .appendTo(WrapperD);
+
+
     //----- Эпитафия (конец) ------------------------
 
 
@@ -420,12 +422,12 @@ function AddDeceased() {
     $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateCompleatTextName")
         .attr("type", "hidden").attr("data-val-required", "The DateCompleatTextName field is required.")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateCompleatTextName").appendTo(DeceasedContainer);
-    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateBeginTextEpitaph")
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.DateBeginTextEpitaph")
         .attr("type", "hidden").attr("data-val-required", "The DateBeginTextEpitaph field is required.")
-        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateBeginTextEpitaph").appendTo(DeceasedContainer);
-    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateCompleatTextEpitaph")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_DateBeginTextEpitaph").appendTo(DeceasedContainer);
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.DateCompleatTextEpitaph")
         .attr("type", "hidden").attr("data-val-required", "The DateCompleatTextEpitaph field is required.")
-        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateCompleatTextEpitaph").appendTo(DeceasedContainer);
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_DateCompleatTextEpitaph").appendTo(DeceasedContainer);
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-deceased r-btn float-md-left")
         .attr("value", "x").appendTo(DeceasedContainer);
@@ -496,28 +498,32 @@ function RecalculateNamesAndIdsDeceaseds(number) {
     $("#Contract_Deceaseds_" + number + "__NotesTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__NotesTextName")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].NotesTextName");
 
-    $("#Contract_Deceaseds_" + number + "__Epitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph")
-        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph");
-    $("#Contract_Deceaseds_" + number + "__NotesTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__NotesTextEpitaph")
-        .attr("name", "Contract.Deceaseds[" + prevNumber + "].NotesTextEpitaph")
+    //------- эпитафия ------------------
+    $("#Contract_Deceaseds_" + number + "__Epitaph_EpitaphBool").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_EpitaphBool")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.EpitaphBool");
+    $("#Contract_Deceaseds_" + number + "__Epitaph_NotesTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_NotesTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.NotesTextEpitaph")
         .attr("class", "form-control text-note full notes-text-epitaph-" + prevNumber);
-    $("#Contract_Deceaseds_" + number + "__TypeNameEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__TypeNameEpitaph")
-        .attr("name", "Contract.Deceaseds[" + prevNumber + "].TypeNameEpitaph")
+    $("#Contract_Deceaseds_" + number + "__Epitaph_TypeTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_TypeTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.TypeNameEpitaph")
         .attr("class", "form-control full type-name-epitaph-" + prevNumber);
-    $("#Contract_Deceaseds_" + number + "__EngraverEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__EngraverEpitaph")
-        .attr("name", "Contract.Deceaseds[" + prevNumber + "].EngraverEpitaph")
+    $("#Contract_Deceaseds_" + number + "__Epitaph_EngraverEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_EngraverEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.EngraverEpitaph")
         .attr("class", "form-control full engraver-epitaph-" + prevNumber);
+    //-------- эпитафия -----------------
+
     $("#Contract_Deceaseds_" + number + "__Id").attr("id", "Contract_Deceaseds_" + prevNumber + "__Id")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].Id");
+    
 
     $("#Contract_Deceaseds_" + number + "__DateBeginTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateBeginTextName")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateBeginTextName");
     $("#Contract_Deceaseds_" + number + "__DateCompleatTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateCompleatTextName")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateCompleatTextName");
-    $("#Contract_Deceaseds_" + number + "__DateBeginTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateBeginTextEpitaph")
-        .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateBeginTextEpitaph");
-    $("#Contract_Deceaseds_" + number + "__DateCompleatTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateCompleatTextEpitaph")
-        .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateCompleatTextEpitaph");
+    $("#Contract_Deceaseds_" + number + "__Epitaph_DateBeginTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_DateBeginTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.DateBeginTextEpitaph");
+    $("#Contract_Deceaseds_" + number + "__Epitaph_DateCompleatTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_DateCompleatTextEpitaph")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.DateCompleatTextEpitaph");
 
     $("#Portraits" + number).attr("id", "Portraits" + prevNumber).attr("class", "Portraits" + prevNumber);
     $(".ap" + number).attr("class", "add-btn my-btn add-portrait ap" + prevNumber);

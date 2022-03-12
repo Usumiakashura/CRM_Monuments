@@ -11,13 +11,13 @@ namespace DataLayer.Entities
         public int Id { get; set; }                     //Id
         public string Name { get; set; }                //Название
 
-        //public List<Deceased> ObjsForTextName { get; set; }
-        //public List<Deceased> ObjsForTextEpitaph { get; set; }
-        //public TypeText()
-        //{
-        //    ObjsForTextName = new List<Deceased>();
-        //    ObjsForTextEpitaph = new List<Deceased>();
-        //}
+        public List<Deceased> Deceaseds { get; set; }
+        public List<Epitaph> Epitaphs { get; set; }
+        public TypeText()
+        {
+            Deceaseds = new List<Deceased>();
+            Epitaphs = new List<Epitaph>();
+        }
 
     }
 }

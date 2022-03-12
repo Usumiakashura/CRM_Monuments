@@ -26,6 +26,19 @@ namespace Web_CRM_Monuments.Services.ViewServices
             return GetAllTexts().Where(x => x.Deceased.Id == idDeceased && x.TextEpitaph == true).First();
         }
 
+        public TextViewModel DBTexttToView(int idDeceaced, bool epitaph)
+        {
+            TextViewModel text = new TextViewModel();
+            if (idDeceaced > 0)
+            {
+                if (epitaph)
+                    text = GetTextEpitaphByIdDeceased(idDeceaced);
+                else
+                    text = GetTextNameByIdDeceased(idDeceaced);
+            }
+            return text;
+        }
+
         public IEnumerable<TextViewModel> GetAllTexts()
         {
             List<TextViewModel> texts = new List<TextViewModel>();
@@ -43,7 +56,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
                         PhoneCustomer = c.Customers[0].Number,
                         TextEpitaph = false
                     });
-                    if (d.Epitaph)
+                    if (d.Epitaph.EpitaphBool)
                     {
                         texts.Add(new TextViewModel()
                         {
