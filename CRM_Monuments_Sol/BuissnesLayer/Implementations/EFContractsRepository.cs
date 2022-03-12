@@ -15,14 +15,12 @@ namespace BuissnesLayer.Implementations
         private EFDBContext _context;
         private ICustomersRepository _customersRepository;
         private IDeceasedsRepository _deceasedsRepository;
-        private IAccessorriesRepository _accessorriesRepository;
 
         public EFContractsRepository(EFDBContext context)
         {
             _context = context;
             _customersRepository = new EFCustomersRepository(_context);
             _deceasedsRepository = new EFDeceasedsRepository(_context);
-            _accessorriesRepository = new EFAccessorriesRepository(_context);
         }
 
         public IEnumerable<Contract> GetAllContracts()     //получить весь список

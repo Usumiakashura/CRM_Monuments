@@ -67,12 +67,10 @@ namespace Web_CRM_Monuments
             //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddTransient<IAccessorriesRepository, EFAccessorriesRepository>();
             services.AddTransient<IContractsRepository, EFContractsRepository>();
             services.AddTransient<ICustomersRepository, EFCustomersRepository>();
             services.AddTransient<IDeceasedsRepository, EFDeceasedsRepository>();
             services.AddTransient<IPhotosOnMonumentsRepository, EFPhotosOnMonumentsRepository>();
-            services.AddTransient<IStoneMaterialsRepository, EFStoneMaterialsRepository>();
             services.AddTransient<ISelectPointsRepository, EFSelectPointsRepository>();
             services.AddTransient<IApplicationUsersRepository, EFApplicationUsersRepository>();
             services.AddTransient<ITypesPortraitRepository, EFTypesPortraitRepository>();
