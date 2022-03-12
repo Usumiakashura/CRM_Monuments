@@ -17,6 +17,7 @@ namespace BuissnesLayer
         private IStoneMaterialsRepository _stoneMaterialsRepository;
         private ISelectPointsRepository _selectPointsRepository;
         private IApplicationUsersRepository _applicationUsersRepository;
+        private ITypesPortraitRepository _typesPortraitRepository;
 
         public DataManager(
             IAccessorriesRepository accessorriesRepository,
@@ -26,7 +27,8 @@ namespace BuissnesLayer
             IPhotosOnMonumentsRepository photosOnMonumentsRepository,
             IStoneMaterialsRepository stoneMaterialsRepository,
             ISelectPointsRepository selectPointsRepository,
-            IApplicationUsersRepository applicationUsersRepository)
+            IApplicationUsersRepository applicationUsersRepository,
+            ITypesPortraitRepository typesPortraitRepository)
         {
             _accessorriesRepository = accessorriesRepository;
             _contractsRepository = contractsRepository;
@@ -36,6 +38,7 @@ namespace BuissnesLayer
             _stoneMaterialsRepository = stoneMaterialsRepository;
             _selectPointsRepository = selectPointsRepository;
             _applicationUsersRepository = applicationUsersRepository;
+            _typesPortraitRepository = typesPortraitRepository;
         }
 
         public IAccessorriesRepository Accessorries { get { return _accessorriesRepository; } }
@@ -46,5 +49,6 @@ namespace BuissnesLayer
         public IStoneMaterialsRepository StoneMaterials { get { return _stoneMaterialsRepository; } }
         public ISelectPointsRepository SelectPointsRepository { get { return _selectPointsRepository; } }
         public IApplicationUsersRepository ApplicationUsersRepository { get { return _applicationUsersRepository; } }
+        public ITypesPortraitRepository TypesPortrait { get { return _typesPortraitRepository; } }
     }
 }

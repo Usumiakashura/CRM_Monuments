@@ -25,13 +25,13 @@ namespace BuissnesLayer.Implementations
                 pointsForSelect.Add(tt.Name);
             return pointsForSelect;
         }
-        public IEnumerable<string> GetAllTypesPortraits()
-        {
-            List<string> pointsForSelect = new List<string>();
-            foreach (TypePortrait tp in _context.TypePortraits)
-                pointsForSelect.Add(tp.Name);
-            return pointsForSelect;
-        }
+        //public IEnumerable<string> GetAllTypesPortraits()
+        //{
+        //    List<string> pointsForSelect = new List<string>();
+        //    foreach (TypePortrait tp in _context.TypePortraits)
+        //        pointsForSelect.Add(tp.Name);
+        //    return pointsForSelect;
+        //}
         public IEnumerable<string> GetAllMedallionsMaterials()
         {
             List<string> pointsForSelect = new List<string>();

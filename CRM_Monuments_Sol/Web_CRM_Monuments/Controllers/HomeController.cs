@@ -33,7 +33,7 @@ namespace Web_CRM_Monuments.Controllers
         [Authorize(Roles = "manager,artist,engraver")]
         public IActionResult Index()
         {
-            var c = _dataManager.Contracts.GetAllContracts();
+            //var c = _dataManager.Contracts.GetAllContracts();
 
             if (User.IsInRole("manager"))
             {
@@ -60,7 +60,7 @@ namespace Web_CRM_Monuments.Controllers
                     "<div><input type = \"button\" value=\"Текста\" class=\"full\" id=\"AllTexts\" style=\"height: 50px; margin-right: 10px;\" /></div>");
             }
 
-            return View(c);
+            return View();
         }
 
         [Authorize(Roles = "manager")]

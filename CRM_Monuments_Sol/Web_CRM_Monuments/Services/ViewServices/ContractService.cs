@@ -1,4 +1,6 @@
 ﻿using BuissnesLayer;
+using BuissnesLayer.Implementations;
+using BuissnesLayer.Interfaces;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -84,6 +86,12 @@ namespace Web_CRM_Monuments.Services.ViewServices
                 if (portrait.Value.Id != 0)
                 {
                     if (portrait.Value.Id == -1) portrait.Value.Id = 0;
+                    portrait.Value.TypePortrait = new TypePortrait()
+                    {
+                        Id = _dataManager.TypesPortrait.GetIdTypeByName(portrait.Value.TypePortraitName),
+                        Name = portrait.Value.TypePortraitName
+                    };
+                    portrait.Value.TypePortrait = _dataManager.TypesPortrait.GetTypePortraitByName(portrait.Value.TypePortraitName);
                     // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
                     MatchCollection match = Regex.Matches(portrait.Key, @"D(\d+)");
                     // Достаем номер этого контейнега
@@ -114,28 +122,50 @@ namespace Web_CRM_Monuments.Services.ViewServices
         {
             ContractViewModel cvm = new ContractViewModel();
             cvm.Contract = contract;
-            int numPortrait, numMedallion;
-            for (int i = 0; i < contract.Deceaseds.Count; i++)
+            int numDeceased, numPortrait, numMedallion;
+            foreach (Deceased d in _dataManager.Deceaseds.GetAllDeceasedsByIdContract(contract.Id))
             {
-                numPortrait = 0; 
+                numDeceased = 0;
+                numPortrait = 0;
                 numMedallion = 0;
-                foreach (PhotoOnMonument ph in contract.Deceaseds[i].PhotosOnMonument)
+                foreach (PhotoOnMonument ph in d.PhotosOnMonument)
                 {
                     if (ph is Portrait)
                     {
-                        cvm.Portraits.Add($"D{i}P{numPortrait}", (Portrait)ph);
+                        cvm.Portraits.Add($"D{numDeceased}P{numPortrait}", (Portrait)ph);
                         numPortrait++;
                     }
                     else if (ph is Medallion)
                     {
-                        cvm.Medallions.Add($"D{i}M{numMedallion}", (Medallion)ph);
+                        cvm.Medallions.Add($"D{numDeceased}M{numMedallion}", (Medallion)ph);
                         numMedallion++;
                     }
-
-                    //cvm.Photos.Add(new PhotoViewModel() { Image = new IFormFile() })
                 }
-
+                numDeceased++;
             }
+
+
+            //for (int i = 0; i <  contract.Deceaseds.Count; i++)
+            //{
+            //    numPortrait = 0; 
+            //    numMedallion = 0;
+            //    foreach (PhotoOnMonument ph in contract.Deceaseds[i].PhotosOnMonument)
+            //    {
+            //        if (ph is Portrait)
+            //        {
+            //            cvm.Portraits.Add($"D{i}P{numPortrait}", (Portrait)ph);
+            //            numPortrait++;
+            //        }
+            //        else if (ph is Medallion)
+            //        {
+            //            cvm.Medallions.Add($"D{i}M{numMedallion}", (Medallion)ph);
+            //            numMedallion++;
+            //        }
+
+            //        //cvm.Photos.Add(new PhotoViewModel() { Image = new IFormFile() })
+            //    }
+
+            //}
 
             return cvm;
         }

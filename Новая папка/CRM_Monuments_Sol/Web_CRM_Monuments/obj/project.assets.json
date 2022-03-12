@@ -7536,11 +7536,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
+      "projectUniqueName": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
       "projectName": "Web_CRM_Monuments",
-      "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
+      "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
       "packagesPath": "C:\\Users\\aliak\\.nuget\\packages\\",
-      "outputPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\Web_CRM_Monuments\\obj\\",
+      "outputPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\Web_CRM_Monuments\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -7564,11 +7564,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj": {
-              "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj"
+            "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj": {
+              "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj"
             },
-            "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj": {
-              "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj"
+            "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj": {
+              "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj"
             }
           }
         }

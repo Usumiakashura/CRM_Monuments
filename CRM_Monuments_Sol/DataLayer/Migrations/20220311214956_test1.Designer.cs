@@ -4,14 +4,16 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    partial class EFDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220311214956_test1")]
+    partial class test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -381,11 +383,11 @@ namespace DataLayer.Migrations
                     b.Property<string>("Artist")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TypePortraitId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TypePortraitName")
+                    b.Property<string>("TypePortrait")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TypePortraitId")
+                        .HasColumnType("int");
 
                     b.HasIndex("TypePortraitId");
 
@@ -421,11 +423,13 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.Portrait", b =>
                 {
-                    b.HasOne("DataLayer.Entities.TypePortrait", "TypePortrait")
+                    b.HasOne("DataLayer.Entities.TypePortrait", "TypePortraitObj")
                         .WithMany("Portraits")
-                        .HasForeignKey("TypePortraitId");
+                        .HasForeignKey("TypePortraitId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("TypePortrait");
+                    b.Navigation("TypePortraitObj");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Contract", b =>

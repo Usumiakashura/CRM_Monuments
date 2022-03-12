@@ -201,7 +201,7 @@ namespace DataLayer
                                 {
                                     new Portrait()
                                     {
-                                        TypePortrait = "ручной",
+                                        TypePortraitName = "ручной",
                                         Artist = "Татьяна"
                                     }
                                 },
@@ -437,7 +437,7 @@ namespace DataLayer
                                 {
                                     new Portrait()
                                     {
-                                        TypePortrait = "ручной",
+                                        TypePortraitName = "ручной",
                                         Artist = "Татьяна"
                                     }
                                 },

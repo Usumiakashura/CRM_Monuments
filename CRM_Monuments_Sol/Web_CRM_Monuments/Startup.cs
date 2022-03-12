@@ -75,7 +75,7 @@ namespace Web_CRM_Monuments
             services.AddTransient<IStoneMaterialsRepository, EFStoneMaterialsRepository>();
             services.AddTransient<ISelectPointsRepository, EFSelectPointsRepository>();
             services.AddTransient<IApplicationUsersRepository, EFApplicationUsersRepository>();
-
+            services.AddTransient<ITypesPortraitRepository, EFTypesPortraitRepository>();
 
             //Чтобы кирилические символы не переводились в соответствующий Unicode Hex Character Code
             services.Configure<WebEncoderOptions>(options =>

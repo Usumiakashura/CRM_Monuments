@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    public class TypePortrait : SelectPoint
+    public class TypePortrait
     {
-        //public int Id { get; set; }                     //Id
-        //public string Name { get; set; }                //Название
+        public int Id { get; set; }                     //Id
+        public string Name { get; set; }                //Название
+
+        public List<Portrait> Portraits { get; set; }
+
+        public TypePortrait()
+        {
+            Portraits = new List<Portrait>();
+        }
     }
 }

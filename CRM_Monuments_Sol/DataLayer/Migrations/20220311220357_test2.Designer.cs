@@ -4,14 +4,16 @@ using DataLayer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    partial class EFDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220311220357_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -381,13 +383,16 @@ namespace DataLayer.Migrations
                     b.Property<string>("Artist")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TypePortraitId")
+                    b.Property<int>("TPId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TypePortraitName")
+                    b.Property<string>("TypePortrait")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("TypePortraitId");
+                    b.Property<int?>("TypePortraitObjId")
+                        .HasColumnType("int");
+
+                    b.HasIndex("TypePortraitObjId");
 
                     b.HasDiscriminator().HasValue("Portrait");
                 });
@@ -421,11 +426,11 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.Portrait", b =>
                 {
-                    b.HasOne("DataLayer.Entities.TypePortrait", "TypePortrait")
+                    b.HasOne("DataLayer.Entities.TypePortrait", "TypePortraitObj")
                         .WithMany("Portraits")
-                        .HasForeignKey("TypePortraitId");
+                        .HasForeignKey("TypePortraitObjId");
 
-                    b.Navigation("TypePortrait");
+                    b.Navigation("TypePortraitObj");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Contract", b =>

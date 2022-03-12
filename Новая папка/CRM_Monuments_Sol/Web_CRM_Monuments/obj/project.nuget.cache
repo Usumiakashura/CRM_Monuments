@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KQMhgXbt5yOYpNx1PCpf2653Dc5tEjKl+uYLIS1u0QczpL6r0yFxgX6EowABJZp65Ci5enZSKyz9RuaYODUrGA==",
+  "dgSpecHash": "3YL4NyrGhA6J76451HNWWJa/kuydmg7pKUEYbJ6T2ecxgSkXF4fZ3foQDWEXMTXFK/1Akg/otlPpbzdZHS82CQ==",
   "success": true,
-  "projectFilePath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
+  "projectFilePath": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\Web_CRM_Monuments\\Web_CRM_Monuments.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aliak\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\jquery\\3.6.0\\jquery.3.6.0.nupkg.sha512",

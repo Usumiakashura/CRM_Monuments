@@ -4,6 +4,7 @@ using DataLayer.Entities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,15 +38,31 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public async Task<ActionResult> CreateEditContract(int idContract)
         {
+            ContractViewModel contractViewModel;
+
+            if (idContract == 0)
+            {
+                contractViewModel = new ContractViewModel();
+                contractViewModel.Contract.Number = _dataManager.Contracts.NewNumber();
+            }
+            else
+            {
+                Contract c = _dataManager.Contracts.GetContractById(idContract);
+                contractViewModel = _servicesManager.Contracts.ModelDBToModelView(c);
+            }
+
+
             string typesTextHTML = "";
             foreach (var tt in _dataManager.SelectPointsRepository.GetAllTypesText())
                 typesTextHTML += $"<option value=\"{tt}\">{tt}</option>";
             ViewBag.TypesTextsHTML = new HtmlString(typesTextHTML);
-            
+
+            ViewBag.TypesPortrait = _dataManager.TypesPortrait.GetAllTypesPortraits();
             string typesPortraitHTML = "";
-            foreach (var tp in _dataManager.SelectPointsRepository.GetAllTypesPortraits())
-                typesPortraitHTML += $"<option value=\"{tp}\">{tp}</option>";
+            foreach (var tp in ViewBag.TypesPortrait)
+                typesPortraitHTML += $"<option value=\"{tp.Name}\">{tp.Name}</option>";
             ViewBag.TypesPortraitHTML = new HtmlString(typesPortraitHTML);
+            
 
             string medallionMaterialHTML = "";
             foreach (var mm in _dataManager.SelectPointsRepository.GetAllMedallionsMaterials())
@@ -62,8 +79,9 @@ namespace Web_CRM_Monuments.Controllers
                 colorMedallionHTML += $"<option value=\"{cm}\">{cm}</option>";
             ViewBag.ColorsMedallionsHTML = new HtmlString(colorMedallionHTML);
 
+            ViewBag.Artists = await _dataManager.ApplicationUsersRepository.GetAllArtists();
             string artistHTML = "";
-            foreach (ApplicationUser au in await _dataManager.ApplicationUsersRepository.GetAllArtists())
+            foreach (ApplicationUser au in ViewBag.Artists)
                 artistHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
             ViewBag.ArtistsHTML = new HtmlString(artistHTML);
 
@@ -72,18 +90,7 @@ namespace Web_CRM_Monuments.Controllers
                 engraverHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
             ViewBag.EngraversHTML = new HtmlString(engraverHTML);
 
-            ContractViewModel contractViewModel;
-
-            if (idContract == 0)
-            {
-                contractViewModel = new ContractViewModel();
-                contractViewModel.Contract.Number = _dataManager.Contracts.NewNumber();
-            }
-            else
-            {
-                Contract c = _dataManager.Contracts.GetContractById(idContract);
-                contractViewModel = _servicesManager.Contracts.ModelDBToModelView(c);
-            }
+            
 
             return View(contractViewModel);
         }

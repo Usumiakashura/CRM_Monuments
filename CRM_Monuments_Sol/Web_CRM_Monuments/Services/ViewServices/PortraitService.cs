@@ -29,20 +29,17 @@ namespace Web_CRM_Monuments.Services.ViewServices
             {
                 foreach (Deceased d in c.Deceaseds)
                 {
-                    foreach (PhotoOnMonument p in d.PhotosOnMonument)
+                    foreach (PhotoOnMonument p in d.PhotosOnMonument.Where(p => p is Portrait))
                     {
-                        if (p is Portrait)
+                        portraits.Add(new PortraitViewModel()
                         {
-                            portraits.Add(new PortraitViewModel() 
-                            { 
-                                Portrait = (Portrait)p,
-                                ContractNumber = c.NumYear + "/" + c.Place + "/" + c.Number,
-                                DateConclusionContract = c.DateOfConclusion,
-                                LastNameDeceased = d.LastName,
-                                NameCustomer = c.Customers[0].LastName + " " + c.Customers[0].FirstName + " " + c.Customers[0].MiddleName,
-                                PhoneCustomer = c.Customers[0].Number
-                            });
-                        }
+                            Portrait = (Portrait)p,
+                            ContractNumber = c.NumYear + "/" + c.Place + "/" + c.Number,
+                            DateConclusionContract = c.DateOfConclusion,
+                            LastNameDeceased = d.LastName,
+                            NameCustomer = c.Customers[0].LastName + " " + c.Customers[0].FirstName + " " + c.Customers[0].MiddleName,
+                            PhoneCustomer = c.Customers[0].Number
+                        });
                     }
                 }
             }

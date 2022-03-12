@@ -8,7 +8,9 @@ namespace DataLayer.Entities
 {
     public class Portrait : PhotoOnMonument
     {   //портрет
-        public string TypePortrait { get; set; }        //тип портрета (ручной/станочный)
         public string Artist { get; set; }              //художник
+        public string TypePortraitName { get; set; }        //тип портрета (ручной/станочный)
+        public int? TypePortraitId { get; set; }        //тип портрета Id
+        public TypePortrait TypePortrait { get; set; }
     }
 }

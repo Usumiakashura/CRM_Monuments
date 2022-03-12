@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2gDy9h4msZBD+URYn3+cZz7OfFyJ8d/5fK9BBjqlSchWxUCwjW8kGlGC5dpAEfgjWFQj6VGiu3LfLPU60f8+mA==",
+  "dgSpecHash": "LoIzMG2hzey9d7rw09nCKT0LArMNJ/58LYWW7stKjIKbHA1c7LOiO0MB7WAFNXkB1JMUrCbuyAgLJDN7AESWtA==",
   "success": true,
-  "projectFilePath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj",
+  "projectFilePath": "E:\\Учеба\\БГУиР\\Дипломный проект\\Новая папка\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.6\\microsoft.aspnetcore.cryptography.internal.5.0.6.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.6\\microsoft.aspnetcore.cryptography.keyderivation.5.0.6.nupkg.sha512",

@@ -270,63 +270,88 @@
                                         @{int numPortraits = Model.Contract.Deceaseds[i].PhotosOnMonument.Where(ph => ph is Portrait).Count();}
                                         @if (numPortraits > 0)
                                         {
-                            @for (int p = 0; p < numPortraits; p++)
-                            {
-                                string keyP = $"D{i}P{p}";
-                            <div class="portrait-container mar-top5" id=@($"PortraitContainer{p}")>
-                                <div class="border p96 float-md-left ">
-                                    <label class="font-weight-bold">Портрет</label>
-                                    <div class="wrapper w3 ">
+                                            @for (int p = 0; p < numPortraits; p++)
+                                            {
+                                                string keyP = $"D{i}P{p}";
+                                                <div class="portrait-container mar-top5" id=@($"PortraitContainer{p}")>
+                                                    <div class="border p96 float-md-left ">
+                                                        <label class="font-weight-bold">Портрет</label>
+                                                        <div class="wrapper w3 ">
 
-                                        <div class="wrapper w2">
-                                            <div class="custom-file full">
+                                                            <div class="wrapper">
+                                                                <table>
+                                                                    <thead></thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <div class="custom-file full">
 
-                                                <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
-                                                <input type="file" asp-for="Photos[p].Image"
-                                                       class="custom-file-input form-control full" accept="image/*,image/jpeg">
-                                                <label class="custom-file-label form-control" asp-for="Photos[p].Image">Новое изображение...</label>
+                                                                                    <input asp-for="Photos[Model.PhotoCounter].PhotoKey" type="hidden" value=@keyP />
+                                                                                    <input type="file" asp-for="Photos[p].Image"
+                                                                                           class="custom-file-input form-control full" accept="image/*,image/jpeg">
+                                                                                    <label class="custom-file-label form-control" asp-for="Photos[p].Image">Новое изображение...</label>
 
-                                                @{ Model.PhotoCounter++; }
-                                                @*позже добавить отображение загруженного файла/ов (multiple)*@
-                                            </div>
-                                            @if (Model.Portraits[keyP].PhotoName != null)
-                                            {@*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
-                                                                            <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
-                                                                               class="download-btn full">
-                                                                                <input type="button" value="Скачать" />
-                                                                            </a>}
-                                        </div>
+                                                                                    @{ Model.PhotoCounter++; }
+                                                                                    @*позже добавить отображение загруженного файла/ов (multiple)*@
+                                                                                </div>
+                                                                            </td>
+                                                                            @if (Model.Portraits[keyP].PhotoName != null)
+                                                                            {
+                                                        <td>
+                                                            @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
+                                                        <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
+                                                           class="download-btn full">
+                                                            <input type="button" value="Скачать" />
+                                                        </a>
+                                                        </td>}
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
 
 
+                                                            </div>
 
-                                        <select asp-for="Portraits[keyP].TypePortrait" class="form-control min-width-select-for-photo">
-                                            <option value=@null>Тип портрета...</option>
-                                            @Html.ViewBag.TypesPortraitHTML
-                                        </select>
 
-                                        <select asp-for="Portraits[keyP].Artist" class="form-control min-width-select-for-photo">
-                                            <option value=@null>Художник...</option>
-                                            @Html.ViewBag.ArtistsHTML
-                                        </select>
+                                                            @*@Html.DropDownListFor(model => model.Portraits[keyP].TypePortrait, ViewBag.TypesPortrait as SelectList)*@
+                                                            <select asp-for="Portraits[keyP].TypePortraitName" class="form-control min-width-select-for-photo">
+                                                                <option value=@null>Тип портрета...</option>
+                                                                @foreach (var tp in ViewBag.TypesPortrait)
+                                                                {
+                                                                    <option value="@tp.Name">@tp.Name</option>
+                                                                }
+                                                                @*@Html.ViewBag.TypesPortraitHTML*@
+                                                            </select>
 
-                                        @*<input class="form-control" asp-for="Portraits[keyP].Artist" placeholder="Художник..." />*@
+                                                            <select asp-for="Portraits[keyP].Artist" class="form-control min-width-select-for-photo">
+                                                                <option value=@null>Художник...</option>
+                                                                @foreach (var a in ViewBag.Artists)
+                                                                {
+                                                                    <option value="@a.Name">@a.Name</option>
+                                                                }
+                                                            </select>
 
-                                        <div class="portrait-note">
-                                            <textarea asp-for="Portraits[keyP].Note" class="full form-control" placeholder="Примечание"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
-                                @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
-                                @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
-                                @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
-                                @Html.HiddenFor(c => c.Portraits[keyP].Id)
-                                <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет" />
-                                @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01) && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
-                                {
-                            <a class="to-compleate rp-btn float-md-left" title="Отправить портрет на выполнение"><img src="/images/send.png" class="send-btn" /></a>}
+                                                            @*<input class="form-control" asp-for="Portraits[keyP].Artist" placeholder="Художник..." />*@
 
-                            </div>}}
+                                                            <div class="portrait-note">
+                                                                <textarea asp-for="Portraits[keyP].Note" class="full form-control" placeholder="Примечание"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].TypePortraitId)
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
+                                                    @Html.HiddenFor(c => c.Portraits[keyP].Id)
+                                                    <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет" />
+                                                    @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01) && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
+                                                    {
+                                                        <a class="to-compleate rp-btn float-md-left" title="Отправить портрет на выполнение"><img src="/images/send.png" class="send-btn" /></a>
+                                                    }
+
+                                                </div>
+                                            }
+                                         }
                                     </div>
                                     <input type="button" class="add-btn my-btn add-portrait" id=@($"ap{i}") value="Добавить портрет" />
 
@@ -510,7 +535,7 @@
         $(document).on("click", ".add-portrait", function () {
             var SelectListArtists = $($(this).siblings()[0]).find("[id$='_Artist']").last();
             $('@ViewBag.ArtistsHTML').appendTo(SelectListArtists);
-            var SelectListTypesPortrait = $($(this).siblings()[0]).find("[id$='_TypePortrait']").last();
+            var SelectListTypesPortrait = $($(this).siblings()[0]).find("[id$='_TypePortraitName']").last();
             $('@ViewBag.TypesPortraitHTML').appendTo(SelectListTypesPortrait);
         });
         $(document).on("click", ".add-medallion", function () {
