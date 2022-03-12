@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    public class ColorMedallion : SelectPoint
+    public class ColorMedallion
     {
-        //public int Id { get; set; }                     //Id
-        //public string Name { get; set; }                //Название
+        public int Id { get; set; }                     //Id
+        public string Name { get; set; }                //Название
+
+        public List<Medallion> Medallions { get; set; }
+        public ColorMedallion()
+        {
+            Medallions = new List<Medallion>();
+        }
     }
 }

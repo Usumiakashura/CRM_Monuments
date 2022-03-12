@@ -10,10 +10,10 @@ namespace BuissnesLayer.Interfaces
     public interface ITypesPortraitRepository
     {
         public IEnumerable<TypePortrait> GetAllTypesPortraits();
-        public TypePortrait GetTypePortraitById(int IdTypePortrait);
+        //public TypePortrait GetTypePortraitById(int IdTypePortrait);
         public TypePortrait GetTypePortraitByName(string nameTypePortrait);
-        public TypePortrait GetTypePortraitByIdPortrait(int idPortrait);
-        public int GetIdTypeByName(string name);
+        //public TypePortrait GetTypePortraitByIdPortrait(int idPortrait);
+        //public int GetIdTypeByName(string name);
 
     }
 }

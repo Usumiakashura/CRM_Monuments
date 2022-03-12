@@ -23,10 +23,12 @@ namespace DataLayer.Entities
 
         //--- Текст на памятнике ---
         public string TypeNameText { get; set; }      //тип текста на памятнике (имя)
+        //public TypeText TypeTextName { get; set; }
         public string NotesTextName { get; set; }       //примечания к тексту (имя)
         public string EngraverName { get; set; }      //резчик текста (имя)
         public bool Epitaph { get; set; }               //наличие эпитафии
         public string TypeNameEpitaph { get; set; }      //тип текста на памятнике (эпитафия)
+        //public TypeText TypeTextEpitaph { get; set; }
         public string NotesTextEpitaph { get; set; }       //примечания к тексту (эпитафия)
         public string EngraverEpitaph { get; set; }      //резчик текста (эпитафия)
         //--------------------------

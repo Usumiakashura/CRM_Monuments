@@ -88,7 +88,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
                     if (portrait.Value.Id == -1) portrait.Value.Id = 0;
                     portrait.Value.TypePortrait = new TypePortrait()
                     {
-                        Id = _dataManager.TypesPortrait.GetIdTypeByName(portrait.Value.TypePortraitName),
+                        Id = _dataManager.TypesPortrait.GetTypePortraitByName(portrait.Value.TypePortraitName).Id,
                         Name = portrait.Value.TypePortraitName
                     };
                     portrait.Value.TypePortrait = _dataManager.TypesPortrait.GetTypePortraitByName(portrait.Value.TypePortraitName);

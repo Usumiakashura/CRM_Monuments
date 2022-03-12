@@ -313,7 +313,7 @@
 
 
                                                             @*@Html.DropDownListFor(model => model.Portraits[keyP].TypePortrait, ViewBag.TypesPortrait as SelectList)*@
-                                                            <select asp-for="Portraits[keyP].TypePortraitName" class="form-control min-width-select-for-photo">
+                                                            <select asp-for="Portraits[keyP].TypePortrait.Name" class="form-control min-width-select-for-photo">
                                                                 <option value=@null>Тип портрета...</option>
                                                                 @foreach (var tp in ViewBag.TypesPortrait)
                                                                 {

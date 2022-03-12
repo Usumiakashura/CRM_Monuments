@@ -2,42 +2,42 @@
 
 namespace DataLayer.Migrations
 {
-    public partial class test1 : Migration
+    public partial class test5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "TypePortraitId",
+                name: "MedallionMaterialObjId",
                 table: "PhotoOnMonuments",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_PhotoOnMonuments_TypePortraitId",
+                name: "IX_PhotoOnMonuments_MedallionMaterialObjId",
                 table: "PhotoOnMonuments",
-                column: "TypePortraitId");
+                column: "MedallionMaterialObjId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_PhotoOnMonuments_TypePortraits_TypePortraitId",
+                name: "FK_PhotoOnMonuments_MedallionMaterials_MedallionMaterialObjId",
                 table: "PhotoOnMonuments",
-                column: "TypePortraitId",
-                principalTable: "TypePortraits",
+                column: "MedallionMaterialObjId",
+                principalTable: "MedallionMaterials",
                 principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_PhotoOnMonuments_TypePortraits_TypePortraitId",
+                name: "FK_PhotoOnMonuments_MedallionMaterials_MedallionMaterialObjId",
                 table: "PhotoOnMonuments");
 
             migrationBuilder.DropIndex(
-                name: "IX_PhotoOnMonuments_TypePortraitId",
+                name: "IX_PhotoOnMonuments_MedallionMaterialObjId",
                 table: "PhotoOnMonuments");
 
             migrationBuilder.DropColumn(
-                name: "TypePortraitId",
+                name: "MedallionMaterialObjId",
                 table: "PhotoOnMonuments");
         }
     }

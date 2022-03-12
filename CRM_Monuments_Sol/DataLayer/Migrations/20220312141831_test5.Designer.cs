@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    [Migration("20220312113518_test4")]
-    partial class test4
+    [Migration("20220312141831_test5")]
+    partial class test5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -355,6 +355,9 @@ namespace DataLayer.Migrations
                     b.Property<string>("MaterialMedallion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MedallionMaterialObjId")
+                        .HasColumnType("int");
+
                     b.Property<string>("NoteFrame")
                         .HasColumnType("nvarchar(max)");
 
@@ -372,6 +375,8 @@ namespace DataLayer.Migrations
 
                     b.Property<string>("TypeFrame")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("MedallionMaterialObjId");
 
                     b.HasDiscriminator().HasValue("Medallion");
                 });
@@ -421,6 +426,15 @@ namespace DataLayer.Migrations
                     b.Navigation("Deceased");
                 });
 
+            modelBuilder.Entity("DataLayer.Entities.Medallion", b =>
+                {
+                    b.HasOne("DataLayer.Entities.MedallionMaterial", "MedallionMaterialObj")
+                        .WithMany("Medallions")
+                        .HasForeignKey("MedallionMaterialObjId");
+
+                    b.Navigation("MedallionMaterialObj");
+                });
+
             modelBuilder.Entity("DataLayer.Entities.Portrait", b =>
                 {
                     b.HasOne("DataLayer.Entities.TypePortrait", "TypePortrait")
@@ -440,6 +454,11 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Entities.Deceased", b =>
                 {
                     b.Navigation("PhotosOnMonument");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.MedallionMaterial", b =>
+                {
+                    b.Navigation("Medallions");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.TypePortrait", b =>

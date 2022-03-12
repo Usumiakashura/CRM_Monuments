@@ -26,34 +26,34 @@ namespace BuissnesLayer.Implementations
             return _context.TypePortraits.Include(tp => tp.Portraits);
         }
 
-        public TypePortrait GetTypePortraitById(int idTypePortrait)
-        {
-            return _context.TypePortraits.Include(tp => tp.Portraits).Where(tp => tp.Id == idTypePortrait).First();
-        }
+        //public TypePortrait GetTypePortraitById(int idTypePortrait)
+        //{
+        //    return _context.TypePortraits.Include(tp => tp.Portraits).Where(tp => tp.Id == idTypePortrait).First();
+        //}
 
         public TypePortrait GetTypePortraitByName(string nameTypePortrait)
         {
             return _context.TypePortraits.Include(tp => tp.Portraits).Where(tp => tp.Name == nameTypePortrait).First();
         }
 
-        public TypePortrait GetTypePortraitByIdPortrait(int idPortrait)
-        {
-            TypePortrait type = new TypePortrait();
-            var portraits = GetAllTypesPortraits();
-            foreach (var tp in portraits)
-            {
-                if (tp.Portraits.Where(p => p.Id == idPortrait).First() != null)
-                    type = tp;
-            }
-            return type;
+        //public TypePortrait GetTypePortraitByIdPortrait(int idPortrait)
+        //{
+        //    TypePortrait type = new TypePortrait();
+        //    var portraits = GetAllTypesPortraits();
+        //    foreach (var tp in portraits)
+        //    {
+        //        if (tp.Portraits.Where(p => p.Id == idPortrait).First() != null)
+        //            type = tp;
+        //    }
+        //    return type;
 
-            //int typeId = _photosOnMonumentsRepository.GetAllPortraits().Where(p => p.Id == idPortrait).First().TypePortraitId;
-            //return GetTypePortraitById(typeId);
-        }
+        //    //int typeId = _photosOnMonumentsRepository.GetAllPortraits().Where(p => p.Id == idPortrait).First().TypePortraitId;
+        //    //return GetTypePortraitById(typeId);
+        //}
 
-        public int GetIdTypeByName(string name)
-        {
-            return (_context.TypePortraits.Where(tp => tp.Name == name).First()).Id;
-        }
+        //public int GetIdTypeByName(string name)
+        //{
+        //    return (_context.TypePortraits.Where(tp => tp.Name == name).First()).Id;
+        //}
     }
 }

@@ -344,6 +344,9 @@ namespace DataLayer.Migrations
                     b.Property<string>("ColorMedallion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ColorMedallionObjId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Frame")
                         .HasColumnType("bit");
 
@@ -352,6 +355,9 @@ namespace DataLayer.Migrations
 
                     b.Property<string>("MaterialMedallion")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("MedallionMaterialObjId")
+                        .HasColumnType("int");
 
                     b.Property<string>("NoteFrame")
                         .HasColumnType("nvarchar(max)");
@@ -362,6 +368,9 @@ namespace DataLayer.Migrations
                     b.Property<string>("ShapeMedallion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ShapeMedallionObjId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SizeFrame")
                         .HasColumnType("nvarchar(max)");
 
@@ -370,6 +379,12 @@ namespace DataLayer.Migrations
 
                     b.Property<string>("TypeFrame")
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasIndex("ColorMedallionObjId");
+
+                    b.HasIndex("MedallionMaterialObjId");
+
+                    b.HasIndex("ShapeMedallionObjId");
 
                     b.HasDiscriminator().HasValue("Medallion");
                 });
@@ -419,6 +434,27 @@ namespace DataLayer.Migrations
                     b.Navigation("Deceased");
                 });
 
+            modelBuilder.Entity("DataLayer.Entities.Medallion", b =>
+                {
+                    b.HasOne("DataLayer.Entities.ColorMedallion", "ColorMedallionObj")
+                        .WithMany("Medallions")
+                        .HasForeignKey("ColorMedallionObjId");
+
+                    b.HasOne("DataLayer.Entities.MedallionMaterial", "MedallionMaterialObj")
+                        .WithMany("Medallions")
+                        .HasForeignKey("MedallionMaterialObjId");
+
+                    b.HasOne("DataLayer.Entities.ShapeMedallion", "ShapeMedallionObj")
+                        .WithMany("Medallions")
+                        .HasForeignKey("ShapeMedallionObjId");
+
+                    b.Navigation("ColorMedallionObj");
+
+                    b.Navigation("MedallionMaterialObj");
+
+                    b.Navigation("ShapeMedallionObj");
+                });
+
             modelBuilder.Entity("DataLayer.Entities.Portrait", b =>
                 {
                     b.HasOne("DataLayer.Entities.TypePortrait", "TypePortrait")
@@ -426,6 +462,11 @@ namespace DataLayer.Migrations
                         .HasForeignKey("TypePortraitId");
 
                     b.Navigation("TypePortrait");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.ColorMedallion", b =>
+                {
+                    b.Navigation("Medallions");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Contract", b =>
@@ -438,6 +479,16 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Entities.Deceased", b =>
                 {
                     b.Navigation("PhotosOnMonument");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.MedallionMaterial", b =>
+                {
+                    b.Navigation("Medallions");
+                });
+
+            modelBuilder.Entity("DataLayer.Entities.ShapeMedallion", b =>
+                {
+                    b.Navigation("Medallions");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.TypePortrait", b =>
