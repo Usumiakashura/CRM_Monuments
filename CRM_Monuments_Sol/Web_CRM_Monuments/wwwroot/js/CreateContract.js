@@ -135,9 +135,9 @@ function CheckEpitaph() {
     }
 }
 function AddDisabledEpitaph(epitaphBox, trfl) {
-    var NotesTextEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__NotesTextEpitaph']");
-    var TypeNameEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__TypeNameEpitaph']");
-    var EngraverEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='__EngraverEpitaph']");
+    var NotesTextEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='_NotesTextEpitaph']");
+    var TypeNameEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='_TypeTextEpitaph']");
+    var EngraverEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='_EngraverEpitaph']");
 
     $(NotesTextEpitaph).prop("disabled", trfl);
     $(TypeNameEpitaph).prop("disabled", trfl);
@@ -154,7 +154,7 @@ function SendToCompleateTextName() {
     SendToCompleate("текст ФИО усопшего", "DateBeginTextName", this);
 }
 function SendToCompleateTextEpitaph() {
-    if ($($(this).parent()[0].querySelector("[id$='__Epitaph']")).is(":checked")) {
+    if ($($(this).parent()[0].querySelector("[id$='__Epitaph_EpitaphBool']")).is(":checked")) {
         SendToCompleate("текст эпитафии", "DateBeginTextEpitaph", this);
     }
     else {
@@ -913,5 +913,6 @@ function RecalculateNamesAndIdsPhotos(startCount) {
         .attr("name", "Photos[" + prevCount + "].PhotoKey");
     $("#Photos_" + startCount + "__Image").attr("id", "Photos_" + prevCount + "__Image")
         .attr("name", "Photos[" + prevCount + "].Image");
-    $("#Photos_" + prevCount + "__Image").siblings()[1].attr("for", "Photos_" + prevCount + "__Image");
+
+    $("#Photos_" + prevCount + "__Image").siblings()[1].setAttribute("for", "Photos_" + prevCount + "__Image");
 }

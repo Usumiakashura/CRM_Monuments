@@ -190,14 +190,14 @@ namespace DataLayer.Migrations
                     b.Property<string>("TypeNameText")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TypeTextId")
+                    b.Property<int?>("TypeTextObjId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ContractId");
 
-                    b.HasIndex("TypeTextId");
+                    b.HasIndex("TypeTextObjId");
 
                     b.ToTable("Deceaseds");
                 });
@@ -442,11 +442,13 @@ namespace DataLayer.Migrations
                         .WithMany("Deceaseds")
                         .HasForeignKey("ContractId");
 
-                    b.HasOne("DataLayer.Entities.TypeText", null)
+                    b.HasOne("DataLayer.Entities.TypeText", "TypeTextObj")
                         .WithMany("Deceaseds")
-                        .HasForeignKey("TypeTextId");
+                        .HasForeignKey("TypeTextObjId");
 
                     b.Navigation("Contract");
+
+                    b.Navigation("TypeTextObj");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.Epitaph", b =>

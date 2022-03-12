@@ -53,8 +53,8 @@ namespace Web_CRM_Monuments.Controllers
 
             ViewBag.TypesText = _dataManager.SelectPointsRepository.GetAllTypesText();
             string typesTextHTML = "";
-            foreach (var tt in ViewBag.TypeText)
-                typesTextHTML += $"<option value=\"{tt}\">{tt}</option>";
+            foreach (TypeText tt in ViewBag.TypesText)
+                typesTextHTML += $"<option value=\"{tt.Name}\">{tt.Name}</option>";
             ViewBag.TypesTextsHTML = new HtmlString(typesTextHTML);
 
             ViewBag.TypesPortrait = _dataManager.TypesPortrait.GetAllTypesPortraits();
@@ -62,21 +62,23 @@ namespace Web_CRM_Monuments.Controllers
             foreach (var tp in ViewBag.TypesPortrait)
                 typesPortraitHTML += $"<option value=\"{tp.Name}\">{tp.Name}</option>";
             ViewBag.TypesPortraitHTML = new HtmlString(typesPortraitHTML);
-            
 
+            ViewBag.MedallionMaterials = _dataManager.SelectPointsRepository.GetAllMedallionsMaterials();
             string medallionMaterialHTML = "";
-            foreach (var mm in _dataManager.SelectPointsRepository.GetAllMedallionsMaterials())
-                medallionMaterialHTML += $"<option value=\"{mm}\">{mm}</option>";
+            foreach (var mm in ViewBag.MedallionMaterials)
+                medallionMaterialHTML += $"<option value=\"{mm.Name}\">{mm.Name}</option>";
             ViewBag.MedallionMaterialsHTML = new HtmlString(medallionMaterialHTML);
 
+            ViewBag.ShapesMedallions = _dataManager.SelectPointsRepository.GetAllShapesMedallions();
             string shapeMedallionHTML = "";
-            foreach (var sm in _dataManager.SelectPointsRepository.GetAllShapesMedallions())
-                shapeMedallionHTML += $"<option value=\"{sm}\">{sm}</option>";
+            foreach (var sm in ViewBag.ShapesMedallions)
+                shapeMedallionHTML += $"<option value=\"{sm.Name}\">{sm.Name}</option>";
             ViewBag.ShapesMedallionsHTML = new HtmlString(shapeMedallionHTML);
 
+            ViewBag.ColorsMedallions = _dataManager.SelectPointsRepository.GetAllColorsMedallions();
             string colorMedallionHTML = "";
-            foreach (var cm in _dataManager.SelectPointsRepository.GetAllColorsMedallions())
-                colorMedallionHTML += $"<option value=\"{cm}\">{cm}</option>";
+            foreach (var cm in ViewBag.ColorsMedallions)
+                colorMedallionHTML += $"<option value=\"{cm.Name}\">{cm.Name}</option>";
             ViewBag.ColorsMedallionsHTML = new HtmlString(colorMedallionHTML);
 
             ViewBag.Artists = await _dataManager.ApplicationUsersRepository.GetAllArtists();

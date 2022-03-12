@@ -22,6 +22,7 @@ namespace DataLayer.Entities
         //---------------------------------------
 
         //--- Текст на памятнике ---
+        public TypeText TypeTextObj { get; set; }
         public string TypeNameText { get; set; }      //тип текста на памятнике (имя)
         //public TypeText TypeTextName { get; set; }
         public string NotesTextName { get; set; }       //примечания к тексту (имя)

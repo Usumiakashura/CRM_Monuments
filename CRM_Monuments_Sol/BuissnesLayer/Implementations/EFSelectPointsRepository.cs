@@ -1,6 +1,7 @@
 ﻿using BuissnesLayer.Interfaces;
 using DataLayer;
 using DataLayer.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,11 @@ namespace BuissnesLayer.Implementations
             _context = context;
         }
 
-        public IEnumerable<string> GetAllTypesText()
+        public IEnumerable<TypeText> GetAllTypesText()
         {
-            List<string> pointsForSelect = new List<string>();
-            foreach (TypeText tt in _context.TypeTexts)
-                pointsForSelect.Add(tt.Name);
+            List<TypeText> pointsForSelect = new List<TypeText>();
+            foreach (TypeText tt in _context.TypeTexts.Include(d => d.Deceaseds).Include(e => e.Epitaphs))
+                pointsForSelect.Add(tt);
             return pointsForSelect;
         }
         //public IEnumerable<string> GetAllTypesPortraits()
@@ -32,25 +33,25 @@ namespace BuissnesLayer.Implementations
         //        pointsForSelect.Add(tp.Name);
         //    return pointsForSelect;
         //}
-        public IEnumerable<string> GetAllMedallionsMaterials()
+        public IEnumerable<MedallionMaterial> GetAllMedallionsMaterials()
         {
-            List<string> pointsForSelect = new List<string>();
+            List<MedallionMaterial> pointsForSelect = new List<MedallionMaterial>();
             foreach (MedallionMaterial mm in _context.MedallionMaterials)
-                pointsForSelect.Add(mm.Name);
+                pointsForSelect.Add(mm);
             return pointsForSelect;
         }
-        public IEnumerable<string> GetAllShapesMedallions()
+        public IEnumerable<ShapeMedallion> GetAllShapesMedallions()
         {
-            List<string> pointsForSelect = new List<string>();
+            List<ShapeMedallion> pointsForSelect = new List<ShapeMedallion>();
             foreach (ShapeMedallion sm in _context.ShapeMedallions)
-                pointsForSelect.Add(sm.Name);
+                pointsForSelect.Add(sm);
             return pointsForSelect;
         }
-        public IEnumerable<string> GetAllColorsMedallions()
+        public IEnumerable<ColorMedallion> GetAllColorsMedallions()
         {
-            List<string> pointsForSelect = new List<string>();
+            List<ColorMedallion> pointsForSelect = new List<ColorMedallion>();
             foreach (ColorMedallion cm in _context.ColorMedallions)
-                pointsForSelect.Add(cm.Name);
+                pointsForSelect.Add(cm);
             return pointsForSelect;
         }
 

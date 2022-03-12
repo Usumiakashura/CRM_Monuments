@@ -234,7 +234,11 @@
 
                                 <select class=" form-control full" asp-for="Contract.Deceaseds[i].TypeNameText">
                                     <option value=@null>Тип текста ФИО...</option>
-                                    @Html.ViewBag.TypesTextsHTML
+                                    @foreach (TypeText tt in ViewBag.TypesText)
+                                    {
+                                        <option value="@tt.Name">@tt.Name</option>
+                                    }
+                                    @*@Html.ViewBag.TypesTextsHTML*@
                                 </select>
                                 <input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
                                        class="form-control full" placeholder="Гравер (ФИО)..." />
@@ -257,7 +261,7 @@
                                         <option value="@tt.Name">@tt.Name</option>
                                     }
                                 </select>
-                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].Epitaph.EngraverEpitaph">
+                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].Epitaph.EngraverEpitaph" disabled="disabled">
                                     <option value=@null>Гравер (эпитафия)...</option>
                                     @foreach (ApplicationUser e in ViewBag.Engravers)
                                     {
@@ -304,13 +308,14 @@
                                                                             </td>
                                                                             @if (Model.Portraits[keyP].PhotoName != null)
                                                                             {
-                                                        <td>
-                                                            @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
-                                                        <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
-                                                           class="download-btn full">
-                                                            <input type="button" value="Скачать" />
-                                                        </a>
-                                                        </td>}
+                                                                                <td>
+                                                                                    @*<input type="button" value="upl" href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName" />*@
+                                                                                    <a href="@Model.Portraits[keyP].PhotoPath" download="@Model.Portraits[keyP].PhotoName"
+                                                                                       class="download-btn full">
+                                                                                        <input type="button" value="Скачать" />
+                                                                                    </a>
+                                                                                </td>
+                                                                            }
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -395,18 +400,27 @@
                                         </div>
                                         <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MaterialMedallion">
                                             <option value=@null>Материал...</option>
-                                            @Html.ViewBag.MedallionMaterialsHTML
+                                            @foreach (MedallionMaterial mm in ViewBag.MedallionMaterials)
+                                            {
+                                                <option value="@mm.Name">@mm.Name</option>
+                                            }
                                         </select>
                                         <input class="form-control" asp-for="Medallions[keyM].SizeMedallion" placeholder="Размер медальона..." />
 
                                         @*<input class="form-control" asp-for="Medallions[keyM].ShapeMedallion" placeholder="Форма..." />*@
                                         <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ShapeMedallion">
                                             <option value=@null>Форма...</option>
-                                            @Html.ViewBag.ShapesMedallionsHTML
+                                            @foreach (ShapeMedallion sm in ViewBag.ShapesMedallions)
+                                            {
+                                                <option value="@sm.Name">@sm.Name</option>
+                                            }
                                         </select>
                                         <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ColorMedallion">
                                             <option value=@null>Цвет...</option>
-                                            @Html.ViewBag.ColorsMedallionsHTML
+                                            @foreach (ColorMedallion cm in ViewBag.ColorsMedallions)
+                                            {
+                                                <option value="@cm.Name">@cm.Name</option>
+                                            }
                                         </select>
                                         <input class="form-control" asp-for="Medallions[keyM].BackgroundMedallion" placeholder="Фон..." />
 

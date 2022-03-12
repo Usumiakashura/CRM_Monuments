@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public partial class EntitiesMigration1 : Migration
+    public partial class testcont1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,16 +77,17 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StoneMaterials",
+                name: "Times",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DurationDay = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StoneMaterials", x => x.Id);
+                    table.PrimaryKey("PK_Times", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -131,7 +132,6 @@ namespace DataLayer.Migrations
                     WhatsApp = table.Column<bool>(type: "bit", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedCheck = table.Column<bool>(type: "bit", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -157,14 +157,12 @@ namespace DataLayer.Migrations
                     DateBirthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateRip = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Photo = table.Column<bool>(type: "bit", nullable: false),
+                    TypeTextObjId = table.Column<int>(type: "int", nullable: true),
                     TypeNameText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NotesTextName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngraverName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Epitaph = table.Column<bool>(type: "bit", nullable: false),
-                    TypeNameEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NotesTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EngraverEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedCheck = table.Column<bool>(type: "bit", nullable: false),
+                    DateBeginTextName = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateCompleatTextName = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -176,40 +174,40 @@ namespace DataLayer.Migrations
                         principalTable: "Contracts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Deceaseds_TypeTexts_TypeTextObjId",
+                        column: x => x.TypeTextObjId,
+                        principalTable: "TypeTexts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Accessories",
+                name: "Epitaphs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Number = table.Column<int>(type: "int", nullable: false),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ContractId = table.Column<int>(type: "int", nullable: true),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Material = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Size = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MaterialId = table.Column<int>(type: "int", nullable: true),
-                    StoneId = table.Column<int>(type: "int", nullable: true),
-                    Height = table.Column<int>(type: "int", nullable: true),
-                    Width = table.Column<int>(type: "int", nullable: true),
-                    Thickness = table.Column<int>(type: "int", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    EpitaphBool = table.Column<bool>(type: "bit", nullable: false),
+                    TypeTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypeTextObjId = table.Column<int>(type: "int", nullable: true),
+                    NotesTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EngraverEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateBeginTextEpitaph = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateCompleatTextEpitaph = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accessories", x => x.Id);
+                    table.PrimaryKey("PK_Epitaphs", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Accessories_Contracts_ContractId",
-                        column: x => x.ContractId,
-                        principalTable: "Contracts",
+                        name: "FK_Epitaphs_Deceaseds_Id",
+                        column: x => x.Id,
+                        principalTable: "Deceaseds",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Accessories_StoneMaterials_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "StoneMaterials",
+                        name: "FK_Epitaphs_TypeTexts_TypeTextObjId",
+                        column: x => x.TypeTextObjId,
+                        principalTable: "TypeTexts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -221,14 +219,19 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PhotoPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhotoName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DeletedCheck = table.Column<bool>(type: "bit", nullable: false),
+                    DateBegin = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateCompleat = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeceasedId = table.Column<int>(type: "int", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MaterialMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MedallionMaterialObjId = table.Column<int>(type: "int", nullable: true),
                     SizeMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShapeMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShapeMedallionObjId = table.Column<int>(type: "int", nullable: true),
                     ColorMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ColorMedallionObjId = table.Column<int>(type: "int", nullable: true),
                     BackgroundMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Frame = table.Column<bool>(type: "bit", nullable: true),
                     TypeFrame = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -237,29 +240,44 @@ namespace DataLayer.Migrations
                     ColorFrame = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NoteFrame = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GluingIntoNiche = table.Column<bool>(type: "bit", nullable: true),
-                    TypePortrait = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Artist = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypePortraitName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TypePortraitId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_PhotoOnMonuments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PhotoOnMonuments_ColorMedallions_ColorMedallionObjId",
+                        column: x => x.ColorMedallionObjId,
+                        principalTable: "ColorMedallions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PhotoOnMonuments_Deceaseds_DeceasedId",
                         column: x => x.DeceasedId,
                         principalTable: "Deceaseds",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PhotoOnMonuments_MedallionMaterials_MedallionMaterialObjId",
+                        column: x => x.MedallionMaterialObjId,
+                        principalTable: "MedallionMaterials",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PhotoOnMonuments_ShapeMedallions_ShapeMedallionObjId",
+                        column: x => x.ShapeMedallionObjId,
+                        principalTable: "ShapeMedallions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PhotoOnMonuments_TypePortraits_TypePortraitId",
+                        column: x => x.TypePortraitId,
+                        principalTable: "TypePortraits",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accessories_ContractId",
-                table: "Accessories",
-                column: "ContractId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Accessories_MaterialId",
-                table: "Accessories",
-                column: "MaterialId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_ContractId",
@@ -272,27 +290,63 @@ namespace DataLayer.Migrations
                 column: "ContractId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Deceaseds_TypeTextObjId",
+                table: "Deceaseds",
+                column: "TypeTextObjId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Epitaphs_TypeTextObjId",
+                table: "Epitaphs",
+                column: "TypeTextObjId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhotoOnMonuments_ColorMedallionObjId",
+                table: "PhotoOnMonuments",
+                column: "ColorMedallionObjId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PhotoOnMonuments_DeceasedId",
                 table: "PhotoOnMonuments",
                 column: "DeceasedId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhotoOnMonuments_MedallionMaterialObjId",
+                table: "PhotoOnMonuments",
+                column: "MedallionMaterialObjId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhotoOnMonuments_ShapeMedallionObjId",
+                table: "PhotoOnMonuments",
+                column: "ShapeMedallionObjId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PhotoOnMonuments_TypePortraitId",
+                table: "PhotoOnMonuments",
+                column: "TypePortraitId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accessories");
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Epitaphs");
+
+            migrationBuilder.DropTable(
+                name: "PhotoOnMonuments");
+
+            migrationBuilder.DropTable(
+                name: "Times");
 
             migrationBuilder.DropTable(
                 name: "ColorMedallions");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Deceaseds");
 
             migrationBuilder.DropTable(
                 name: "MedallionMaterials");
-
-            migrationBuilder.DropTable(
-                name: "PhotoOnMonuments");
 
             migrationBuilder.DropTable(
                 name: "ShapeMedallions");
@@ -301,16 +355,10 @@ namespace DataLayer.Migrations
                 name: "TypePortraits");
 
             migrationBuilder.DropTable(
-                name: "TypeTexts");
-
-            migrationBuilder.DropTable(
-                name: "StoneMaterials");
-
-            migrationBuilder.DropTable(
-                name: "Deceaseds");
-
-            migrationBuilder.DropTable(
                 name: "Contracts");
+
+            migrationBuilder.DropTable(
+                name: "TypeTexts");
         }
     }
 }
