@@ -80,23 +80,23 @@ namespace Web_CRM_Monuments.Services.ViewServices
             
 
 
-            int numDeceased;
+            int numDeceased, numPortrait;
+
             foreach (var portrait in contractViewModel.Portraits)
             {
                 if (portrait.Value.Id != 0)
                 {
                     if (portrait.Value.Id == -1) portrait.Value.Id = 0;
-                    //int idType = _dataManager.TypesPortrait.GetTypePortraitByName(contractViewModel.TypePortraitName).Id;
-                    //portrait.Value.TypePortrait.Id = idType;
-                    portrait.Value.TypePortraitId = _dataManager.TypesPortrait.GetTypePortraitByName(contractViewModel.TypePortraitName).Id;
+                    
                     // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
                     MatchCollection match = Regex.Matches(portrait.Key, @"D(\d+)");
                     // Достаем номер этого контейнега
                     Int32.TryParse(match[0].Groups[1].ToString(), out numDeceased);
+                    
                     // Добавляем соответствующему усопшему портрет в коллекцию
                     c.Deceaseds[numDeceased].PhotosOnMonument.Add(portrait.Value);
                 }
-                
+
             }
             foreach (var medallion in contractViewModel.Medallions)
             {
@@ -130,7 +130,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
                     if (ph is Portrait)
                     {
                         cvm.Portraits.Add($"D{numDeceased}P{numPortrait}", (Portrait)ph);
-                        cvm.TypePortraitName = ((Portrait)ph).TypePortrait.Name;
+                        //cvm.TypePortraitNames.Add($"D{numDeceased}P{numPortrait}", ((Portrait)ph).TypePortrait.Name);
                         numPortrait++;
                     }
                     else if (ph is Medallion)

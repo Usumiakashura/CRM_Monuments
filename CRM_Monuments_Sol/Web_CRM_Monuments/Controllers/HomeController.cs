@@ -30,12 +30,12 @@ namespace Web_CRM_Monuments.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        [Authorize(Roles = "manager,artist,engraver")]
+        [Authorize(Roles = "manager,artist,engraver,admin")]
         public IActionResult Index()
         {
             //var c = _dataManager.Contracts.GetAllContracts();
 
-            if (User.IsInRole("manager"))
+            if (User.IsInRole("manager") || User.IsInRole("admin"))
             {
                 ViewBag.ModelP = _dataManager.Contracts.GetAllContracts();
                 ViewBag.Partial = "../Contract/_AllContractsPartial.cshtml";
@@ -63,7 +63,7 @@ namespace Web_CRM_Monuments.Controllers
             return View();
         }
 
-        [Authorize(Roles = "manager")]
+        [Authorize(Roles = "admin")]
         public IActionResult Settings()
         {
             return View();

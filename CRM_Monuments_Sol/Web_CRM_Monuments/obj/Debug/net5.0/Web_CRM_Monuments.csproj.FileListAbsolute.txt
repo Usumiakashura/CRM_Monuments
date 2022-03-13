@@ -172,7 +172,6 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_C
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Shared\_UserPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Contract\_AllContractsPartial.cshtml.g.cs
-E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Home\Settings.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Medallion\_AllMedallionsPartial.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Medallion\Details.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Text\_AllTextsPartial.cshtml.g.cs
@@ -357,3 +356,4 @@ D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Web
 D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\ref\Web_CRM_Monuments.dll
 D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Web_CRM_Monuments.pdb
 D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Web_CRM_Monuments.genruntimeconfig.cache
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\Settings.cshtml.g.cs

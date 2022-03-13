@@ -454,6 +454,13 @@ namespace DataLayer
             // проверка наличия ролей
             if (!context.Roles.Any())
             {
+                var roleAdmin = new IdentityRole
+                {
+                    Name = "admin",
+                    NormalizedName = "admin"
+                };
+                // создать роль manager
+                await roleManager.CreateAsync(roleAdmin);
                 var roleUserManager = new IdentityRole
                 {
                     Name = "manager",
@@ -480,7 +487,15 @@ namespace DataLayer
             // проверка наличия пользователей
             if (!context.Users.Any())
             {
-                // создать пользователя manager@mail.ru
+                // создать пользователя admin@mail.ru
+                var admin = new ApplicationUser
+                {
+                    Email = "admin@mail.ru",
+                    UserName = "admin@mail.ru",
+                    Name = "Администратор"
+                };
+                await userManager.CreateAsync(admin, "123456");
+                // создать пользователя margarita@mail.ru
                 var manager = new ApplicationUser
                 {
                     Email = "margarita@mail.ru",
@@ -513,6 +528,8 @@ namespace DataLayer
                 };
                 await userManager.CreateAsync(engraver, "123456");
                 // назначить роли
+                admin = await userManager.FindByEmailAsync("admin@mail.ru");
+                await userManager.AddToRoleAsync(admin, "admin");
                 manager = await userManager.FindByEmailAsync("margarita@mail.ru");
                 await userManager.AddToRoleAsync(manager, "manager");
                 artist1 = await userManager.FindByEmailAsync("vlad@mail.ru");

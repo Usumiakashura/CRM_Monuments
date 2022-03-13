@@ -41,7 +41,7 @@ namespace Web_CRM_Monuments.Controllers
         {
             DateTime d = DateTime.Parse(date);
             if (epitaph)
-                _dataManager.Deceaseds.CompleateOnTextEpitaph(idDeceaced, d);
+                _dataManager.Epitaphs.CompleateOnTextEpitaph(idDeceaced, d);
             else
                 _dataManager.Deceaseds.CompleateOnTextName(idDeceaced, d);
             

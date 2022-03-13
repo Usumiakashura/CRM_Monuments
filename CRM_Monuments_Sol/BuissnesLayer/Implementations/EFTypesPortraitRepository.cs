@@ -31,10 +31,10 @@ namespace BuissnesLayer.Implementations
         //    return _context.TypePortraits.Include(tp => tp.Portraits).Where(tp => tp.Id == idTypePortrait).First();
         //}
 
-        public TypePortrait GetTypePortraitByName(string nameTypePortrait)
-        {
-            return _context.TypePortraits.Where(tp => tp.Name == nameTypePortrait).First();
-        }
+        //public TypePortrait GetTypePortraitByName(string nameTypePortrait)
+        //{
+        //    return _context.TypePortraits.Where(tp => tp.Name == nameTypePortrait).First();
+        //}
 
         //public TypePortrait GetTypePortraitByIdPortrait(int idPortrait)
         //{

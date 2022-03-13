@@ -583,8 +583,8 @@ function AddPortrait() {
         .attr("for", "Photos_" + (PhotosCount - 1) + "__Image").appendTo(ImgBlock);
 
     var SelectPortraitType = $("<select/>").attr("class", "form-control min-width-select-for-photo")
-        .attr("name", "Portraits[" + keyP + "].TypePortraitName")
-        .attr("id", "Portraits_" + keyP + "__TypePortraitName")
+        .attr("name", "Portraits[" + keyP + "].TypePortraitId")
+        .attr("id", "Portraits_" + keyP + "__TypePortraitId")
         .appendTo(WrapperP);
     $("<option/>").attr("value", "0").text("Тип портрета...").appendTo(SelectPortraitType);
 
@@ -617,9 +617,9 @@ function AddPortrait() {
     $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].DateBegin")
         .attr("type", "hidden").attr("data-val-required", "The DateBegin field is required.")
         .attr("id", "Portraits_" + keyP + "__DateBegin").appendTo(PortraitContainer);
-    $("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].TypePortraitId")
-        .attr("type", "hidden").attr("data-val-required", "The TypePortraitId field is required.")
-        .attr("id", "Portraits_" + keyP + "__TypePortraitId").appendTo(PortraitContainer);
+    //$("<input/>").attr("data-val", true).attr("name", "Portraits[" + keyP + "].TypePortraitId")
+    //    .attr("type", "hidden").attr("data-val-required", "The TypePortraitId field is required.")
+    //    .attr("id", "Portraits_" + keyP + "__TypePortraitId").appendTo(PortraitContainer);
 
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
         .attr("value", "x").appendTo(PortraitContainer);
@@ -671,7 +671,7 @@ function RecalculateNamesAndIdsPortraits(deceasedIsChange, deceasedNum, portrait
     $("#PortraitContainer" + portraitStartNum).attr("id", "PortraitContainer" + (portraitStartNum - 1));
     $("#PortraitContainer" + (portraitStartNum - 1)).find("[id$='__PhotoKey']").first().val(PrevKey);
 
-    $("#Portraits_" + OurKey + "__TypePortraitName").attr("id", "Portraits_" + PrevKey + "__TypePortraitName").attr("name", "Portraits[" + PrevKey + "].TypePortraitName");
+    //$("#Portraits_" + OurKey + "__TypePortraitName").attr("id", "Portraits_" + PrevKey + "__TypePortraitName").attr("name", "Portraits[" + PrevKey + "].TypePortraitName");
     $("#Portraits_" + OurKey + "__Artist").attr("id", "Portraits_" + PrevKey + "__Artist").attr("name", "Portraits[" + PrevKey + "].Artist");
     $("#Portraits_" + OurKey + "__Note").attr("id", "Portraits_" + PrevKey + "__Note").attr("name", "Portraits[" + PrevKey + "].Note");
     $("#Portraits_" + OurKey + "__Id").attr("id", "Portraits_" + PrevKey + "__Id").attr("name", "Portraits[" + PrevKey + "].Id");

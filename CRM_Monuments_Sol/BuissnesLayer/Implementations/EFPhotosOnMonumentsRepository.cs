@@ -29,16 +29,16 @@ namespace BuissnesLayer.Implementations
             PhotoOnMonument photoOnMonument = _context.PhotoOnMonuments.Find(photoOnMonumentId);
             return photoOnMonument;
         }
-        public IEnumerable<Portrait> GetAllPortraits()     //получить все портреты
-        {
-            List<Portrait> portraits = new List<Portrait>();
-            var p = _context.PhotoOnMonuments.Where(x => x is Portrait);
-            //foreach (Portrait ph in _context.PhotoOnMonuments.Where(x => x is Portrait))
-            //{
-            //    ph.TypePortrait = _typesPortraitRepository.GetTypePortraitByIdPortrait(ph.Id);
-            //}
-            return portraits;
-        }
+        //public IEnumerable<Portrait> GetAllPortraits()     //получить все портреты
+        //{
+        //    List<Portrait> portraits = new List<Portrait>();
+        //    var p = _context.PhotoOnMonuments.Where(x => x is Portrait);
+        //    //foreach (Portrait ph in _context.PhotoOnMonuments.Where(x => x is Portrait))
+        //    //{
+        //    //    ph.TypePortrait = _typesPortraitRepository.GetTypePortraitByIdPortrait(ph.Id);
+        //    //}
+        //    return portraits;
+        //}
         //public IEnumerable<Medallion> GetAllMedallions()     //получить все медальоны
         //{
         //    var m = _context.PhotoOnMonuments.Where(x => x is Medallion);
@@ -63,7 +63,7 @@ namespace BuissnesLayer.Implementations
             }
             else
             {
-                _context.Entry((Portrait)photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.Entry(photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
             _context.SaveChanges();
         }

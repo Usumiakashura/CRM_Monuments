@@ -42,11 +42,11 @@ namespace BuissnesLayer.Implementations
             GetDeceasedById(idDeceaced).DateCompleatTextName = dateCompleate;
             _context.SaveChanges();
         }
-        public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate) //отметить выполнение текста эпитафии
-        {
-            GetDeceasedById(idDeceaced).Epitaph.DateCompleatTextEpitaph = dateCompleate;
-            _context.SaveChanges();
-        }
+        //public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate) //отметить выполнение текста эпитафии
+        //{
+        //    GetDeceasedById(idDeceaced).Epitaph.DateCompleatTextEpitaph = dateCompleate;
+        //    _context.SaveChanges();
+        //}
 
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
         {

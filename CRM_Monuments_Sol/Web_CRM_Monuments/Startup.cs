@@ -71,10 +71,12 @@ namespace Web_CRM_Monuments
             services.AddTransient<ICustomersRepository, EFCustomersRepository>();
             services.AddTransient<IDeceasedsRepository, EFDeceasedsRepository>();
             services.AddTransient<IPhotosOnMonumentsRepository, EFPhotosOnMonumentsRepository>();
-            services.AddTransient<ISelectPointsRepository, EFSelectPointsRepository>();
             services.AddTransient<IApplicationUsersRepository, EFApplicationUsersRepository>();
             services.AddTransient<ITypesPortraitRepository, EFTypesPortraitRepository>();
-
+            services.AddTransient<ITypesTextsRepository, EFTypesTextsRepository>();
+            services.AddTransient<IMedallionMaterialsRepository, EFMedallionMaterialsRepository>();
+            services.AddTransient<IShapeMedallionsRepository, EFShapeMedallionsRepository>();
+            services.AddTransient<IColorMedallionsRepository, EFColorMedallionsRepository>();
             services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
 
             //Чтобы кирилические символы не переводились в соответствующий Unicode Hex Character Code
