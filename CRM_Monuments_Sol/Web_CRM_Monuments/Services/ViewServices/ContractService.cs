@@ -86,12 +86,9 @@ namespace Web_CRM_Monuments.Services.ViewServices
                 if (portrait.Value.Id != 0)
                 {
                     if (portrait.Value.Id == -1) portrait.Value.Id = 0;
-                    portrait.Value.TypePortrait = new TypePortrait()
-                    {
-                        Id = _dataManager.TypesPortrait.GetTypePortraitByName(portrait.Value.TypePortraitName).Id,
-                        Name = portrait.Value.TypePortraitName
-                    };
-                    portrait.Value.TypePortrait = _dataManager.TypesPortrait.GetTypePortraitByName(portrait.Value.TypePortraitName);
+                    //int idType = _dataManager.TypesPortrait.GetTypePortraitByName(contractViewModel.TypePortraitName).Id;
+                    //portrait.Value.TypePortrait.Id = idType;
+                    portrait.Value.TypePortraitId = _dataManager.TypesPortrait.GetTypePortraitByName(contractViewModel.TypePortraitName).Id;
                     // Достаем из ключа первую половину номера, относящуюся к номеру контейнера усопшего
                     MatchCollection match = Regex.Matches(portrait.Key, @"D(\d+)");
                     // Достаем номер этого контейнега
@@ -133,6 +130,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
                     if (ph is Portrait)
                     {
                         cvm.Portraits.Add($"D{numDeceased}P{numPortrait}", (Portrait)ph);
+                        cvm.TypePortraitName = ((Portrait)ph).TypePortrait.Name;
                         numPortrait++;
                     }
                     else if (ph is Medallion)

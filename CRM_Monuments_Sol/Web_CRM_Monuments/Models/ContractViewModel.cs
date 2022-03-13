@@ -19,6 +19,8 @@ namespace Web_CRM_Monuments.Models
         public Dictionary<string, Portrait> Portraits { get; set; }
         public Dictionary<string, Medallion> Medallions { get; set; }
 
+        public string TypePortraitName { get; set; }
+
         public List<int> DeletedDeceasedIds { get; set; }
         public List<int> DeletedPhotoIds { get; set; }
         public List<int> DeletedCustomerIds { get; set; }

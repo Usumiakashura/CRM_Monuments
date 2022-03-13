@@ -422,6 +422,10 @@ function AddDeceased() {
     $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].DateCompleatTextName")
         .attr("type", "hidden").attr("data-val-required", "The DateCompleatTextName field is required.")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__DateCompleatTextName").appendTo(DeceasedContainer);
+
+    $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.Id")
+        .attr("type", "hidden").attr("data-val-required", "The EpitaphId field is required.")
+        .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_Id").appendTo(DeceasedContainer);
     $("<input/>").attr("data-val", true).attr("name", "Contract.Deceaseds[" + DeceasedsCount + "].Epitaph.DateBeginTextEpitaph")
         .attr("type", "hidden").attr("data-val-required", "The DateBeginTextEpitaph field is required.")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_DateBeginTextEpitaph").appendTo(DeceasedContainer);
@@ -514,16 +518,17 @@ function RecalculateNamesAndIdsDeceaseds(number) {
 
     $("#Contract_Deceaseds_" + number + "__Id").attr("id", "Contract_Deceaseds_" + prevNumber + "__Id")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].Id");
-    
-
     $("#Contract_Deceaseds_" + number + "__DateBeginTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateBeginTextName")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateBeginTextName");
     $("#Contract_Deceaseds_" + number + "__DateCompleatTextName").attr("id", "Contract_Deceaseds_" + prevNumber + "__DateCompleatTextName")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].DateCompleatTextName");
+
     $("#Contract_Deceaseds_" + number + "__Epitaph_DateBeginTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_DateBeginTextEpitaph")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.DateBeginTextEpitaph");
     $("#Contract_Deceaseds_" + number + "__Epitaph_DateCompleatTextEpitaph").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_DateCompleatTextEpitaph")
         .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.DateCompleatTextEpitaph");
+    $("#Contract_Deceaseds_" + number + "__Epitaph_Id").attr("id", "Contract_Deceaseds_" + prevNumber + "__Epitaph_Id")
+        .attr("name", "Contract.Deceaseds[" + prevNumber + "].Epitaph.Id");
 
     $("#Portraits" + number).attr("id", "Portraits" + prevNumber).attr("class", "Portraits" + prevNumber);
     $(".ap" + number).attr("class", "add-btn my-btn add-portrait ap" + prevNumber);

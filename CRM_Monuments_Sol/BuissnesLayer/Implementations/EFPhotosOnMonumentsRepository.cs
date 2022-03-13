@@ -63,23 +63,8 @@ namespace BuissnesLayer.Implementations
             }
             else
             {
-                _context.PhotoOnMonuments.Find(photoOnMonument.Id).DateBegin = photoOnMonument.DateBegin;
-                _context.PhotoOnMonuments.Find(photoOnMonument.Id).DateCompleat = photoOnMonument.DateCompleat;
-                _context.PhotoOnMonuments.Find(photoOnMonument.Id).Deceased = photoOnMonument.Deceased;
-                _context.PhotoOnMonuments.Find(photoOnMonument.Id).Note = photoOnMonument.Note;
-                _context.PhotoOnMonuments.Find(photoOnMonument.Id).PhotoName = photoOnMonument.PhotoName;
-                _context.PhotoOnMonuments.Find(photoOnMonument.Id).PhotoPath = photoOnMonument.PhotoPath;
-                if (photoOnMonument is Portrait)
-                {
-                    Portrait portrait = (Portrait)_context.PhotoOnMonuments.Find(photoOnMonument.Id);
-                    portrait.TypePortrait = ((Portrait)photoOnMonument).TypePortrait;
-                    portrait.TypePortraitId = portrait.TypePortrait.Id;
-                    portrait.TypePortraitName = portrait.TypePortrait.Name;
-                    portrait.Artist = ((Portrait)photoOnMonument).Artist;
-                }
-                
+                _context.Entry((Portrait)photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
-                //_context.Entry(photoOnMonument).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }
         public void DeletePhotoOnMonument(PhotoOnMonument photoOnMonument)      //удалить из бд

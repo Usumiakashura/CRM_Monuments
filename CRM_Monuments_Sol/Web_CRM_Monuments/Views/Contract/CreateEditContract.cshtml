@@ -325,7 +325,7 @@
 
 
                                                             @*@Html.DropDownListFor(model => model.Portraits[keyP].TypePortrait, ViewBag.TypesPortrait as SelectList)*@
-                                                            <select asp-for="Portraits[keyP].TypePortrait.Name" class="form-control min-width-select-for-photo">
+                                                            <select asp-for="@Model.TypePortraitName" class="form-control min-width-select-for-photo">
                                                                 <option value=@null>Тип портрета...</option>
                                                                 @foreach (var tp in ViewBag.TypesPortrait)
                                                                 {
@@ -349,7 +349,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    @Html.HiddenFor(c => c.Portraits[keyP].TypePortraitId)
+                                                    @*@Html.HiddenFor(c => c.Portraits[keyP].TypePortraitId)*@
                                                     @Html.HiddenFor(c => c.Portraits[keyP].PhotoPath)
                                                     @Html.HiddenFor(c => c.Portraits[keyP].PhotoName)
                                                     @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
@@ -473,6 +473,7 @@
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].Id)
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateBeginTextName)
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateCompleatTextName)
+                            @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.Id)
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph)
                             @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph)
                             <input type="button" class="remove-deceased r-btn float-md-left" value="х" />

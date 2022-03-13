@@ -33,7 +33,7 @@ namespace BuissnesLayer.Implementations
 
         public TypePortrait GetTypePortraitByName(string nameTypePortrait)
         {
-            return _context.TypePortraits.Include(tp => tp.Portraits).Where(tp => tp.Name == nameTypePortrait).First();
+            return _context.TypePortraits.Where(tp => tp.Name == nameTypePortrait).First();
         }
 
         //public TypePortrait GetTypePortraitByIdPortrait(int idPortrait)

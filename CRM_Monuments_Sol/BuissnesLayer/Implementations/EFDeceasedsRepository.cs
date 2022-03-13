@@ -61,6 +61,7 @@ namespace BuissnesLayer.Implementations
                 {
                     _photosOnMonumentsRepository.SavePhotoOnMonument(p);
                 }
+                _epitaphRepository.SaveEpitaph(deceased.Epitaph);
                 _context.Entry(deceased).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
             _context.SaveChanges();
@@ -79,7 +80,7 @@ namespace BuissnesLayer.Implementations
             foreach (Deceased d in GetAllDeceasedsByIdContract(contractId))
             {
                 _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(d.Id);
-
+                _epitaphRepository.DeleteEpitaph(d.Epitaph);
                 _context.Deceaseds.Remove(d);
             }
             //_context.SaveChanges();

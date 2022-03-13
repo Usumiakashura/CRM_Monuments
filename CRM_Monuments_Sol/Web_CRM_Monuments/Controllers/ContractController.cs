@@ -38,18 +38,7 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public async Task<ActionResult> CreateEditContract(int idContract)
         {
-            ContractViewModel contractViewModel;
-
-            if (idContract == 0)
-            {
-                contractViewModel = new ContractViewModel();
-                contractViewModel.Contract.Number = _dataManager.Contracts.NewNumber();
-            }
-            else
-            {
-                Contract c = _dataManager.Contracts.GetContractById(idContract);
-                contractViewModel = _servicesManager.Contracts.ModelDBToModelView(c);
-            }
+            
 
             ViewBag.TypesText = _dataManager.SelectPointsRepository.GetAllTypesText();
             string typesTextHTML = "";
@@ -93,7 +82,18 @@ namespace Web_CRM_Monuments.Controllers
                 engraverHTML += $"<option value=\"{au.Name}\">{au.Name}</option>";
             ViewBag.EngraversHTML = new HtmlString(engraverHTML);
 
-            
+            ContractViewModel contractViewModel;
+
+            if (idContract == 0)
+            {
+                contractViewModel = new ContractViewModel();
+                contractViewModel.Contract.Number = _dataManager.Contracts.NewNumber();
+            }
+            else
+            {
+                Contract c = _dataManager.Contracts.GetContractById(idContract);
+                contractViewModel = _servicesManager.Contracts.ModelDBToModelView(c);
+            }
 
             return View(contractViewModel);
         }
