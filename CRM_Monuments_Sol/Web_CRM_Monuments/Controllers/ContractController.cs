@@ -101,47 +101,55 @@ namespace Web_CRM_Monuments.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateEditContract(ContractViewModel contractViewModel)
         {
-            string contractNumber = $"{contractViewModel.Contract.NumYear}-{contractViewModel.Contract.Place}-{contractViewModel.Contract.Number}";
-            string uniqueFileName = null;
-
-            if (contractViewModel.Photos != null)
+            if (ModelState.IsValid)
             {
-                for (int i = 0; i < contractViewModel.Photos.Count; i++)
+                string contractNumber = $"{contractViewModel.Contract.NumYear}-{contractViewModel.Contract.Place}-{contractViewModel.Contract.Number}";
+                string uniqueFileName = null;
+
+                if (contractViewModel.Photos != null)
                 {
-                    if (contractViewModel.Photos[i].Image != null)
+                    for (int i = 0; i < contractViewModel.Photos.Count; i++)
                     {
-                        string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, @"images\photos-on-monuments\" + contractNumber);
-                        DirectoryInfo dirInfo = new DirectoryInfo(uploadsFolder);
-                        if (!dirInfo.Exists)
-                            dirInfo.Create();
+                        if (contractViewModel.Photos[i].Image != null)
+                        {
+                            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, @"images\photos-on-monuments\" + contractNumber);
+                            DirectoryInfo dirInfo = new DirectoryInfo(uploadsFolder);
+                            if (!dirInfo.Exists)
+                                dirInfo.Create();
 
-                        uniqueFileName = Guid.NewGuid().ToString() + $"_{contractNumber}_{contractViewModel.Photos[i].Image.FileName}";
-                        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                            uniqueFileName = Guid.NewGuid().ToString() + $"_{contractNumber}_{contractViewModel.Photos[i].Image.FileName}";
+                            string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                        using (var fileStream = new FileStream(filePath, FileMode.Create))
-                        {
-                            await contractViewModel.Photos[i].Image.CopyToAsync(fileStream);
+                            using (var fileStream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await contractViewModel.Photos[i].Image.CopyToAsync(fileStream);
+                            }
+                            if (contractViewModel.Photos[i].PhotoKey.Contains('P'))
+                            {
+                                contractViewModel.Portraits[contractViewModel.Photos[i].PhotoKey]
+                                    .PhotoPath = @"/Images/photos-on-monuments/" + contractNumber + "/" + uniqueFileName;
+                                contractViewModel.Portraits[contractViewModel.Photos[i].PhotoKey].PhotoName = uniqueFileName;
+                            }
+                            else if (contractViewModel.Photos[i].PhotoKey.Contains('M'))
+                            {
+                                contractViewModel.Medallions[contractViewModel.Photos[i].PhotoKey]
+                                    .PhotoPath = @"/Images/photos-on-monuments/" + contractNumber + "/" + uniqueFileName;
+                                contractViewModel.Medallions[contractViewModel.Photos[i].PhotoKey].PhotoName = uniqueFileName;
+                            }
                         }
-                        if (contractViewModel.Photos[i].PhotoKey.Contains('P'))
-                        {
-                            contractViewModel.Portraits[contractViewModel.Photos[i].PhotoKey]
-                                .PhotoPath = @"/Images/photos-on-monuments/" + contractNumber + "/" + uniqueFileName;
-                            contractViewModel.Portraits[contractViewModel.Photos[i].PhotoKey].PhotoName = uniqueFileName;
-                        }
-                        else if (contractViewModel.Photos[i].PhotoKey.Contains('M'))
-                        {
-                            contractViewModel.Medallions[contractViewModel.Photos[i].PhotoKey]
-                                .PhotoPath = @"/Images/photos-on-monuments/" + contractNumber + "/" + uniqueFileName;
-                            contractViewModel.Medallions[contractViewModel.Photos[i].PhotoKey].PhotoName = uniqueFileName;
-                        }
+
                     }
-
                 }
+
+                _servicesManager.Contracts.SaveViewModelToDB(contractViewModel);
+
+                return RedirectToAction("Index", "Home");
             }
-
-            _servicesManager.Contracts.SaveViewModelToDB(contractViewModel);
-
-            return RedirectToAction("Index", "Home");
+            else
+            {
+                return View(contractViewModel);
+            }
+            
         }
 
         [HttpGet]

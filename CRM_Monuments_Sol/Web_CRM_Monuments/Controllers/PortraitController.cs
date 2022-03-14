@@ -34,7 +34,7 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult Details(int idPortrait)
         {
-            return View(DBPortraitToView(idPortrait));
+            return View(_servicesManager.Portraits.DBPortraitToView(idPortrait));
         }
 
         [HttpPost]
@@ -42,18 +42,18 @@ namespace Web_CRM_Monuments.Controllers
         {
             DateTime d = DateTime.Parse(date);
             _dataManager.PhotosOnMonuments.CompleateOn(idPortrait, d);
-            return View("Details", DBPortraitToView(idPortrait));
+            return View("Details", _servicesManager.Portraits.DBPortraitToView(idPortrait));
         }
         //-------------------------------------------
-        private PortraitViewModel DBPortraitToView(int idPortrait)
-        {
-            PortraitViewModel portrait = new PortraitViewModel();
-            if (idPortrait > 0)
-            {
-                portrait = _servicesManager.Portraits.GetPortraitById(idPortrait);
-            }
-            return portrait;
-        }
+        //private PortraitViewModel DBPortraitToView(int idPortrait)
+        //{
+        //    PortraitViewModel portrait = new PortraitViewModel();
+        //    if (idPortrait > 0)
+        //    {
+        //        portrait = _servicesManager.Portraits.GetPortraitById(idPortrait);
+        //    }
+        //    return portrait;
+        //}
 
     }
 }

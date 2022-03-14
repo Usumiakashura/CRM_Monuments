@@ -54,6 +54,7 @@ namespace Web_CRM_Monuments.Services.ViewServices
         public Contract ModelViewToModelDB(ContractViewModel contractViewModel)
         {
             Contract c = contractViewModel.Contract;
+            if (c.Number == null) c.Number = "бн";
             //if (c.Id == -1) c.Id = 0;
             List<Customer> customers = new List<Customer>();
             List<Deceased> deceaseds = new List<Deceased>();

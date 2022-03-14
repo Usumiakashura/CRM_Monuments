@@ -56,7 +56,11 @@
         <div class="border">
             <h5>
                 Заказчики
+
             </h5>
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <span asp-validation-for="Contract.Customers[0].FirstName" style="color: red"></span>
+            <span asp-validation-for="Contract.Customers[0].Number" style="color: red"></span>
             @*@Html.HiddenFor(c => c.Contract.Id)*@
             <div id="Customers">
                 <div class="customer-container " id="CustomerContainer0">
@@ -77,12 +81,14 @@
                                    class="form-control full" placeholder="Фамилия" />
                             <input type="text" asp-for="Contract.Customers[0].FirstName"
                                    class="form-control full" placeholder="Имя" />
+
                             <input type="text" asp-for="Contract.Customers[0].MiddleName"
                                    class="form-control full" placeholder="Отчество" />
                         </div>
                         <div>
                             <input type="tel" asp-for="Contract.Customers[0].Number"
                                    class="form-control full" />
+
                         </div>
 
                         <div class="boxMessengers">
@@ -248,7 +254,7 @@
                                 @*--------------- Эпитафия (начало) -----------------*@
 
                                 <div><input asp-for="Contract.Deceaseds[i].Epitaph.EpitaphBool" class="check-box check-epitaph" />  Эпитафия:</div>
-                                
+
                                 <textarea asp-for="Contract.Deceaseds[i].Epitaph.NotesTextEpitaph"
                                           class="form-control text-note full notes-text-epitaph" )
                                           placeholder="Текст эпитафии..." disabled="disabled"></textarea>
@@ -269,7 +275,7 @@
                                     }
                                 </select>
                                 @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverEpitaph"
-                                       class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />*@
+                                    class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />*@
 
                                 @*--------------- Эпитафия (конец) -----------------*@
                                 <div></div>
@@ -363,7 +369,7 @@
 
                                                 </div>
                                             }
-                                         }
+                                        }
                                     </div>
                                     <input type="button" class="add-btn my-btn add-portrait" id=@($"ap{i}") value="Добавить портрет" />
 
@@ -478,8 +484,8 @@
                                                         <a class="to-compleate-medallion rp-btn float-md-left" title="Отправить медальон на выполнение"><img src="/images/send.png" class="send-btn" /></a>
                                                     }
                                                 </div>
-                                             }
-                                         }
+                                            }
+                                        }
 
                                     </div>
                                     <input type="button" class="add-btn my-btn add-medallion" id=@($"am{i}") value="Добавить медальон" />
@@ -553,12 +559,13 @@
     <input type="submit" id="editCounter" hidden />
     <div id="counter" hidden></div>*@
 @*<div>
-    <a asp-action="Index">Back to List</a>
-</div>*@
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 
 @section scripts{
-
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/js/CreateContract.js"></script>
     <script>
         $(document).ready(function () {

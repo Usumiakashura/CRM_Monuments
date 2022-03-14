@@ -21,7 +21,15 @@ namespace Web_CRM_Monuments.Services.ViewServices
             return GetAllMedallions().Where(x => x.Medallion.Id == idMedallion).First();
 
         }
-
+        public MedallionViewModel DBMedallionToView(int idMedallion)
+        {
+            MedallionViewModel medallion = new MedallionViewModel();
+            if (idMedallion > 0)
+            {
+                medallion = GetMedallionById(idMedallion);
+            }
+            return medallion;
+        }
         public IEnumerable<MedallionViewModel> GetAllMedallions()
         {
             List<MedallionViewModel> medallions = new List<MedallionViewModel>();

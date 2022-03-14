@@ -21,6 +21,15 @@ namespace Web_CRM_Monuments.Services.ViewServices
             return GetAllPortraits().Where(x => x.Portrait.Id == idPortrait).First();
 
         }
+        public PortraitViewModel DBPortraitToView(int idPortrait)
+        {
+            PortraitViewModel portrait = new PortraitViewModel();
+            if (idPortrait > 0)
+            {
+                portrait = GetPortraitById(idPortrait);
+            }
+            return portrait;
+        }
 
         public IEnumerable<PortraitViewModel> GetAllPortraits()
         {

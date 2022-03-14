@@ -11,9 +11,11 @@ namespace DataLayer.Entities
     {   //заказчик
         public int Id { get; set; }                 //Id
         public string LastName { get; set; }        //Фамилия
+        [Required(ErrorMessage ="Укажите имя заказчика")]
         public string FirstName { get; set; }       //Имя
         public string MiddleName { get; set; }      //Отчество
         public string Email { get; set; }           //Почта
+        [Required(ErrorMessage = "Укажите номер телефона")]
         public string Number { get; set; }          //Номер телефона
         public bool Viber { get; set; }             //Наличие мессенджера
         public bool Telegram { get; set; }          //Наличие мессенджера
