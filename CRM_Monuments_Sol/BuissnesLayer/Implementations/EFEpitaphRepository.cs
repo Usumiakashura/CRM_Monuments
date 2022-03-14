@@ -22,7 +22,7 @@ namespace BuissnesLayer.Implementations
         public void DeleteEpitaph(Epitaph epitaph)
         {
             _context.Epitaphs.Remove(epitaph);
-            _context.SaveChanges();
+            //_context.SaveChanges();
         }
 
         public Epitaph GetEpitaphByIdDeceased(int idDeceased)

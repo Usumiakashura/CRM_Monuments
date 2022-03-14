@@ -149,7 +149,7 @@ namespace Web_CRM_Monuments.Controllers
         {
             _dataManager.Contracts.DeleteContract(_dataManager.Contracts.GetContractById(idContract));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
         
