@@ -35,7 +35,7 @@ namespace Web_CRM_Monuments.Controllers
         {
             //var c = _dataManager.Contracts.GetAllContracts();
 
-            if (User.IsInRole("manager") || User.IsInRole("admin"))
+            if (User.IsInRole("manager")/* || User.IsInRole("admin")*/)
             {
                 ViewBag.ModelP = _dataManager.Contracts.GetAllContracts();
                 ViewBag.Partial = "../Contract/_AllContractsPartial.cshtml";
@@ -59,6 +59,8 @@ namespace Web_CRM_Monuments.Controllers
                 ViewBag.Slider = new HtmlString("" +
                     "<div><input type = \"button\" value=\"Текста\" class=\"full\" id=\"AllTexts\" style=\"height: 50px; margin-right: 10px;\" /></div>");
             }
+            if (User.IsInRole("admin"))
+                return RedirectToAction("Settings", "Setting");
 
             return View();
         }

@@ -78,6 +78,7 @@ namespace Web_CRM_Monuments
             services.AddTransient<IShapeMedallionsRepository, EFShapeMedallionsRepository>();
             services.AddTransient<IColorMedallionsRepository, EFColorMedallionsRepository>();
             services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
+            services.AddTransient<ITimesRepository, EFTimesRepository>();
 
             //Чтобы кирилические символы не переводились в соответствующий Unicode Hex Character Code
             services.Configure<WebEncoderOptions>(options =>

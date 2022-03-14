@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace Web_CRM_Monuments.Controllers
 {
     public class SettingController : Controller
     {
-        // GET: SettingController
-        public ActionResult Setting()
+        [Authorize(Roles = "admin")]
+        public ActionResult Settings()
         {
             
             return View();
