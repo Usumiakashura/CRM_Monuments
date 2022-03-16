@@ -49,10 +49,16 @@
                 @Model[i].LastNameDeceased
             </td>
             <td>
-                @Model[i].Medallion.ShapeMedallion
+                @if (Model[i].Medallion.ShapeMedallionObj != null)
+                    {
+                        <label>@Model[i].Medallion.ShapeMedallionObj.Name</label>
+                    }
             </td>
             <td>
-                @Model[i].Medallion.MaterialMedallion
+                @if (Model[i].Medallion.MedallionMaterialObj != null)
+                    {
+                        <label>@Model[i].Medallion.MedallionMaterialObj.Name</label>
+                    }
             </td>
             <td>
                 @Model[i].NameCustomer

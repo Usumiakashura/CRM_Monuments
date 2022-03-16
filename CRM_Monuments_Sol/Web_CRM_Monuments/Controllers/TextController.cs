@@ -26,14 +26,14 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult AllTexts()
         {
-            var t = _servicesManager.Texts.GetAllTexts();
+            var t = _servicesManager.Texts.GetAllTextViews();
             return PartialView("_AllTextsPartial", t);
         }
 
         [HttpGet]
         public ActionResult Details(int idDeceaced, bool epitaph)
         {
-            return View(_servicesManager.Texts.DBTexttToView(idDeceaced, epitaph));
+            return View(_servicesManager.Texts.GetTextViewById(idDeceaced, epitaph));
         }
 
         [HttpPost]
@@ -45,7 +45,7 @@ namespace Web_CRM_Monuments.Controllers
             else
                 _dataManager.Deceaseds.CompleateOnTextName(idDeceaced, d);
             
-            return View("Details", _servicesManager.Texts.DBTexttToView(idDeceaced, epitaph));
+            return View("Details", _servicesManager.Texts.GetTextViewById(idDeceaced, epitaph));
         }
         
 

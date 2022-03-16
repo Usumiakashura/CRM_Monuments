@@ -26,14 +26,14 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult AllMeedallions()
         {
-            var m = _servicesManager.Medallions.GetAllMedallions();
+            var m = _servicesManager.Medallions.GetAllMedallionViews();
             return PartialView("_AllMedallionsPartial", m);
         }
 
         [HttpGet]
         public ActionResult Details(int idMedallion)
         {
-            return View(_servicesManager.Medallions.DBMedallionToView(idMedallion));
+            return View(_servicesManager.Medallions.GetMedallionViewById(idMedallion));
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace Web_CRM_Monuments.Controllers
         {
             DateTime d = DateTime.Parse(date);
             _dataManager.PhotosOnMonuments.CompleateOn(idMedallion, d);
-            return View("Details", _servicesManager.Medallions.DBMedallionToView(idMedallion));
+            return View("Details", _servicesManager.Medallions.GetMedallionViewById(idMedallion));
         }
         //-------------------------------------------
         //private MedallionViewModel DBMedallionToView(int idMedallion)

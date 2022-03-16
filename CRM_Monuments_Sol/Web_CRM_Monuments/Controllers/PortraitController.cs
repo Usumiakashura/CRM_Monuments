@@ -27,14 +27,14 @@ namespace Web_CRM_Monuments.Controllers
         [HttpGet]
         public ActionResult AllPortraits()
         {
-            var p = _servicesManager.Portraits.GetAllPortraits();
+            var p = _servicesManager.Portraits.GetAllPortraitViews();
             return PartialView("_AllPortraitsPartial", p);
         }
 
         [HttpGet]
         public ActionResult Details(int idPortrait)
         {
-            return View(_servicesManager.Portraits.DBPortraitToView(idPortrait));
+            return View(_servicesManager.Portraits.GetPortraitViewById(idPortrait));
         }
 
         [HttpPost]
@@ -42,7 +42,7 @@ namespace Web_CRM_Monuments.Controllers
         {
             DateTime d = DateTime.Parse(date);
             _dataManager.PhotosOnMonuments.CompleateOn(idPortrait, d);
-            return View("Details", _servicesManager.Portraits.DBPortraitToView(idPortrait));
+            return View("Details", _servicesManager.Portraits.GetPortraitViewById(idPortrait));
         }
         //-------------------------------------------
         //private PortraitViewModel DBPortraitToView(int idPortrait)

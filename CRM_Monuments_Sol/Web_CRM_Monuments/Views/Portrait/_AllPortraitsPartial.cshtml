@@ -48,7 +48,10 @@
                 @Model[i].LastNameDeceased
             </td>
             <td>
-                @Model[i].Portrait.TypePortraitName
+                @if (Model[i].Portrait.TypePortrait != null)
+                {
+                    <label>@Model[i].Portrait.TypePortrait.Name</label>
+                }
             </td>
             <td>
                 @Model[i].NameCustomer

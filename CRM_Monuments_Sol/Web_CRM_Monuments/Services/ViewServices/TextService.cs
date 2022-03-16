@@ -16,59 +16,52 @@ namespace Web_CRM_Monuments.Services.ViewServices
             _dataManager = dataManager;
         }
 
-        public TextViewModel GetTextNameByIdDeceased(int idDeceased)
-        {
-            return GetAllTexts().Where(x => x.Deceased.Id == idDeceased && x.TextEpitaph == false).First();
-        }
+        //public TextViewModel GetTextNameViewByIdDeceased(int idDeceased)
+        //{
+        //    return GetAllTextViews().Where(x => x.Deceased.Id == idDeceased && x.TextEpitaph == false).First();
+        //}
 
-        public TextViewModel GetTextEpitaphByIdDeceased(int idDeceased)
-        {
-            return GetAllTexts().Where(x => x.Deceased.Id == idDeceased && x.TextEpitaph == true).First();
-        }
+        //public TextViewModel GetTextEpitaphViewByIdDeceased(int idDeceased)
+        //{
+        //    return GetAllTextViews().Where(x => x.Deceased.Id == idDeceased && x.TextEpitaph == true).First();
+        //}
 
-        public TextViewModel DBTexttToView(int idDeceaced, bool epitaph)
+        public TextViewModel GetTextViewById(int idDeceaced, bool epitaph)
         {
             TextViewModel text = new TextViewModel();
             if (idDeceaced > 0)
             {
-                if (epitaph)
-                    text = GetTextEpitaphByIdDeceased(idDeceaced);
-                else
-                    text = GetTextNameByIdDeceased(idDeceaced);
+                text = DBTextToView(_dataManager.Deceaseds.GetDeceasedById(idDeceaced), epitaph);
             }
             return text;
         }
 
-        public IEnumerable<TextViewModel> GetAllTexts()
+        public TextViewModel DBTextToView(Deceased d, bool epitaph) 
+        {
+            TextViewModel text = new TextViewModel()
+            {
+                Deceased = d,
+                ContractNumber = d.Contract.NumYear + "/" + d.Contract.Place + "/" + d.Contract.Number,
+                DateConclusionContract = d.Contract.DateOfConclusion,
+                NameCustomer = d.Contract.Customers[0].LastName + " " + d.Contract.Customers[0].FirstName + " " + d.Contract.Customers[0].MiddleName,
+                PhoneCustomer = d.Contract.Customers[0].Number,
+                TextEpitaph = epitaph
+            };
+            return text;
+        }
+
+        public IEnumerable<TextViewModel> GetAllTextViews()
         {
             List<TextViewModel> texts = new List<TextViewModel>();
             foreach (Contract c in _dataManager.Contracts.GetAllContracts())
             {
-                foreach (Deceased d in c.Deceaseds)
+                foreach (Deceased d in _dataManager.Deceaseds.GetAllDeceasedsByIdContract(c.Id))
                 {
-                    texts.Add(new TextViewModel()
-                    {
-                        Deceased = d,
-                        ContractNumber = c.NumYear + "/" + c.Place + "/" + c.Number,
-                        DateConclusionContract = c.DateOfConclusion,
-                        LastNameDeceased = d.LastName,
-                        NameCustomer = c.Customers[0].LastName + " " + c.Customers[0].FirstName + " " + c.Customers[0].MiddleName,
-                        PhoneCustomer = c.Customers[0].Number,
-                        TextEpitaph = false
-                    });
                     if (d.Epitaph.EpitaphBool)
                     {
-                        texts.Add(new TextViewModel()
-                        {
-                            Deceased = d,
-                            ContractNumber = c.NumYear + "/" + c.Place + "/" + c.Number,
-                            DateConclusionContract = c.DateOfConclusion,
-                            LastNameDeceased = d.LastName,
-                            NameCustomer = c.Customers[0].LastName + " " + c.Customers[0].FirstName + " " + c.Customers[0].MiddleName,
-                            PhoneCustomer = c.Customers[0].Number,
-                            TextEpitaph = true
-                        });
+                        texts.Add(DBTextToView(d, true));
                     }
+                    texts.Add(DBTextToView(d, false));
                 }
             }
             return texts;

@@ -203,12 +203,12 @@ namespace DataLayer
                                     new Medallion()
                                     {
                                         MedallionMaterialObj = context.MedallionMaterials.Find(4),
-                                        MaterialMedallion = context.MedallionMaterials.Find(4).Name,
+                                        //MaterialMedallion = context.MedallionMaterials.Find(4).Name,
                                         SizeMedallion = "15*15",
                                         ShapeMedallionObj = context.ShapeMedallions.Find(3),
-                                        ShapeMedallion = context.ShapeMedallions.Find(3).Name,
+                                        //ShapeMedallion = context.ShapeMedallions.Find(3).Name,
                                         ColorMedallionObj = context.ColorMedallions.Find(1),
-                                        ColorMedallion = context.ColorMedallions.Find(1).Name,
+                                        //ColorMedallion = context.ColorMedallions.Find(1).Name,
                                         BackgroundMedallion = "Серый",
                                         Frame = true,
                                         TypeFrame = "Ф1",
@@ -218,7 +218,7 @@ namespace DataLayer
                                     }
                                 },
                                 TypeTextObj = context.TypeTexts.Find(4),
-                                TypeNameText = context.TypeTexts.Find(4).Name,
+                                //TypeNameText = context.TypeTexts.Find(4).Name,
                                 EngraverName = "Василий",
                                 Epitaph = new Epitaph()
                                 { 
@@ -276,18 +276,18 @@ namespace DataLayer
                                     new Portrait()
                                     {
                                         TypePortrait = context.TypePortraits.Find(1),
-                                        TypePortraitName = context.TypePortraits.Find(1).Name,
+                                        //TypePortraitName = context.TypePortraits.Find(1).Name,
                                         Artist = "Татьяна"
                                     }
                                 },
                                 TypeTextObj = context.TypeTexts.Find(2),
-                                TypeNameText = context.TypeTexts.Find(2).Name,
+                                //TypeNameText = context.TypeTexts.Find(2).Name,
                                 EngraverName = "Василий",
                                 Epitaph = new Epitaph()
                                 {
                                     EpitaphBool = true,
                                     TypeTextObj = context.TypeTexts.Find(4),
-                                    TypeTextEpitaph = context.TypeTexts.Find(4).Name,
+                                    //TypeTextEpitaph = context.TypeTexts.Find(4).Name,
                                     NotesTextEpitaph = "какие-то примечания к эпитафии",
                                     EngraverEpitaph = "Василий"
                                 }
@@ -343,12 +343,12 @@ namespace DataLayer
                                     new Medallion()
                                     {
                                         MedallionMaterialObj = context.MedallionMaterials.Find(2),
-                                        MaterialMedallion = context.MedallionMaterials.Find(2).Name,
+                                        //MaterialMedallion = context.MedallionMaterials.Find(2).Name,
                                         SizeMedallion = "15*15",
                                         ShapeMedallionObj = context.ShapeMedallions.Find(2),
-                                        ShapeMedallion = context.ShapeMedallions.Find(2).Name,
+                                        //ShapeMedallion = context.ShapeMedallions.Find(2).Name,
                                         ColorMedallionObj = context.ColorMedallions.Find(1),
-                                        ColorMedallion = context.ColorMedallions.Find(1).Name,
+                                        //ColorMedallion = context.ColorMedallions.Find(1).Name,
                                         BackgroundMedallion = "Серый",
                                         Frame = true,
                                         TypeFrame = "Ф1",
@@ -358,7 +358,7 @@ namespace DataLayer
                                     }
                                 },
                                 TypeTextObj = context.TypeTexts.Find(4),
-                                TypeNameText = context.TypeTexts.Find(4).Name,
+                                //TypeNameText = context.TypeTexts.Find(4).Name,
                                 EngraverName = "Василий",
                                 Epitaph = new Epitaph()
                                 {
@@ -416,18 +416,18 @@ namespace DataLayer
                                     new Portrait()
                                     {
                                         TypePortrait = context.TypePortraits.Find(1),
-                                        TypePortraitName = context.TypePortraits.Find(1).Name,
+                                        //TypePortraitName = context.TypePortraits.Find(1).Name,
                                         Artist = "Татьяна"
                                     }
                                 },
                                 TypeTextObj = context.TypeTexts.Find(3),
-                                TypeNameText = context.TypeTexts.Find(3).Name,
+                                //TypeNameText = context.TypeTexts.Find(3).Name,
                                 EngraverName = "Василий",
                                 Epitaph = new Epitaph()
                                 {
                                     EpitaphBool = true,
                                     TypeTextObj = context.TypeTexts.Find(1),
-                                    TypeTextEpitaph = context.TypeTexts.Find(1).Name,
+                                    //TypeTextEpitaph = context.TypeTexts.Find(1).Name,
                                     NotesTextEpitaph = "какие-то примечания к эпитафии",
                                     EngraverEpitaph = "Василий"
                                 }

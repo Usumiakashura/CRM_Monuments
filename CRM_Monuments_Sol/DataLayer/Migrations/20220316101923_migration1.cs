@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataLayer.Migrations
 {
-    public partial class testcont1 : Migration
+    public partial class migration1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,20 +77,6 @@ namespace DataLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Times",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DurationDay = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Times", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "TypePortraits",
                 columns: table => new
                 {
@@ -123,10 +109,10 @@ namespace DataLayer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Viber = table.Column<bool>(type: "bit", nullable: false),
                     Telegram = table.Column<bool>(type: "bit", nullable: false),
                     WhatsApp = table.Column<bool>(type: "bit", nullable: false),
@@ -158,11 +144,11 @@ namespace DataLayer.Migrations
                     DateRip = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Photo = table.Column<bool>(type: "bit", nullable: false),
                     TypeTextObjId = table.Column<int>(type: "int", nullable: true),
-                    TypeNameText = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NotesTextName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngraverName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateBeginTextName = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateCompleatTextName = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeadLine = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ContractId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -188,12 +174,12 @@ namespace DataLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false),
                     EpitaphBool = table.Column<bool>(type: "bit", nullable: false),
-                    TypeTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypeTextObjId = table.Column<int>(type: "int", nullable: true),
                     NotesTextEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     EngraverEpitaph = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateBeginTextEpitaph = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateCompleatTextEpitaph = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DateCompleatTextEpitaph = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeadLine = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -223,14 +209,12 @@ namespace DataLayer.Migrations
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateBegin = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateCompleat = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeadLine = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeceasedId = table.Column<int>(type: "int", nullable: true),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MaterialMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MedallionMaterialObjId = table.Column<int>(type: "int", nullable: true),
                     SizeMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ShapeMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ShapeMedallionObjId = table.Column<int>(type: "int", nullable: true),
-                    ColorMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ColorMedallionObjId = table.Column<int>(type: "int", nullable: true),
                     BackgroundMedallion = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Frame = table.Column<bool>(type: "bit", nullable: true),
@@ -241,7 +225,6 @@ namespace DataLayer.Migrations
                     NoteFrame = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     GluingIntoNiche = table.Column<bool>(type: "bit", nullable: true),
                     Artist = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypePortraitName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TypePortraitId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -335,9 +318,6 @@ namespace DataLayer.Migrations
 
             migrationBuilder.DropTable(
                 name: "PhotoOnMonuments");
-
-            migrationBuilder.DropTable(
-                name: "Times");
 
             migrationBuilder.DropTable(
                 name: "ColorMedallions");

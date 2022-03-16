@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    [Migration("20220312191804_testcont1")]
-    partial class testcont1
+    [Migration("20220316101923_migration1")]
+    partial class migration1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -119,6 +119,7 @@ namespace DataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -131,6 +132,7 @@ namespace DataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Telegram")
@@ -171,6 +173,9 @@ namespace DataLayer.Migrations
                     b.Property<DateTime?>("DateRip")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DeadLine")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("EngraverName")
                         .HasColumnType("nvarchar(max)");
 
@@ -188,9 +193,6 @@ namespace DataLayer.Migrations
 
                     b.Property<bool>("Photo")
                         .HasColumnType("bit");
-
-                    b.Property<string>("TypeNameText")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TypeTextObjId")
                         .HasColumnType("int");
@@ -215,6 +217,9 @@ namespace DataLayer.Migrations
                     b.Property<DateTime>("DateCompleatTextEpitaph")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DeadLine")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("EngraverEpitaph")
                         .HasColumnType("nvarchar(max)");
 
@@ -222,9 +227,6 @@ namespace DataLayer.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("NotesTextEpitaph")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TypeTextEpitaph")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TypeTextObjId")
@@ -263,6 +265,9 @@ namespace DataLayer.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateCompleat")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeadLine")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("DeceasedId")
@@ -305,24 +310,6 @@ namespace DataLayer.Migrations
                     b.ToTable("ShapeMedallions");
                 });
 
-            modelBuilder.Entity("DataLayer.Entities.Time", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("DurationDay")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Times");
-                });
-
             modelBuilder.Entity("DataLayer.Entities.TypePortrait", b =>
                 {
                     b.Property<int>("Id")
@@ -363,9 +350,6 @@ namespace DataLayer.Migrations
                     b.Property<string>("ColorFrame")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ColorMedallion")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("ColorMedallionObjId")
                         .HasColumnType("int");
 
@@ -375,9 +359,6 @@ namespace DataLayer.Migrations
                     b.Property<bool>("GluingIntoNiche")
                         .HasColumnType("bit");
 
-                    b.Property<string>("MaterialMedallion")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("MedallionMaterialObjId")
                         .HasColumnType("int");
 
@@ -385,9 +366,6 @@ namespace DataLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShapeFrame")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShapeMedallion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ShapeMedallionObjId")
@@ -420,9 +398,6 @@ namespace DataLayer.Migrations
 
                     b.Property<int?>("TypePortraitId")
                         .HasColumnType("int");
-
-                    b.Property<string>("TypePortraitName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasIndex("TypePortraitId");
 

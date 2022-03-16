@@ -28,10 +28,10 @@
             </tr>
             <tr>
                 <td>
-                    Фамилия усопшего:
+                    ФИО усопшего:
                 </td>
                 <td>
-                    @Model.LastNameDeceased
+                    @Model.LastNameDeceased @Model.FirstNameDeceased @Model.MiddleNameDeceased
                 </td>
             </tr>
             <tr>
@@ -39,7 +39,11 @@
                     Тип портрета:
                 </td>
                 <td>
-                    @Model.Portrait.TypePortraitName
+
+                    @if (Model.Portrait.TypePortrait != null)
+                    {
+                        <label>@Model.Portrait.TypePortrait.Name</label>
+                    }
                 </td>
             </tr>
             <tr>
@@ -73,15 +77,13 @@
                 <td>
                     @if (Model.Portrait.PhotoName != null)
                     {
-                        <a href="@Model.Portrait.PhotoPath" download="@Model.Portrait.PhotoName"
-                           class="download-btn full">
-                            <input type="button" class="full" value="Скачать" />
-                        </a>
-                    }
+        <a href="@Model.Portrait.PhotoPath" download="@Model.Portrait.PhotoName"
+           class="download-btn full">
+            <input type="button" class="full" value="Скачать" />
+        </a> }
                     else
                     {
-                        <label>Ожидается фото от заказчика...</label>
-                    }
+        <label>Ожидается фото от заказчика...</label>}
                 </td>
             </tr>
             <tr>
@@ -95,18 +97,29 @@
         </tbody>
     </table>
 
-    @if (Model.Portrait.DateCompleat < new DateTime(2000, 01, 01))
+
+    @if (Model.Portrait.PhotoName != null)
     {
-        <form class="form-inline" asp-controller="Portrait" asp-action="CompleateOn"
-              asp-route-idPortrait="@Model.Portrait.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
-              method="post">
-            <button type="submit" class="btn btn-primary">Выполнено</button>
-        </form>
+        @if (Model.Portrait.DateCompleat < new DateTime(2000, 01, 01))
+        {
+            <form class="form-inline" asp-controller="Portrait" asp-action="CompleateOn"
+                  asp-route-idPortrait="@Model.Portrait.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
+                  method="post">
+                <button type="submit" class="btn btn-primary">Выполнено</button>
+            </form> 
+        }
+        else
+        {
+            <h5>Портрет выполнен @Model.Portrait.DateCompleat.ToShortDateString()</h5>
+        }
     }
     else
     {
-        <h5>Портрет выполнен @Model.Portrait.DateCompleat.ToShortDateString()</h5>
+        <h5>Ожидается фото от заказчика</h5>
     }
+
+
+    
 
 
 

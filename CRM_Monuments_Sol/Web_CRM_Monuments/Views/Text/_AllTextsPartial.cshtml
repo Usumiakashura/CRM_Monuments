@@ -45,16 +45,22 @@
                 @Model[i].DateConclusionContract.ToShortDateString()
             </td>
             <td>
-                @Model[i].LastNameDeceased
+                @Model[i].Deceased.LastName 
             </td>
             <td>
                 @if (Model[i].TextEpitaph)
                 {
-                    <label>@Model[i].Deceased.Epitaph.TypeTextEpitaph</label>
+                    @if(Model[i].Deceased.Epitaph.TypeTextObj != null)
+                    {
+                        <label>@Model[i].Deceased.Epitaph.TypeTextObj.Name</label>
+                    }
                 }
                 else
                 {
-                    <label>@Model[i].Deceased.TypeNameText</label>
+                    @if (Model[i].Deceased.TypeTextObj != null)
+                        {
+                            <label>@Model[i].Deceased.TypeTextObj.Name</label>
+                        } 
                 }
             </td>
             <td>

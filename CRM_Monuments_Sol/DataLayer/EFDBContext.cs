@@ -28,7 +28,6 @@ namespace DataLayer
         public DbSet<ShapeMedallion> ShapeMedallions { get; set; }
         public DbSet<ColorMedallion> ColorMedallions { get; set; }
 
-        public DbSet<Time> Times { get; set; }
 
         public EFDBContext(DbContextOptions<EFDBContext> options)
             : base(options)

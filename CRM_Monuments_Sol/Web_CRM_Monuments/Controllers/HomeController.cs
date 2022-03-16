@@ -47,14 +47,14 @@ namespace Web_CRM_Monuments.Controllers
             }
             else if (User.IsInRole("artist"))
             {
-                ViewBag.ModelP = _servicesManager.Portraits.GetAllPortraits();
+                ViewBag.ModelP = _servicesManager.Portraits.GetAllPortraitViews();
                 ViewBag.Partial = "../Portrait/_AllPortraitsPartial.cshtml";
                 ViewBag.Slider = new HtmlString("" +
                     "<div><input type = \"button\" value = \"Портреты\" class=\"full\" id=\"AllPortraits\" style=\"height: 50px; margin-right: 10px;\" /></div>");
             }
             else if (User.IsInRole("engraver"))
             {
-                ViewBag.ModelP = _servicesManager.Texts.GetAllTexts();
+                ViewBag.ModelP = _servicesManager.Texts.GetAllTextViews();
                 ViewBag.Partial = "../Text/_AllTextsPartial.cshtml";
                 ViewBag.Slider = new HtmlString("" +
                     "<div><input type = \"button\" value=\"Текста\" class=\"full\" id=\"AllTexts\" style=\"height: 50px; margin-right: 10px;\" /></div>");

@@ -25,15 +25,26 @@ namespace BuissnesLayer.Implementations
 
         public IEnumerable<Deceased> GetAllDeceasedsByIdContract(int contractId)     //получить весь список, относящийся к определенному договору
         {
-            var deceaseds = _context.Deceaseds.Include(d => d.PhotosOnMonument).Include(e => e.Epitaph)
-                .Include(d => d.Contract).Where(d => d.Contract.Id == contractId);
+            var deceaseds = _context.Deceaseds
+                .Include(e => e.Epitaph).ThenInclude(x => x.TypeTextObj)
+                .Include(d => d.Contract).ThenInclude(x => x.Customers)
+                .Include(p => p.PhotosOnMonument)
+                .Where(d => d.Contract.Id == contractId);
+            //foreach (Deceased d in deceaseds)
+            //{
+            //    _photosOnMonumentsRepository.GetAllPhotoOnMonumentsByIdDeceased(d.Id);
+            //}
             return deceaseds;
         }
 
         public Deceased GetDeceasedById(int deceasedId)    //получить один по айди
         {
-            Deceased deceased = _context.Deceaseds.Find(deceasedId);
-            deceased.Epitaph = _epitaphRepository.GetEpitaphByIdDeceased(deceasedId);
+            Deceased deceased = _context.Deceaseds
+                .Include(x => x.Contract).ThenInclude(x => x.Customers)
+                .Include(x => x.TypeTextObj)
+                .Include(x => x.Epitaph).ThenInclude(x => x.TypeTextObj)
+                .Where(x => x.Id == deceasedId).First();
+            //deceased.Epitaph = _epitaphRepository.GetEpitaphByIdDeceased(deceasedId);
             return deceased;
         }
 

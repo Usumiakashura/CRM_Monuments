@@ -27,9 +27,12 @@ namespace BuissnesLayer.Implementations
         {
             List<Contract> contracts = new List<Contract>();
             foreach (Contract c in _context.Contracts
-                .Include(c => c.Customers))
+                .Include(c => c.Customers)
+                .Include(x => x.Deceaseds)
+                .ThenInclude(x => x.TypeTextObj))
+                //.ThenInclude(x => x.PhotosOnMonument))
             {
-                FillContractLists(c);
+                //FillContractLists(c);
                 contracts.Add(c);
             }
             return contracts;
@@ -37,8 +40,11 @@ namespace BuissnesLayer.Implementations
 
         public Contract GetContractById(int contractId)    //получить один по айди
         {
-            Contract contract = _context.Contracts.Find(contractId);
-            FillContractLists(contract);   //достаем из бд всех заказчиков, усопших и комплектующих в договор
+            Contract contract = _context.Contracts
+                .Include(c => c.Customers)
+                .Include(x => x.Deceaseds).ThenInclude(x => x.PhotosOnMonument)
+                .Where(x => x.Id == contractId).First();
+            //FillContractLists(contract);   //достаем из бд всех заказчиков, усопших и комплектующих в договор
             return contract;
         }
 

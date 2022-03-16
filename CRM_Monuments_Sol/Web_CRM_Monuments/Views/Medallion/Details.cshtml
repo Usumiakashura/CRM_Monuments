@@ -28,10 +28,10 @@
             </tr>
             <tr>
                 <td>
-                    Фамилия усопшего:
+                    ФИО усопшего:
                 </td>
                 <td>
-                    @Model.LastNameDeceased
+                    @Model.LastNameDeceased @Model.FirstNameDeceased @Model.MiddleNameDeceased
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,10 @@
                     Материал:
                 </td>
                 <td>
-                    @Model.Medallion.MaterialMedallion
+                    @if (Model.Medallion.MedallionMaterialObj != null)
+                    {
+                        <label>@Model.Medallion.MedallionMaterialObj.Name</label>
+                    }
                 </td>
 
                 @if (Model.Medallion.Frame)
@@ -92,7 +95,10 @@
                     Форма:
                 </td>
                 <td>
-                    @Model.Medallion.ShapeMedallion
+                    @if (Model.Medallion.ShapeMedallionObj != null)
+                    {
+                        <label>@Model.Medallion.ShapeMedallionObj.Name</label>
+                    }
                 </td>
 
                 @if (Model.Medallion.Frame)
@@ -110,7 +116,11 @@
                     Цветность:
                 </td>
                 <td>
-                    @Model.Medallion.ColorMedallion
+                    @if (Model.Medallion.ColorMedallionObj != null)
+                    {
+                        <label>@Model.Medallion.ColorMedallionObj.Name</label>
+                    }
+                        
                 </td>
 
                 @if (Model.Medallion.Frame)
@@ -177,25 +187,34 @@
                     </td>
                     <td>
                         @Model.Medallion.NoteFrame
-                        @Model.Medallion.Id
+                        @*@Model.Medallion.Id*@
                     </td>
                 }
             </tr>
         </tbody>
     </table>
 
-    @if (Model.Medallion.DateCompleat < new DateTime(2000, 01, 01))
+    @if (Model.Medallion.PhotoName != null)
     {
-        <form class="form-inline" asp-controller="Medallion" asp-action="CompleateOn"
-              asp-route-idMedallion="@Model.Medallion.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
-              method="post">
-            <button type="submit" class="btn btn-primary">Выполнено</button>
-        </form>
-    }
-    else
-    {
-        <h5>Медальон выполнен @Model.Medallion.DateCompleat.ToShortDateString()</h5>
-    }
+        @if (Model.Medallion.DateCompleat < new DateTime(2000, 01, 01))
+        {
+                <form class="form-inline" asp-controller="Medallion" asp-action="CompleateOn"
+                      asp-route-idMedallion="@Model.Medallion.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
+                      method="post">
+                    <button type="submit" class="btn btn-primary">Выполнено</button>
+                </form>
+        }
+        else
+        {
+                <h5>Медальон выполнен @Model.Medallion.DateCompleat.ToShortDateString()</h5>
+        }
+     }
+     else
+     {
+                <h5>Ожидается фото от заказчика</h5>
+     }
+
+    
 
 
 

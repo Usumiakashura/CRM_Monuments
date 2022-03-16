@@ -12,8 +12,8 @@ namespace DataLayer.Entities
         public string LastName { get; set; }            //Фамилия
         public string FirstName { get; set; }           //Имя
         public string MiddleName { get; set; }          //Отчество
-        public DateTime? DateBirthday { get; set; }      //Дата рождения
-        public DateTime? DateRip { get; set; }           //Дата смерти
+        public DateTime DateBirthday { get; set; }      //Дата рождения
+        public DateTime DateRip { get; set; }           //Дата смерти
         
         //--- Фотография/портрет на памятнике ---
         public bool Photo { get; set; }                 //без/с фото
@@ -22,8 +22,9 @@ namespace DataLayer.Entities
         //---------------------------------------
 
         //--- Текст на памятнике ---
-        public TypeText TypeTextObj { get; set; }
-        public string TypeNameText { get; set; }      //тип текста на памятнике (имя)
+        public int? TypeTextObjId { get; set; }
+        public TypeText TypeTextObj { get; set; }      //тип текста на памятнике (имя)
+        //public string TypeNameText { get; set; }
         //public TypeText TypeTextName { get; set; }
         public string NotesTextName { get; set; }       //примечания к тексту (имя)
         public string EngraverName { get; set; }      //резчик текста (имя)
@@ -36,6 +37,7 @@ namespace DataLayer.Entities
         //public DateTime DateBeginTextEpitaph { get; set; }         //Дата Начала выполнения текста эпитафии
         //public DateTime DateCompleatTextEpitaph { get; set; }      //Дата завершения выполнения текста эпитафии
 
+        public DateTime DeadLine { get; set; }          //Крайний срок
         public Contract Contract { get; set; }          //для бд
 
 

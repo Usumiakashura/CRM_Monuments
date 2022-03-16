@@ -20,7 +20,6 @@ namespace BuissnesLayer
         private IShapeMedallionsRepository _shapeMedallionsRepository;
         private IColorMedallionsRepository _colorMedallionsRepository;
         private IEpitaphRepository _epitaphRepository;
-        private ITimesRepository _timesRepository;
 
         public DataManager(
             IContractsRepository contractsRepository,
@@ -33,8 +32,7 @@ namespace BuissnesLayer
             IMedallionMaterialsRepository medallionMaterialsRepository,
             IShapeMedallionsRepository shapeMedallionsRepository,
             IColorMedallionsRepository colorMedallionsRepository,
-            IEpitaphRepository epitaphRepository,
-            ITimesRepository timesRepository)
+            IEpitaphRepository epitaphRepository)
         {
             _contractsRepository = contractsRepository;
             _customersRepository = customersRepository;
@@ -47,7 +45,6 @@ namespace BuissnesLayer
             _shapeMedallionsRepository = shapeMedallionsRepository;
             _colorMedallionsRepository = colorMedallionsRepository;
             _epitaphRepository = epitaphRepository;
-            _timesRepository = timesRepository;
         }
 
         public IContractsRepository Contracts { get { return _contractsRepository; } }
@@ -61,6 +58,5 @@ namespace BuissnesLayer
         public IShapeMedallionsRepository ShapeMedallions { get { return _shapeMedallionsRepository; } }
         public IColorMedallionsRepository ColorMedallions { get { return _colorMedallionsRepository; } }
         public IEpitaphRepository Epitaphs { get { return _epitaphRepository; } }
-        public ITimesRepository Times { get { return _timesRepository; } }
     }
 }

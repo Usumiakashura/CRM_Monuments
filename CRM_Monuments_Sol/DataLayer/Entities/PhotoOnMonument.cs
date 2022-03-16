@@ -15,6 +15,7 @@ namespace DataLayer.Entities
         //public bool DeletedCheck { get; set; }
         public DateTime DateBegin { get; set; }         //Дата Начала выполнения
         public DateTime DateCompleat { get; set; }      //Дата завершения выполнения
+        public DateTime DeadLine { get; set; }          //Крайний срок
 
         public Deceased Deceased { get; set; }          //для БД
     }

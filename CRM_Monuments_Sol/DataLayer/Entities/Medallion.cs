@@ -8,12 +8,15 @@ namespace DataLayer.Entities
 {
     public class Medallion : PhotoOnMonument
     {   //медальон
-        public string MaterialMedallion { get; set; }   //Материал
+        //public string MaterialMedallion { get; set; }   //Материал
+        public int? MedallionMaterialObjId { get; set; }   //Материал
         public MedallionMaterial MedallionMaterialObj { get; set; }   //Материал
         public string SizeMedallion { get; set; }       //Размер
-        public string ShapeMedallion { get; set; }      //Форма
+        //public string ShapeMedallion { get; set; }      //Форма
+        public int? ShapeMedallionObjId { get; set; }      //Форма
         public ShapeMedallion ShapeMedallionObj { get; set; }      //Форма
-        public string ColorMedallion { get; set; }      //Цвет
+        //public string ColorMedallion { get; set; }      //Цвет
+        public int? ColorMedallionObjId { get; set; }      //Форма
         public ColorMedallion ColorMedallionObj { get; set; }      //Форма
         public string BackgroundMedallion { get; set; } //Фон
 

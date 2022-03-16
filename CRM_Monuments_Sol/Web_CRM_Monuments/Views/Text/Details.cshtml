@@ -33,10 +33,10 @@
             </tr>
             <tr>
                 <td>
-                    Фамилия усопшего:
+                    ФИО усопшего:
                 </td>
                 <td>
-                    @Model.LastNameDeceased
+                    @Model.Deceased.LastName @Model.Deceased.FirstName @Model.Deceased.MiddleName
                 </td>
             </tr>
             <tr>
@@ -71,7 +71,11 @@
                         Тип текста:
                     </td>
                     <td>
-                        @Model.Deceased.Epitaph.TypeTextEpitaph
+                        
+                        @if(Model.Deceased.Epitaph.TypeTextObj != null)
+                        {
+                            <label>@Model.Deceased.Epitaph.TypeTextObj.Name</label>
+                        }
                     </td>
                 </tr>
                 <tr>
@@ -98,7 +102,7 @@
                         Дата рождения:
                     </td>
                     <td>
-                        @Model.Deceased.DateBirthday
+                        @Model.Deceased.DateBirthday.ToShortDateString()
                     </td>
                 </tr>
                 <tr>
@@ -106,7 +110,7 @@
                         Дата смерти:
                     </td>
                     <td>
-                        @Model.Deceased.DateRip
+                        @Model.Deceased.DateRip.ToShortDateString()
                     </td>
                 </tr>
                 <tr>
@@ -114,7 +118,10 @@
                         Тип текста:
                     </td>
                     <td>
-                        @Model.Deceased.TypeNameText
+                        @if (Model.Deceased.TypeTextObj != null)
+                        {
+                            <label>@Model.Deceased.TypeTextObj.Name</label>
+                        } 
                     </td>
                 </tr>
                 <tr>
