@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ namespace DataLayer.Entities
 {
     public class Portrait : PhotoOnMonument
     {   //портрет
-        public string Artist { get; set; }              //художник
+        public string? Artist { get; set; }              //художник
         //public string TypePortraitName { get; set; }        //тип портрета (ручной/станочный)
         public int? TypePortraitId { get; set; }        //тип портрета Id
+        [ValidateNever]
         public TypePortrait TypePortrait { get; set; }
     }
 }

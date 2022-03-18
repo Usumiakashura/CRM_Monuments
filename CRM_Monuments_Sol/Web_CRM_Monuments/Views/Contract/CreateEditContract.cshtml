@@ -53,18 +53,68 @@
         </div>
         @*/////////////////////////////////////////////////////////////
             // --- Заказчики --------------------------------------------*@
-        <div class="border">
-            <h5>
-                Заказчики
+    <div class="border">
+        <h5>
+            Заказчики
 
-            </h5>
-            <div class="validation" asp-validation-summary="ModelOnly"></div>
-            <span asp-validation-for="Contract.Customers[0].FirstName" style="color: red"></span>
-            <span asp-validation-for="Contract.Customers[0].Number" style="color: red"></span>
-            @*@Html.HiddenFor(c => c.Contract.Id)*@
-            <div id="Customers">
-                <div class="customer-container " id="CustomerContainer0">
-                    <div class="wrapper w5 p96">
+        </h5>
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <span asp-validation-for="Contract.Customers[0].FirstName" style="color: red"></span>
+        <span asp-validation-for="Contract.Customers[0].Number" style="color: red"></span>
+        
+        @*@Html.HiddenFor(c => c.Contract.Id)*@
+        <div id="Customers">
+            <div class="customer-container " id="CustomerContainer0">
+                <div class="wrapper w5 p96">
+                    <div class="box1">ФИО заказчика: </div>
+                    <div>Телефон: </div>
+                    <div class="boxMessengers">
+                        <img class="icon def" src="~/Images/viber.png" title="viber" />
+                        <img class="icon def" src="~/Images/telegram.png" title="telegram" />
+                        <img class="icon def" src="~/Images/whatsapp.png" title="whatsapp" />
+                    </div>
+                    <div>Email: </div>
+                    <div>Другая связь: </div>
+                    <div class="box1">
+                        @Html.HiddenFor(c => c.Contract.Customers[0].Id)
+                        @if (Model.Contract.Customers[0].Id < 1) { Model.Contract.Customers[0].Id = -1; }
+                        <input type="text" asp-for="Contract.Customers[0].LastName"
+                               class="form-control full" placeholder="Фамилия" />
+                        <input type="text" asp-for="Contract.Customers[0].FirstName"
+                               class="form-control full" placeholder="Имя" />
+
+                        <input type="text" asp-for="Contract.Customers[0].MiddleName"
+                               class="form-control full" placeholder="Отчество" />
+                    </div>
+                    <div>
+                        <input type="tel" asp-for="Contract.Customers[0].Number"
+                               class="form-control full" />
+
+                    </div>
+
+                    <div class="boxMessengers">
+                        <input asp-for="Contract.Customers[0].Viber" />
+                        <input asp-for="Contract.Customers[0].Telegram" />
+                        <input asp-for="Contract.Customers[0].WhatsApp" />
+                    </div>
+                    <input type="email" asp-for="Contract.Customers[0].Email"
+                           class="form-control full" />
+                    <input type="text" asp-for="Contract.Customers[0].Note"
+                           class="form-control full" />
+
+                </div>
+                @*<div style="width: 23px"></div>*@
+                <div></div>
+                <div class="full">
+                    <div>Адрес заказчика: <span asp-validation-for="Contract.Customers[0].Address" style="color: red"></span></div>
+                    <input class="form-control p96" type="text" asp-for="Contract.Customers[0].Address" autocomplete="off" />
+                </div>
+
+            </div>
+            @for (int i = 1; i < Model.Contract.Customers.Count(); i++)
+            {
+                <div class="customer-container " id=@($"CustomerContainer{i}")>
+                    <div class="wrapper w5 p96 float-md-left">
                         <div class="box1">ФИО заказчика: </div>
                         <div>Телефон: </div>
                         <div class="boxMessengers">
@@ -75,88 +125,39 @@
                         <div>Email: </div>
                         <div>Другая связь: </div>
                         <div class="box1">
-                            @Html.HiddenFor(c => c.Contract.Customers[0].Id)
-                            @if (Model.Contract.Customers[0].Id < 1) { Model.Contract.Customers[0].Id = -1; }
-                            <input type="text" asp-for="Contract.Customers[0].LastName"
-                                   class="form-control full" placeholder="Фамилия" />
-                            <input type="text" asp-for="Contract.Customers[0].FirstName"
-                                   class="form-control full" placeholder="Имя" />
 
-                            <input type="text" asp-for="Contract.Customers[0].MiddleName"
+                            <input type="text" asp-for="Contract.Customers[i].LastName"
+                                   class="form-control full" placeholder="Фамилия" />
+                            <input type="text" asp-for="Contract.Customers[i].FirstName"
+                                   class="form-control full" placeholder="Имя" />
+                            <input type="text" asp-for="Contract.Customers[i].MiddleName"
                                    class="form-control full" placeholder="Отчество" />
                         </div>
                         <div>
-                            <input type="tel" asp-for="Contract.Customers[0].Number"
+                            <input type="tel" asp-for="Contract.Customers[i].Number"
                                    class="form-control full" />
-
                         </div>
 
                         <div class="boxMessengers">
-                            <input asp-for="Contract.Customers[0].Viber" />
-                            <input asp-for="Contract.Customers[0].Telegram" />
-                            <input asp-for="Contract.Customers[0].WhatsApp" />
+                            <input asp-for="Contract.Customers[i].Viber" />
+                            <input asp-for="Contract.Customers[i].Telegram" />
+                            <input asp-for="Contract.Customers[i].WhatsApp" />
                         </div>
-                        <input type="email" asp-for="Contract.Customers[0].Email"
+                        <input type="email" asp-for="Contract.Customers[i].Email"
                                class="form-control full" />
-                        <input type="text" asp-for="Contract.Customers[0].Note"
+                        <input type="text" asp-for="Contract.Customers[i].Note"
                                class="form-control full" />
 
                     </div>
-                    @*<div style="width: 23px"></div>*@
-                    <div></div>
-                    <div class="full">
-                        <div>Адрес заказчика:</div>
-                        <input class="form-control p96" type="text" asp-for="Contract.Customers[0].Address" autocomplete="off" />
-                    </div>
-
+                    @Html.HiddenFor(c => c.Contract.Customers[i].Id)
+                    <input type="button" class="remove-customer r-btn float-md-left" value="х" />
                 </div>
-                @for (int i = 1; i < Model.Contract.Customers.Count(); i++)
-                {
-                    <div class="customer-container " id=@($"CustomerContainer{i}")>
-                        <div class="wrapper w5 p96 float-md-left">
-                            <div class="box1">ФИО заказчика: </div>
-                            <div>Телефон: </div>
-                            <div class="boxMessengers">
-                                <img class="icon def" src="~/Images/viber.png" title="viber" />
-                                <img class="icon def" src="~/Images/telegram.png" title="telegram" />
-                                <img class="icon def" src="~/Images/whatsapp.png" title="whatsapp" />
-                            </div>
-                            <div>Email: </div>
-                            <div>Другая связь: </div>
-                            <div class="box1">
-
-                                <input type="text" asp-for="Contract.Customers[i].LastName"
-                                       class="form-control full" placeholder="Фамилия" />
-                                <input type="text" asp-for="Contract.Customers[i].FirstName"
-                                       class="form-control full" placeholder="Имя" />
-                                <input type="text" asp-for="Contract.Customers[i].MiddleName"
-                                       class="form-control full" placeholder="Отчество" />
-                            </div>
-                            <div>
-                                <input type="tel" asp-for="Contract.Customers[i].Number"
-                                       class="form-control full" />
-                            </div>
-
-                            <div class="boxMessengers">
-                                <input asp-for="Contract.Customers[i].Viber" />
-                                <input asp-for="Contract.Customers[i].Telegram" />
-                                <input asp-for="Contract.Customers[i].WhatsApp" />
-                            </div>
-                            <input type="email" asp-for="Contract.Customers[i].Email"
-                                   class="form-control full" />
-                            <input type="text" asp-for="Contract.Customers[i].Note"
-                                   class="form-control full" />
-
-                        </div>
-                        @Html.HiddenFor(c => c.Contract.Customers[i].Id)
-                        <input type="button" class="remove-customer r-btn float-md-left" value="х" />
-                    </div>
-                }
-
-            </div>
-            <input type="button" class="add-btn my-btn" id="AddCustomer" value="Добавить заказчика" />
+            }
 
         </div>
+        <input type="button" class="add-btn my-btn" id="AddCustomer" value="Добавить заказчика" />
+
+    </div>
         @*/////////////////////////////////////////////////////////////
             // --- Установка / самовывоз --------------------------------*@
         <div class="form-group border">
@@ -246,8 +247,15 @@
                                     }
                                     @*@Html.ViewBag.TypesTextsHTML*@
                                 </select>
-                                <input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
-                                       class="form-control full" placeholder="Гравер (ФИО)..." />
+                                <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverName" >
+                                    <option value=@null>Гравер (ФИо)...</option>
+                                    @foreach (ApplicationUser e in ViewBag.Engravers)
+                                    {
+                                        <option value="@e.Name">@e.Name</option>
+                                    }
+                                </select>
+                                @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
+                                       class="form-control full" placeholder="Гравер (ФИО)..." />*@
                                 <input type="text" asp-for="Contract.Deceaseds[i].NotesTextName"
                                        class="form-control typetext-note full" placeholder="Примечание (ФИО)..." />
 
@@ -275,7 +283,7 @@
                                     }
                                 </select>
                                 @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverEpitaph"
-                                    class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />*@
+        class="form-control full engraver-epitaph" placeholder="Гравер (эпитафия)..." disabled="disabled" />*@
 
                                 @*--------------- Эпитафия (конец) -----------------*@
                                 <div></div>
@@ -364,8 +372,12 @@
                                                     <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет" />
                                                     @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01) && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
                                                     {
-                                                        <a class="to-compleate-portrait rp-btn float-md-left" title="Отправить портрет на выполнение"><img src="/images/send.png" class="send-btn" /></a>
+                                                        <a class="to-compleate-portrait rp-btn float-md-left" title="Отправить портрет на выполнение" hidden>
+                                                            <img src="/images/send.png" class="send-btn"  /></a>
                                                     }
+
+
+
 
                                                 </div>
                                             }
@@ -481,7 +493,7 @@
                                                     <input type="button" class="remove-medallion rp-btn float-md-left" value="x" />
                                                     @if (Model.Medallions[keyM].DateBegin < new DateTime(2000, 01, 01) && Model.Medallions[keyM].DateCompleat < new DateTime(2000, 01, 01))
                                                     {
-                                                        <a class="to-compleate-medallion rp-btn float-md-left" title="Отправить медальон на выполнение"><img src="/images/send.png" class="send-btn" /></a>
+                                                        <a class="to-compleate-medallion rp-btn float-md-left" title="Отправить медальон на выполнение" hidden><img src="/images/send.png" class="send-btn" /></a>
                                                     }
                                                 </div>
                                             }
@@ -507,7 +519,7 @@
                             @if (Model.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph < new DateTime(2000, 01, 01))
                             {
                                 <a class="to-compleate-epitaph rp-btn float-md-left" style="margin: 0px 0px 0px 5px"
-                                   title="Отправить текст эпитафии на выполнение"><img src="/images/send.png" class="send-btn" /></a>
+                                   title="Отправить текст эпитафии на выполнение" hidden><img src="/images/send.png" class="send-btn" /></a>
                             }
                         </div>
                     }
@@ -588,7 +600,7 @@
             $('@ViewBag.ColorsMedallionsHTML').appendTo(SelectListColors);
         });
         $(document).on("click", "#AddDeceased", function () {
-            var SelectListTypeTextNames = $($(this).siblings()[1]).find("[id$='_TypeTextObjId']").last();
+            var SelectListTypeTextNames = $($(this).siblings()[1]).find("[id$='__TypeTextObjId']").last();
             $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextNames);
             var SelectListTypeTextEpitaphs = $($(this).siblings()[1]).find("[id$='_Epitaph_TypeTextObjId']").last();
             $('@ViewBag.TypesTextsHTML').appendTo(SelectListTypeTextEpitaphs);

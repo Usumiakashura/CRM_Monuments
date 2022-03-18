@@ -80,8 +80,14 @@ $(document).on("input", ".custom-file-input", function () {
     //    }
     //}
     //$(this).siblings(".custom-file-label").addClass("selected").html(str);
+
+    $($($(this).closest(".portrait-container")[0]).find("[class|='to-compleate']")[0]).prop("hidden", false);
+    $($($(this).closest(".medallion-container")[0]).find("[class|='to-compleate']")[0]).prop("hidden", false);
+
     var fileName = $(this).val().split("\\").pop();
     $(this).next(".custom-file-label").html(fileName);
+
+    
 });
 // ----------------------------------------------------------------
 
@@ -140,10 +146,14 @@ function AddDisabledEpitaph(epitaphBox, trfl) {
     var NotesTextEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='_NotesTextEpitaph']");
     var TypeNameEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='_Epitaph_TypeTextObjId']");
     var EngraverEpitaph = $(epitaphBox).closest(".wrapper")[0].querySelector("[id$='_EngraverEpitaph']");
+    var SendButton = $($(epitaphBox).closest(".deceased-container")[0]).find(".to-compleate-epitaph")[0];
+
+    console.log(SendButton)
 
     $(NotesTextEpitaph).prop("disabled", trfl);
     $(TypeNameEpitaph).prop("disabled", trfl);
     $(EngraverEpitaph).prop("disabled", trfl);
+    $(SendButton).prop("hidden", trfl);
 }
 
 function SendToCompleatePortrait() {
@@ -180,7 +190,12 @@ function AddCustomer() {
 
     var Wrapper = $("<div/>").attr("class", "wrapper w5 p96 float-md-left").appendTo(CustomerContainer);
 
-    $("<div/>").attr("class", "box1").text("ФИО заказчика: ").appendTo(Wrapper);
+    var DivNameCustomer = $("<div/>").attr("class", "box1").text("ФИО заказчика: ").appendTo(Wrapper);
+    //$("<span/>").attr("style", "red").attr("class", "field-validation-faild")
+    //    .attr("data-valmsg-replace", "true")
+    //    .attr("data-valmsg-for", "Contract_Customer_" + CustomersCount + "__FirstName")
+    //    .appendTo(DivNameCustomer);
+
     $("<div/>").text("Телефон: ").appendTo(Wrapper);
     var DivForMess = $("<div/>").attr("class", "boxMessengers").appendTo(Wrapper);
     $("<img/>").attr("class", "icon").attr("src", "/Images/viber.png").attr("title", "viber").appendTo(DivForMess);

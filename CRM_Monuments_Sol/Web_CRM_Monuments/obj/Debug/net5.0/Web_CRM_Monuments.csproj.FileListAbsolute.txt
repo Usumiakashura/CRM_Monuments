@@ -357,3 +357,11 @@ D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\ref
 D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Web_CRM_Monuments.pdb
 D:\CRM_Monuments-master\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Web_CRM_Monuments.genruntimeconfig.cache
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\Settings.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllUsers.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllTypePortraits.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllColorsMedallions.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllMaterialsMedallions.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllShapesMedallions.cshtml.g.cs
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllTypeTexts.cshtml.g.cs

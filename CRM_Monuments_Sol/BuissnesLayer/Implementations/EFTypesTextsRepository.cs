@@ -25,5 +25,24 @@ namespace BuissnesLayer.Implementations
                 pointsForSelect.Add(tt);
             return pointsForSelect;
         }
+
+        public void SaveTypeText(TypeText typeText)
+        {
+            if (typeText.Id == 0)
+            {
+                _context.TypeTexts.Add(typeText);
+            }
+            else
+            {
+                _context.Entry(typeText).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            }
+            _context.SaveChanges();
+        }
+
+        public void DeleteTypeText(TypeText typeText)
+        {
+            _context.TypeTexts.Remove(typeText);
+            _context.SaveChanges();
+        }
     }
 }

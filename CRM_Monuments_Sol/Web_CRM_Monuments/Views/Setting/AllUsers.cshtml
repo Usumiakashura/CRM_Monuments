@@ -1,0 +1,27 @@
+﻿@model List<ApplicationUser>
+
+<div class="center setting-box">
+    <h4>Все пользователи</h4>
+
+    <table class="table full">
+        <thead>
+            <tr>
+                <th>Имя:</th>
+                <th>Логин:</th>
+                @*<th>Роль:</th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ApplicationUser au in Model)
+            {
+                <tr>
+                    <td>@au.Name</td>
+                    <td>@au.UserName</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+
+</div>

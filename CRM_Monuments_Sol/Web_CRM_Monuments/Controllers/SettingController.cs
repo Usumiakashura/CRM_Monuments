@@ -1,5 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BuissnesLayer;
+using DataLayer;
+using DataLayer.ApplicationEntities;
+using DataLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,80 +15,85 @@ namespace Web_CRM_Monuments.Controllers
 {
     public class SettingController : Controller
     {
+        private DataManager _dataManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+
+
+        public SettingController(DataManager dataManager, 
+            UserManager<ApplicationUser> userManager, 
+            SignInManager<ApplicationUser> signInManager)
+
+        {
+            _dataManager = dataManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
+
         [Authorize(Roles = "admin")]
         public ActionResult Settings()
         {
             
+
             return View();
         }
 
-        // GET: SettingController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> AllUsers()
         {
-            return View();
+            return View(await _dataManager.ApplicationUsersRepository.GetAllUsers());
         }
 
-        // GET: SettingController/Create
-        public ActionResult Create()
+        public ActionResult AllTypePortraits()
         {
+
             return View();
         }
 
-        // POST: SettingController/Create
+        [HttpGet]
+        public ActionResult AllTypeTexts()
+        {
+            List<TypeText> texts = new List<TypeText>();
+            foreach (TypeText tt in _dataManager.TypesTexts.GetAllTypesText())
+            {
+                texts.Add(tt);
+            }
+            return View(texts);
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult AllTypeTexts(List<TypeText> texts)
         {
-            try
+            foreach (TypeText tt in texts)
             {
-                return RedirectToAction(nameof(Index));
+                _dataManager.TypesTexts.SaveTypeText(tt);
             }
-            catch
+            foreach (TypeText tt in _dataManager.TypesTexts.GetAllTypesText())
             {
-                return View();
+                if (texts.Where(x => x.Id == tt.Id).Count() == 0)
+                {
+                    _dataManager.TypesTexts.DeleteTypeText(tt);
+                }
             }
+            return RedirectToAction("AllTypeTexts", texts);
         }
 
-        // GET: SettingController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult AllMaterialsMedallions()
         {
+
             return View();
         }
 
-        // POST: SettingController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult AllShapesMedallions()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
-        // GET: SettingController/Delete/5
-        public ActionResult Delete(int id)
-        {
             return View();
         }
 
-        // POST: SettingController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult AllColorsMedallions()
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+
+            return View();
         }
+
     }
 }

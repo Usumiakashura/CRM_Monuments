@@ -11,5 +11,6 @@ namespace BuissnesLayer.Interfaces
     {
         public Task<IEnumerable<ApplicationUser>> GetAllArtists();    //получить всех художников
         public Task<IEnumerable<ApplicationUser>> GetAllEngravers();    //получить всех граверов
+        public Task<IEnumerable<ApplicationUser>> GetAllUsers();
     }
 }

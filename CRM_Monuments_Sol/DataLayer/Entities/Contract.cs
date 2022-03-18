@@ -14,9 +14,10 @@ namespace DataLayer.Entities
         public DateTime DateOfConclusion { get; set; }  //Дата заключения
 
         //--- Номер договора (составной) ---
-        public string NumYear { get; set; }             //часть, отвечающая за год
-        public string Place { get; set; }               //часть, отвечающая за офис (аббревиатура)
-        public string Number { get; set; }              //часть с номером (цифры, но может быть и БН)
+        
+        public string? NumYear { get; set; }             //часть, отвечающая за год
+        public string? Place { get; set; }               //часть, отвечающая за офис (аббревиатура)
+        public string? Number { get; set; }              //часть с номером (цифры, но может быть и БН)
         [Display(Name = "Рассрочка")]
         public bool InstallmentPayment { get; set; }    //рассрочка (добавляется буква "р" в конец)
         //----------------------------------
@@ -27,7 +28,7 @@ namespace DataLayer.Entities
         [Display(Name = "Самовывоз")] 
         public bool Pickup { get; set; }                //Самовывоз (да/нет)
         [Display(Name = "Адрес захоронения:")]
-        public string BurialAddress { get; set; }       //место захоронения
+        public string? BurialAddress { get; set; }       //место захоронения
         [Display(Name = "Ряд")]
         public int? Row { get; set; }                    //ряд
         [Display(Name = "Место")]
@@ -47,18 +48,18 @@ namespace DataLayer.Entities
         public DateTime DeadLine { get; set; }          //Срок выполнения заказа
         public List<Deceased> Deceaseds { get; set; }   //Все усопшие
         [Display(Name = "Оформление стелы (примечание):")]
-        public string Decoration { get; set; }          //оформление стелы (как примечание)
+        public string? Decoration { get; set; }          //оформление стелы (как примечание)
         [Display(Name = "Примечания (установщики):")]
-        public string NoteInstaller { get; set; }       //Примечания для установщиков
+        public string? NoteInstaller { get; set; }       //Примечания для установщиков
         [Display(Name = "Примечания (производство):")]
-        public string NoteProduction { get; set; }      //Примечания для производства
+        public string? NoteProduction { get; set; }      //Примечания для производства
         //public List<Accessorie> Accessories { get; set; }   //комплектующие
 
 
 
 
         [Display(Name = "Примечания:")]
-        public string Note { get; set; }               //Примечания
+        public string? Note { get; set; }               //Примечания
 
         public Contract()
         {

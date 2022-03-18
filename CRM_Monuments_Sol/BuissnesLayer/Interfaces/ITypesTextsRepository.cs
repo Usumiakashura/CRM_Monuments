@@ -10,5 +10,7 @@ namespace BuissnesLayer.Interfaces
     public interface ITypesTextsRepository
     {
         public IEnumerable<TypeText> GetAllTypesText();
+        public void SaveTypeText(TypeText typeText);
+        public void DeleteTypeText(TypeText typeText);
     }
 }

@@ -1,0 +1,79 @@
+﻿@model List<TypeText>
+
+<div class="center setting-box">
+    <h4>Типы текстов</h4>
+    <form asp-action="AllTypeTexts" enctype="multipart/form-data">
+        <table class="table full">
+            <thead>
+                <tr>
+                    <th>Название:</th>
+                </tr>
+            </thead>
+            <tbody id="body">
+                @for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr id=@($"container{i}")>
+                        <td>
+                            <input asp-for="@Model[i].Name" class="form-control" />
+                            @Html.HiddenFor(c => c[i].Id)
+                            <input type="button" class="remove r-btn float-md-left" value="х" />
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="button" class="add-btn my-btn" id="Add" value="+" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <input type="submit" value="Сохранить изменения" class="btn btn-primary" style="width: 600px;" />
+        </div>
+    </form>
+</div>
+
+@section scripts {
+<script>
+    $(document).ready(function () {
+        $("#Add").click(AddTypeText);
+    });
+
+    function AddTypeText() {
+        var TypeTextsBlock = $($(this).closest(".table")[0]).find("#body")[0];
+        var Count = $(document).find("[id*='container']").length;
+        console.log(Count);
+        var Tr = $("<tr/>").attr("id", "container" + Count).appendTo(TypeTextsBlock);
+        var Td = $("<td/>").appendTo(Tr);
+        $("<input/>")
+            .attr("class", "form-control")
+            .attr("type", "text")
+            .attr("name", "[" + Count + "].Name")
+            .attr("id", "z" + Count + "__Name")
+            .appendTo(Td);
+    }
+
+    //function DeleteTypeText() {
+    //    if (confirm("Вы действительно хотите удалить тип текста?")) {
+    //        var RecalculateStartNum = parseInt($(this).closest("[id*='container']").attr("id").substring("CustomerContainer".length));
+
+    //        var deletedTypeTextId = $($(this).siblings()[1]).attr("value");
+    //        $("<input/>").attr("id", "DeletedCustomerIds_" + deletedCustomerCount + "_").attr("name", "DeletedCustomerIds[" + deletedCustomerCount + "]")
+    //            .attr("type", "hidden").attr("value", deletedCustomerId).appendTo(".deleted");
+    //        deletedCustomerCount++;
+
+
+    //        $(this).parent().remove();
+    //        for (var i = RecalculateStartNum + 1; i < CustomersCount; i++) {
+    //            //функция пересчета аттрибутов name и id
+    //            RecalculateNamesAndIdsCustomers(i);
+    //        }
+    //        CustomersCount--;
+    //    }
+    //}
+
+</script>
+}

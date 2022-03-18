@@ -13,6 +13,7 @@
     padding: 0.25rem;
 }
 
+
 .table{
     width: max-content;
 }
@@ -150,7 +151,13 @@ a.disabled {
     color: white;
 }
 
-
+.setting-box {
+    width: 600px;
+}
+.setting-btn {
+    width: 200px;
+    height: 50px;
+}
 
 textarea {
     width: 100%; /* Ширина */

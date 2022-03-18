@@ -17,6 +17,8 @@ namespace BuissnesLayer.Implementations
         private ApplicationDbContext _context;
         private UserManager<ApplicationUser> _userManager;
         RoleManager<IdentityRole> _roleManager;
+        //private readonly SignInManager<ApplicationUser> _signInManager;
+        //private readonly UserManager<ApplicationUser> _userManager;
 
         public EFApplicationUsersRepository(ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
@@ -37,6 +39,11 @@ namespace BuissnesLayer.Implementations
             return await GetAll("engraver");
         }
 
+        public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
+        {
+            return await _userManager.Users.ToListAsync();
+        }
+
         //--------------------------------------------------------------
         private async Task<IEnumerable<ApplicationUser>> GetAll(string roleName)
         {
@@ -51,5 +58,6 @@ namespace BuissnesLayer.Implementations
             }
             return users;
         }
+
     }
 }
