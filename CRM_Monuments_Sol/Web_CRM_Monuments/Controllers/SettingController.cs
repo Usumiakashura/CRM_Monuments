@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Web_CRM_Monuments.Models;
+using Web_CRM_Monuments.Services.ViewServices;
 
 namespace Web_CRM_Monuments.Controllers
 {
@@ -20,6 +21,7 @@ namespace Web_CRM_Monuments.Controllers
         private DataManager _dataManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly UserService _userService;
 
         public SettingController(DataManager dataManager, 
             UserManager<ApplicationUser> userManager, 
@@ -29,6 +31,7 @@ namespace Web_CRM_Monuments.Controllers
             _dataManager = dataManager;
             _userManager = userManager;
             _signInManager = signInManager;
+            //_userService = new UserService();
         }
 
 
@@ -40,7 +43,28 @@ namespace Web_CRM_Monuments.Controllers
 
         //--------- Настройки пользователей --------------
         [Authorize(Roles = "admin")]
-        public async Task<ActionResult> AllUsers() => View(await _dataManager.ApplicationUsersRepository.GetAllUsers());
+        public async Task<ActionResult> AllUsers()
+        {
+            List<UserViewModel> users = new List<UserViewModel>();
+            foreach (var u in await _dataManager.ApplicationUsersRepository.GetAllUsers())
+            {
+                UserViewModel user = new UserViewModel()
+                {
+                    Id = u.Id,
+                    Email = u.Email,
+                    Name = u.Name
+                };
+                foreach (var role in await _userManager.GetRolesAsync(await _userManager.FindByIdAsync(u.Id)))
+                {
+                    user.Role = role;
+                }
+                users.Add(user);
+            }
+            
+            
+            
+            return View(users);
+        }
         
         [Authorize(Roles = "admin")]
         public IActionResult CreateUser() => View();
@@ -57,7 +81,7 @@ namespace Web_CRM_Monuments.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index");
+                    return RedirectToAction("AllUsers", "Setting");
                 }
                 else
                 {
@@ -82,7 +106,8 @@ namespace Web_CRM_Monuments.Controllers
             {
                 model.Role = role;
             }
-            return RedirectToAction("EditUser", model);
+            return View("CreateUser", model);
+            
         }
 
         [HttpPost]
@@ -104,7 +129,7 @@ namespace Web_CRM_Monuments.Controllers
 
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("AllUsers", "Setting");
                     }
                     else
                     {
@@ -115,10 +140,10 @@ namespace Web_CRM_Monuments.Controllers
                     }
                 }
             }
-            return View(model);
+            return RedirectToAction("AllUsers", "Setting");
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> DeleteUser(string id)
         {
             ApplicationUser user = await _userManager.FindByIdAsync(id);
@@ -126,7 +151,7 @@ namespace Web_CRM_Monuments.Controllers
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("AllUsers", "Setting");
         }
 
 

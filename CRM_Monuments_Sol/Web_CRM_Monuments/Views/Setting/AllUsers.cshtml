@@ -1,8 +1,8 @@
-﻿@model List<ApplicationUser>
+﻿@model List<UserViewModel>
 
 <div class="center setting-box">
-    <h4>Все пользователи</h4>
-    <a asp-controller="Setting" asp-action="CreateUser" class="float-md-left">
+    <h4 class="float-md-left">Все пользователи</h4>
+    <a asp-controller="Setting" asp-action="CreateUser" class="float-md-right" >
         <input type="button" value="Добавить пользователя" />
     </a>
     <table class="table full">
@@ -10,20 +10,47 @@
             <tr>
                 <th>Имя:</th>
                 <th>Логин:</th>
-                @*<th>Роль:</th>*@
+                <th>Роль:</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (ApplicationUser au in Model)
+            @foreach (var au in Model)
             {
                 <tr>
                     <td>@au.Name</td>
-                    <td>@au.UserName</td>
+                    <td>@au.Email</td>
+                    <td>@au.Role</td>
+                    <td>
+                        <a asp-controller="Setting" asp-action="EditUser" asp-route-id="@au.Id">Редактировать</a>
+                    </td>
+                    <td>
+                        @if (au.Role != "admin")
+                        {
+                            <a href=@($"/Setting/DeleteUser?id={au.Id}") class="delete-user" id=@($"{au.Id}") >Удалить</a>
+                        }
+                    </td>
                 </tr>
-            }
+             }
 
         </tbody>
     </table>
 
 
 </div>
+
+@section scripts{ 
+    <script>
+        $(document).ready(function () {
+            $(".delete-user").click(DeleteUser);
+        });
+
+        function DeleteUser() {
+            console.log($(this).attr("href"));
+            if (confirm("Вы уверены, что хотите безвозвратно удалить пользователя?")) {
+                window.location.href = $(this).attr("href");
+            }
+        }
+    </script>
+}
