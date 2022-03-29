@@ -40,7 +40,7 @@
                 </td>
                 <td>
 
-                    @if (Model.Portrait.TypePortrait != null)
+                    @if (Model.Portrait?.TypePortrait != null)
                     {
                         <label>@Model.Portrait.TypePortrait.Name</label>
                     }
@@ -51,7 +51,7 @@
                     Художник:
                 </td>
                 <td>
-                    @Model.Portrait.Artist
+                    @Model.Portrait?.Artist
                 </td>
             </tr>
             <tr>
@@ -75,15 +75,17 @@
                     Фотография:
                 </td>
                 <td>
-                    @if (Model.Portrait.PhotoName != null)
+                    @if (Model.Portrait?.PhotoName != null)
                     {
-        <a href="@Model.Portrait.PhotoPath" download="@Model.Portrait.PhotoName"
-           class="download-btn full">
-            <input type="button" class="full" value="Скачать" />
-        </a> }
+                        <a href="@Model.Portrait.PhotoPath" download="@Model.Portrait.PhotoName"
+                           class="download-btn full">
+                            <input type="button" class="full" value="Скачать" />
+                        </a> 
+                    }
                     else
                     {
-        <label>Ожидается фото от заказчика...</label>}
+                        <label>Ожидается фото от заказчика...</label>
+                    }
                 </td>
             </tr>
             <tr>
@@ -91,16 +93,16 @@
                     Примечание:
                 </td>
                 <td>
-                    @Model.Portrait.Note
+                    @Model.Portrait?.Note
                 </td>
             </tr>
         </tbody>
     </table>
 
 
-    @if (Model.Portrait.PhotoName != null)
+    @if (Model.Portrait?.PhotoName != null)
     {
-        @if (Model.Portrait.DateCompleat < new DateTime(2000, 01, 01))
+        @if (Model.Portrait?.DateCompleat < new DateTime(2000, 01, 01))
         {
             <form class="form-inline" asp-controller="Portrait" asp-action="CompleateOn"
                   asp-route-idPortrait="@Model.Portrait.Id" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"

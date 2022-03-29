@@ -31,12 +31,12 @@ namespace BuissnesLayer.Implementations
 
         public async Task<IEnumerable<ApplicationUser>> GetAllArtists()
         {
-            return await GetAll("artist");
+            return await GetAllByRole("artist");
         }
 
         public async Task<IEnumerable<ApplicationUser>> GetAllEngravers()
         {
-            return await GetAll("engraver");
+            return await GetAllByRole("engraver");
         }
 
         public async Task<IEnumerable<ApplicationUser>> GetAllUsers()
@@ -45,7 +45,7 @@ namespace BuissnesLayer.Implementations
         }
 
         //--------------------------------------------------------------
-        private async Task<IEnumerable<ApplicationUser>> GetAll(string roleName)
+        private async Task<IEnumerable<ApplicationUser>> GetAllByRole(string roleName)
         {
             var role = await _roleManager.FindByNameAsync(roleName);
             var users = new List<ApplicationUser>();

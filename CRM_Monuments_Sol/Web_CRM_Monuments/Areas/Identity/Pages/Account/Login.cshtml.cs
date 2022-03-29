@@ -74,8 +74,8 @@ namespace Web_CRM_Monuments.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-
+            //returnUrl ??= Url.Content("~/");
+            //returnUrl ??= "/Home/Index";
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         
             if (ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace Web_CRM_Monuments.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect("~/Home/Index");
                 }
                 //if (result.RequiresTwoFactor)
                 //{

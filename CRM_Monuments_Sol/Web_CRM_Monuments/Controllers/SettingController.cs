@@ -39,17 +39,20 @@ namespace Web_CRM_Monuments.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult> AllUsers()
         {
             return View(await _dataManager.ApplicationUsersRepository.GetAllUsers());
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult AllTypePortraits()
         {
 
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public ActionResult AllTypeTexts()
         {
@@ -60,6 +63,8 @@ namespace Web_CRM_Monuments.Controllers
             }
             return View(texts);
         }
+
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public ActionResult AllTypeTexts(List<TypeText> texts)
         {
@@ -77,18 +82,21 @@ namespace Web_CRM_Monuments.Controllers
             return RedirectToAction("AllTypeTexts", texts);
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult AllMaterialsMedallions()
         {
 
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult AllShapesMedallions()
         {
 
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult AllColorsMedallions()
         {
 

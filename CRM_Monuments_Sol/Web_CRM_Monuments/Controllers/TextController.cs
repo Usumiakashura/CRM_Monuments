@@ -1,4 +1,5 @@
 ﻿using BuissnesLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -30,6 +31,7 @@ namespace Web_CRM_Monuments.Controllers
             return PartialView("_AllTextsPartial", t);
         }
 
+        [Authorize(Roles = "manager,engraver")]
         [HttpGet]
         public ActionResult Details(int idDeceaced, bool epitaph)
         {

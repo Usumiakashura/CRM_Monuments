@@ -102,7 +102,7 @@
                         Дата рождения:
                     </td>
                     <td>
-                        @Model.Deceased.DateBirthday.ToShortDateString()
+                        @if (Model.Deceased.DateBirthday > new DateTime(1000, 01, 01)) Model.Deceased.DateBirthday.ToShortDateString();
                     </td>
                 </tr>
                 <tr>
@@ -110,7 +110,7 @@
                         Дата смерти:
                     </td>
                     <td>
-                        @Model.Deceased.DateRip.ToShortDateString()
+                        @if (Model.Deceased.DateRip > new DateTime(1000, 01, 01)) Model.Deceased.DateRip.ToShortDateString();
                     </td>
                 </tr>
                 <tr>
@@ -158,19 +158,26 @@
         dateBegin = Model.Deceased.DateBeginTextName;
         dateCompleate = Model.Deceased.DateCompleatTextName;
     }
-
-    @if (dateCompleate < new DateTime(2000, 01, 01))
-    {
-        <form class="form-inline" asp-controller="Text" asp-action="CompleateOn"
-              asp-route-idDeceaced="@Model.Deceased.Id" asp-route-epitaph="@Model.TextEpitaph" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
-              method="post">
-            <button type="submit" class="btn btn-primary">Выполнено</button>
-        </form>
-    }
-    else
-    {
-        <h5>Текст выполнен @dateCompleate.ToShortDateString()</h5>
-    }
+    @if (dateBegin > new DateTime(2000, 01, 01))
+     {
+        @if (dateCompleate < new DateTime(2000, 01, 01))
+        {
+            <form class="form-inline" asp-controller="Text" asp-action="CompleateOn"
+                  asp-route-idDeceaced="@Model.Deceased.Id" asp-route-epitaph="@Model.TextEpitaph" asp-route-date="@DateTime.Today.ToShortDateString().ToString()"
+                  method="post">
+                <button type="submit" class="btn btn-primary">Выполнено</button>
+            </form>
+        }
+        else
+        {
+            <h5>Текст выполнен @dateCompleate.ToShortDateString()</h5>
+        }
+     }
+     else
+     {
+        <h5>Текст ожидает отправки на выполнение</h5>
+     }
+    
 
 
 

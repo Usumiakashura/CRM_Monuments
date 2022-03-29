@@ -85,7 +85,18 @@ $(document).on("input", ".custom-file-input", function () {
     $($($(this).closest(".medallion-container")[0]).find("[class|='to-compleate']")[0]).prop("hidden", false);
 
     var fileName = $(this).val().split("\\").pop();
-    $(this).next(".custom-file-label").html(fileName);
+
+    console.log(fileName.length);
+
+    var visibleFileName;
+    if (fileName.length < 30) {
+        visibleFileName = fileName;
+    }
+    else {
+        visibleFileName = fileName.substring(0, 20) + "..." + fileName.substring(fileName.length - 5);
+    }
+    
+    $(this).next(".custom-file-label").html(visibleFileName);
 
     
 });

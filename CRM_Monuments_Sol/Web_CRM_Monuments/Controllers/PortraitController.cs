@@ -1,4 +1,5 @@
 ﻿using BuissnesLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -31,6 +32,7 @@ namespace Web_CRM_Monuments.Controllers
             return PartialView("_AllPortraitsPartial", p);
         }
 
+        [Authorize(Roles = "manager,artist")]
         [HttpGet]
         public ActionResult Details(int idPortrait)
         {

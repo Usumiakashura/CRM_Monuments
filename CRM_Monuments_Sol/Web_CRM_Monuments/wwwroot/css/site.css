@@ -1,7 +1,4 @@
-﻿.content-box {
-    min-width: 1300px;
-    margin: 0px 15px;
-}
+﻿
 
 .table td {
     padding: 0.25rem;
@@ -87,9 +84,33 @@ a {
 
 .center {
     margin-left: auto;
-    margin-right: auto;
-    width: 300px
+    margin-right: auto
 }
+
+.content-box {
+    min-width: 1300px;
+    margin: 0px 15px;
+}
+
+.content-box-max {
+    width: 1300px;
+    margin: auto;
+}
+
+.content-box-min {
+    width: 300px;
+    margin: auto;
+}
+
+.container {
+    min-width: 1350px;
+}
+
+.div-menu {
+    display: inline-block;
+}
+
+
 .send-btn {
     margin: 0px 0px 0px 5px;
     width: 38px;
