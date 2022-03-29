@@ -1,0 +1,102 @@
+﻿@model UserViewModel
+
+<div class="content-box-min">
+    <h4>@ViewData["Title"]</h4>
+
+    <form id="account" method="post">
+        <hr />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <table>
+            <thead></thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Name"></label>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px">
+                        <div class="form-group">
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px">
+                        <div class="form-group">
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px">
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label asp-for="ConfirmPassword"></label>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px">
+                        <div class="form-group">
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label>Роль: </label>
+                        </div>
+                    </td>
+                    <td style="padding-left: 10px">
+                        <div class="form-group">
+                            <select asp-for="Role" class="full form-control">
+                                <option value="manager">Менеджер</option>
+                                <option value="artist">Художник</option>
+                                <option value="engraver">Гравер</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Сохранить пользователя</button>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/bs-custom-file-input/dist/bs-custom-fileinput.js"></script>
+
+    @*<script>
+        $(document).ready(function () {
+                    bsCustomFileInput.init()
+                })
+
+
+            </script>*@
+
+}
