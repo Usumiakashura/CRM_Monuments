@@ -1,28 +1,15 @@
-﻿
-
-.table td {
-    padding: 0.25rem;
-    /*font-size: 12px;*/
-    vertical-align: central;
-    border-top: 1px solid #dee2e6;
-}
-.table th {
-    padding: 0.25rem;
-}
-
-
-.table{
-    width: max-content;
+﻿body {
+    color: #303030;
+    background-image: url('../Images/bcgr.jpg');
+    -moz-background-size: cover; /* Firefox 3.6+ */
+    -webkit-background-size: cover; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: cover; /* Opera 9.6+ */
+    background-size: cover; /* Современные браузеры */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-.results tr[visible='false'],
-.no-result {
-    display: none;
-}
 
-.results tr[visible='true'] {
-    display: table-row;
-}
 
 .searchCount {
     padding: 8px;
@@ -39,7 +26,7 @@ a {
 }
 
 .b-grey {
-    background-color: #ebebeb;
+    /*background-color: #ebebeb;*/
 }
 
 .form-check-label {
@@ -87,20 +74,59 @@ a {
     margin-right: auto
 }
 
+
+
 .content-box {
-    min-width: 1300px;
+    min-width: 1320px;
     margin: 0px 15px;
+    padding: 10px;
+    background-color: #ffffff;
+    opacity: 0.85;
 }
 
 .content-box-max {
-    width: 1300px;
+    width: 1320px;
     margin: auto;
+    padding: 10px;
+    background-color: #ffffff;
+    opacity: 0.85;
 }
 
 .content-box-min {
-    width: 300px;
+    width: 320px;
     margin: auto;
+    padding: 10px;
+    background-color: #ffffff;
+    opacity: 0.85;
 }
+
+.table td {
+    padding: 0.25rem;
+    /*font-size: 12px;*/
+    vertical-align: central;
+    border-top: 1px solid #dee2e6;
+}
+
+.table th {
+    padding: 0.25rem;
+}
+
+
+.table {
+    width: max-content;
+    background-color: #ffffff;
+    opacity: 0.9;
+}
+
+.results tr[visible='false'],
+.no-result {
+    display: none;
+}
+
+.results tr[visible='true'] {
+    display: table-row;
+}
+
 
 .container {
     min-width: 1350px;
@@ -110,6 +136,9 @@ a {
     display: inline-block;
 }
 
+.no-opasity {
+    opacity: 1;
+}
 
 .send-btn {
     margin: 0px 0px 0px 5px;
@@ -120,7 +149,6 @@ a {
     }
 
 .add-btn {
-    width: auto;
     height: 30px;
 }
 .download-btn {
@@ -131,6 +159,23 @@ a.disabled {
     pointer-events: none; /* делаем элемент неактивным для взаимодействия */
     cursor: default; /*  курсор в виде стрелки */
     color: #888; /* цвет текста серый */
+}
+.s-remove-btn {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+}
+.s-add-btn {
+    width: 30px;
+    height: 30px;
+    
+}
+
+.add-btn :hover {
+    cursor: pointer;
+}
+.remove :hover {
+    cursor: pointer;
 }
 
 .wrapper {
@@ -173,7 +218,10 @@ a.disabled {
 }
 
 .setting-box {
-    width: 900px;
+    width: 920px;
+    padding: 10px;
+    background-color: #ffffff;
+    opacity: 0.85;
 }
 .setting-btn {
     width: 300px;
@@ -305,6 +353,30 @@ label {
 .img-block {
     max-width: 400px;
 }
+
+.logo {
+    height: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */

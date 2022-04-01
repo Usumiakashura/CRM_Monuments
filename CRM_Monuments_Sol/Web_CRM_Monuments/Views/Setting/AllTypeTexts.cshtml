@@ -1,7 +1,10 @@
-﻿@model List<TypeText>
+﻿@model List<TypeTextViewModel>
 
-<div class="center setting-box">
-    <h4>Типы текстов</h4>
+<div class="center content-box-min">
+    <h4 class="float-md-left">Типы текстов</h4>
+    <a class="add-btn my-btn float-md-right" title="Добавить" id="Add">
+        <img src="~/Images/add.png" class="s-add-btn" />
+    </a>
     <form asp-action="AllTypeTexts" enctype="multipart/form-data">
         <table class="table full">
             <thead>
@@ -14,24 +17,21 @@
                 {
                     <tr id=@($"container{i}")>
                         <td>
-                            <input asp-for="@Model[i].Name" class="form-control" />
-                            @Html.HiddenFor(c => c[i].Id)
-                            <input type="button" class="remove r-btn float-md-left" value="х" />
+                            <input asp-for="@Model[i].TypeText.Name" class="form-control float-md-left" />
+                            @Html.HiddenFor(c => c[i].TypeText.Id)
+                            @Html.HiddenFor(c => c[i].Deleted)
+                            <a class="remove float-md-left " title="Удалить">
+                                <img src="~/Images/remove.png" class="s-remove-btn" />
+                            </a>
                         </td>
                     </tr>
                 }
-                
+
             </tbody>
-            <tbody>
-                <tr>
-                    <td>
-                        <input type="button" class="add-btn my-btn" id="Add" value="+" />
-                    </td>
-                </tr>
-            </tbody>
+
         </table>
         <div>
-            <input type="submit" value="Сохранить изменения" class="btn btn-primary" style="width: 600px;" />
+            <input type="submit" value="Сохранить изменения" class="btn btn-primary" />
         </div>
     </form>
 </div>
@@ -40,40 +40,44 @@
 <script>
     $(document).ready(function () {
         $("#Add").click(AddTypeText);
+        $(".remove").click(RemoveTypeText);
     });
 
     function AddTypeText() {
-        var TypeTextsBlock = $($(this).closest(".table")[0]).find("#body")[0];
+        var TypeTextsBlock = $($(document).find(".table")[0]).find("#body")[0];
         var Count = $(document).find("[id*='container']").length;
-        console.log(Count);
+        console.log(TypeTextsBlock);
         var Tr = $("<tr/>").attr("id", "container" + Count).appendTo(TypeTextsBlock);
         var Td = $("<td/>").appendTo(Tr);
         $("<input/>")
-            .attr("class", "form-control")
+            .attr("class", "form-control float-md-left")
             .attr("type", "text")
-            .attr("name", "[" + Count + "].Name")
-            .attr("id", "z" + Count + "__Name")
+            .attr("name", "[" + Count + "].TypeText.Name")
+            .attr("id", "z" + Count + "__TypeText_Name")
             .appendTo(Td);
+
+        $("<input/>").attr("data-val", true).attr("name", "[" + Count + "].TypeText.Id")
+            .attr("type", "hidden").attr("data-val-required", "The Id field is required.")
+            .attr("id", "z" + Count + "__TypeText_Id").appendTo(Td);
+        $("<input/>").attr("data-val", true).attr("data-val-required", "The Id field is required.")
+            .attr("name", "[" + Count + "].Deleted")
+            .attr("id", "z" + Count + "__Deleted")
+            .attr("type", "hidden")
+            .attr("value", "false")
+            .attr("class", "check-box")
+            .appendTo(Td);
+
+        var ImgLink = $("<a/>").attr("class", "remove float-md-left").attr("title", "Удалить").appendTo(Td);
+        $("<img/>").attr("src", "/Images/remove.png").attr("class", "s-remove-btn").appendTo(ImgLink);
     }
 
-    //function DeleteTypeText() {
-    //    if (confirm("Вы действительно хотите удалить тип текста?")) {
-    //        var RecalculateStartNum = parseInt($(this).closest("[id*='container']").attr("id").substring("CustomerContainer".length));
-
-    //        var deletedTypeTextId = $($(this).siblings()[1]).attr("value");
-    //        $("<input/>").attr("id", "DeletedCustomerIds_" + deletedCustomerCount + "_").attr("name", "DeletedCustomerIds[" + deletedCustomerCount + "]")
-    //            .attr("type", "hidden").attr("value", deletedCustomerId).appendTo(".deleted");
-    //        deletedCustomerCount++;
-
-
-    //        $(this).parent().remove();
-    //        for (var i = RecalculateStartNum + 1; i < CustomersCount; i++) {
-    //            //функция пересчета аттрибутов name и id
-    //            RecalculateNamesAndIdsCustomers(i);
-    //        }
-    //        CustomersCount--;
-    //    }
-    //}
+    function RemoveTypeText() {
+        if (confirm("Вы действительно хотите удалить тип текста?")) {
+            var Container = $(this)[0].closest("[id*='container']");
+            $($(Container).find("[id$='__Deleted']")[0]).val(true)
+            $(Container).attr("hidden", true);
+        }
+    }
 
 </script>
 }

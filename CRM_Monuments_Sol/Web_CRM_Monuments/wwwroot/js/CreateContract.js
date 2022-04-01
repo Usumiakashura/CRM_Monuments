@@ -466,7 +466,7 @@ function AddDeceased() {
     var SendButtonName = $("<a/>").attr("class", "to-compleate-name rp-btn float-md-left")
         .attr("title", "Отправить текст ФИО на выполнение").appendTo(DeceasedContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButtonName);
-    var SendButtonEpitaph = $("<a/>").attr("class", "to-compleate-epitaph rp-btn float-md-left")/*.prop("disabled", true)*/
+    var SendButtonEpitaph = $("<a/>").attr("class", "to-compleate-epitaph rp-btn float-md-left").prop("hidden", true)
         .attr("title", "Отправить текст эпитафии на выполнение").appendTo(DeceasedContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButtonEpitaph);
 
@@ -655,7 +655,7 @@ function AddPortrait() {
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
         .attr("value", "x").appendTo(PortraitContainer);
     var SendButton = $("<a/>").attr("class", "to-compleate-portrait rp-btn float-md-left")
-        .attr("title", "Отправить портрет на выполнение").appendTo(PortraitContainer);
+        .attr("title", "Отправить портрет на выполнение").attr("hidden", true).appendTo(PortraitContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButton);
 
     //навешиваем обработчики
@@ -868,7 +868,7 @@ function AddMedallion() {
     var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
         .attr("value", "x").appendTo(MedallionContainer);
     var SendButton = $("<a/>").attr("class", "to-compleate-medallion rp-btn float-md-left")
-        .attr("title", "Отправить медальон на выполнение").appendTo(MedallionContainer);
+        .attr("title", "Отправить медальон на выполнение").attr("hidden", true).appendTo(MedallionContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButton);
 
 

@@ -16,6 +16,7 @@ using Web_CRM_Monuments.Services.ViewServices;
 
 namespace Web_CRM_Monuments.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class SettingController : Controller
     {
         private DataManager _dataManager;
@@ -35,14 +36,12 @@ namespace Web_CRM_Monuments.Controllers
         }
 
 
-        [Authorize(Roles = "admin")]
         public ActionResult Settings()
         {
             return View();
         }
 
         //--------- Настройки пользователей --------------
-        [Authorize(Roles = "admin")]
         public async Task<ActionResult> AllUsers()
         {
             List<UserViewModel> users = new List<UserViewModel>();
@@ -65,15 +64,24 @@ namespace Web_CRM_Monuments.Controllers
             
             return View(users);
         }
-        
-        [Authorize(Roles = "admin")]
-        public IActionResult CreateUser() => View();
+
+        public IActionResult CreateUser() 
+        {
+            ViewData["Attention"] = "";
+            return View(); 
+        }
 
         [HttpPost]
         public async Task<IActionResult> CreateUser(UserViewModel model)
         {
             if (ModelState.IsValid)
             {
+                if (_userManager.FindByEmailAsync(model.Email) != null)
+                {
+                    ViewData["Attention"] = "Пользователь с таким Email существует. Повторите попытку.";
+                    return RedirectToAction("CreateUser", model);
+                }
+                
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 user = await _userManager.FindByEmailAsync(model.Email);
@@ -158,44 +166,55 @@ namespace Web_CRM_Monuments.Controllers
 
         //--------------------------------------------------
         //--------- Настройки типов портретов --------------
-        [Authorize(Roles = "admin")]
+        [HttpGet]
         public ActionResult AllTypePortraits()
         {
-
-            return View();
+            List<TypePortraitViewModel> types = new List<TypePortraitViewModel>();
+            foreach (TypePortrait tp in _dataManager.TypesPortrait.GetAllTypesPortraits())
+            {
+                types.Add(new TypePortraitViewModel() { TypePortrait = tp });
+            }
+            return View(types);
         }
-
-        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public ActionResult AllTypePortraits(List<TypePortraitViewModel> types)
+        {
+            foreach (TypePortraitViewModel tp in types)
+            {
+                if (tp.Deleted && tp.TypePortrait.Id > 0)
+                    _dataManager.TypesPortrait.DeleteTypePortrait(tp.TypePortrait);
+                else if (!tp.Deleted)
+                    _dataManager.TypesPortrait.SaveTypePortrait(tp.TypePortrait);
+            }
+            return RedirectToAction("AllTypePortraits", types);
+        }
+        //--------------------------------------------------
+        //--------- Настройки типов текстов ----------------
         [HttpGet]
         public ActionResult AllTypeTexts()
         {
-            List<TypeText> texts = new List<TypeText>();
+            List<TypeTextViewModel> texts = new List<TypeTextViewModel>();
             foreach (TypeText tt in _dataManager.TypesTexts.GetAllTypesText())
             {
-                texts.Add(tt);
+                texts.Add(new TypeTextViewModel() { TypeText = tt });
             }
             return View(texts);
         }
 
-        [Authorize(Roles = "admin")]
         [HttpPost]
-        public ActionResult AllTypeTexts(List<TypeText> texts)
+        public ActionResult AllTypeTexts(List<TypeTextViewModel> texts)
         {
-            foreach (TypeText tt in texts)
+            foreach (TypeTextViewModel tt in texts)
             {
-                _dataManager.TypesTexts.SaveTypeText(tt);
-            }
-            foreach (TypeText tt in _dataManager.TypesTexts.GetAllTypesText())
-            {
-                if (texts.Where(x => x.Id == tt.Id).Count() == 0)
-                {
-                    _dataManager.TypesTexts.DeleteTypeText(tt);
-                }
+                if (tt.Deleted && tt.TypeText.Id > 0)
+                    _dataManager.TypesTexts.DeleteTypeText(tt.TypeText);
+                else if (!tt.Deleted)
+                    _dataManager.TypesTexts.SaveTypeText(tt.TypeText);
             }
             return RedirectToAction("AllTypeTexts", texts);
         }
 
-        [Authorize(Roles = "admin")]
+        
         public ActionResult AllMaterialsMedallions()
         {
 

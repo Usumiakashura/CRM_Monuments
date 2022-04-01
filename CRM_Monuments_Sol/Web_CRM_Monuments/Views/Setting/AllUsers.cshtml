@@ -2,15 +2,16 @@
 
 <div class="center setting-box">
     <h4 class="float-md-left">Все пользователи</h4>
-    <a asp-controller="Setting" asp-action="CreateUser" class="float-md-right" >
-        <input type="button" value="Добавить пользователя" />
+    <a asp-controller="Setting" asp-action="CreateUser" class="float-md-right">
+        <img src="~/Images/add-user.png" class="s-add-btn" />
     </a>
-    <table class="table full">
+    
+    <table class="table table-hover full">
         <thead>
             <tr>
                 <th>Имя:</th>
                 <th>Логин:</th>
-                <th>Роль:</th>
+                <th>Должность:</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -18,21 +19,23 @@
         <tbody>
             @foreach (var au in Model)
             {
-                <tr>
+                <tr onclick="location.href='/Setting/EditUser?id=@au.Id'" class="table-stroke">
                     <td>@au.Name</td>
                     <td>@au.Email</td>
                     <td>@au.Role</td>
-                    <td>
+                    @*<td>
                         <a asp-controller="Setting" asp-action="EditUser" asp-route-id="@au.Id">Редактировать</a>
-                    </td>
+                    </td>*@
                     <td>
                         @if (au.Role != "admin")
                         {
-                            <a href=@($"/Setting/DeleteUser?id={au.Id}") class="delete-user" id=@($"{au.Id}") >Удалить</a>
+                        <a href=@($"/Setting/DeleteUser?id={au.Id}") class="delete-user" id=@($"{au.Id}") title="Удалить">
+                            <img src="~/Images/remove.png" class="s-remove-btn" />
+                        </a>
                         }
                     </td>
                 </tr>
-             }
+            }
 
         </tbody>
     </table>
