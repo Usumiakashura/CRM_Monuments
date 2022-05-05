@@ -33,15 +33,8 @@ using DataLayer.Entities;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
-using DataLayer.ApplicationEntities;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3e164721dd5f68759cbad6ec42f94ed674f91685", @"/Views/Contract/_AllContractsPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f66a0d0fde5a09ad7f405f3b005ef63d81f1ae61", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"59978278cbef279d33ef3b95ff307422a206faa1", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Contract__AllContractsPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<Contract>>
     #nullable disable
@@ -74,7 +67,7 @@ using DataLayer.ApplicationEntities;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js\"></script>\n\n<div>\n    <h4 class=\"float-md-left\">Договора</h4>\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e164721dd5f68759cbad6ec42f94ed674f916854798", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3e164721dd5f68759cbad6ec42f94ed674f916854586", async() => {
                 WriteLiteral("\n        <input type=\"button\" value=\"Новый договор\" class=\"add-btn\"/>\n    ");
             }
             );

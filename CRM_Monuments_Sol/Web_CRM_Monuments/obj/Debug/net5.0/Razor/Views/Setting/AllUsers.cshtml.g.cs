@@ -33,15 +33,8 @@ using DataLayer.Entities;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
-using DataLayer.ApplicationEntities;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"377e0b96b1a5141bfe8930748d119ed1e0a338ed", @"/Views/Setting/AllUsers.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f66a0d0fde5a09ad7f405f3b005ef63d81f1ae61", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"59978278cbef279d33ef3b95ff307422a206faa1", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Setting_AllUsers : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<List<UserViewModel>>
     #nullable disable
@@ -79,9 +72,9 @@ using DataLayer.ApplicationEntities;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
             WriteLiteral("\r\n<div class=\"center setting-box\">\r\n    <h4 class=\"float-md-left\">Все пользователи</h4>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "377e0b96b1a5141bfe8930748d119ed1e0a338ed6253", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "377e0b96b1a5141bfe8930748d119ed1e0a338ed6041", async() => {
                 WriteLiteral("\r\n        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "377e0b96b1a5141bfe8930748d119ed1e0a338ed6516", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "377e0b96b1a5141bfe8930748d119ed1e0a338ed6304", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -201,7 +194,7 @@ WriteAttributeValue("", 1202, $"{au.Id}", 1202, 13, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(" title=\"Удалить\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "377e0b96b1a5141bfe8930748d119ed1e0a338ed12079", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "377e0b96b1a5141bfe8930748d119ed1e0a338ed11867", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

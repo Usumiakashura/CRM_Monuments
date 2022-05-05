@@ -4,7 +4,6 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataL
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\bin\Debug\net5.0\DataLayer.dll
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\bin\Debug\net5.0\ref\DataLayer.dll
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\bin\Debug\net5.0\DataLayer.pdb
-E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.csproj.AssemblyReference.cache
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.GeneratedMSBuildEditorConfig.editorconfig
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.AssemblyInfoInputs.cache
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.AssemblyInfo.cs

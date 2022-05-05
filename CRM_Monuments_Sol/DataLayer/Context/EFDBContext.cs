@@ -1,4 +1,5 @@
 ﻿using DataLayer.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Context
 {
-    public class EFDBContext : DbContext
+    public class EFDBContext : /*DbContext, */IdentityDbContext<ApplicationUser>
     {
         //public DbSet<Accessorie> Accessories { get; set; }
         public DbSet<Contract> Contracts { get; set; }
@@ -28,6 +29,7 @@ namespace DataLayer.Context
         public DbSet<ShapeMedallion> ShapeMedallions { get; set; }
         public DbSet<ColorMedallion> ColorMedallions { get; set; }
 
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public EFDBContext(DbContextOptions<EFDBContext> options)
             : base(options)

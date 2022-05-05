@@ -33,15 +33,8 @@ using DataLayer.Entities;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
-using DataLayer.ApplicationEntities;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c510fecbac244984c6715851a714d97dbc974169", @"/Views/Portrait/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f66a0d0fde5a09ad7f405f3b005ef63d81f1ae61", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"59978278cbef279d33ef3b95ff307422a206faa1", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Portrait_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<PortraitViewModel>
     #nullable disable
@@ -258,7 +251,7 @@ WriteAttributeValue("", 2088, Model.Portrait.PhotoName, 2088, 25, false);
 #line hidden
 #nullable disable
             WriteLiteral("            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c510fecbac244984c6715851a714d97dbc97416912711", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c510fecbac244984c6715851a714d97dbc97416912499", async() => {
                 WriteLiteral("\n                <button type=\"submit\" class=\"btn btn-primary\">Выполнено</button>\n            ");
             }
             );

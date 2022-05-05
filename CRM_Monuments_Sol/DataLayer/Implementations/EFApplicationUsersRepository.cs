@@ -1,6 +1,5 @@
 ﻿using DataLayer.Interfaces;
 using DataLayer;
-using DataLayer.ApplicationEntities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -10,18 +9,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Context;
+using DataLayer.Entities;
 
 namespace DataLayer.Implementations
 {
     public class EFApplicationUsersRepository : IApplicationUsersRepository
     {
-        private ApplicationDbContext _context;
+        private EFDBContext _context;
         private UserManager<ApplicationUser> _userManager;
         RoleManager<IdentityRole> _roleManager;
         //private readonly SignInManager<ApplicationUser> _signInManager;
         //private readonly UserManager<ApplicationUser> _userManager;
 
-        public EFApplicationUsersRepository(ApplicationDbContext context,
+        public EFApplicationUsersRepository(EFDBContext context,
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager)
         {

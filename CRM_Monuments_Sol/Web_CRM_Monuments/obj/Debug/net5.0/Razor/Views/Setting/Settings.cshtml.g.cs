@@ -33,15 +33,8 @@ using DataLayer.Entities;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 4 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
-using DataLayer.ApplicationEntities;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"89bab3314b6034516f3612b1a89b74c0f38a2a49", @"/Views/Setting/Settings.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f66a0d0fde5a09ad7f405f3b005ef63d81f1ae61", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"59978278cbef279d33ef3b95ff307422a206faa1", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Setting_Settings : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -84,7 +77,7 @@ using DataLayer.ApplicationEntities;
             BeginWriteAttribute("class", " class=\"", 5, "\"", 13, 0);
             EndWriteAttribute();
             WriteLiteral(">\n    <div class=\"center setting-box\">\n        <h4>Настройки</h4>\n        <div class=\"wrapper w3\">\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a497108", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a496896", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Пользователи\" />\n                ");
             }
             );
@@ -105,7 +98,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a498875", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a498663", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Типы портретов\" />\n                ");
             }
             );
@@ -126,7 +119,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4910644", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4910432", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Типы текстов\" />\n                ");
             }
             );
@@ -147,7 +140,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4912412", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4912200", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Материалы медальонов\" />\n                ");
             }
             );
@@ -168,7 +161,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4914188", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4913976", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Формы медальонов\" />\n                ");
             }
             );
@@ -189,7 +182,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4915960", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4915748", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Цветность медальонов\" />\n                ");
             }
             );

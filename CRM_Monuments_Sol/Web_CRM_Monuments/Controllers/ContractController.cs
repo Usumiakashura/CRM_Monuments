@@ -1,5 +1,4 @@
 ﻿using DataLayer;
-using DataLayer.ApplicationEntities;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;

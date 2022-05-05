@@ -1,27 +1,20 @@
-using BuissnesLayer;
 using DataLayer.Interfaces;
 using DataLayer.Implementations;
 using DataLayer.Context;
 using DataLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.WebEncoders;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
-using DataLayer.ApplicationEntities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using DataLayer.Entities;
 
 namespace Web_CRM_Monuments
 {
@@ -43,12 +36,12 @@ namespace Web_CRM_Monuments
                 options.LogoutPath = $"/Identity/Account/Logout";
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<EFDBContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("EntitiesConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")));
             
 
             //services.AddDatabaseDeveloperPageExceptionFilter();
@@ -60,7 +53,7 @@ namespace Web_CRM_Monuments
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequireDigit = false;
-            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders().AddDefaultUI();
+            }).AddEntityFrameworkStores<EFDBContext>().AddDefaultTokenProviders().AddDefaultUI();
             
             
 
@@ -97,7 +90,7 @@ namespace Web_CRM_Monuments
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app,
-            IWebHostEnvironment env, ApplicationDbContext context,
+            IWebHostEnvironment env, EFDBContext context,
             UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())

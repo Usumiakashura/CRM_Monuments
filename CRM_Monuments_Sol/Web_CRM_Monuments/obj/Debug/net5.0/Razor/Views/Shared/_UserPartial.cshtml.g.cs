@@ -34,13 +34,6 @@ using DataLayer.Entities;
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
-using DataLayer.ApplicationEntities;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 1 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\Shared\_UserPartial.cshtml"
 using Microsoft.AspNetCore.Identity;
 
@@ -48,7 +41,7 @@ using Microsoft.AspNetCore.Identity;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c31bda7ea591bcd57928e1d852a04ef63ce51f8d", @"/Views/Shared/_UserPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f66a0d0fde5a09ad7f405f3b005ef63d81f1ae61", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"59978278cbef279d33ef3b95ff307422a206faa1", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared__UserPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable
@@ -103,7 +96,7 @@ Write(User.Identity.Name);
 #line hidden
 #nullable disable
             WriteLiteral("    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c31bda7ea591bcd57928e1d852a04ef63ce51f8d6505", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c31bda7ea591bcd57928e1d852a04ef63ce51f8d6293", async() => {
                 WriteLiteral("\n        <button type=\"submit\" class=\"nav-link btn btn-link text-dark\">Выйти</button>\n    ");
             }
             );
@@ -151,7 +144,7 @@ else
 #line hidden
 #nullable disable
             WriteLiteral("<ul class=\"nav navbar-nav ml-auto\">\n    <li>\n        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c31bda7ea591bcd57928e1d852a04ef63ce51f8d9890", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c31bda7ea591bcd57928e1d852a04ef63ce51f8d9678", async() => {
                 WriteLiteral("\n            Войти\n        ");
             }
             );

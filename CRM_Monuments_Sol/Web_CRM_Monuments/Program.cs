@@ -1,5 +1,6 @@
 using DataLayer.Context;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,16 +16,16 @@ namespace Web_CRM_Monuments
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();
-            var host = CreateHostBuilder(args).Build();
+            CreateHostBuilder(args).Build().Run();
+            //var host = CreateHostBuilder(args).Build();
 
-            using (var scope = host.Services.CreateScope())
-            {
-                var services = scope.ServiceProvider;
-                var context = services.GetRequiredService<EFDBContext>();
-                DBInitializer.InitData(context);
-            }
-            host.Run();
+            //using (var scope = host.Services.CreateScope())
+            //{
+            //    var services = scope.ServiceProvider;
+            //    var context = services.GetRequiredService<EFDBContext>();
+            //    DBInitializer.InitData(context);
+            //}
+            //host.Run();
 
         }
         public static IHostBuilder CreateHostBuilder(string[] args) =>

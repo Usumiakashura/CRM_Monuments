@@ -1,5 +1,4 @@
-﻿using DataLayer.ApplicationEntities;
-using DataLayer.Entities;
+﻿using DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;

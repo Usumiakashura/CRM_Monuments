@@ -1,6 +1,5 @@
 ﻿using System;
 using DataLayer;
-using DataLayer.ApplicationEntities;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
