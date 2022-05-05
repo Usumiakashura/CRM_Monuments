@@ -21,7 +21,7 @@ using Web_CRM_Monuments;
 #nullable disable
 #nullable restore
 #line 2 "E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\Views\_ViewImports.cshtml"
-using Web_CRM_Monuments.Models;
+using BuissnesLayer.Models;
 
 #line default
 #line hidden
@@ -41,8 +41,10 @@ using DataLayer.ApplicationEntities;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"89bab3314b6034516f3612b1a89b74c0f38a2a49", @"/Views/Setting/Settings.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"934e7ca0af94def58485c3824f00829c927a85b0", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f66a0d0fde5a09ad7f405f3b005ef63d81f1ae61", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_Setting_Settings : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
+    #nullable disable
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", new global::Microsoft.AspNetCore.Html.HtmlString("button"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("setting-btn"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -82,7 +84,7 @@ using DataLayer.ApplicationEntities;
             BeginWriteAttribute("class", " class=\"", 5, "\"", 13, 0);
             EndWriteAttribute();
             WriteLiteral(">\n    <div class=\"center setting-box\">\n        <h4>Настройки</h4>\n        <div class=\"wrapper w3\">\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a497066", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a497108", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Пользователи\" />\n                ");
             }
             );
@@ -103,7 +105,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a498833", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a498875", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Типы портретов\" />\n                ");
             }
             );
@@ -124,7 +126,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4910602", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4910644", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Типы текстов\" />\n                ");
             }
             );
@@ -145,7 +147,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4912370", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4912412", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Материалы медальонов\" />\n                ");
             }
             );
@@ -166,7 +168,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4914146", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4914188", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Формы медальонов\" />\n                ");
             }
             );
@@ -187,7 +189,7 @@ using DataLayer.ApplicationEntities;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\n            </div>\n            <div>\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4915918", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89bab3314b6034516f3612b1a89b74c0f38a2a4915960", async() => {
                 WriteLiteral("\n                    <input class=\"setting-btn\" type=\"button\" value=\"Цветность медальонов\" />\n                ");
             }
             );
@@ -210,16 +212,26 @@ using DataLayer.ApplicationEntities;
             WriteLiteral("\n            </div>\n        </div>\n    </div>\n\n</div>\n\n\n\n\n");
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<dynamic> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<dynamic> Html { get; private set; } = default!;
+        #nullable disable
     }
 }
 #pragma warning restore 1591

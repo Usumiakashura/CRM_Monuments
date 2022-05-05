@@ -1,4 +1,4 @@
-﻿using BuissnesLayer;
+﻿using DataLayer;
 using DataLayer.ApplicationEntities;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -11,8 +11,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Web_CRM_Monuments.Models;
-using Web_CRM_Monuments.Services;
+using BuissnesLayer.Models;
+using BuissnesLayer.Services;
 
 namespace Web_CRM_Monuments.Controllers
 {

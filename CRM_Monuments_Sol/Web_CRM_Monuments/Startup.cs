@@ -1,6 +1,7 @@
 using BuissnesLayer;
-using BuissnesLayer.Interfaces;
-using BuissnesLayer.Implementations;
+using DataLayer.Interfaces;
+using DataLayer.Implementations;
+using DataLayer.Context;
 using DataLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

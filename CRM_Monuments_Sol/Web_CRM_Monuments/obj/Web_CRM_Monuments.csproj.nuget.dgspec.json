@@ -183,9 +183,6 @@
             "projectReferences": {
               "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj": {
                 "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj"
-              },
-              "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj"
               }
             }
           }

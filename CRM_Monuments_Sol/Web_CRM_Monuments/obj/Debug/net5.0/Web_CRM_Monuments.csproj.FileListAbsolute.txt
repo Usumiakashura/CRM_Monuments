@@ -365,5 +365,4 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_C
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllShapesMedallions.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllTypeTexts.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\CreateUser.cshtml.g.cs
-E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Services\ViewServices\AllColorsMedallions.cshtml.g.cs
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Web_CRM_Monuments\obj\Debug\net5.0\Razor\Views\Setting\AllColorsMedallions.cshtml.g.cs

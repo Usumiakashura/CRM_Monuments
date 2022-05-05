@@ -8355,7 +8355,6 @@
   "projectFileDependencyGroups": {
     "net5.0": [
       "BuissnesLayer >= 1.0.0",
-      "DataLayer >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 5.0.6",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.12",
       "Microsoft.AspNetCore.Identity.UI >= 5.0.12",
@@ -8406,9 +8405,6 @@
           "projectReferences": {
             "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj": {
               "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\BuissnesLayer\\BuissnesLayer.csproj"
-            },
-            "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj": {
-              "projectPath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\DataLayer\\DataLayer.csproj"
             }
           }
         }
