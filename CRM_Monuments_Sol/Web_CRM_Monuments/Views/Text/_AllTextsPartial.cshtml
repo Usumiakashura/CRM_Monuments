@@ -7,10 +7,13 @@
         <tr>
             <th>№ дог-ра</th>
             <th>
-                Дата заключ-я
+                Заключен
             </th>
             <th>
                 Усопший
+            </th>
+            <th>
+                Вид
             </th>
             <th>
                 Тип текста
@@ -46,6 +49,16 @@
             </td>
             <td>
                 @Model[i].Deceased.LastName 
+            </td>
+            <td>
+                @if (Model[i].TextEpitaph)
+                {
+                    <label>эпитафия</label>
+                }
+                else
+                {
+                    <label>фио, даты</label>
+                }
             </td>
             <td>
                 @if (Model[i].TextEpitaph)

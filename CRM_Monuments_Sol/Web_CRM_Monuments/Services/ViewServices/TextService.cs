@@ -47,6 +47,9 @@ namespace Web_CRM_Monuments.Services.ViewServices
                 PhoneCustomer = d.Contract.Customers[0].Number,
                 TextEpitaph = epitaph
             };
+            if (text.TextEpitaph)
+                text.Engraver = text.Deceased.Epitaph.EngraverEpitaph;
+            else text.Engraver = text.Deceased.EngraverName;    
             return text;
         }
 

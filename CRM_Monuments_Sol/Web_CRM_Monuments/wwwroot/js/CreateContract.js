@@ -272,8 +272,11 @@ function AddCustomer() {
         .attr("id", "Contract_Customers_" + CustomersCount + "__Id").appendTo(CustomerContainer);
     //OwnershipContainer.text("  Price : ");
 
-    var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-customer r-btn float-md-left")
-        .attr("value", "x").appendTo(CustomerContainer);
+    //var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-customer r-btn float-md-left")
+    //    .attr("value", "x").appendTo(CustomerContainer);
+    var RemoveButton = $("<a/>").attr("class", "remove-customer rp-btn float-md-left")
+        .attr("title", "Удалить заказчика").appendTo(CustomerContainer);
+    $("<img/>").attr("src", "/Images/remove1.png").attr("class", "rp-btn").appendTo(RemoveButton);
     //на нажатие этого элемента добавляем обработчик - функцию удаления
     RemoveButton.click(RemoveCustomer);
     CustomersCount++;
@@ -461,8 +464,13 @@ function AddDeceased() {
         .attr("type", "hidden").attr("data-val-required", "The DateCompleatTextEpitaph field is required.")
         .attr("id", "Contract_Deceaseds_" + DeceasedsCount + "__Epitaph_DateCompleatTextEpitaph").appendTo(DeceasedContainer);
 
-    var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-deceased r-btn float-md-left")
-        .attr("value", "x").appendTo(DeceasedContainer);
+    //var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-deceased r-btn float-md-left")
+    //    .attr("value", "x").appendTo(DeceasedContainer);
+    var RemoveButton = $("<a/>").attr("class", "remove-deceased rp-btn float-md-left")
+        .attr("title", "Удалить информацию об усопшем").appendTo(DeceasedContainer);
+    $("<img/>").attr("src", "/Images/remove1.png").attr("class", "rp-btn").appendTo(RemoveButton);
+
+
     var SendButtonName = $("<a/>").attr("class", "to-compleate-name rp-btn float-md-left")
         .attr("title", "Отправить текст ФИО на выполнение").appendTo(DeceasedContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButtonName);
@@ -652,8 +660,12 @@ function AddPortrait() {
     //    .attr("type", "hidden").attr("data-val-required", "The TypePortraitId field is required.")
     //    .attr("id", "Portraits_" + keyP + "__TypePortraitId").appendTo(PortraitContainer);
 
-    var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
-        .attr("value", "x").appendTo(PortraitContainer);
+    //var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-portrait rp-btn float-md-left")
+    //    .attr("value", "x").appendTo(PortraitContainer);
+    var RemoveButton = $("<a/>").attr("class", "remove-portrait rp-btn float-md-left")
+        .attr("title", "Удалить портрет").appendTo(PortraitContainer);
+    $("<img/>").attr("src", "/Images/remove1.png").attr("class", "rp-btn").appendTo(RemoveButton);
+
     var SendButton = $("<a/>").attr("class", "to-compleate-portrait rp-btn float-md-left")
         .attr("title", "Отправить портрет на выполнение").attr("hidden", true).appendTo(PortraitContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButton);
@@ -865,8 +877,12 @@ function AddMedallion() {
         .attr("type", "hidden").attr("data-val-required", "The DateBegin field is required.")
         .attr("id", "Medallions_" + keyM + "__DateBegin").appendTo(MedallionContainer);
 
-    var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
-        .attr("value", "x").appendTo(MedallionContainer);
+    //var RemoveButton = $("<input/>").attr("type", "button").attr("class", "remove-medallion rp-btn float-md-left")
+    //    .attr("value", "x").appendTo(MedallionContainer);
+    var RemoveButton = $("<a/>").attr("class", "remove-medallion rp-btn float-md-left")
+        .attr("title", "Удалить медальон").appendTo(MedallionContainer);
+    $("<img/>").attr("src", "/Images/remove1.png").attr("class", "rp-btn").appendTo(RemoveButton);
+
     var SendButton = $("<a/>").attr("class", "to-compleate-medallion rp-btn float-md-left")
         .attr("title", "Отправить медальон на выполнение").attr("hidden", true).appendTo(MedallionContainer);
     $("<img/>").attr("src", "/Images/send.png").attr("class", "send-btn").appendTo(SendButton);

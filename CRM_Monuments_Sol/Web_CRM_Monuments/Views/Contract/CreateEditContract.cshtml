@@ -154,7 +154,10 @@
 
                                     </div>
                                     @Html.HiddenFor(c => c.Contract.Customers[i].Id)
-                                    <input type="button" class="remove-customer r-btn float-md-left" value="х" />
+                                    <a class="remove-customer rp-btn float-md-left" title="Удалить заказчика">
+                                                                    <img src="~/Images/remove1.png" class="rp-btn" />
+                                                                </a>
+                                    
                                 </div>
                             }
 
@@ -373,7 +376,10 @@
                                                                 @Html.HiddenFor(c => c.Portraits[keyP].DateCompleat)
                                                                 @Html.HiddenFor(c => c.Portraits[keyP].DateBegin)
                                                                 @Html.HiddenFor(c => c.Portraits[keyP].Id)
-                                                                <input type="button" class="remove-portrait rp-btn float-md-left" value="x" title="Удалить портрет" />
+                                                                <a class="remove-portrait rp-btn float-md-left" title="Удалить портрет">
+                                                                    <img src="~/Images/remove1.png" class="rp-btn" />
+                                                                </a>
+                                                                
                                                                 @if (Model.Portraits[keyP].DateBegin < new DateTime(2000, 01, 01)
                                                                    && Model.Portraits[keyP].DateCompleat < new DateTime(2000, 01, 01))
                                                                 {
@@ -496,7 +502,10 @@
                                                                 @Html.HiddenFor(c => c.Medallions[keyM].PhotoName)
                                                                 @Html.HiddenFor(c => c.Medallions[keyM].DateCompleat)
                                                                 @Html.HiddenFor(c => c.Medallions[keyM].DateBegin)
-                                                                <input type="button" class="remove-medallion rp-btn float-md-left" value="x" />
+                                                                <a class="remove-medallion rp-btn float-md-left" title="Удалить медальон">
+                                                                    <img src="~/Images/remove1.png" class="rp-btn" />
+                                                                </a>
+                                                                
                                                                 @if (Model.Medallions[keyM].DateBegin < new DateTime(2000, 01, 01) && Model.Medallions[keyM].DateCompleat < new DateTime(2000, 01, 01))
                                                                 {
                                                                     <a class="to-compleate-medallion rp-btn float-md-left" title="Отправить медальон на выполнение">
@@ -519,7 +528,10 @@
                                         @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.Id)
                                         @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph)
                                         @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph)
-                                        <input type="button" class="remove-deceased r-btn float-md-left" value="х" />
+                                        <a class="remove-deceased rp-btn float-md-left" title="Удалить информацию об усопшем">
+                                                                    <img src="~/Images/remove1.png" class="rp-btn" />
+                                                                </a>
+                                        
                                         @if (Model.Contract.Deceaseds[i].DateBeginTextName < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].DateCompleatTextName < new DateTime(2000, 01, 01))
                                         {
                                             <a class="to-compleate-name rp-btn float-md-left" title="Отправить текст ФИО на выполнение"><img src="/images/send.png" class="send-btn" /></a>

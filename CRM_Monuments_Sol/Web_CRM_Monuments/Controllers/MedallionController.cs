@@ -31,7 +31,7 @@ namespace Web_CRM_Monuments.Controllers
             return PartialView("_AllMedallionsPartial", m);
         }
 
-        [Authorize(Roles = "manager")]
+        [Authorize(Roles = "manager,admin")]
         [HttpGet]
         public ActionResult Details(int idMedallion)
         {

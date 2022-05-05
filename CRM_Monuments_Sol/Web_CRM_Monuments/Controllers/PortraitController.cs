@@ -32,7 +32,7 @@ namespace Web_CRM_Monuments.Controllers
             return PartialView("_AllPortraitsPartial", p);
         }
 
-        [Authorize(Roles = "manager,artist")]
+        [Authorize(Roles = "manager,artist,admin")]
         [HttpGet]
         public ActionResult Details(int idPortrait)
         {

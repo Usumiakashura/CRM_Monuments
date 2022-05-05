@@ -37,7 +37,7 @@ namespace Web_CRM_Monuments.Controllers
         }
 
 
-        [Authorize(Roles = "manager")]
+        [Authorize(Roles = "manager,admin")]
         [HttpGet]
         public async Task<ActionResult> CreateEditContract(int idContract)
         {

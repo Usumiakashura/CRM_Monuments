@@ -31,7 +31,7 @@ namespace Web_CRM_Monuments.Controllers
             return PartialView("_AllTextsPartial", t);
         }
 
-        [Authorize(Roles = "manager,engraver")]
+        [Authorize(Roles = "manager,engraver,admin")]
         [HttpGet]
         public ActionResult Details(int idDeceaced, bool epitaph)
         {

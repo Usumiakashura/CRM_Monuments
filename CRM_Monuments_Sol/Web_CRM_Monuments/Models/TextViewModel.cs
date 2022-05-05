@@ -17,7 +17,7 @@ namespace Web_CRM_Monuments.Models
         public string NameCustomer { get; set; }
         public string PhoneCustomer { get; set; }
 
-        //public bool TextNameDeceased { get; set; }
+        public string Engraver { get; set; }
         public bool TextEpitaph { get; set; }
     }
 }
