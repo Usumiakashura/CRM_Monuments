@@ -8,4 +8,9 @@
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="ViewServices\" />
+  </ItemGroup>
+
 </Project>

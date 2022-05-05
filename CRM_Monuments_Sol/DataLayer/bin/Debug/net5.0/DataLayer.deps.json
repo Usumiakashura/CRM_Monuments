@@ -10,8 +10,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.6",
           "Microsoft.AspNetCore.Mvc.Core": "2.2.5",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.6",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.6"
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.16",
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.12"
         },
         "runtime": {
           "DataLayer.dll": {}
@@ -173,7 +173,7 @@
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/5.0.6": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.6",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.16",
           "Microsoft.Extensions.Identity.Stores": "5.0.6"
         },
         "runtime": {
@@ -206,7 +206,7 @@
           "Microsoft.AspNetCore.ResponseCaching.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Routing": "2.2.0",
           "Microsoft.AspNetCore.Routing.Abstractions": "2.2.0",
-          "Microsoft.Extensions.DependencyInjection": "5.0.1",
+          "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.DependencyModel": "2.1.0",
           "Microsoft.Extensions.FileProviders.Abstractions": "2.2.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
@@ -366,12 +366,12 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/5.0.6": {
+      "Microsoft.EntityFrameworkCore/5.0.16": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.6",
-          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.6",
+          "Microsoft.EntityFrameworkCore.Abstractions": "5.0.16",
+          "Microsoft.EntityFrameworkCore.Analyzers": "5.0.16",
           "Microsoft.Extensions.Caching.Memory": "5.0.0",
-          "Microsoft.Extensions.DependencyInjection": "5.0.1",
+          "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.Logging": "5.0.0",
           "System.Collections.Immutable": "5.0.0",
           "System.ComponentModel.Annotations": "5.0.0",
@@ -379,60 +379,60 @@
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "5.0.6.0",
-            "fileVersion": "5.0.621.21307"
+            "assemblyVersion": "5.0.16.0",
+            "fileVersion": "5.0.1622.16102"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/5.0.6": {
+      "Microsoft.EntityFrameworkCore.Abstractions/5.0.16": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "5.0.6.0",
-            "fileVersion": "5.0.621.21307"
+            "assemblyVersion": "5.0.16.0",
+            "fileVersion": "5.0.1622.16102"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/5.0.6": {},
-      "Microsoft.EntityFrameworkCore.Design/5.0.6": {
+      "Microsoft.EntityFrameworkCore.Analyzers/5.0.16": {},
+      "Microsoft.EntityFrameworkCore.Design/5.0.12": {
         "dependencies": {
           "Humanizer.Core": "2.8.26",
           "Microsoft.CSharp": "4.7.0",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.6"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.16"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "5.0.6.0",
-            "fileVersion": "5.0.621.21307"
+            "assemblyVersion": "5.0.12.0",
+            "fileVersion": "5.0.1221.51310"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/5.0.6": {
+      "Microsoft.EntityFrameworkCore.Relational/5.0.16": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "5.0.6",
+          "Microsoft.EntityFrameworkCore": "5.0.16",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "5.0.6.0",
-            "fileVersion": "5.0.621.21307"
+            "assemblyVersion": "5.0.16.0",
+            "fileVersion": "5.0.1622.16102"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/5.0.6": {
+      "Microsoft.EntityFrameworkCore.SqlServer/5.0.16": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "2.0.1",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.6"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.16"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {
-            "assemblyVersion": "5.0.6.0",
-            "fileVersion": "5.0.621.21307"
+            "assemblyVersion": "5.0.16.0",
+            "fileVersion": "5.0.1622.16102"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/5.0.6": {
+      "Microsoft.EntityFrameworkCore.Tools/5.0.12": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "5.0.6"
+          "Microsoft.EntityFrameworkCore.Design": "5.0.12"
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
@@ -472,14 +472,14 @@
           }
         }
       },
-      "Microsoft.Extensions.DependencyInjection/5.0.1": {
+      "Microsoft.Extensions.DependencyInjection/5.0.2": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
         },
         "runtime": {
           "lib/net5.0/Microsoft.Extensions.DependencyInjection.dll": {
             "assemblyVersion": "5.0.0.1",
-            "fileVersion": "5.0.120.57516"
+            "fileVersion": "5.0.821.31504"
           }
         }
       },
@@ -559,7 +559,7 @@
       },
       "Microsoft.Extensions.Logging/5.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "5.0.1",
+          "Microsoft.Extensions.DependencyInjection": "5.0.2",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "Microsoft.Extensions.Options": "5.0.0"
@@ -1604,54 +1604,54 @@
       "path": "microsoft.dotnet.platformabstractions/2.1.0",
       "hashPath": "microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/5.0.6": {
+    "Microsoft.EntityFrameworkCore/5.0.16": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uEqAprroH469aPCZm4iPA1oD8/YDqEQT9QjINkq4HWFA2kRh7Dm2lXX4uZ4MAzpcxoWCqKni2KbLqG8I0KnGqw==",
-      "path": "microsoft.entityframeworkcore/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.5.0.6.nupkg.sha512"
+      "sha512": "sha512-niMGaRvTPPGAhuhKxFdmdfeW5Vo6rvhNXy2vnRotC7ToR/1ST6iDqZCIvW4L/Pt2+ISiFbvcqRQIE9MrNSMUZQ==",
+      "path": "microsoft.entityframeworkcore/5.0.16",
+      "hashPath": "microsoft.entityframeworkcore.5.0.16.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/5.0.6": {
+    "Microsoft.EntityFrameworkCore.Abstractions/5.0.16": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-mZCwrwaiE3dSfJZZLihPueGJ2L5/vPU8VPpz21lErYIMmtZmxfSqocXe65bLlwMQ6EO/OcW7P+tvHWPsrAzMTg==",
-      "path": "microsoft.entityframeworkcore.abstractions/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.5.0.6.nupkg.sha512"
+      "sha512": "sha512-nGESdyRnKGQ0PBUBrtVwGz3U13/C7RKcOctps2WozCGo5fHnQmcVtZ23mYc3Ri1LSMY+l4vLblBPJUzRaPaAWA==",
+      "path": "microsoft.entityframeworkcore.abstractions/5.0.16",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.5.0.16.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/5.0.6": {
+    "Microsoft.EntityFrameworkCore.Analyzers/5.0.16": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-PhcaRr/5NgTVjm43ITSPSYQGYCUkyuBV1gEDipLnDZI+VsYwyr2HH8pHXDUaY1E6dkZoiWNRt+XNMAsK3qDIKQ==",
-      "path": "microsoft.entityframeworkcore.analyzers/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.6.nupkg.sha512"
+      "sha512": "sha512-BiSrqLpJ6dv6xOH1xuHG/85edPfQo5DbuUZJqXNCOm3DD9BjnxaeVYnl2EUdadEUbCTTNVhXT0iKnaOpD5bv6A==",
+      "path": "microsoft.entityframeworkcore.analyzers/5.0.16",
+      "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.16.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Design/5.0.6": {
+    "Microsoft.EntityFrameworkCore.Design/5.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2hjMovtUx3zvMMJDNjFFtYbiYRg7SNAyRe3JQzCYy7kXfADcyr7tuf9meq0lxGZBf8qvilYcDaBj5M+iq90krQ==",
-      "path": "microsoft.entityframeworkcore.design/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.design.5.0.6.nupkg.sha512"
+      "sha512": "sha512-ppGtADfdRv94SQhol8kbYupjjwpNrJ0V2V2jPXzM7zf9cZoDDSmlKXq4sHCdhC4L2ObD8DaykmAcgMIxPleHOg==",
+      "path": "microsoft.entityframeworkcore.design/5.0.12",
+      "hashPath": "microsoft.entityframeworkcore.design.5.0.12.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/5.0.6": {
+    "Microsoft.EntityFrameworkCore.Relational/5.0.16": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zzmO/cAcvsFeU3Ey6643GiLl4hCgGpWdcCW8LHsHP35zmfTirnjm2PrB+wf1wYQlPNyGT9+uypbVSoOopg58Mg==",
-      "path": "microsoft.entityframeworkcore.relational/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.relational.5.0.6.nupkg.sha512"
+      "sha512": "sha512-B1ux0Pf1tTo7AXRldxInBWlFVm0/SVdV/7wSBxUmwy+uRO4oQCIJk69ot1DbL8YCQKjSMMB6IZkRTK95Haetow==",
+      "path": "microsoft.entityframeworkcore.relational/5.0.16",
+      "hashPath": "microsoft.entityframeworkcore.relational.5.0.16.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/5.0.6": {
+    "Microsoft.EntityFrameworkCore.SqlServer/5.0.16": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-OQFZB8hOaaU+VO62MHdkAVkPbfH+Yx8Kp+Bp+LKnmX7HxDGe/8DEOJSoHKAE8gFUTaSnJ5/OvBKNxXefeAyT0g==",
-      "path": "microsoft.entityframeworkcore.sqlserver/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.sqlserver.5.0.6.nupkg.sha512"
+      "sha512": "sha512-CMfZHL4vdQD5JUYdmcA90LkuV9XkNF97hhSBUzcZPZ7VFgQR7etvn9NVsDvoi+Gn08p1lU4KsCJw7B3Ye5GlVQ==",
+      "path": "microsoft.entityframeworkcore.sqlserver/5.0.16",
+      "hashPath": "microsoft.entityframeworkcore.sqlserver.5.0.16.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/5.0.6": {
+    "Microsoft.EntityFrameworkCore.Tools/5.0.12": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eh3jspEKaDu/q3+YqdZ6V1Htwjn/eMp5rT9KGHFw4GEKUIg7CVNzGtZ57ZV5HwBus4A/6OcGUGa6/J72UU8ZUg==",
-      "path": "microsoft.entityframeworkcore.tools/5.0.6",
-      "hashPath": "microsoft.entityframeworkcore.tools.5.0.6.nupkg.sha512"
+      "sha512": "sha512-fk6P7PZmbN/148oR2RBTnCWsTMdNKlOL/OgF6HJOY8HBbNLIdW720hYIbckmwQ6kad2gaKGXYoW9tDDu69cCQA==",
+      "path": "microsoft.entityframeworkcore.tools/5.0.12",
+      "hashPath": "microsoft.entityframeworkcore.tools.5.0.12.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
       "type": "package",
@@ -1674,12 +1674,12 @@
       "path": "microsoft.extensions.configuration.abstractions/5.0.0",
       "hashPath": "microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.DependencyInjection/5.0.1": {
+    "Microsoft.Extensions.DependencyInjection/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-//mDNrYeiJ0eh/awFhDFJQzkRVra/njU5Y4fyK7X29g5HScrzbUkKOKlyTtygthcGFt4zNC8G5CFCjb/oizomA==",
-      "path": "microsoft.extensions.dependencyinjection/5.0.1",
-      "hashPath": "microsoft.extensions.dependencyinjection.5.0.1.nupkg.sha512"
+      "sha512": "sha512-xzFW00AZEvOXM1OX+0+AYH5op/Hf3u//e6wszBd/rK72sypD+jx5CtsHxM4BVuFBEs8SajfO4QzSJtrQaHDr4A==",
+      "path": "microsoft.extensions.dependencyinjection/5.0.2",
+      "hashPath": "microsoft.extensions.dependencyinjection.5.0.2.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyInjection.Abstractions/5.0.0": {
       "type": "package",

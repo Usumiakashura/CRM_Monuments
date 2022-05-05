@@ -12,3 +12,4 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataL
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\ref\DataLayer.dll
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.pdb
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.genruntimeconfig.cache
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.csproj.AssemblyReference.cache
