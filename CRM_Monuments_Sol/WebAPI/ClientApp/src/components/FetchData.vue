@@ -8,10 +8,10 @@
     <table class='table table-striped' aria-labelledby="tableLabel" v-if="forecasts">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
+                <th>Дата</th>
+                <th>Темп. (C)</th>
                 <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Погода</th>
             </tr>
         </thead>
         <tbody>

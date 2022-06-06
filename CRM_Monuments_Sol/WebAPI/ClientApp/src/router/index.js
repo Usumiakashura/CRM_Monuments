@@ -1,7 +1,12 @@
-﻿import { createWebHistory, createRouter } from "vue-router";
+﻿/**
+  * теперь этот файл/поток будет кодироваться в UTF-8
+  */
+
+import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/components/Home.vue";
 import Counter from "@/components/Counter.vue";
 import FetchData from "@/components/FetchData.vue";
+import Texts from "@/components/Texts.vue";
 
 const routes = [
     {
@@ -18,6 +23,11 @@ const routes = [
         path: "/FetchData",
         name: "FetchData",
         component: FetchData,
+    },
+    {
+        path: "/Texts",
+        name: "Texts",
+        component: Texts,
     }
 ];
 
