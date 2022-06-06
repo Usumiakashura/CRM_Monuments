@@ -1,12 +1,10 @@
-<template>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+﻿<template>
+
+
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3 padd0">
             <div class="container menu">
-                <!--<a class="navbar-brand">Vue JS Template for .NET 5</a>-->
-                <a class="navbar-brand">
-                    <router-link :to="{ name: 'Home' }">
-                        <img src="../assets/logo1.png" class="logo" />
-                    </router-link>
-                </a>
+                
                 <button class="navbar-toggler"
                         type="button"
                         data-toggle="collapse"
@@ -19,12 +17,17 @@
                      v-bind:class="{show: isExpanded}">
                     <ul class="navbar-nav flex-grow">
                         <li class="nav-item">
-                            <router-link :to="{ name: 'Home' }" class="nav-link text-dark">Главная</router-link>
+                            <router-link :to="{ name: 'Contracts' }" class="link text-dark">Договора</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link :to="{ name: 'Home' }" class="nav-link text-dark">Настройки</router-link>
+                            <router-link :to="{ name: 'Portraits' }" class="link text-dark">Портреты</router-link>
                         </li>
-                        
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'Medallions' }" class="link text-dark">Медальоны</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link :to="{ name: 'Texts' }" class="link text-dark">Текста</router-link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -33,12 +36,6 @@
 
 
 <style>
-    a.navbar-brand {
-        white-space: normal;
-        text-align: center;
-        word-break: break-all;
-    }
-
     html {
         font-size: 14px;
     }
@@ -53,19 +50,16 @@
         box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
     }
 
-    .nav-link {
-        padding: 0.8rem 1rem 0.1rem 1rem;
+    .link {
+        display: block;
+        padding-right: 1rem;
+        padding-top: 0.2rem;
     }
+        .link:hover {
+            text-decoration: none;
+        }
 
-    .logo {
-        height: 30px;
-    }
-
-    .menu {
-        max-width: 1200px;
-    }
-
-    .navbar {
+    .padd0 {
         padding: 0px
     }
 </style>

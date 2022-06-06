@@ -1,12 +1,13 @@
-﻿/**
-  * теперь этот файл/поток будет кодироваться в UTF-8
-  */
-
-import { createWebHistory, createRouter } from "vue-router";
+﻿import { createWebHistory, createRouter } from "vue-router";
 import Home from "@/components/Home.vue";
 import Counter from "@/components/Counter.vue";
 import FetchData from "@/components/FetchData.vue";
-import Texts from "@/components/Texts.vue";
+
+import Contracts from "@/components/UserMenuComponents/Contracts.vue"
+import Portraits from "@/components/UserMenuComponents/Portraits.vue"
+import Medallions from "@/components/UserMenuComponents/Medallions.vue"
+import Texts from "@/components/UserMenuComponents/Texts.vue";
+
 
 const routes = [
     {
@@ -28,6 +29,21 @@ const routes = [
         path: "/Texts",
         name: "Texts",
         component: Texts,
+    },
+    {
+        path: "/Portraits",
+        name: "Portraits",
+        component: Portraits,
+    },
+    {
+        path: "/Medallions",
+        name: "Medallions",
+        component: Medallions,
+    },
+    {
+        path: "/Contracts",
+        name: "Contracts",
+        component: Contracts
     }
 ];
 

@@ -1,16 +1,21 @@
 <template>
-    <h1>Что-то на русском</h1>
-    <nav-menu></nav-menu>
+    <header>
+        <nav-menu></nav-menu>
+        <user-menu></user-menu>
+    </header>
+    
     <router-view />
 </template>
 
 <script>
     import NavMenu from './components/NavMenu.vue'
+    import UserMenu from './components/UserMenu.vue'
 
     export default {
         name: 'App',
         components: {
-            NavMenu
+            NavMenu,
+            UserMenu
         }
     }
 </script>
