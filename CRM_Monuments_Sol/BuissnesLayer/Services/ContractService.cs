@@ -21,6 +21,11 @@ namespace BuissnesLayer.Services
             _dataManager = dataManager;
             //_hostingEnvironment = hostingEnvironment;
         }
+        public IEnumerable<Contract> GetAllContracts()
+        {
+            return _dataManager.Contracts.GetAllContracts();
+        }
+
 
         public string NewContractNumber()
         {

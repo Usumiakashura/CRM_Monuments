@@ -138,3 +138,5 @@ E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\WebAPI\obj\Debug\net5.
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\WebAPI\obj\Debug\net5.0\WebAPI.pdb
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\WebAPI\obj\Debug\net5.0\WebAPI.genruntimeconfig.cache
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\package-lock.json
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\package-lock.json
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\obj\Debug\net5.0\staticwebassets\WebAPI.StaticWebAssets.xml

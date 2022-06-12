@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web_CRM_Monuments", "Web_CR
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{CAB00D70-1301-4815-956A-8045E9C70B19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{AFA72950-F59E-4238-B9B0-2AFBDA04A995}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{AFA72950-F59E-4238-B9B0-2AFBDA04A995}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{CA60F220-1322-42DF-894F-CA9D22D67B91}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{AFA72950-F59E-4238-B9B0-2AFBDA04A995}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFA72950-F59E-4238-B9B0-2AFBDA04A995}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFA72950-F59E-4238-B9B0-2AFBDA04A995}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA60F220-1322-42DF-894F-CA9D22D67B91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA60F220-1322-42DF-894F-CA9D22D67B91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA60F220-1322-42DF-894F-CA9D22D67B91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA60F220-1322-42DF-894F-CA9D22D67B91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,13 @@
+using DataLayer;
+using DataLayer.Context;
+using DataLayer.Entities;
+using DataLayer.Implementations;
+using DataLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,6 +35,33 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<EFDBContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<EFDBContext>().AddDefaultTokenProviders();//.AddDefaultUI();
+
+            services.AddTransient<IContractsRepository, EFContractsRepository>();
+            services.AddTransient<ICustomersRepository, EFCustomersRepository>();
+            services.AddTransient<IDeceasedsRepository, EFDeceasedsRepository>();
+            services.AddTransient<IPhotosOnMonumentsRepository, EFPhotosOnMonumentsRepository>();
+            services.AddTransient<IApplicationUsersRepository, EFApplicationUsersRepository>();
+            services.AddTransient<ITypesPortraitRepository, EFTypesPortraitRepository>();
+            services.AddTransient<ITypesTextsRepository, EFTypesTextsRepository>();
+            services.AddTransient<IMedallionMaterialsRepository, EFMedallionMaterialsRepository>();
+            services.AddTransient<IShapeMedallionsRepository, EFShapeMedallionsRepository>();
+            services.AddTransient<IColorMedallionsRepository, EFColorMedallionsRepository>();
+            services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
+
+            services.AddScoped<DataManager>();
+
             services.AddControllers();
             services.AddSpaStaticFiles(configuration =>
             {

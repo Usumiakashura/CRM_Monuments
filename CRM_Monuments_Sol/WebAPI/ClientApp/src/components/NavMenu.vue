@@ -1,6 +1,6 @@
 <template>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-            <div class="container menu">
+            <div class="container">
                 <!--<a class="navbar-brand">Vue JS Template for .NET 5</a>-->
                 <a class="navbar-brand">
                     <router-link :to="{ name: 'Home' }">
@@ -59,10 +59,6 @@
 
     .logo {
         height: 30px;
-    }
-
-    .menu {
-        max-width: 1200px;
     }
 
     .navbar {
