@@ -8,6 +8,7 @@
   <PropertyGroup>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <StartupObject>WebAPI.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,15 @@
     <Content Remove="$(SpaRoot)**" />
     <None Remove="$(SpaRoot)**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\package-lock.json" />
+    <Content Include="ClientApp\package.json" />
+    <Content Include="ClientApp\src\assets\logo1.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

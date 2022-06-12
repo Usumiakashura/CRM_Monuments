@@ -13,3 +13,18 @@ E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\Buiss
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\DataLayer.dll
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\DataLayer.pdb
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.CopyComplete
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\BuissnesLayer.deps.json
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\BuissnesLayer.dll
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\ref\BuissnesLayer.dll
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\BuissnesLayer.pdb
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\DataLayer.dll
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\bin\Debug\net5.0\DataLayer.pdb
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.AssemblyReference.cache
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.AssemblyInfoInputs.cache
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.AssemblyInfo.cs
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.CoreCompileInputs.cache
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.csproj.CopyComplete
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.dll
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\ref\BuissnesLayer.dll
+E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\BuissnesLayer\obj\Debug\net5.0\BuissnesLayer.pdb

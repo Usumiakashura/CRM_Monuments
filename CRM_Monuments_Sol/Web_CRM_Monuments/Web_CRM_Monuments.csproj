@@ -24,4 +24,8 @@
     <ProjectReference Include="..\BuissnesLayer\BuissnesLayer.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\" />
+  </ItemGroup>
+
 </Project>
