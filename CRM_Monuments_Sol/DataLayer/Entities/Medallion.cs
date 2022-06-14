@@ -9,20 +9,15 @@ namespace DataLayer.Entities
 {
     public class Medallion : PhotoOnMonument
     {   //медальон
-        //public string MaterialMedallion { get; set; }   //Материал
-        public int? MedallionMaterialObjId { get; set; }   //Материал
+        public int? MedallionMaterialId { get; set; }               //id материала
         [ValidateNever]
-        public MedallionMaterial MedallionMaterialObj { get; set; }   //Материал
-        public string SizeMedallion { get; set; }       //Размер
-        //public string ShapeMedallion { get; set; }      //Форма
-        public int? ShapeMedallionObjId { get; set; }      //Форма
+        public MedallionMaterial MedallionMaterial { get; set; }    //Материал
+        public string SizeMedallion { get; set; }                   //Размер
+        public int? ShapeMedallionId { get; set; }                  //id формы
         [ValidateNever]
-        public ShapeMedallion ShapeMedallionObj { get; set; }      //Форма
-        //public string ColorMedallion { get; set; }      //Цвет
-        public int? ColorMedallionObjId { get; set; }      //Форма
-        [ValidateNever]
-        public ColorMedallion ColorMedallionObj { get; set; }      //Форма
-        public string BackgroundMedallion { get; set; } //Фон
+        public ShapeMedallion ShapeMedallion { get; set; }          //Форма
+        public string ColorMedallion { get; set; }                  //цветность
+        public string BackgroundMedallion { get; set; }             //Фон
 
 
         public bool Frame { get; set; }
@@ -34,7 +29,7 @@ namespace DataLayer.Entities
         public string? NoteFrame { get; set; }           //примечание
         //-----------------------
         //--- Если рамки нет ---
-        public bool GluingIntoNiche { get; set; }       //вклейка в нишу
+        public bool GluingIntoNiche { get; set; }        //вклейка в нишу
         //----------------------
     }
 }

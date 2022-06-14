@@ -14,7 +14,9 @@ namespace DataLayer.Context
         //public DbSet<Accessorie> Accessories { get; set; }
         public DbSet<Contract> Contracts { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Stella> Stellas { get; set; }
         public DbSet<Deceased> Deceaseds { get; set; }
+        public DbSet<TextOnStella> TextOnStellas { get; set; }
         public DbSet<Epitaph> Epitaphs { get; set; }
         public DbSet<Medallion> Medallions { get; set; }
         //public DbSet<OtherAccessorie> OtherAccessories { get; set; }
@@ -27,7 +29,6 @@ namespace DataLayer.Context
         public DbSet<TypePortrait> TypePortraits { get; set; }
         public DbSet<MedallionMaterial> MedallionMaterials { get; set; }
         public DbSet<ShapeMedallion> ShapeMedallions { get; set; }
-        public DbSet<ColorMedallion> ColorMedallions { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 

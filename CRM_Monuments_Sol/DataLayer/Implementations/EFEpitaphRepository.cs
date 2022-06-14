@@ -20,22 +20,36 @@ namespace DataLayer.Implementations
             _context = context;
         }
 
-        public void DeleteEpitaph(Epitaph epitaph)
+        public IEnumerable<Epitaph> GetAllEpitaphsByIdDeceased(int idDeceased)
         {
-            _context.Epitaphs.Remove(epitaph);
-            //_context.SaveChanges();
+            return _context.Epitaphs
+                .Include(d => d.TypeText)
+                .Include(x => x.Deceased)
+                    .ThenInclude(x => x.TextOnStella)
+                .Include(x => x.Deceased)
+                    .ThenInclude(x => x.Stella)
+                    .ThenInclude(x => x.Contract)
+                    .ThenInclude(x => x.Customers)
+                .Where(e => e.Deceased.Id == idDeceased);
         }
 
-        public Epitaph GetEpitaphByIdDeceased(int idDeceased)
+        public Epitaph GetEpitaphById(int idEpitaph)
         {
-            return _context.Epitaphs.Include(d => d.Deceased).Where(e => e.Deceased.Id == idDeceased).First();
+            return _context.Epitaphs
+                .Include(d => d.TypeText)
+                .Include(x => x.Deceased)
+                    .ThenInclude(x => x.TextOnStella)
+                .Include(x => x.Deceased)
+                    .ThenInclude(x => x.Stella)
+                    .ThenInclude(x => x.Contract)
+                    .ThenInclude(x => x.Customers)
+                .First(e => e.Id == idEpitaph);
         }
 
         public void SaveEpitaph(Epitaph epitaph)
         {
             if (epitaph.Id == 0)
             {
-                epitaph.Id = 0;
                 _context.Epitaphs.Add(epitaph);
             }
             else
@@ -45,9 +59,23 @@ namespace DataLayer.Implementations
             _context.SaveChanges();
         }
 
-        public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate) //отметить выполнение текста эпитафии
+        public void DeleteEpitaph(Epitaph epitaph)
         {
-            GetEpitaphByIdDeceased(idDeceaced).DateCompleatTextEpitaph = dateCompleate;
+            _context.Epitaphs.Remove(epitaph);
+            _context.SaveChanges();
+        }
+
+        public void DeleteAllEpitaphsByIdDeceased(int deceasedId)
+        {
+            foreach (Epitaph e in GetAllEpitaphsByIdDeceased(deceasedId))
+            {
+                _context.Epitaphs.Remove(e);
+            }
+        }
+
+        public void CompleateOnTextEpitaph(int idEpitaph, DateTime dateCompleate) //отметить выполнение текста эпитафии
+        {
+            GetEpitaphById(idEpitaph).DateCompleatTextEpitaph = dateCompleate;
             _context.SaveChanges();
         }
     }

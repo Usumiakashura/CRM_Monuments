@@ -36,7 +36,7 @@
                     ФИО усопшего:
                 </td>
                 <td>
-                    @Model.Deceased.LastName @Model.Deceased.FirstName @Model.Deceased.MiddleName
+                    @Model.Deceased.TextOnStella.LastName @Model.Deceased.TextOnStella.FirstName @Model.Deceased.TextOnStella.MiddleName
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
                         Текст эпитафии:
                     </td>
                     <td>
-                        @Model.Deceased.Epitaph.NotesTextEpitaph
+                        @Model.Deceased.Epitaphs[0].NotesTextEpitaph
                     </td>
                 </tr>
                 <tr>
@@ -72,9 +72,9 @@
                     </td>
                     <td>
                         
-                        @if(Model.Deceased.Epitaph.TypeTextObj != null)
+                        @if(Model.Deceased.Epitaphs[0].TypeText != null)
                         {
-                            <label>@Model.Deceased.Epitaph.TypeTextObj.Name</label>
+                            <label>@Model.Deceased.Epitaphs[0].TypeText.Name</label>
                         }
                     </td>
                 </tr>
@@ -83,7 +83,7 @@
                         Гравер:
                     </td>
                     <td>
-                        @Model.Deceased.Epitaph.EngraverEpitaph
+                        @Model.Deceased.Epitaphs[0].EngraverEpitaph
                     </td>
                 </tr>
             }
@@ -94,7 +94,7 @@
                         ФИО усопшего:
                     </td>
                     <td>
-                        @Model.Deceased.FirstName @Model.Deceased.LastName @Model.Deceased.MiddleName
+                        @Model.Deceased.TextOnStella.FirstName @Model.Deceased.TextOnStella.LastName @Model.Deceased.TextOnStella.MiddleName
                     </td>
                 </tr>
                 <tr>
@@ -102,7 +102,7 @@
                         Дата рождения:
                     </td>
                     <td>
-                        @if (Model.Deceased.DateBirthday > new DateTime(1000, 01, 01)) Model.Deceased.DateBirthday.ToShortDateString();
+                        @if (Model.Deceased.TextOnStella.DateBirthday > new DateTime(1000, 01, 01)) Model.Deceased.TextOnStella.DateBirthday.ToShortDateString();
                     </td>
                 </tr>
                 <tr>
@@ -110,7 +110,7 @@
                         Дата смерти:
                     </td>
                     <td>
-                        @if (Model.Deceased.DateRip > new DateTime(1000, 01, 01)) Model.Deceased.DateRip.ToShortDateString();
+                        @if (Model.Deceased.TextOnStella.DateRip > new DateTime(1000, 01, 01)) Model.Deceased.TextOnStella.DateRip.ToShortDateString();
                     </td>
                 </tr>
                 <tr>
@@ -118,9 +118,9 @@
                         Тип текста:
                     </td>
                     <td>
-                        @if (Model.Deceased.TypeTextObj != null)
+                        @if (Model.Deceased.TextOnStella.TypeText != null)
                         {
-                            <label>@Model.Deceased.TypeTextObj.Name</label>
+                            <label>@Model.Deceased.TextOnStella.TypeText.Name</label>
                         } 
                     </td>
                 </tr>
@@ -129,7 +129,7 @@
                         Гравер:
                     </td>
                     <td>
-                        @Model.Deceased.EngraverName
+                        @Model.Deceased.TextOnStella.EngraverName
                     </td>
                 </tr>
                 <tr>
@@ -137,7 +137,7 @@
                         Примечание:
                     </td>
                     <td>
-                        @Model.Deceased.NotesTextName
+                        @Model.Deceased.TextOnStella.NotesTextName
                     </td>
                 </tr>
             }
@@ -150,13 +150,13 @@
     }
     @if (Model.TextEpitaph)
     {
-        dateBegin = Model.Deceased.Epitaph.DateBeginTextEpitaph;
-        dateCompleate = Model.Deceased.Epitaph.DateCompleatTextEpitaph;
+        dateBegin = Model.Deceased.Epitaphs[0].DateBeginTextEpitaph;
+        dateCompleate = Model.Deceased.Epitaphs[0].DateCompleatTextEpitaph;
     }
     else
     {
-        dateBegin = Model.Deceased.DateBeginTextName;
-        dateCompleate = Model.Deceased.DateCompleatTextName;
+        dateBegin = Model.Deceased.TextOnStella.DateBeginTextOnStella;
+        dateCompleate = Model.Deceased.TextOnStella.DateCompleatTextOnStella;
     }
     @if (dateBegin > new DateTime(2000, 01, 01))
      {

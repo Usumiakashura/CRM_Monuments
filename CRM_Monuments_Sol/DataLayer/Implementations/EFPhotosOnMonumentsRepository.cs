@@ -21,10 +21,6 @@ namespace DataLayer.Implementations
 
         public IEnumerable<PhotoOnMonument> GetAllPhotoOnMonumentsByIdDeceased(int deceasedId)     //получить весь список, относящийся к определенному договору
         {
-            //var photos = _context.PhotoOnMonuments.Include(d => d.Deceased)
-            //    .ThenInclude(c => c.Contract)
-            //    .ThenInclude(c => c.Customers)
-            //    .Where(x => x.Deceased.Id == deceasedId);
             List<PhotoOnMonument> photoOnMonuments = new List<PhotoOnMonument>();
             foreach (PhotoOnMonument p in _context.PhotoOnMonuments)
             {
@@ -39,8 +35,9 @@ namespace DataLayer.Implementations
         {
             var portraits = _context.PhotoOnMonuments
                 .Include(d => d.Deceased)
-                .ThenInclude(c => c.Contract)
-                .ThenInclude(c => c.Customers)
+                    .ThenInclude(x => x.Stella)
+                    .ThenInclude(c => c.Contract)
+                    .ThenInclude(c => c.Customers)
                 .Where(x => x is Portrait);
             foreach (Portrait portrait in portraits)
             {
@@ -57,8 +54,9 @@ namespace DataLayer.Implementations
         {
             var medallions = _context.PhotoOnMonuments
                 .Include(d => d.Deceased)
-                .ThenInclude(c => c.Contract)
-                .ThenInclude(c => c.Customers)
+                    .ThenInclude(x => x.Stella)
+                    .ThenInclude(c => c.Contract)
+                    .ThenInclude(c => c.Customers)
                 .Where(x => x is Medallion);
             foreach (Medallion medallion in medallions)
             {
@@ -66,31 +64,25 @@ namespace DataLayer.Implementations
                 {
                     if (//mm.Medallions.Count() > 0 &&
                         mm.Medallions.Where(x => x.Id == medallion.Id).Count() > 0)//?.First() != null)
-                        medallion.MedallionMaterialObj = mm;
+                        medallion.MedallionMaterial = mm;
                 }
                 foreach (ShapeMedallion sm in _context.ShapeMedallions.Include(sm => sm.Medallions))
                 {
                     if (//sm.Medallions.Count() > 0 &&
                         sm.Medallions.Where(x => x.Id == medallion.Id).Count() > 0)//.First() != null)
-                        medallion.ShapeMedallionObj = sm;
-                }
-                foreach (ColorMedallion cm in _context.ColorMedallions.Include(cm => cm.Medallions))
-                {
-                    if (//cm.Medallions.Count() > 0 &&
-                        cm.Medallions.Where(x => x.Id == medallion.Id).Count() > 0)//.First() != null)
-                        medallion.ColorMedallionObj = cm;
+                        medallion.ShapeMedallion = sm;
                 }
             }
-
             return medallions;
         }
         public Portrait GetPortraitById(int id)
         {
             Portrait portrait = (Portrait)_context.PhotoOnMonuments
                 .Include(d => d.Deceased)
-                .ThenInclude(c => c.Contract)
-                .ThenInclude(c => c.Customers)
-                .Where(x => x.Id == id).First();
+                    .ThenInclude(x => x.Stella)
+                    .ThenInclude(c => c.Contract)
+                    .ThenInclude(c => c.Customers)
+                .First(x => x.Id == id);
             foreach (TypePortrait tp in _context.TypePortraits.Include(tp => tp.Portraits))
             {
                 if (//tp.Portraits.Count() > 0 &&
@@ -103,26 +95,21 @@ namespace DataLayer.Implementations
         {
             Medallion medallion = (Medallion)_context.PhotoOnMonuments
                 .Include(d => d.Deceased)
-                .ThenInclude(c => c.Contract)
-                .ThenInclude(c => c.Customers)
-                .Where(x => x.Id == id).First();
+                    .ThenInclude(x => x.Stella)
+                    .ThenInclude(c => c.Contract)
+                    .ThenInclude(c => c.Customers)
+                .First(x => x.Id == id);
             foreach (MedallionMaterial mm in _context.MedallionMaterials.Include(mm => mm.Medallions))
             {
                 if (//mm.Medallions.Count() > 0 &&
                     mm.Medallions.Where(x => x.Id == medallion.Id).Count() > 0)//.First() != null)
-                    medallion.MedallionMaterialObj = mm;
+                    medallion.MedallionMaterial = mm;
             }
             foreach (ShapeMedallion sm in _context.ShapeMedallions.Include(sm => sm.Medallions))
             {
                 if (//sm.Medallions.Count() > 0 &&
                     sm.Medallions.Where(x => x.Id == medallion.Id).Count() > 0)//.First() != null)
-                    medallion.ShapeMedallionObj = sm;
-            }
-            foreach (ColorMedallion cm in _context.ColorMedallions.Include(cm => cm.Medallions))
-            {
-                if (//cm.Medallions.Count() > 0 &&
-                    cm.Medallions.Where(x => x.Id == medallion.Id).Count() > 0)//.First() != null)
-                    medallion.ColorMedallionObj = cm;
+                    medallion.ShapeMedallion = sm;
             }
             return medallion;
         }
@@ -130,19 +117,20 @@ namespace DataLayer.Implementations
         public PhotoOnMonument GetPhotoOnMonumentById(int photoOnMonumentId)    //получить один по айди
         {
             PhotoOnMonument photoOnMonument = _context.PhotoOnMonuments
-                .Where(x => x.Id == photoOnMonumentId).First();
+                .First(x => x.Id == photoOnMonumentId);
             return photoOnMonument;
         }
+
         public void CompleateOn(int idPhotoOnMonument, DateTime dateCompleate)  //отметка о выполнении
         {
             GetPhotoOnMonumentById(idPhotoOnMonument).DateCompleat = dateCompleate;
             _context.SaveChanges();
         }
+
         public void SavePhotoOnMonument(PhotoOnMonument photoOnMonument)        //сохранить в БД
         {
             if (photoOnMonument.Id == 0)
             {
-                photoOnMonument.Id = 0;
                 _context.PhotoOnMonuments.Add(photoOnMonument);
             }
             else
@@ -151,11 +139,13 @@ namespace DataLayer.Implementations
             }
             _context.SaveChanges();
         }
+
         public void DeletePhotoOnMonument(PhotoOnMonument photoOnMonument)      //удалить из бд
         {
             _context.PhotoOnMonuments.Remove(photoOnMonument);
             _context.SaveChanges();
         }
+
         public void DeleteAllPhotoOnMonumentByIdDeceased(int deceasedId)      //удалить из бд все фото по усопшему
         {
             foreach (PhotoOnMonument p in GetAllPhotoOnMonumentsByIdDeceased(deceasedId))

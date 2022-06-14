@@ -13,7 +13,7 @@ namespace BuissnesLayer.Models
         public List<TypePortrait> TypePortraits { get; set; }
         public List<MedallionMaterial> MedallionMaterials { get; set; }
         public List<ShapeMedallion> ShapeMedallions { get; set; }
-        public List<ColorMedallion> ColorMedallions { get; set; }
+        //public List<ColorMedallion> ColorMedallions { get; set; }
 
     }
 }

@@ -9,10 +9,11 @@ namespace DataLayer.Interfaces
 {
     public interface IEpitaphRepository
     {
-
-        public Epitaph GetEpitaphByIdDeceased(int idDeceased);
+        public IEnumerable<Epitaph> GetAllEpitaphsByIdDeceased(int idDeceased);
+        public Epitaph GetEpitaphById(int idEpitaph);
         public void SaveEpitaph(Epitaph epitaph);
         public void DeleteEpitaph(Epitaph epitaph);
-        public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate);
+        public void DeleteAllEpitaphsByIdDeceased(int deceasedId);
+        public void CompleateOnTextEpitaph(int idEpitaph, DateTime dateCompleate);
     }
 }

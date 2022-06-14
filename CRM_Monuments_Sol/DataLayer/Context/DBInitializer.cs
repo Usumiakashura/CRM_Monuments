@@ -19,7 +19,6 @@ namespace DataLayer.Context
             List<TypePortrait> _typePortraits;
             List<MedallionMaterial> _medallionMaterials;
             List<ShapeMedallion> _shapeMedallions;
-            List<ColorMedallion> _colorMedallions;
 
             if (!context.TypeTexts.Any())
             {
@@ -125,23 +124,6 @@ namespace DataLayer.Context
                 context.ShapeMedallions.AddRange(_shapeMedallions);
                 context.SaveChanges();
             }
-            if (!context.ColorMedallions.Any())
-            {
-                _colorMedallions = new List<ColorMedallion>()
-                {
-                    new ColorMedallion()
-                    {
-                        Name = "Цветной"
-                    },
-                    new ColorMedallion()
-                    {
-                        Name = "Черно-белый"
-                    }
-                };
-                context.ColorMedallions.AddRange(_colorMedallions);
-                context.SaveChanges();
-            }
-
 
             if (!context.Contracts.Any())
             {
@@ -188,41 +170,42 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 125,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 01),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Иванов",
-                                FirstName = "Петр",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1956, 07, 19),
-                                DateRip = new DateTime(2020, 03, 03),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Medallion()
+                                    new Deceased()
                                     {
-                                        MedallionMaterialObj = context.MedallionMaterials.Find(4),
-                                        //MaterialMedallion = context.MedallionMaterials.Find(4).Name,
-                                        SizeMedallion = "15*15",
-                                        ShapeMedallionObj = context.ShapeMedallions.Find(3),
-                                        //ShapeMedallion = context.ShapeMedallions.Find(3).Name,
-                                        ColorMedallionObj = context.ColorMedallions.Find(1),
-                                        //ColorMedallion = context.ColorMedallions.Find(1).Name,
-                                        BackgroundMedallion = "Серый",
-                                        Frame = true,
-                                        TypeFrame = "Ф1",
-                                        SizeFrame = "16*16",
-                                        ShapeFrame = "круг",
-                                        ColorFrame = "серый"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Иванов",
+                                            FirstName = "Петр",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1956, 07, 19),
+                                            DateRip = new DateTime(2020, 03, 03),
+                                            TypeText = context.TypeTexts.Find(4),
+                                            EngraverName = "Василий"
+                                        },
+                                        
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Medallion()
+                                            {
+                                                MedallionMaterial = context.MedallionMaterials.Find(4),
+                                                SizeMedallion = "15*15",
+                                                ShapeMedallion = context.ShapeMedallions.Find(3),
+                                                BackgroundMedallion = "Серый",
+                                                Frame = true,
+                                                TypeFrame = "Ф1",
+                                                SizeFrame = "16*16",
+                                                ShapeFrame = "круг",
+                                                ColorFrame = "серый"
+                                            }
+                                        }
                                     }
-                                },
-                                TypeTextObj = context.TypeTexts.Find(4),
-                                //TypeNameText = context.TypeTexts.Find(4).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = false
                                 }
                             }
                         },
@@ -261,39 +244,49 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 260,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 03),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Песков",
-                                FirstName = "Марк",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1968, 11, 01),
-                                DateRip = new DateTime(2021, 10, 18),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Portrait()
+                                    new Deceased()
                                     {
-                                        TypePortrait = context.TypePortraits.Find(1),
-                                        //TypePortraitName = context.TypePortraits.Find(1).Name,
-                                        Artist = "Татьяна"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Песков",
+                                            FirstName = "Марк",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1968, 11, 01),
+                                            DateRip = new DateTime(2021, 10, 18),
+                                            TypeText = context.TypeTexts.Find(2),
+                                            EngraverName = "Василий"
+                                        },
+                                        
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Portrait()
+                                            {
+                                                TypePortrait = context.TypePortraits.Find(1),
+                                                //TypePortraitName = context.TypePortraits.Find(1).Name,
+                                                Artist = "Татьяна"
+                                            }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
+                                            {
+                                                TypeText = context.TypeTexts.Find(4),
+                                                NotesTextEpitaph = "какие-то примечания к эпитафии",
+                                                EngraverEpitaph = "Василий"
+                                            }
+                                        }
                                     }
                                 },
-                                TypeTextObj = context.TypeTexts.Find(2),
-                                //TypeNameText = context.TypeTexts.Find(2).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = true,
-                                    TypeTextObj = context.TypeTexts.Find(4),
-                                    //TypeTextEpitaph = context.TypeTexts.Find(4).Name,
-                                    NotesTextEpitaph = "какие-то примечания к эпитафии",
-                                    EngraverEpitaph = "Василий"
-                                }
-
                             }
                         },
+                        
                         Decoration = "какие-нибудь пометки по оформлению",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
@@ -328,44 +321,46 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 125,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 08),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Самойлов",
-                                FirstName = "Константин",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1956, 07, 19),
-                                DateRip = new DateTime(2020, 03, 03),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Medallion()
+                                    new Deceased()
                                     {
-                                        MedallionMaterialObj = context.MedallionMaterials.Find(2),
-                                        //MaterialMedallion = context.MedallionMaterials.Find(2).Name,
-                                        SizeMedallion = "15*15",
-                                        ShapeMedallionObj = context.ShapeMedallions.Find(2),
-                                        //ShapeMedallion = context.ShapeMedallions.Find(2).Name,
-                                        ColorMedallionObj = context.ColorMedallions.Find(1),
-                                        //ColorMedallion = context.ColorMedallions.Find(1).Name,
-                                        BackgroundMedallion = "Серый",
-                                        Frame = true,
-                                        TypeFrame = "Ф1",
-                                        SizeFrame = "16*16",
-                                        ShapeFrame = "круг",
-                                        ColorFrame = "серый"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Самойлов",
+                                            FirstName = "Константин",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1956, 07, 19),
+                                            DateRip = new DateTime(2020, 03, 03),
+                                            TypeText = context.TypeTexts.Find(4),
+                                            EngraverName = "Василий"
+                                        },
+                                        
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Medallion()
+                                            {
+                                                MedallionMaterial = context.MedallionMaterials.Find(2),
+                                                SizeMedallion = "15*15",
+                                                ShapeMedallion = context.ShapeMedallions.Find(2),
+                                                BackgroundMedallion = "Серый",
+                                                Frame = true,
+                                                TypeFrame = "Ф1",
+                                                SizeFrame = "16*16",
+                                                ShapeFrame = "круг",
+                                                ColorFrame = "серый"
+                                            }
+                                        }
                                     }
                                 },
-                                TypeTextObj = context.TypeTexts.Find(4),
-                                //TypeNameText = context.TypeTexts.Find(4).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = false
-                                }
                             }
                         },
+                        
                         Decoration = "оформления нет",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
@@ -401,38 +396,49 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 260,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 03),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Песков",
-                                FirstName = "Марк",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1968, 11, 01),
-                                DateRip = new DateTime(2021, 10, 18),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Portrait()
+                                    new Deceased()
                                     {
-                                        TypePortrait = context.TypePortraits.Find(1),
-                                        //TypePortraitName = context.TypePortraits.Find(1).Name,
-                                        Artist = "Татьяна"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Песков",
+                                            FirstName = "Марк",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1968, 11, 01),
+                                            DateRip = new DateTime(2021, 10, 18),
+                                            TypeText = context.TypeTexts.Find(3),
+                                            EngraverName = "Василий"
+                                        },
+                                        
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Portrait()
+                                            {
+                                                TypePortrait = context.TypePortraits.Find(1),
+                                                //TypePortraitName = context.TypePortraits.Find(1).Name,
+                                                Artist = "Татьяна"
+                                            }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
+                                            {
+                                                TypeText = context.TypeTexts.Find(1),
+                                                NotesTextEpitaph = "какие-то примечания к эпитафии",
+                                                EngraverEpitaph = "Василий"
+                                            }
+                                        }
                                     }
                                 },
-                                TypeTextObj = context.TypeTexts.Find(3),
-                                //TypeNameText = context.TypeTexts.Find(3).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = true,
-                                    TypeTextObj = context.TypeTexts.Find(1),
-                                    //TypeTextEpitaph = context.TypeTexts.Find(1).Name,
-                                    NotesTextEpitaph = "какие-то примечания к эпитафии",
-                                    EngraverEpitaph = "Василий"
-                                }
                             }
                         },
+                        
                         Decoration = "какие-нибудь пометки по оформлению",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
@@ -541,13 +547,10 @@ namespace DataLayer.Context
             }
 
             List<Contract> _contracts;
-            //List<StoneMaterial> _stoneMaterials;
-
             List<TypeText> _typeTexts;
             List<TypePortrait> _typePortraits;
             List<MedallionMaterial> _medallionMaterials;
             List<ShapeMedallion> _shapeMedallions;
-            List<ColorMedallion> _colorMedallions;
 
             if (!context.TypeTexts.Any())
             {
@@ -653,23 +656,6 @@ namespace DataLayer.Context
                 context.ShapeMedallions.AddRange(_shapeMedallions);
                 context.SaveChanges();
             }
-            if (!context.ColorMedallions.Any())
-            {
-                _colorMedallions = new List<ColorMedallion>()
-                {
-                    new ColorMedallion()
-                    {
-                        Name = "Цветной"
-                    },
-                    new ColorMedallion()
-                    {
-                        Name = "Черно-белый"
-                    }
-                };
-                context.ColorMedallions.AddRange(_colorMedallions);
-                context.SaveChanges();
-            }
-
 
             if (!context.Contracts.Any())
             {
@@ -716,41 +702,42 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 125,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 01),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Иванов",
-                                FirstName = "Петр",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1956, 07, 19),
-                                DateRip = new DateTime(2020, 03, 03),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Medallion()
+                                    new Deceased()
                                     {
-                                        MedallionMaterialObj = context.MedallionMaterials.Find(4),
-                                        //MaterialMedallion = context.MedallionMaterials.Find(4).Name,
-                                        SizeMedallion = "15*15",
-                                        ShapeMedallionObj = context.ShapeMedallions.Find(3),
-                                        //ShapeMedallion = context.ShapeMedallions.Find(3).Name,
-                                        ColorMedallionObj = context.ColorMedallions.Find(1),
-                                        //ColorMedallion = context.ColorMedallions.Find(1).Name,
-                                        BackgroundMedallion = "Серый",
-                                        Frame = true,
-                                        TypeFrame = "Ф1",
-                                        SizeFrame = "16*16",
-                                        ShapeFrame = "круг",
-                                        ColorFrame = "серый"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Иванов",
+                                            FirstName = "Петр",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1956, 07, 19),
+                                            DateRip = new DateTime(2020, 03, 03),
+                                            TypeText = context.TypeTexts.Find(4),
+                                            EngraverName = "Василий"
+                                        },
+
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Medallion()
+                                            {
+                                                MedallionMaterial = context.MedallionMaterials.Find(4),
+                                                SizeMedallion = "15*15",
+                                                ShapeMedallion = context.ShapeMedallions.Find(3),
+                                                BackgroundMedallion = "Серый",
+                                                Frame = true,
+                                                TypeFrame = "Ф1",
+                                                SizeFrame = "16*16",
+                                                ShapeFrame = "круг",
+                                                ColorFrame = "серый"
+                                            }
+                                        }
                                     }
-                                },
-                                TypeTextObj = context.TypeTexts.Find(4),
-                                //TypeNameText = context.TypeTexts.Find(4).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = false
                                 }
                             }
                         },
@@ -789,39 +776,49 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 260,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 03),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Песков",
-                                FirstName = "Марк",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1968, 11, 01),
-                                DateRip = new DateTime(2021, 10, 18),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Portrait()
+                                    new Deceased()
                                     {
-                                        TypePortrait = context.TypePortraits.Find(1),
-                                        //TypePortraitName = context.TypePortraits.Find(1).Name,
-                                        Artist = "Татьяна"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Песков",
+                                            FirstName = "Марк",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1968, 11, 01),
+                                            DateRip = new DateTime(2021, 10, 18),
+                                            TypeText = context.TypeTexts.Find(2),
+                                            EngraverName = "Василий"
+                                        },
+
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Portrait()
+                                            {
+                                                TypePortrait = context.TypePortraits.Find(1),
+                                                //TypePortraitName = context.TypePortraits.Find(1).Name,
+                                                Artist = "Татьяна"
+                                            }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
+                                            {
+                                                TypeText = context.TypeTexts.Find(4),
+                                                NotesTextEpitaph = "какие-то примечания к эпитафии",
+                                                EngraverEpitaph = "Василий"
+                                            }
+                                        }
                                     }
                                 },
-                                TypeTextObj = context.TypeTexts.Find(2),
-                                //TypeNameText = context.TypeTexts.Find(2).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = true,
-                                    TypeTextObj = context.TypeTexts.Find(4),
-                                    //TypeTextEpitaph = context.TypeTexts.Find(4).Name,
-                                    NotesTextEpitaph = "какие-то примечания к эпитафии",
-                                    EngraverEpitaph = "Василий"
-                                }
-
                             }
                         },
+
                         Decoration = "какие-нибудь пометки по оформлению",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
@@ -856,44 +853,46 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 125,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 08),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Самойлов",
-                                FirstName = "Константин",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1956, 07, 19),
-                                DateRip = new DateTime(2020, 03, 03),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Medallion()
+                                    new Deceased()
                                     {
-                                        MedallionMaterialObj = context.MedallionMaterials.Find(2),
-                                        //MaterialMedallion = context.MedallionMaterials.Find(2).Name,
-                                        SizeMedallion = "15*15",
-                                        ShapeMedallionObj = context.ShapeMedallions.Find(2),
-                                        //ShapeMedallion = context.ShapeMedallions.Find(2).Name,
-                                        ColorMedallionObj = context.ColorMedallions.Find(1),
-                                        //ColorMedallion = context.ColorMedallions.Find(1).Name,
-                                        BackgroundMedallion = "Серый",
-                                        Frame = true,
-                                        TypeFrame = "Ф1",
-                                        SizeFrame = "16*16",
-                                        ShapeFrame = "круг",
-                                        ColorFrame = "серый"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Самойлов",
+                                            FirstName = "Константин",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1956, 07, 19),
+                                            DateRip = new DateTime(2020, 03, 03),
+                                            TypeText = context.TypeTexts.Find(4),
+                                            EngraverName = "Василий"
+                                        },
+
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Medallion()
+                                            {
+                                                MedallionMaterial = context.MedallionMaterials.Find(2),
+                                                SizeMedallion = "15*15",
+                                                ShapeMedallion = context.ShapeMedallions.Find(2),
+                                                BackgroundMedallion = "Серый",
+                                                Frame = true,
+                                                TypeFrame = "Ф1",
+                                                SizeFrame = "16*16",
+                                                ShapeFrame = "круг",
+                                                ColorFrame = "серый"
+                                            }
+                                        }
                                     }
                                 },
-                                TypeTextObj = context.TypeTexts.Find(4),
-                                //TypeNameText = context.TypeTexts.Find(4).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = false
-                                }
                             }
                         },
+
                         Decoration = "оформления нет",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
@@ -929,38 +928,49 @@ namespace DataLayer.Context
                         DistanceFromMKAD = 260,
                         NumberOfTrips = 1,
                         DeadLine = new DateTime(2022, 04, 03),
-                        Deceaseds = new List<Deceased>()
+                        Stellas = new List<Stella>()
                         {
-                            new Deceased()
+                            new Stella()
                             {
-                                LastName = "Песков",
-                                FirstName = "Марк",
-                                MiddleName = "Владимирович",
-                                DateBirthday = new DateTime(1968, 11, 01),
-                                DateRip = new DateTime(2021, 10, 18),
-                                Photo = true,
-                                PhotosOnMonument = new List<PhotoOnMonument>()
+                                Deceaseds = new List<Deceased>()
                                 {
-                                    new Portrait()
+                                    new Deceased()
                                     {
-                                        TypePortrait = context.TypePortraits.Find(1),
-                                        //TypePortraitName = context.TypePortraits.Find(1).Name,
-                                        Artist = "Татьяна"
+                                        TextOnStella = new TextOnStella()
+                                        {
+                                            LastName = "Песков",
+                                            FirstName = "Марк",
+                                            MiddleName = "Владимирович",
+                                            DateBirthday = new DateTime(1968, 11, 01),
+                                            DateRip = new DateTime(2021, 10, 18),
+                                            TypeText = context.TypeTexts.Find(3),
+                                            EngraverName = "Василий"
+                                        },
+
+                                        Photo = true,
+                                        PhotosOnMonument = new List<PhotoOnMonument>()
+                                        {
+                                            new Portrait()
+                                            {
+                                                TypePortrait = context.TypePortraits.Find(1),
+                                                //TypePortraitName = context.TypePortraits.Find(1).Name,
+                                                Artist = "Татьяна"
+                                            }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
+                                            {
+                                                TypeText = context.TypeTexts.Find(1),
+                                                NotesTextEpitaph = "какие-то примечания к эпитафии",
+                                                EngraverEpitaph = "Василий"
+                                            }
+                                        }
                                     }
                                 },
-                                TypeTextObj = context.TypeTexts.Find(3),
-                                //TypeNameText = context.TypeTexts.Find(3).Name,
-                                EngraverName = "Василий",
-                                Epitaph = new Epitaph()
-                                {
-                                    EpitaphBool = true,
-                                    TypeTextObj = context.TypeTexts.Find(1),
-                                    //TypeTextEpitaph = context.TypeTexts.Find(1).Name,
-                                    NotesTextEpitaph = "какие-то примечания к эпитафии",
-                                    EngraverEpitaph = "Василий"
-                                }
                             }
                         },
+
                         Decoration = "какие-нибудь пометки по оформлению",
                         NoteInstaller = "какие-то примечания для установщика",
                         NoteProduction = "какие-то примечания по производству",
@@ -970,7 +980,6 @@ namespace DataLayer.Context
                 context.Contracts.AddRange(_contracts);
                 context.SaveChanges();
             }
-
 
 
         }

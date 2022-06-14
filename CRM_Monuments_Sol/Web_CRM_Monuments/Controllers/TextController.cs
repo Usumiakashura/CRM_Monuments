@@ -45,7 +45,7 @@ namespace Web_CRM_Monuments.Controllers
             if (epitaph)
                 _dataManager.Epitaphs.CompleateOnTextEpitaph(idDeceaced, d);
             else
-                _dataManager.Deceaseds.CompleateOnTextName(idDeceaced, d);
+                _dataManager.TextsOnStella.CompleateOnTextName(idDeceaced, d);
             
             return View("Details", _servicesManager.Texts.GetTextViewById(idDeceaced, epitaph));
         }

@@ -143,12 +143,6 @@ namespace Web_CRM_Monuments.Controllers
                 shapeMedallionHTML += $"<option value=\"{sm.Id}\">{sm.Name}</option>";
             ViewBag.ShapesMedallionsHTML = new HtmlString(shapeMedallionHTML);
 
-            ViewBag.ColorsMedallions = _dataManager.ColorMedallions.GetAllColorsMedallions();
-            string colorMedallionHTML = "";
-            foreach (var cm in ViewBag.ColorsMedallions)
-                colorMedallionHTML += $"<option value=\"{cm.Id}\">{cm.Name}</option>";
-            ViewBag.ColorsMedallionsHTML = new HtmlString(colorMedallionHTML);
-
             ViewBag.Artists = await _dataManager.ApplicationUsersRepository.GetAllArtists();
             string artistHTML = "";
             foreach (ApplicationUser au in ViewBag.Artists)

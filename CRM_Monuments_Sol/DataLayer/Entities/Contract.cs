@@ -46,14 +46,20 @@ namespace DataLayer.Entities
 
         [Display(Name = "Крайний срок:")]
         public DateTime DeadLine { get; set; }          //Срок выполнения заказа
-        public List<Deceased> Deceaseds { get; set; }   //Все усопшие
+
+        //-------------------------
+
+        //public List<Deceased> Deceaseds { get; set; }   //Все усопшие
+        public List<Stella> Stellas { get; set; }       //стеллы
+
+        //-------------------------
+
         [Display(Name = "Оформление стелы (примечание):")]
         public string? Decoration { get; set; }          //оформление стелы (как примечание)
         [Display(Name = "Примечания (установщики):")]
         public string? NoteInstaller { get; set; }       //Примечания для установщиков
         [Display(Name = "Примечания (производство):")]
         public string? NoteProduction { get; set; }      //Примечания для производства
-        //public List<Accessorie> Accessories { get; set; }   //комплектующие
 
 
 
@@ -64,7 +70,8 @@ namespace DataLayer.Entities
         public Contract()
         {
             Customers = new List<Customer>();
-            Deceaseds = new List<Deceased>();
+            Stellas = new List<Stella>();
+            //Deceaseds = new List<Deceased>();
             //Accessories = new List<Accessorie>();
         }
         

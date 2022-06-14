@@ -41,16 +41,16 @@ namespace BuissnesLayer.Services
         {
             PortraitViewModel portraitView = new PortraitViewModel()
             {
-                Portrait = p,
-                ContractNumber = p.Deceased.Contract.NumYear + "/" + p.Deceased.Contract.Place + "/" + p.Deceased.Contract.Number,
-                DateConclusionContract = p.Deceased.Contract.DateOfConclusion,
-                LastNameDeceased = p.Deceased.LastName,
-                FirstNameDeceased = p.Deceased.FirstName,
-                MiddleNameDeceased = p.Deceased.MiddleName,
-                NameCustomer = p.Deceased.Contract.Customers[0].LastName + " " + p.Deceased.Contract.Customers[0].FirstName + " " + p.Deceased.Contract.Customers[0].MiddleName,
-                PhoneCustomer = p.Deceased.Contract.Customers[0].Number
+                //Portrait = p,
+                //ContractNumber = p.Deceased.Contract.NumYear + "/" + p.Deceased.Contract.Place + "/" + p.Deceased.Contract.Number,
+                //DateConclusionContract = p.Deceased.Contract.DateOfConclusion,
+                //LastNameDeceased = p.Deceased.LastName,
+                //FirstNameDeceased = p.Deceased.FirstName,
+                //MiddleNameDeceased = p.Deceased.MiddleName,
+                //NameCustomer = p.Deceased.Contract.Customers[0].LastName + " " + p.Deceased.Contract.Customers[0].FirstName + " " + p.Deceased.Contract.Customers[0].MiddleName,
+                //PhoneCustomer = p.Deceased.Contract.Customers[0].Number
             };
-            if (p.Deceased.Contract.InstallmentPayment) portraitView.ContractNumber += "р";
+            //if (p.Deceased.Contract.InstallmentPayment) portraitView.ContractNumber += "р";
             return portraitView;
         }
     }

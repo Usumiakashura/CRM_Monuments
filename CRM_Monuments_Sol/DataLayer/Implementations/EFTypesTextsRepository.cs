@@ -22,7 +22,7 @@ namespace DataLayer.Implementations
         public IEnumerable<TypeText> GetAllTypesText()
         {
             List<TypeText> pointsForSelect = new List<TypeText>();
-            foreach (TypeText tt in _context.TypeTexts.Include(d => d.Deceaseds).Include(e => e.Epitaphs))
+            foreach (TypeText tt in _context.TypeTexts.Include(d => d.TextOnStellas).Include(e => e.Epitaphs))
                 pointsForSelect.Add(tt);
             return pointsForSelect;
         }

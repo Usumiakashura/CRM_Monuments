@@ -55,9 +55,9 @@
                     Материал:
                 </td>
                 <td>
-                    @if (Model.Medallion.MedallionMaterialObj != null)
+                    @if (Model.Medallion.MedallionMaterial != null)
                     {
-                        <label>@Model.Medallion.MedallionMaterialObj.Name</label>
+                        <label>@Model.Medallion.MedallionMaterial.Name</label>
                     }
                 </td>
 
@@ -95,9 +95,9 @@
                     Форма:
                 </td>
                 <td>
-                    @if (Model.Medallion.ShapeMedallionObj != null)
+                    @if (Model.Medallion.ShapeMedallion != null)
                     {
-                        <label>@Model.Medallion.ShapeMedallionObj.Name</label>
+                        <label>@Model.Medallion.ShapeMedallion.Name</label>
                     }
                 </td>
 
@@ -116,11 +116,7 @@
                     Цветность:
                 </td>
                 <td>
-                    @if (Model.Medallion.ColorMedallionObj != null)
-                    {
-                        <label>@Model.Medallion.ColorMedallionObj.Name</label>
-                    }
-                        
+                    <label>@Model.Medallion.ColorMedallion</label>   
                 </td>
 
                 @if (Model.Medallion.Frame)

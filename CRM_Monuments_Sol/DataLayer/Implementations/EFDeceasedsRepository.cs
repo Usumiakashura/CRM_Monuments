@@ -16,55 +16,42 @@ namespace DataLayer.Implementations
         private EFDBContext _context;
         private IPhotosOnMonumentsRepository _photosOnMonumentsRepository;
         private IEpitaphRepository _epitaphRepository;
+        private ITextOnStellaRepository _textOnStellaRepository;
 
         public EFDeceasedsRepository(EFDBContext context)
         {
             _context = context;
             _photosOnMonumentsRepository = new EFPhotosOnMonumentsRepository(_context);
             _epitaphRepository = new EFEpitaphRepository(_context);
+            _textOnStellaRepository = new EFTextOnStellaRepository(_context);
         }
 
-        public IEnumerable<Deceased> GetAllDeceasedsByIdContract(int contractId)     //получить весь список, относящийся к определенному договору
+        public IEnumerable<Deceased> GetAllDeceasedsByIdStella(int stellaId)     //получить весь список, относящийся к определенному договору
         {
             var deceaseds = _context.Deceaseds
-                .Include(e => e.Epitaph).ThenInclude(x => x.TypeTextObj)
-                .Include(d => d.Contract).ThenInclude(x => x.Customers)
+                .Include(e => e.Epitaphs).ThenInclude(x => x.TypeText)
+                .Include(e => e.TextOnStella).ThenInclude(x => x.TypeText)
+                .Include(d => d.Stella).ThenInclude(x => x.Contract).ThenInclude(x => x.Customers)
                 .Include(p => p.PhotosOnMonument)
-                .Where(d => d.Contract.Id == contractId);
-            //foreach (Deceased d in deceaseds)
-            //{
-            //    _photosOnMonumentsRepository.GetAllPhotoOnMonumentsByIdDeceased(d.Id);
-            //}
+                .Where(x => x.Stella.Id == stellaId);
             return deceaseds;
         }
 
         public Deceased GetDeceasedById(int deceasedId)    //получить один по айди
         {
             Deceased deceased = _context.Deceaseds
-                .Include(x => x.Contract).ThenInclude(x => x.Customers)
-                .Include(x => x.TypeTextObj)
-                .Include(x => x.Epitaph).ThenInclude(x => x.TypeTextObj)
-                .Where(x => x.Id == deceasedId).First();
-            //deceased.Epitaph = _epitaphRepository.GetEpitaphByIdDeceased(deceasedId);
+                .Include(e => e.Epitaphs).ThenInclude(x => x.TypeText)
+                .Include(e => e.TextOnStella).ThenInclude(x => x.TypeText)
+                .Include(d => d.Stella).ThenInclude(x => x.Contract).ThenInclude(x => x.Customers)
+                .Include(p => p.PhotosOnMonument)
+                .FirstOrDefault(x => x.Id == deceasedId);
             return deceased;
         }
-
-        public void CompleateOnTextName(int idDeceaced, DateTime dateCompleate)    //отметить выполнение текста ФИО
-        {
-            GetDeceasedById(idDeceaced).DateCompleatTextName = dateCompleate;
-            _context.SaveChanges();
-        }
-        //public void CompleateOnTextEpitaph(int idDeceaced, DateTime dateCompleate) //отметить выполнение текста эпитафии
-        //{
-        //    GetDeceasedById(idDeceaced).Epitaph.DateCompleatTextEpitaph = dateCompleate;
-        //    _context.SaveChanges();
-        //}
 
         public void SaveDeceased(Deceased deceased)        //сохранить в БД
         {
             if (deceased.Id == 0)
             {
-                deceased.Id = 0;
                 _context.Deceaseds.Add(deceased);
             }
             else
@@ -73,7 +60,11 @@ namespace DataLayer.Implementations
                 {
                     _photosOnMonumentsRepository.SavePhotoOnMonument(p);
                 }
-                _epitaphRepository.SaveEpitaph(deceased.Epitaph);
+                foreach (Epitaph e in deceased.Epitaphs)
+                {
+                    _epitaphRepository.SaveEpitaph(e);
+                }
+                _textOnStellaRepository.SaveTextOnStella(deceased.TextOnStella);
                 _context.Entry(deceased).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
             _context.SaveChanges();
@@ -82,17 +73,19 @@ namespace DataLayer.Implementations
         public void DeleteDeceased(Deceased deceased)      //удалить из бд
         {
             _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(deceased.Id);
-            _context.Epitaphs.Remove(deceased.Epitaph);
+            _epitaphRepository.DeleteAllEpitaphsByIdDeceased(deceased.Id);
+            _context.TextOnStellas.Remove(deceased.TextOnStella);
             _context.Deceaseds.Remove(deceased);
             _context.SaveChanges();
         }
 
-        public void DeleteAllDeceasedsByIdContract(int contractId)      //удалить из бд всех усопших по договору
+        public void DeleteAllDeceasedsByIdStella(int stellaId)      //удалить из бд всех усопших со стеллы
         {
-            foreach (Deceased d in GetAllDeceasedsByIdContract(contractId))
+            foreach (Deceased d in GetAllDeceasedsByIdStella(stellaId))
             {
                 _photosOnMonumentsRepository.DeleteAllPhotoOnMonumentByIdDeceased(d.Id);
-                _epitaphRepository.DeleteEpitaph(d.Epitaph);
+                _epitaphRepository.DeleteAllEpitaphsByIdDeceased(d.Id);
+                _context.TextOnStellas.Remove(d.TextOnStella);
                 _context.Deceaseds.Remove(d);
             }
             //_context.SaveChanges();

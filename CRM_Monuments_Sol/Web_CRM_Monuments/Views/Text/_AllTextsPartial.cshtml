@@ -48,7 +48,7 @@
                 @Model[i].DateConclusionContract.ToShortDateString()
             </td>
             <td>
-                @Model[i].Deceased.LastName 
+                @Model[i].Deceased.TextOnStella.LastName 
             </td>
             <td>
                 @if (Model[i].TextEpitaph)
@@ -63,16 +63,16 @@
             <td>
                 @if (Model[i].TextEpitaph)
                 {
-                    @if(Model[i].Deceased.Epitaph.TypeTextObj != null)
+                    @if(Model[i].Deceased.Epitaphs[0].TypeText != null)
                     {
-                        <label>@Model[i].Deceased.Epitaph.TypeTextObj.Name</label>
+                        <label>@Model[i].Deceased.Epitaphs[0].TypeText.Name</label>
                     }
                 }
                 else
                 {
-                    @if (Model[i].Deceased.TypeTextObj != null)
+                    @if (Model[i].Deceased.TextOnStella.TypeText != null)
                         {
-                            <label>@Model[i].Deceased.TypeTextObj.Name</label>
+                            <label>@Model[i].Deceased.TextOnStella.TypeText.Name</label>
                         } 
                 }
             </td>
@@ -85,25 +85,25 @@
             <td>
                 @if (Model[i].TextEpitaph)
                 {
-                    <label>@Model[i].Deceased.Epitaph.EngraverEpitaph</label>
+                    <label>@Model[i].Deceased.Epitaphs[0].EngraverEpitaph</label>
                 }
                 else
                 {
-                    <label>@Model[i].Deceased.EngraverName</label>
+                    <label>@Model[i].Deceased.TextOnStella.EngraverName</label>
                 }
             </td>
             @{
                 DateTime dateCompl, dateBegin;
                 @if (Model[i].TextEpitaph)
                 {
-                    dateCompl = Model[i].Deceased.Epitaph.DateCompleatTextEpitaph;
-                    dateBegin = Model[i].Deceased.Epitaph.DateBeginTextEpitaph;
+                    dateCompl = Model[i].Deceased.Epitaphs[0].DateCompleatTextEpitaph;
+                    dateBegin = Model[i].Deceased.Epitaphs[0].DateBeginTextEpitaph;
                 }
 
                 else
                 {
-                    dateCompl = Model[i].Deceased.DateCompleatTextName;
-                    dateBegin = Model[i].Deceased.DateBeginTextName;
+                    dateCompl = Model[i].Deceased.TextOnStella.DateCompleatTextOnStella;
+                    dateBegin = Model[i].Deceased.TextOnStella.DateBeginTextOnStella;
                 }
                     
             }

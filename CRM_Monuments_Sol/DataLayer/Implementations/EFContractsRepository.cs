@@ -15,13 +15,13 @@ namespace DataLayer.Implementations
     {
         private EFDBContext _context;
         private ICustomersRepository _customersRepository;
-        private IDeceasedsRepository _deceasedsRepository;
+        private IStellaRepository _stellaRepository;
 
         public EFContractsRepository(EFDBContext context)
         {
             _context = context;
             _customersRepository = new EFCustomersRepository(_context);
-            _deceasedsRepository = new EFDeceasedsRepository(_context);
+            _stellaRepository = new EFStellaRepository(_context);
         }
 
         public IEnumerable<Contract> GetAllContracts()     //получить весь список
@@ -29,9 +29,18 @@ namespace DataLayer.Implementations
             List<Contract> contracts = new List<Contract>();
             foreach (Contract c in _context.Contracts
                 .Include(c => c.Customers)
-                .Include(x => x.Deceaseds)
-                .ThenInclude(x => x.TypeTextObj))
-                //.ThenInclude(x => x.PhotosOnMonument))
+                .Include(x => x.Stellas)
+                    .ThenInclude(x => x.Deceaseds)
+                    .ThenInclude(x => x.TextOnStella)
+                    .ThenInclude(x => x.TypeText)
+                .Include(x => x.Stellas)
+                    .ThenInclude(x => x.Deceaseds)
+                    .ThenInclude(x => x.Epitaphs)
+                    .ThenInclude(x => x.TypeText)
+                .Include(x => x.Stellas)
+                    .ThenInclude(x => x.Deceaseds)
+                    .ThenInclude(x => x.PhotosOnMonument)
+                )
             {
                 //FillContractLists(c);
                 contracts.Add(c);
@@ -43,8 +52,18 @@ namespace DataLayer.Implementations
         {
             Contract contract = _context.Contracts
                 .Include(c => c.Customers)
-                .Include(x => x.Deceaseds).ThenInclude(x => x.PhotosOnMonument)
-                .Where(x => x.Id == contractId).First();
+                .Include(x => x.Stellas)
+                    .ThenInclude(x => x.Deceaseds)
+                    .ThenInclude(x => x.TextOnStella)
+                    .ThenInclude(x => x.TypeText)
+                .Include(x => x.Stellas)
+                    .ThenInclude(x => x.Deceaseds)
+                    .ThenInclude(x => x.Epitaphs)
+                    .ThenInclude(x => x.TypeText)
+                .Include(x => x.Stellas)
+                    .ThenInclude(x => x.Deceaseds)
+                    .ThenInclude(x => x.PhotosOnMonument)
+                .First(x => x.Id == contractId);
             //FillContractLists(contract);   //достаем из бд всех заказчиков, усопших и комплектующих в договор
             return contract;
         }
@@ -59,9 +78,9 @@ namespace DataLayer.Implementations
                 {
                     _customersRepository.SaveCustomer(c);
                 }
-                foreach (Deceased d in contract.Deceaseds)
+                foreach (Stella s in contract.Stellas)
                 {
-                    _deceasedsRepository.SaveDeceased(d);
+                    _stellaRepository.SaveStella(s);
                 }
                 _context.Entry(contract).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             }
@@ -73,7 +92,7 @@ namespace DataLayer.Implementations
         public void DeleteContract(Contract contract)      //удалить из бд
         {
             _customersRepository.DeleteAllCustomersByIdContract(contract.Id);
-            _deceasedsRepository.DeleteAllDeceasedsByIdContract(contract.Id);
+            _stellaRepository.DeleteAllStellasByIdContract(contract.Id);
             //_accessorriesRepository.DeleteAllAccessoriesByIdContract(contract.Id);
             _context.Contracts.Remove(contract);
             _context.SaveChanges();
@@ -97,7 +116,7 @@ namespace DataLayer.Implementations
         private void FillContractLists(Contract contract)
         {
             foreach (Customer c in _customersRepository.GetAllCustomersByIdContract(contract.Id)) { }
-            foreach (Deceased d in _deceasedsRepository.GetAllDeceasedsByIdContract(contract.Id)) { }
+            foreach (Stella s in _stellaRepository.GetAllStellasByIdContract(contract.Id)) { }
             //foreach (Accessorie a in _accessorriesRepository.GetAllAccessoriesByIdContract(contract.Id)) { }
         }
 

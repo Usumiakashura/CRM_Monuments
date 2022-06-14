@@ -224,9 +224,9 @@
                         </h5>
 
                         <div id="Deceaseds">
-                            @if (Model.Contract.Deceaseds != null)
+                            @if (Model.Contract.Stellas[0].Deceaseds != null)
                             {
-                                @for (int i = 0; i < Model.Contract.Deceaseds.Count; i++)
+                                @for (int i = 0; i < Model.Contract.Stellas[0].Deceaseds.Count; i++)
                                 {
                                     <div class="deceased-container" id=@($"DeceasedContainer{i}")>
                                         <div class="wrapper w5 p96 float-md-left border b-grey">
@@ -237,16 +237,16 @@
                                             <div>Дата рождения: </div>
                                             <div>Дата смерти: </div>
 
-                                            <input type="text" asp-for="Contract.Deceaseds[i].LastName"
+                                            <input type="text" asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.LastName"
                                                    class="form-control full" placeholder="Фамилия" />
-                                            <input type="text" asp-for="Contract.Deceaseds[i].FirstName"
+                                            <input type="text" asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.FirstName"
                                                    class="form-control full" placeholder="Имя" />
-                                            <input type="text" asp-for="Contract.Deceaseds[i].MiddleName"
+                                            <input type="text" asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.MiddleName"
                                                    class="form-control full" placeholder="Отчество" />
-                                            <input asp-for="Contract.Deceaseds[i].DateBirthday" class="form-control full" type="date" />
-                                            <input asp-for="Contract.Deceaseds[i].DateRip" class="form-control full" type="date" />
+                                            <input asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.DateBirthday" class="form-control full" type="date" />
+                                            <input asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.DateRip" class="form-control full" type="date" />
 
-                                            <select class=" form-control full" asp-for="Contract.Deceaseds[i].TypeTextObjId">
+                                            <select class=" form-control full" asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.TypeTextId">
                                                 <option value=@null>Тип текста ФИО...</option>
                                                 @foreach (TypeText tt in ViewBag.TypesText)
                                                 {
@@ -254,7 +254,7 @@
                                                 }
                                                 @*@Html.ViewBag.TypesTextsHTML*@
                                             </select>
-                                            <select class=" form-control full" asp-for="Contract.Deceaseds[i].EngraverName">
+                                            <select class=" form-control full" asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.EngraverName">
                                                 <option value=@null>Гравер (ФИО)...</option>
                                                 @foreach (ApplicationUser e in ViewBag.Engravers)
                                                 {
@@ -263,26 +263,26 @@
                                             </select>
                                             @*<input type="text" asp-for="Contract.Deceaseds[i].EngraverName"
                                                 class="form-control full" placeholder="Гравер (ФИО)..." />*@
-                                            <input type="text" asp-for="Contract.Deceaseds[i].NotesTextName"
+                                            <input type="text" asp-for="Contract.Stellas[0].Deceaseds[i].TextOnStella.NotesTextName"
                                                    class="form-control typetext-note full" placeholder="Примечание (ФИО)..." />
 
                                             @*--------------- Эпитафия (начало) -----------------*@
 
-                                            <div><input asp-for="Contract.Deceaseds[i].Epitaph.EpitaphBool" class="check-box check-epitaph" />  Эпитафия:</div>
+                                            <div><input class="check-box check-epitaph" />  Эпитафия:</div>
 
-                                            <textarea asp-for="Contract.Deceaseds[i].Epitaph.NotesTextEpitaph"
+                                            <textarea asp-for="Contract.Stellas[0].Deceaseds[i].Epitaphs[0].NotesTextEpitaph"
                                                       class="form-control text-note full notes-text-epitaph" )
                                                       placeholder="Текст эпитафии..." disabled="disabled"></textarea>
 
                                             <div></div>
-                                            <select class="full form-control type-name-epitaph" asp-for="Contract.Deceaseds[i].Epitaph.TypeTextObjId" disabled="disabled">
+                                            <select class="full form-control type-name-epitaph" asp-for="Contract.Stellas[0].Deceaseds[i].Epitaphs[0].TypeTextId" disabled="disabled">
                                                 <option value=@null>Тип текста эпитафии...</option>
                                                 @foreach (TypeText tt in ViewBag.TypesText)
                                                 {
                                                     <option value="@tt.Id">@tt.Name</option>
                                                 }
                                             </select>
-                                            <select class=" form-control full" asp-for="Contract.Deceaseds[i].Epitaph.EngraverEpitaph" disabled="disabled">
+                                            <select class=" form-control full" asp-for="Contract.Stellas[0].Deceaseds[i].Epitaphs[0].EngraverEpitaph" disabled="disabled">
                                                 <option value=@null>Гравер (эпитафия)...</option>
                                                 @foreach (ApplicationUser e in ViewBag.Engravers)
                                                 {
@@ -299,7 +299,7 @@
                                             @*// --------------- Фотография (начало) --------------------*@
                                             <div class="full-wrap">
                                                 <div class=@($"Portraits{i}") id=@($"Portraits{i}")>
-                                                    @{int numPortraits = Model.Contract.Deceaseds[i].PhotosOnMonument.Where(ph => ph is Portrait).Count();}
+                                                    @{int numPortraits = Model.Contract.Stellas[0].Deceaseds[i].PhotosOnMonument.Where(ph => ph is Portrait).Count();}
                                                     @if (numPortraits > 0)
                                                     {
                                                         @for (int p = 0; p < numPortraits; p++)
@@ -398,7 +398,7 @@
                                                 <input type="button" class="add-btn my-btn add-portrait" id=@($"ap{i}") value="Добавить портрет" />
 
                                                 <div class=@($"Medallions{i}") id=@($"Medallions{i}")>
-                                                    @{int numMedallions = Model.Contract.Deceaseds[i].PhotosOnMonument.Where(ph => ph is Medallion).Count();}
+                                                    @{int numMedallions = Model.Contract.Stellas[0].Deceaseds[i].PhotosOnMonument.Where(ph => ph is Medallion).Count();}
                                                     @if (numMedallions > 0)
                                                     {
                                                         @for (int m = 0; m < numMedallions; m++)
@@ -442,7 +442,7 @@
                                                                                 </tbody>
                                                                             </table>
                                                                         </div>
-                                                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MedallionMaterialObjId">
+                                                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].MedallionMaterialId">
                                                                             <option value=@null>Материал...</option>
                                                                             @foreach (MedallionMaterial mm in ViewBag.MedallionMaterials)
                                                                             {
@@ -452,19 +452,17 @@
                                                                         <input class="form-control" asp-for="Medallions[keyM].SizeMedallion" placeholder="Размер медальона..." />
 
                                                                         @*<input class="form-control" asp-for="Medallions[keyM].ShapeMedallion" placeholder="Форма..." />*@
-                                                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ShapeMedallionObjId">
+                                                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ShapeMedallionId">
                                                                             <option value=@null>Форма...</option>
                                                                             @foreach (ShapeMedallion sm in ViewBag.ShapesMedallions)
                                                                             {
                                                                                 <option value="@sm.Id">@sm.Name</option>
                                                                             }
                                                                         </select>
-                                                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ColorMedallionObjId">
+                                                                        <select class="form-control min-width-select-for-photo" asp-for="Medallions[keyM].ColorMedallion">
                                                                             <option value=@null>Цвет...</option>
-                                                                            @foreach (ColorMedallion cm in ViewBag.ColorsMedallions)
-                                                                            {
-                                                                                <option value="@cm.Id">@cm.Name</option>
-                                                                            }
+                                                                            <option value="Цветной">Цветной</option>
+                                                                            <option value="Черно-белый">Черно-белый</option>
                                                                         </select>
                                                                         <input class="form-control" asp-for="Medallions[keyM].BackgroundMedallion" placeholder="Фон..." />
 
@@ -522,21 +520,21 @@
                                             @*// --------------- Фотография (конец) ---------------------*@
 
                                         </div>
-                                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].Id)
-                                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateBeginTextName)
-                                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].DateCompleatTextName)
-                                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.Id)
-                                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph)
-                                        @Html.HiddenFor(c => c.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph)
+                                        @Html.HiddenFor(c => c.Contract.Stellas[0].Deceaseds[i].Id)
+                                        @Html.HiddenFor(c => c.Contract.Stellas[0].Deceaseds[i].TextOnStella.DateBeginTextOnStella)
+                                        @Html.HiddenFor(c => c.Contract.Stellas[0].Deceaseds[i].TextOnStella.DateCompleatTextOnStella)
+                                        @Html.HiddenFor(c => c.Contract.Stellas[0].Deceaseds[i].Epitaphs[0].Id)
+                                        @Html.HiddenFor(c => c.Contract.Stellas[0].Deceaseds[i].Epitaphs[0].DateBeginTextEpitaph)
+                                        @Html.HiddenFor(c => c.Contract.Stellas[0].Deceaseds[i].Epitaphs[0].DateCompleatTextEpitaph)
                                         <a class="remove-deceased rp-btn float-md-left" title="Удалить информацию об усопшем">
                                                                     <img src="~/Images/remove1.png" class="rp-btn" />
                                                                 </a>
                                         
-                                        @if (Model.Contract.Deceaseds[i].DateBeginTextName < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].DateCompleatTextName < new DateTime(2000, 01, 01))
+                                        @if (Model.Contract.Stellas[0].Deceaseds[i].TextOnStella.DateBeginTextOnStella < new DateTime(2000, 01, 01) && Model.Contract.Stellas[0].Deceaseds[i].TextOnStella.DateCompleatTextOnStella < new DateTime(2000, 01, 01))
                                         {
                                             <a class="to-compleate-name rp-btn float-md-left" title="Отправить текст ФИО на выполнение"><img src="/images/send.png" class="send-btn" /></a>
                                         }
-                                        @if (Model.Contract.Deceaseds[i].Epitaph.DateBeginTextEpitaph < new DateTime(2000, 01, 01) && Model.Contract.Deceaseds[i].Epitaph.DateCompleatTextEpitaph < new DateTime(2000, 01, 01))
+                                        @if (Model.Contract.Stellas[0].Deceaseds[i].Epitaphs[0].DateBeginTextEpitaph < new DateTime(2000, 01, 01) && Model.Contract.Stellas[0].Deceaseds[i].Epitaphs[0].DateCompleatTextEpitaph < new DateTime(2000, 01, 01))
                                         {
                                             <a class="to-compleate-epitaph rp-btn float-md-left" style="margin: 0px 0px 0px 5px"
                                                title="Отправить текст эпитафии на выполнение" hidden><img src="/images/send.png" class="send-btn" /></a>

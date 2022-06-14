@@ -70,7 +70,8 @@ namespace Web_CRM_Monuments
             services.AddTransient<ITypesTextsRepository, EFTypesTextsRepository>();
             services.AddTransient<IMedallionMaterialsRepository, EFMedallionMaterialsRepository>();
             services.AddTransient<IShapeMedallionsRepository, EFShapeMedallionsRepository>();
-            services.AddTransient<IColorMedallionsRepository, EFColorMedallionsRepository>();
+            services.AddTransient<IStellaRepository, EFStellaRepository>();
+            services.AddTransient<ITextOnStellaRepository, EFTextOnStellaRepository>();
             services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
 
             //Чтобы кирилические символы не переводились в соответствующий Unicode Hex Character Code

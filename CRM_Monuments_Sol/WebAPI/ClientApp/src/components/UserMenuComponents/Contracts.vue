@@ -116,40 +116,40 @@
                     }
                 ]
             };
-        },
-        methods: {
-            async getAllContracts() {
-                // отправляет запрос и получаем ответ
-                const response = await fetch("/contract", {
-                    method: "GET",
-                    headers: { "Accept": "application/json" }
-                });
-                // если запрос прошел нормально
-                if (response.ok === true) {
-                    // получаем данные
-                    const contracts = await response.json();
-                    console.log(contracts);
-                    //let rows = document.querySelector("tbody");
-                    //contracts.forEach(c => {
-                    //    // добавляем полученные элементы в таблицу
-                    //    rows.append(row(c));
-                    //});
-                }
-            }
-            //getAllContracts() {
-            //    axios.get('/contract')
-            //        .then((response) => {
-            //            console.log(response.data)
-            //            //this.contracts = response.data;
-            //        })
-            //        .catch(function (error) {
-            //            alert(error);
-            //        });
-            //}
-        },
-        mounted() {
-            await this.getAllContracts();
-        }
+        }//,
+        //methods: {
+        //    async getAllContracts() {
+        //        // отправляет запрос и получаем ответ
+        //        const response = await fetch("/contract", {
+        //            method: "GET",
+        //            headers: { "Accept": "application/json" }
+        //        });
+        //        // если запрос прошел нормально
+        //        if (response.ok === true) {
+        //            // получаем данные
+        //            const contracts = await response.json();
+        //            console.log(contracts);
+        //            //let rows = document.querySelector("tbody");
+        //            //contracts.forEach(c => {
+        //            //    // добавляем полученные элементы в таблицу
+        //            //    rows.append(row(c));
+        //            //});
+        //        }
+        //    }
+        //    //getAllContracts() {
+        //    //    axios.get('/contract')
+        //    //        .then((response) => {
+        //    //            console.log(response.data)
+        //    //            //this.contracts = response.data;
+        //    //        })
+        //    //        .catch(function (error) {
+        //    //            alert(error);
+        //    //        });
+        //    //}
+        //},
+        //mounted() {
+        //    await this.getAllContracts();
+        //}
     }
 </script>
 

@@ -18,8 +18,9 @@ namespace DataLayer
         private ITypesTextsRepository _typesTextsRepository;
         private IMedallionMaterialsRepository _medallionMaterialsRepository;
         private IShapeMedallionsRepository _shapeMedallionsRepository;
-        private IColorMedallionsRepository _colorMedallionsRepository;
         private IEpitaphRepository _epitaphRepository;
+        private IStellaRepository _stellaRepository;
+        private ITextOnStellaRepository _textOnStellaRepository;
 
         public DataManager(
             IContractsRepository contractsRepository,
@@ -31,7 +32,8 @@ namespace DataLayer
             ITypesTextsRepository typesTextsRepository,
             IMedallionMaterialsRepository medallionMaterialsRepository,
             IShapeMedallionsRepository shapeMedallionsRepository,
-            IColorMedallionsRepository colorMedallionsRepository,
+            IStellaRepository stellaRepository,
+            ITextOnStellaRepository textOnStellaRepository,
             IEpitaphRepository epitaphRepository)
         {
             _contractsRepository = contractsRepository;
@@ -43,8 +45,9 @@ namespace DataLayer
             _typesTextsRepository = typesTextsRepository;
             _medallionMaterialsRepository = medallionMaterialsRepository;
             _shapeMedallionsRepository = shapeMedallionsRepository;
-            _colorMedallionsRepository = colorMedallionsRepository;
             _epitaphRepository = epitaphRepository;
+            _stellaRepository = stellaRepository;
+            _textOnStellaRepository = textOnStellaRepository;
         }
 
         public IContractsRepository Contracts { get { return _contractsRepository; } }
@@ -56,7 +59,8 @@ namespace DataLayer
         public ITypesTextsRepository TypesTexts { get { return _typesTextsRepository; } }
         public IMedallionMaterialsRepository MedallionMaterials { get { return _medallionMaterialsRepository; } }
         public IShapeMedallionsRepository ShapeMedallions { get { return _shapeMedallionsRepository; } }
-        public IColorMedallionsRepository ColorMedallions { get { return _colorMedallionsRepository; } }
         public IEpitaphRepository Epitaphs { get { return _epitaphRepository; } }
+        public IStellaRepository Stellas { get { return _stellaRepository; } }
+        public ITextOnStellaRepository TextsOnStella { get { return _textOnStellaRepository; } }
     }
 }

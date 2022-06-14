@@ -40,33 +40,33 @@ namespace BuissnesLayer.Services
         {
             TextViewModel text = new TextViewModel()
             {
-                Deceased = d,
-                ContractNumber = d.Contract.NumYear + "/" + d.Contract.Place + "/" + d.Contract.Number,
-                DateConclusionContract = d.Contract.DateOfConclusion,
-                NameCustomer = d.Contract.Customers[0].LastName + " " + d.Contract.Customers[0].FirstName + " " + d.Contract.Customers[0].MiddleName,
-                PhoneCustomer = d.Contract.Customers[0].Number,
-                TextEpitaph = epitaph
+                //Deceased = d,
+                //ContractNumber = d.Contract.NumYear + "/" + d.Contract.Place + "/" + d.Contract.Number,
+                //DateConclusionContract = d.Contract.DateOfConclusion,
+                //NameCustomer = d.Contract.Customers[0].LastName + " " + d.Contract.Customers[0].FirstName + " " + d.Contract.Customers[0].MiddleName,
+                //PhoneCustomer = d.Contract.Customers[0].Number,
+                //TextEpitaph = epitaph
             };
-            if (text.TextEpitaph)
-                text.Engraver = text.Deceased.Epitaph.EngraverEpitaph;
-            else text.Engraver = text.Deceased.EngraverName;    
+            //if (text.TextEpitaph)
+            //    text.Engraver = text.Deceased.Epitaph.EngraverEpitaph;
+            //else text.Engraver = text.Deceased.EngraverName;    
             return text;
         }
 
         public IEnumerable<TextViewModel> GetAllTextViews()
         {
             List<TextViewModel> texts = new List<TextViewModel>();
-            foreach (Contract c in _dataManager.Contracts.GetAllContracts())
-            {
-                foreach (Deceased d in _dataManager.Deceaseds.GetAllDeceasedsByIdContract(c.Id))
-                {
-                    if (d.Epitaph.EpitaphBool)
-                    {
-                        texts.Add(DBTextToView(d, true));
-                    }
-                    texts.Add(DBTextToView(d, false));
-                }
-            }
+            //foreach (Contract c in _dataManager.Contracts.GetAllContracts())
+            //{
+            //    foreach (Deceased d in _dataManager.Deceaseds.GetAllDeceasedsByIdContract(c.Id))
+            //    {
+            //        if (d.Epitaph.EpitaphBool)
+            //        {
+            //            texts.Add(DBTextToView(d, true));
+            //        }
+            //        texts.Add(DBTextToView(d, false));
+            //    }
+            //}
             return texts;
         }
     }
