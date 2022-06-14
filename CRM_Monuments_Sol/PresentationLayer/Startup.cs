@@ -64,8 +64,9 @@ namespace PresentationLayer
             services.AddTransient<ITypesTextsRepository, EFTypesTextsRepository>();
             services.AddTransient<IMedallionMaterialsRepository, EFMedallionMaterialsRepository>();
             services.AddTransient<IShapeMedallionsRepository, EFShapeMedallionsRepository>();
-            services.AddTransient<IColorMedallionsRepository, EFColorMedallionsRepository>();
             services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
+            services.AddTransient<IStellaRepository, EFStellaRepository>();
+            services.AddTransient<ITextOnStellaRepository, EFTextOnStellaRepository>();
 
             services.AddScoped<DataManager>();
 

@@ -28,7 +28,8 @@ namespace DataLayer.Entities
         public string? Note { get; set; }            //Примечания
         //public bool DeletedCheck { get; set; }
 
-        [ValidateNever]
+        //[ValidateNever]
+        public int? ContractId { get; set; }
         public Contract Contract { get; set; }      //для БД
     }
 }

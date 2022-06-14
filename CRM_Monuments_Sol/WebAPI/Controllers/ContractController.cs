@@ -21,9 +21,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ColorMedallion>>> Get()
+        public async Task<ActionResult<IEnumerable<MedallionMaterial>>> Get()
         {
-            return await Task.Run(() => _dataManager.ColorMedallions.GetAllColorsMedallions().ToList());
+            return await Task.Run(() => _dataManager.MedallionMaterials.GetAllMedallionsMaterials().ToList());
         }
         //public string Get()
         //{

@@ -11,8 +11,8 @@ namespace DataLayer.Entities
 {
     public class TextOnStella
     {
-        [Key]
-        [ForeignKey("Deceased")]
+        //[Key]
+        //[ForeignKey("Deceased")]
         public int Id { get; set; }
         public string? LastName { get; set; }                       //Фамилия
         public string? FirstName { get; set; }                      //Имя
@@ -21,10 +21,10 @@ namespace DataLayer.Entities
         public DateTime DateRip { get; set; }                       //Дата смерти
 
         public int? TypeTextId { get; set; }
-        [ValidateNever]
+        //[ValidateNever]
         public TypeText TypeText { get; set; }                      //тип текста на памятнике
 
-        [ValidateNever]
+        //[ValidateNever]
         public string? NotesTextName { get; set; }                  //примечания к тексту
         public string? EngraverName { get; set; }                   //резчик текста
         public DateTime DateBeginTextOnStella { get; set; }         //Дата Начала выполнения текста ФИО
@@ -32,7 +32,7 @@ namespace DataLayer.Entities
         public DateTime DeadLine { get; set; }                      //Крайний срок выполнения текста
 
 
-
+        public int? DeceasedId { get; set; }
         public Deceased Deceased { get; set; }                      //для бд
     }
 }

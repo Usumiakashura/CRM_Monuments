@@ -57,7 +57,8 @@ namespace WebAPI
             services.AddTransient<ITypesTextsRepository, EFTypesTextsRepository>();
             services.AddTransient<IMedallionMaterialsRepository, EFMedallionMaterialsRepository>();
             services.AddTransient<IShapeMedallionsRepository, EFShapeMedallionsRepository>();
-            services.AddTransient<IColorMedallionsRepository, EFColorMedallionsRepository>();
+            services.AddTransient<IStellaRepository, EFStellaRepository>();
+            services.AddTransient<ITextOnStellaRepository, EFTextOnStellaRepository>();
             services.AddTransient<IEpitaphRepository, EFEpitaphRepository>();
 
             services.AddScoped<DataManager>();
@@ -76,7 +77,9 @@ namespace WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app,
+            IWebHostEnvironment env, EFDBContext context,
+            UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -84,8 +87,14 @@ namespace WebAPI
             }
 
             app.UseRouting();
+
+            app.UseHttpsRedirection();
+
             app.UseSpaStaticFiles();
+            app.UseAuthentication();
             app.UseAuthorization();
+
+            DBInitializer.Seed(context, userManager, roleManager).GetAwaiter().GetResult();
 
             app.UseEndpoints(endpoints =>
             {

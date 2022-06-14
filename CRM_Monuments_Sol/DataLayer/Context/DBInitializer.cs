@@ -188,7 +188,7 @@ namespace DataLayer.Context
                                             TypeText = context.TypeTexts.Find(4),
                                             EngraverName = "Василий"
                                         },
-                                        
+
                                         Photo = true,
                                         PhotosOnMonument = new List<PhotoOnMonument>()
                                         {
@@ -204,6 +204,10 @@ namespace DataLayer.Context
                                                 ShapeFrame = "круг",
                                                 ColorFrame = "серый"
                                             }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
                                         }
                                     }
                                 }
@@ -355,6 +359,10 @@ namespace DataLayer.Context
                                                 ShapeFrame = "круг",
                                                 ColorFrame = "серый"
                                             }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
                                         }
                                     }
                                 },
@@ -736,6 +744,10 @@ namespace DataLayer.Context
                                                 ShapeFrame = "круг",
                                                 ColorFrame = "серый"
                                             }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
                                         }
                                     }
                                 }
@@ -887,6 +899,10 @@ namespace DataLayer.Context
                                                 ShapeFrame = "круг",
                                                 ColorFrame = "серый"
                                             }
+                                        },
+                                        Epitaphs = new List<Epitaph>()
+                                        {
+                                            new Epitaph()
                                         }
                                     }
                                 },

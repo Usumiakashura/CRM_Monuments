@@ -11,7 +11,7 @@ namespace DataLayer.Entities
     {   //портрет
         public string? Artist { get; set; }                 //художник
         public int? TypePortraitId { get; set; }            //тип портрета Id
-        [ValidateNever]
+        //[ValidateNever]
         public TypePortrait TypePortrait { get; set; }      //тип портрета
     }
 }

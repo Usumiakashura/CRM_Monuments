@@ -140,3 +140,6 @@ E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\WebAPI\obj\Debug\net5.
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\package-lock.json
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\package-lock.json
 E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\obj\Debug\net5.0\staticwebassets\WebAPI.StaticWebAssets.xml
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\Humanizer.dll
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\WebAPI\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

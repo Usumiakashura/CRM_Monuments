@@ -26,3 +26,4 @@ E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\DataLayer\obj\Debug\ne
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\ref\DataLayer.dll
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.pdb
 E:\Projects\CRM_Monuments\CRM_Monuments\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.genruntimeconfig.cache
+E:\Учеба\БГУиР\Дипломный проект\CRM_Monuments_Sol\DataLayer\obj\Debug\net5.0\DataLayer.csproj.AssemblyReference.cache

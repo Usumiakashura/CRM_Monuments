@@ -9,7 +9,7 @@ namespace DataLayer.Entities
     public class Stella
     {
         public int Id { get; set; }                     //ID
-        //public int ContractId { get; set; }             //ID договора
+        public int? ContractId { get; set; }             //ID договора
         public Contract Contract { get; set; }          //сам договор
         public List<Deceased> Deceaseds { get; set; }   //усопшие на стэлле
         

@@ -17,7 +17,8 @@ namespace DataLayer.Entities
         public List<PhotoOnMonument> PhotosOnMonument { get; set; }     //фотографии на памятнике
 
         
-        [ValidateNever]
+        //[ValidateNever]
+        public int? StellaId { get; set; }
         public Stella Stella { get; set; }                              //для бд
 
 
