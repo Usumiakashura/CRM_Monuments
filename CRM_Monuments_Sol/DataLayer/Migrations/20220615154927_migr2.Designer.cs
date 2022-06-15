@@ -4,14 +4,16 @@ using DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(EFDBContext))]
-    partial class EFDBContextModelSnapshot : ModelSnapshot
+    [Migration("20220615154927_migr2")]
+    partial class migr2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -275,26 +277,6 @@ namespace DataLayer.Migrations
                     b.ToTable("MedallionMaterials");
                 });
 
-            modelBuilder.Entity("DataLayer.Entities.MedallionPrice", b =>
-                {
-                    b.Property<int?>("MedallionMaterialId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MedallionSizeId")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("decimal(18,2)")
-                        .HasDefaultValue(0m);
-
-                    b.HasKey("MedallionMaterialId", "MedallionSizeId");
-
-                    b.HasIndex("MedallionSizeId");
-
-                    b.ToTable("MedallionPrices");
-                });
-
             modelBuilder.Entity("DataLayer.Entities.MedallionSize", b =>
                 {
                     b.Property<int>("Id")
@@ -307,7 +289,7 @@ namespace DataLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MedallionSizes");
+                    b.ToTable("MedallionSize");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.PhotoOnMonument", b =>
@@ -713,25 +695,6 @@ namespace DataLayer.Migrations
                     b.Navigation("TypeText");
                 });
 
-            modelBuilder.Entity("DataLayer.Entities.MedallionPrice", b =>
-                {
-                    b.HasOne("DataLayer.Entities.MedallionMaterial", "MedallionMaterial")
-                        .WithMany("MedallionPrices")
-                        .HasForeignKey("MedallionMaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataLayer.Entities.MedallionSize", "MedallionSize")
-                        .WithMany("MedallionPrices")
-                        .HasForeignKey("MedallionSizeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("MedallionMaterial");
-
-                    b.Navigation("MedallionSize");
-                });
-
             modelBuilder.Entity("DataLayer.Entities.PhotoOnMonument", b =>
                 {
                     b.HasOne("DataLayer.Entities.Deceased", "Deceased")
@@ -879,15 +842,11 @@ namespace DataLayer.Migrations
 
             modelBuilder.Entity("DataLayer.Entities.MedallionMaterial", b =>
                 {
-                    b.Navigation("MedallionPrices");
-
                     b.Navigation("Medallions");
                 });
 
             modelBuilder.Entity("DataLayer.Entities.MedallionSize", b =>
                 {
-                    b.Navigation("MedallionPrices");
-
                     b.Navigation("Medallions");
                 });
 

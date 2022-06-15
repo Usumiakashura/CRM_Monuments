@@ -12,6 +12,8 @@ namespace DataLayer.Entities
         public int? MedallionMaterialId { get; set; }               //id материала
         //[ValidateNever]
         public MedallionMaterial MedallionMaterial { get; set; }    //Материал
+        public int? MedallionSizeId { get; set; }
+        public MedallionSize MedallionSize { get; set; }
         public string SizeMedallion { get; set; }                   //Размер
         public int? ShapeMedallionId { get; set; }                  //id формы
         //[ValidateNever]

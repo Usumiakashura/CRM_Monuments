@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entities
 {
-    public class ShapeMedallion 
+    public class MedallionSize
     {
         public int Id { get; set; }                     //Id
-        public string Name { get; set; }                //Название
+        public string Size { get; set; }                //Размер
 
-        public List<Medallion> Medallions { get; set; }
         public List<MedallionMaterial> MedallionMaterials { get; set; }
-        public ShapeMedallion()
+        public List<MedallionPrice> MedallionPrices { get; set; }
+        public List<Medallion> Medallions { get; set; }
+        public MedallionSize()
         {
             Medallions = new List<Medallion>();
-            MedallionMaterials = new List<MedallionMaterial>();
+            MedallionPrices = new List<MedallionPrice>();
         }
     }
 }
