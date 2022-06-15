@@ -559,7 +559,7 @@ namespace DataLayer.Context
             List<TypePortrait> _typePortraits;
             List<MedallionMaterial> _medallionMaterials;
             List<ShapeMedallion> _shapeMedallions;
-
+            List<MedallionSize> _medallionSizes;
 
             if (!context.TypeTexts.Any())
             {
@@ -619,19 +619,11 @@ namespace DataLayer.Context
                 {
                     new MedallionMaterial()
                     {
-                        Name = "Керамогранит"
+                        Name = "Фарфор"
                     },
                     new MedallionMaterial()
                     {
-                        Name = "Керамика (фарфор)"
-                    },
-                    new MedallionMaterial()
-                    {
-                        Name = "Триплекс"
-                    },
-                    new MedallionMaterial()
-                    {
-                        Name = "Однослойное стекло"
+                        Name = "Керамика"
                     },
                     new MedallionMaterial()
                     {
@@ -639,7 +631,11 @@ namespace DataLayer.Context
                     },
                     new MedallionMaterial()
                     {
-                        Name = "Табличка из нерж.стали"
+                        Name = "Керамогранит"
+                    },
+                    new MedallionMaterial()
+                    {
+                        Name = "Стекло"
                     }
                 };
                 context.MedallionMaterials.AddRange(_medallionMaterials);
@@ -651,20 +647,87 @@ namespace DataLayer.Context
                 {
                     new ShapeMedallion()
                     {
-                        Name = "Овальная"
+                        Name = "Овальная",
+                        MedallionMaterials = new List<MedallionMaterial>()
+                        {
+                            context.MedallionMaterials.Find(1),
+                            context.MedallionMaterials.Find(2),
+                            context.MedallionMaterials.Find(3),
+                            context.MedallionMaterials.Find(4),
+                            context.MedallionMaterials.Find(5)
+                        }
                     },
                     new ShapeMedallion()
                     {
-                        Name = "Прямоугольная"
+                        Name = "Прямоугольная",
+                        MedallionMaterials = new List<MedallionMaterial>()
+                        {
+                            context.MedallionMaterials.Find(1),
+                            context.MedallionMaterials.Find(2),
+                            context.MedallionMaterials.Find(3),
+                            context.MedallionMaterials.Find(4),
+                            context.MedallionMaterials.Find(5)
+                        }
                     },
                     new ShapeMedallion()
                     {
-                        Name = "Арка"
+                        Name = "Арка",
+                        MedallionMaterials = new List<MedallionMaterial>()
+                        {
+                            context.MedallionMaterials.Find(4),
+                            context.MedallionMaterials.Find(5)
+                        }
                     }
                 };
                 context.ShapeMedallions.AddRange(_shapeMedallions);
                 context.SaveChanges();
             }
+            if (!context.MedallionSizes.Any())
+            {
+                _medallionSizes = new List<MedallionSize>()
+                {
+                    new MedallionSize()
+                    {
+                        Size = "9x12"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "11x15"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "13x18"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "17x23"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "18x24"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "20x30"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "24x30"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "30x40"
+                    },
+                    new MedallionSize()
+                    {
+                        Size = "40x60"
+                    }
+                };
+                context.MedallionSizes.AddRange(_medallionSizes);
+                context.SaveChanges();
+            }
+
+
 
             if (!context.Contracts.Any())
             {
