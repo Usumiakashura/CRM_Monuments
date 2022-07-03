@@ -29,10 +29,19 @@ namespace DataLayer.Context
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
+        public EFDBContext() { }
         public EFDBContext(DbContextOptions<EFDBContext> options)
             : base(options)
         {
 
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Web_CRM_Monuments;Trusted_Connection=True;MultipleActiveResultSets=true");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
