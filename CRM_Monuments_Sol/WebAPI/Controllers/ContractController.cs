@@ -1,4 +1,6 @@
-﻿using DataLayer;
+﻿using BuissnesLayer.Services;
+using BuissnesLayer.ViewModels;
+using DataLayer;
 using DataLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,16 +16,18 @@ namespace WebAPI.Controllers
     public class ContractController : ControllerBase
     {
         private DataManager _dataManager;
+        private ServicesManager _servicesManager;
 
         public ContractController(DataManager dataManager)
         {
             _dataManager = dataManager;
+            _servicesManager = new ServicesManager(_dataManager);
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MedallionMaterial>>> Get()
+        public async Task<ActionResult<IEnumerable<ContractViewModel>>> Get()
         {
-            return await Task.Run(() => _dataManager.MedallionMaterials.GetAllMedallionsMaterials().ToList());
+            return await Task.Run(() => _servicesManager.ContractsView.GetAllContracts().ToList()); //_dataManager.MedallionMaterials.GetAllMedallionsMaterials().ToList());
         }
         //public string Get()
         //{

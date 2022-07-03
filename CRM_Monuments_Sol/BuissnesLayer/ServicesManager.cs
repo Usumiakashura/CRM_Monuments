@@ -11,6 +11,7 @@ namespace BuissnesLayer.Services
     {
         private DataManager _dataManager;
         private ContractService _contractService;
+        private ViewServices.ContractService _contractViewService;
         private PortraitService _portraitService;
         private MedallionService _medallionService;
         private TextService _textService;
@@ -22,12 +23,14 @@ namespace BuissnesLayer.Services
             _portraitService = new PortraitService(_dataManager);
             _medallionService = new MedallionService(_dataManager);
             _textService = new TextService(_dataManager);
+            _contractViewService = new ViewServices.ContractService(_dataManager);
         }
 
         public ContractService Contracts { get { return _contractService; } }
         public PortraitService Portraits { get { return _portraitService; } }
         public MedallionService Medallions { get { return _medallionService; } }
         public TextService Texts { get { return _textService; } }
+        public ViewServices.ContractService ContractsView { get { return _contractViewService; } }
 
     }
 }

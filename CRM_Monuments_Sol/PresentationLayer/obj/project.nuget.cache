@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uq3br7QUNVnsd7TEINb6/qXDtd3Opf0BGORKKvUEZWS9SjYMN5KW0DXR0O/1wOxNWEMY141c11qTd5bhxgYLhg==",
+  "dgSpecHash": "uiq6OZ4kcZyeKihf8K4+ikEnHrYdCXDixAvfs58JsRbL9Aakh1ZkFBJo3Gh0sMoKwgZQiblRfK0bVhmgwU0qDA==",
   "success": true,
   "projectFilePath": "E:\\Учеба\\БГУиР\\Дипломный проект\\CRM_Monuments_Sol\\PresentationLayer\\PresentationLayer.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\aliak\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\aliak\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",

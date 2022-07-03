@@ -39,28 +39,37 @@
                     </tr>-->
                 </thead>
                 <tbody>
-                    <tr class="table-stroke" v-for="c in contracts.slice().reverse()" :key="c.id">
+                    <tr class="table-stroke" v-for="c in contracts.slice().reverse()" :key="c">
                         <td class="font-weight-bold">
-                            <label>{{ c.number }}</label>
+                            <div>
+                                {{ c.number }}/{{ c.place }}/{{ c.numYear }}
+                                <label v-if="c.installmentPayment">р</label>
+                            </div>
                         </td>
                         <td>
-                            <label>{{ c.dateConclusion }}</label>
+                            <label>{{ c.dateOfConclusion }}</label>
                         </td>
                         <td>
-                            <label>{{ c.deceased }}</label>
+                            <div v-for="s in c.stellas" :key="s">
+                                <div v-for="d in s.deceaseds" :key="d">
+                                    <label>{{ d.textOnStella.lastName }} {{ d.textOnStella.firstName }} {{ d.textOnStella.middleName }}</label>
+                                </div>
+                            </div>
                         </td>
                         <td>
                             <label v-if="c.pickup">Самовывоз</label>
                             <label v-else>Установка</label>
                         </td>
                         <td>
-                            <label>{{ c.deadline }}</label>
+                            <label>{{ c.deadLine }}</label>
                         </td>
                         <td>
-                            <label>{{ c.customer }}</label>
+                            <div v-for="cu in c.customers" :key="cu">
+                                <label>{{ cu.lastName }} {{ cu.firstName }} {{ cu.middleName }}</label>
+                            </div>
                         </td>
                         <td>
-                            <label>{{ c.phone }}</label>
+                            <label>{{ c.customers[0].number }}</label>
                         </td>
                     </tr>
                 </tbody>
@@ -79,77 +88,78 @@
 
 
 <script>
+    import axios from 'axios'
     export default {
         name: "Contracts",
         data() {
             return {
                 contracts: [
-                    {
-                        id: 1,
-                        number: "22/ДО/1",
-                        dateConclusion: "12.06.2022",
-                        deceased: "Иванов Иван Иванович",
-                        pickup: true,
-                        deadline: "12.09.2022",
-                        customer: "Иванов Петр Васильевич",
-                        phone: "+375(29)1568726"
-                    },
-                    {
-                        id: 2,
-                        number: "22/ДО/2",
-                        dateConclusion: "27.05.2022",
-                        deceased: "Самойлов Валентин Иосифович",
-                        pickup: false,
-                        deadline: "27.08.2022",
-                        customer: "Иванов Петр Васильевич",
-                        phone: "+375(29)1568726"
-                    },
-                    {
-                        id: 3,
-                        number: "22/ДО/3-p",
-                        dateConclusion: "12.06.2022",
-                        deceased: "Иванов Иван Иванович",
-                        pickup: true,
-                        deadline: "12.09.2022",
-                        customer: "Иванов Петр Васильевич",
-                        phone: "+375(29)1568726"
-                    }
+                    //{
+                    //    id: 1,
+                    //    number: "22/ДО/1",
+                    //    dateConclusion: "12.06.2022",
+                    //    deceased: "Иванов Иван Иванович",
+                    //    pickup: true,
+                    //    deadline: "12.09.2022",
+                    //    customer: "Иванов Петр Васильевич",
+                    //    phone: "+375(29)1568726"
+                    //},
+                    //{
+                    //    id: 2,
+                    //    number: "22/ДО/2",
+                    //    dateConclusion: "27.05.2022",
+                    //    deceased: "Самойлов Валентин Иосифович",
+                    //    pickup: false,
+                    //    deadline: "27.08.2022",
+                    //    customer: "Иванов Петр Васильевич",
+                    //    phone: "+375(29)1568726"
+                    //},
+                    //{
+                    //    id: 3,
+                    //    number: "22/ДО/3-p",
+                    //    dateConclusion: "12.06.2022",
+                    //    deceased: "Иванов Иван Иванович",
+                    //    pickup: true,
+                    //    deadline: "12.09.2022",
+                    //    customer: "Иванов Петр Васильевич",
+                    //    phone: "+375(29)1568726"
+                    //}
                 ]
             };
-        }//,
-        //methods: {
-        //    async getAllContracts() {
-        //        // отправляет запрос и получаем ответ
-        //        const response = await fetch("/contract", {
-        //            method: "GET",
-        //            headers: { "Accept": "application/json" }
-        //        });
-        //        // если запрос прошел нормально
-        //        if (response.ok === true) {
-        //            // получаем данные
-        //            const contracts = await response.json();
-        //            console.log(contracts);
-        //            //let rows = document.querySelector("tbody");
-        //            //contracts.forEach(c => {
-        //            //    // добавляем полученные элементы в таблицу
-        //            //    rows.append(row(c));
-        //            //});
-        //        }
-        //    }
-        //    //getAllContracts() {
-        //    //    axios.get('/contract')
-        //    //        .then((response) => {
-        //    //            console.log(response.data)
-        //    //            //this.contracts = response.data;
-        //    //        })
-        //    //        .catch(function (error) {
-        //    //            alert(error);
-        //    //        });
-        //    //}
-        //},
-        //mounted() {
-        //    await this.getAllContracts();
-        //}
+        },
+        methods: {
+            //async getAllContracts() {
+            //    // отправляет запрос и получаем ответ
+            //    const response = await fetch("/contract", {
+            //        method: "GET",
+            //        headers: { "Accept": "application/json" }
+            //    });
+            //    // если запрос прошел нормально
+            //    if (response.ok === true) {
+            //        // получаем данные
+            //        const contracts = await response.json();
+            //        console.log(contracts);
+            //        //let rows = document.querySelector("tbody");
+            //        //contracts.forEach(c => {
+            //        //    // добавляем полученные элементы в таблицу
+            //        //    rows.append(row(c));
+            //        //});
+            //    }
+            //}
+            getAllContracts() {
+                axios.get('/contract')
+                    .then((response) => {
+                        console.log(response.data)
+                        this.contracts = response.data;
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+            }
+        },
+        mounted() {
+            this.getAllContracts();
+        }
     }
 </script>
 
